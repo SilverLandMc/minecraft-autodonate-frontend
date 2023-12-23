@@ -15,8 +15,11 @@ interface NavBarProps {
 export const NavBar = ({ className }: NavBarProps) => {
   return (
     <div className={classNames(styles.navBar, {}, [className])}>
-      <Link to={RoutePath[AppRoute.MAIN]}>На главную</Link>
-      <Link to={RoutePath[AppRoute.ABOUT]}>О нас</Link>
+      <Link to={RoutePath[AppRoute.MAIN]}>Главная</Link>
+      <Link to={RoutePath[AppRoute.RANKS]}>Ранги</Link>
+      <Link to={RoutePath[AppRoute.RANKS]}>Бустеры</Link>
+      <Link to={RoutePath[AppRoute.RANKS]}>Сундуки</Link>
+      <Link to={RoutePath[AppRoute.RANKS]}>Ресурсы</Link>
     </div>
   );
 };

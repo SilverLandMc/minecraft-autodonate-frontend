@@ -1,0 +1,17 @@
+@import 'app/styles/media/media';
+
+.section {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mediaS {
+        max-width: 640px;
+    }
+
+    @include mediaM {
+        max-width: 960px;
+    }
+}

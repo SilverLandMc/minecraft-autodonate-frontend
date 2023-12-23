@@ -1,6 +1,6 @@
-import {lazy} from "react";
+import { lazy } from "react";
+import componentLoader from "shared/lib/componentLoader/componentLoader";
 
-export const MainPageLazy = lazy(() => new Promise(resolve => {
-    // @ts-ignore
-  setTimeout(() => resolve(import('./MainPage')), 1500)
-}));
+export const MainPageLazy = lazy(() =>
+  componentLoader(() => import("./MainPage")),
+);
