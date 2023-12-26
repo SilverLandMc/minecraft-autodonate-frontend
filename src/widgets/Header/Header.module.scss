@@ -1,0 +1,10 @@
+@import '/src/app/styles/media/media.scss';
+
+.logo {
+    max-width: 200px;
+    height: 100%;
+
+    @include mediaS {
+        max-width: 250px;
+    }
+}

@@ -12,7 +12,7 @@ const Header: FunctionComponent<HeaderProps> = ({ className }: HeaderProps) => {
     return (
         <div className={classNames(styles.header, {}, [className])}>
             <Section>
-                <img src={silverLandLogo} alt="SilverLand Minecraft server" />
+                <img src={silverLandLogo} className={styles.logo} alt="SilverLand Minecraft server" />
             </Section>
         </div>
     );
