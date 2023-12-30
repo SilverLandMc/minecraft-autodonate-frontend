@@ -1,7 +1,8 @@
 import { FunctionComponent } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import styles from './MainPage.module.scss';
+import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
+import styles from './MainPage.module.scss';
+import Spacing from 'shared/ui/spacing/Spacing';
 
 interface MainPageProps {
     className?: string;
@@ -10,25 +11,39 @@ interface MainPageProps {
 const MainPage: FunctionComponent<MainPageProps> = ({ className }: MainPageProps) => {
     return (
         <div className={classNames(styles.mainPage, {}, [className])}>
-            <Section>
-                Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt,
-                explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui
-                dolorem ipsum, quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do] eius modi
-                tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-                quis nostrum[d] exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? [D]Quis autem vel eum i[r]ure reprehenderit, qui in ea voluptate velit esse, quam nihil
-                molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos
-                et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque
-                corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique
-                sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                reru[d]um facilis est e[r]t expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
-                optio, cumque nihil impedit, quo minus id, quod maxime placeat facere possimus, omnis voluptas assumenda
-                est, omnis dolor repellend[a]us. Temporibus autem quibusdam et aut officiis debitis aut rerum
-                necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque
-                earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-                aut perferendis doloribus asperiores repellat.
+            <Section className={styles.section}>
+                <div className={styles.innerWrapper}>
+                    <p className={styles.textBlock}>
+                        Привет всем поклонникам Minecraft! Приглашаем вас на&nbsp;удивительный и&nbsp;уникальный сервер
+                        Minecraft, созданный самим знаменитым ютуб-летсплеером SilverHand! Это не&nbsp;просто сервер,
+                        это целый мир приключений, где каждый найдет занятие по&nbsp;душе. От&nbsp;огромных городов
+                        до&nbsp;таинственных подземелий, каждый уголок нашего сервера наполнен сюрпризами
+                        и&nbsp;захватывающими заданиями, созданными лично SilverHand. Почувствуйте себя настоящими
+                        героями в&nbsp;мире, где ваша смекалка и&nbsp;креативность&nbsp;&mdash; ключ к&nbsp;успеху!
+                    </p>
+
+                    <Spacing size={15} />
+
+                    <p className={styles.textBlock}>
+                        Не&nbsp;пропустите шанс стать частью легендарного сообщества. Помимо классического выживания
+                        и&nbsp;строительства, на&nbsp;сервере вас ждут уникальные мини-игры и&nbsp;события,
+                        разработанные SilverHand и&nbsp;его командой. Присоединяйтесь к&nbsp;захватывающим
+                        PvP-сражениям, участвуйте в&nbsp;масштабных строительных проектах или&nbsp;же создайте свой
+                        собственный шедевр, который увидит весь сервер. Ваше творчество и&nbsp;умения могут принести вам
+                        славу и&nbsp;признание среди других игроков!
+                    </p>
+
+                    <Spacing size={15} />
+
+                    <p className={styles.textBlock}>
+                        И&nbsp;самое главное&nbsp;&mdash; на&nbsp;сервере SilverHand вы&nbsp;не&nbsp;просто играете,
+                        вы&nbsp;становитесь частью дружного сообщества. Общайтесь, дружите и&nbsp;сотрудничайте
+                        с&nbsp;другими игроками, обменивайтесь идеями и&nbsp;стратегиями. SilverHand часто
+                        присоединяется к&nbsp;игре, делится советами и&nbsp;даже устраивает эксклюзивные мероприятия для
+                        участников сервера. Не&nbsp;упустите свой шанс играть вместе с&nbsp;легендой и&nbsp;стать частью
+                        захватывающего мира Minecraft на&nbsp;сервере SilverHand!
+                    </p>
+                </div>
             </Section>
         </div>
     );

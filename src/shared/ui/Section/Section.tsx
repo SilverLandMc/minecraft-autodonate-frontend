@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from 'shared/lib/aliases/classNames';
 import styles from './Section.module.scss';
 
 interface SectionProps extends PropsWithChildren<any> {
@@ -7,7 +7,7 @@ interface SectionProps extends PropsWithChildren<any> {
 }
 
 const Section: FunctionComponent<SectionProps> = ({ className, children }: SectionProps) => {
-    return <div className={classNames(styles.section, {}, [className])}>{children}</div>;
+    return <div className={classNames(styles.section, [className])}>{children}</div>;
 };
 
 export default Section;

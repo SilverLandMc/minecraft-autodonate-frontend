@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { FunctionComponent } from 'react';
 import Section from 'shared/ui/Section/Section';
 import silverLandLogo from './images/silverLandLogo.png';
@@ -8,11 +7,13 @@ interface HeaderProps {
     className?: string;
 }
 
-const Header: FunctionComponent<HeaderProps> = ({ className }: HeaderProps) => {
+const Header: FunctionComponent<HeaderProps> = () => {
     return (
-        <div className={classNames(styles.header, {}, [className])}>
+        <div className={styles.backgroundWrapper}>
             <Section>
-                <img src={silverLandLogo} className={styles.logo} alt="SilverLand Minecraft server" />
+                <div className={styles.wrapper}>
+                    <img src={silverLandLogo} className={styles.logo} alt="SilverLand Minecraft server" />
+                </div>
             </Section>
         </div>
     );
