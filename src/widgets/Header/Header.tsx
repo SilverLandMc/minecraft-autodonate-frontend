@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header: FunctionComponent<HeaderProps> = () => {
     return (
         <div className={styles.backgroundWrapper}>
-            <Section>
+            <Section className={styles.section}>
                 <div className={styles.wrapper}>
                     <img src={silverLandLogo} className={styles.logo} alt="SilverLand Minecraft server" />
                 </div>

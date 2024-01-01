@@ -1,0 +1,79 @@
+@import '/src/app/styles/media/media.scss';
+
+.backgroundWrapper {
+    position: relative;
+    background-image: url('images/nicknameBlockBackground.png');
+    background-size: cover;
+    background-position: center;
+    object-fit: fill;
+    z-index: var(--background-index);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: var(--filter-layer-index);
+    }
+}
+
+.section {
+    z-index: var(--main-content-index);
+    position: relative;
+
+    @include mediaS {
+        padding: 0;
+    }
+}
+
+.header,
+.subHeader,
+.enterProposal {
+    @media (max-width: 544px) {
+        text-shadow:
+            1px 1px 2px black,
+            1px 0 2px black,
+            0 1px 2px black,
+            -1px -1px 2px black,
+            -1px 0px 2px black,
+            0 -1px 2px black;
+    }
+
+    color: var(--color-white);
+    line-height: 100%;
+}
+
+.header {
+    font-size: 32px;
+
+    @include mediaS {
+        font-size: 42px;
+    }
+
+    @include mediaL {
+        font-size: 52px;
+    }
+}
+
+.subHeader {
+    font-size: 20px;
+
+    @include mediaS {
+        font-size: 26px;
+    }
+
+    @include mediaL {
+        font-size: 32px;
+    }
+}
+
+.enterProposal {
+    font-weight: 400;
+}
+
+.nicknameForm {
+    max-width: 320px;
+}

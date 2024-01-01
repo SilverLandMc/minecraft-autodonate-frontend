@@ -3,10 +3,10 @@
 .backgroundWrapper {
     position: relative;
     background-image: url('./images/brightGrassTextureExtended.png');
-    background-color: rgba(0, 0, 0, 0.6);
     background-size: cover;
     background-position: center;
     object-fit: fill;
+    z-index: var(--background-index);
 
     &::before {
         content: '';
@@ -15,9 +15,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(88, 64, 48, 0);
-        z-index: 1;
+        background: rgba(0, 30, 0, 0.5);
+        z-index: var(--filter-layer-index);
     }
+}
+
+.section {
+    padding: 0;
 }
 
 .wrapper {
@@ -34,24 +38,15 @@
 }
 
 .logo {
-    z-index: 9;
-    max-width: 150px;
+    z-index: var(--main-content-index);
+    max-width: 120px;
     height: 100%;
 
     @include mediaS {
-        max-width: 170px;
+        max-width: 100px;
     }
 
     @include mediaL {
-        max-width: 190px;
-    }
-}
-
-@keyframes zoomEffect {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.1);
+        max-width: 120px;
     }
 }

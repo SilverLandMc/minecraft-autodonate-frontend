@@ -1,16 +1,20 @@
 import { FunctionComponent } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
-import styles from './MainPage.module.scss';
+import NicknameBlock from 'widgets/NicknameBlock/NicknameBlock';
 import Spacing from 'shared/ui/spacing/Spacing';
+import styles from './MainPage.module.scss';
 
 interface MainPageProps {
     className?: string;
 }
 
-const MainPage: FunctionComponent<MainPageProps> = ({ className }: MainPageProps) => {
+const MainPage: FunctionComponent<MainPageProps> = () => {
     return (
-        <div className={classNames(styles.mainPage, {}, [className])}>
+        <>
+            <NicknameBlock />
+
+            <Spacing size={25} />
+
             <Section className={styles.section}>
                 <div className={styles.innerWrapper}>
                     <p className={styles.textBlock}>
@@ -45,7 +49,7 @@ const MainPage: FunctionComponent<MainPageProps> = ({ className }: MainPageProps
                     </p>
                 </div>
             </Section>
-        </div>
+        </>
     );
 };
 
