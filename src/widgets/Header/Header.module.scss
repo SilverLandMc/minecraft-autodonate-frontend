@@ -1,12 +1,14 @@
 @import '/src/app/styles/media/media.scss';
 
 .backgroundWrapper {
-    position: relative;
+    position: sticky;
+    top: 0;
+
     background-image: url('./images/brightGrassTextureExtended.png');
     background-size: cover;
     background-position: center;
     object-fit: fill;
-    z-index: var(--background-index);
+    z-index: var(--sticky-header-index);
 
     &::before {
         content: '';
@@ -22,28 +24,25 @@
 
 .section {
     padding: 0;
+    position: relative;
+    z-index: var(--main-content-index);
 }
 
-.wrapper {
+.innerRowWrapper {
     padding: 5px 0;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-
-    @include mediaS {
-        justify-content: flex-start;
-    }
+    justify-content: space-between;
 }
 
 .logo {
-    z-index: var(--main-content-index);
     max-width: 120px;
     height: 100%;
 
     @include mediaS {
-        max-width: 100px;
+        max-width: 80px;
     }
 
     @include mediaL {

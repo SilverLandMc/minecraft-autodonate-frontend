@@ -1,37 +1,55 @@
+@import '/src/app/styles/media/media.scss';
+
 .navBar {
-    width: 100%;
-    height: var(--navbar-height);
+    padding: 15px;
+    border-radius: 15px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    overflow-y: scroll;
+    gap: 14px;
 
-    background: var(--bg-color);
+    background: var(--black-opacity-30);
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+
+    @include mediaM {
+        gap: 40px;
+    }
 }
 
 .linkContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+
+    @include mediaM {
+        gap: 8px;
+    }
 }
 
 .icon {
-    max-height: 30px;
+    max-height: 20px;
+
+    @include mediaM {
+        max-height: 30px;
+    }
 }
 
 .link {
     text-decoration: none;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--color-white);
+    font-size: 14px;
 
     transition: 0.3s;
 
     &:hover {
         color: var(--secondary-color);
+    }
+
+    @include mediaM {
+        font-size: 16px;
     }
 }
