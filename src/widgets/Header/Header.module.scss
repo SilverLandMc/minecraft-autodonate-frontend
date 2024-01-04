@@ -3,11 +3,7 @@
 .backgroundWrapper {
     position: sticky;
     top: 0;
-
-    background-image: url('./images/brightGrassTextureExtended.png');
-    background-size: cover;
-    background-position: center;
-    object-fit: fill;
+    background: white;
     z-index: var(--sticky-header-index);
 
     &::before {
@@ -17,28 +13,37 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 30, 0, 0.5);
+        background: rgba(0, 60, 0, 0.5);
         z-index: var(--filter-layer-index);
     }
 }
 
 .section {
-    padding: 0;
     position: relative;
     z-index: var(--main-content-index);
+
+    @include mediaS {
+        padding: 0;
+    }
 }
 
 .innerRowWrapper {
     padding: 5px 0;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    gap: 8px;
     justify-content: space-between;
+
+    @include mediaS {
+        gap: unset;
+        flex-direction: row;
+    }
 }
 
 .logo {
-    max-width: 120px;
+    max-width: 60px;
     height: 100%;
 
     @include mediaS {
