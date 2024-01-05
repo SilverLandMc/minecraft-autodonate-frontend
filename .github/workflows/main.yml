@@ -18,7 +18,7 @@ jobs:
             # Переходим в папку проекта
             cd /home/${{ secrets.USER }}/dev/minecraft-silver-frontend/
             # Обновляем репу
-            git pull
+            git pull "https://Arhonist:${{ secrets.PASSPHRASE }}@github.com/SilverLandMc/minecraft-silver-frontend.git" main
             # Накатываем зависимости
             npm i
             # Билдим проект

@@ -1,6 +1,6 @@
 # minecraft-silver-frontend
 
-https://github.com/SilverLandMc/minecraft-silver-frontend/actions/workflows/main.yml/badge.svg
+![push status](https://github.com/SilverLandMc/minecraft-silver-frontend/actions/workflows/main.yml/badge.svg?event=push)
 
 Фронтенд-приложение сервера SilverLand.
 
