@@ -16,13 +16,13 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             # Переходим в папку проекта
-            sudo cd /home/${{ secrets.USER }}/dev/minecraft-silver-frontend/
+            cd /home/${{ secrets.USER }}/dev/minecraft-silver-frontend/
             # Обновляем репу
-            sudo git pull
+            git pull
             # Накатываем зависимости
-            sudo npm i
+            npm i
             # Билдим проект
-            sudo npm run build:prod
+            npm run build:prod
 
   send_message:
     runs-on: ubuntu-latest
