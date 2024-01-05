@@ -18,7 +18,7 @@ jobs:
             # Переходим в папку проекта
             cd /home/${{ secrets.USER }}/dev/minecraft-silver-frontend/
             # Обновляем репу
-            git -c credential.helper='!f() { echo "username=${{ secrets.GH_USERNAME }}"; echo "password=${{ secrets.PASSPHRASE }}"; }; f' git pull
+            git -c credential.helper='!f() { echo "username=${{ secrets.GH_USERNAME }}"; echo "password=${{ secrets.PASSPHRASE }}"; }; f' pull
             # Накатываем зависимости
             npm i
             # Билдим проект
