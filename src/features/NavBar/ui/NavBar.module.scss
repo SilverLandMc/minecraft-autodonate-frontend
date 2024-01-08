@@ -1,11 +1,11 @@
-@import '/src/app/styles/media/media.scss';
+@import '/src/app/styles/media/media';
 
 .navBar {
     padding: 15px;
     border-radius: 15px;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -15,6 +15,7 @@
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
 
     @include mediaS {
+        flex-direction: row;
         flex-wrap: nowrap;
     }
 
@@ -47,6 +48,7 @@
     font-weight: 800;
     color: var(--color-white);
     font-size: 14px;
+    font-family: var(--font-family-main);
 
     transition: 0.3s;
 

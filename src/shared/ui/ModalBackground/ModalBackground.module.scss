@@ -1,0 +1,67 @@
+@import '/src/app/styles/media/media.scss';
+
+:root {
+    --modal-content-padding-top: 0;
+
+    @include mediaS {
+        --modal-content-padding-top: 105px;
+    }
+}
+
+.modal {
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.67);
+
+    z-index: var(--modal-index);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow-y: auto;
+
+    @include mediaS {
+        padding: 0 28px;
+    }
+
+    @include mediaM {
+        padding: 0;
+    }
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 16px;
+    right: 12px;
+    padding: 10px;
+    background-image: url('./images/modalCross.svg');
+    z-index: var(--modal-index);
+    filter: invert(0);
+
+    @include mediaS {
+        top: calc(var(--modal-content-padding-top) - 17px);
+        right: -40px;
+    }
+}
+
+.modalContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 24px;
+
+    @include mediaS {
+        border-radius: 8px;
+        width: 510px;
+        max-width: calc(100% - 60px);
+        height: auto;
+        padding-top: var(--modal-content-padding-top);
+    }
+}
