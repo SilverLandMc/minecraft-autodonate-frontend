@@ -30,7 +30,7 @@ const NavBar: FunctionComponent<Props> = ({ onClose, closing: isClosing }) => {
     return (
         <div className={classNames(styles.navBar, { [styles.isClosing]: isClosing })}>
             {Object.entries(navBarLinks).map(([appRoute, { icon, verboseName }]) => (
-                <div className={styles.linkContainer}>
+                <div key={appRoute} className={styles.linkContainer}>
                     <div className={styles.iconContainer}>
                         <img src={icon} className={styles.icon} alt={verboseName} />
                     </div>
