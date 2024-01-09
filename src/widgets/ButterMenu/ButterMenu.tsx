@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState } from 'react';
+import { FunctionComponent, MouseEvent, useRef, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import butterIcon from './images/butterIcon.svg';
 import styles from './ButterMenu.module.scss';
@@ -16,7 +16,7 @@ const ButterMenu: FunctionComponent = () => {
 
     const openModal = () => setIsOpened(true);
 
-    const closeModal = (event: Event) => {
+    const closeModal = (event: MouseEvent) => {
         // useClickAway триггерится на события touchstart и click, из-за чего происходит закрытие и моментальное открытие
         // модального окна, если клик был совершён по области крестика закрытия модалки (а под ней расположен бутерброд)
         // Поэтому ничего не делаем для touchstart
@@ -32,14 +32,14 @@ const ButterMenu: FunctionComponent = () => {
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
-    useClickAway(wrapperRef, (event) => closeModal(event));
+    useClickAway(wrapperRef, (event) => closeModal(event as unknown as MouseEvent));
 
     if (isOpened) {
         return (
             <Portal>
                 <ModalBackground>
                     <div ref={wrapperRef} className={styles.modalWrapper}>
-                        <NavBar closing={isClosing} />
+                        <NavBar onClose={closeModal} closing={isClosing} />
                     </div>
                 </ModalBackground>
             </Portal>

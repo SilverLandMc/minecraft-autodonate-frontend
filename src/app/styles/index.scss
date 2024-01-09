@@ -13,3 +13,19 @@
 
     min-height: 100vh;
 }
+
+/* Стилизация ползунка скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 4px;
+}
+
+/* Стилизация дорожки скроллбара */
+::-webkit-scrollbar-track {
+    background: var(--black-opacity-5);
+}
+
+/* Установка ширины скроллбара */
+::-webkit-scrollbar {
+    width: 6px;
+}

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutes as AppRoute, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import homeIcon from './images/homeIcon.png';
@@ -10,10 +10,11 @@ import styles from './NavBar.module.scss';
 import classNames from 'shared/lib/aliases/classNames';
 
 interface Props {
+    onClose?(event: MouseEvent): void;
     closing?: boolean;
 }
 
-const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
+const NavBar: FunctionComponent<Props> = ({ onClose, closing: isClosing }) => {
     return (
         <div className={classNames(styles.navBar, { [styles.isClosing]: isClosing })}>
             <div className={styles.linkContainer}>
@@ -21,7 +22,7 @@ const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
                     <img src={homeIcon} className={styles.icon} alt="Главная" />
                 </div>
 
-                <Link to={RoutePath[AppRoute.MAIN]} className={styles.link}>
+                <Link to={RoutePath[AppRoute.MAIN]} className={styles.link} onClick={onClose}>
                     Главная
                 </Link>
             </div>
@@ -31,7 +32,7 @@ const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
                     <img src={ranksIcon} className={styles.icon} alt="Ранги" />
                 </div>
 
-                <Link to={RoutePath[AppRoute.RANKS]} className={styles.link}>
+                <Link to={RoutePath[AppRoute.RANKS]} className={styles.link} onClick={onClose}>
                     Ранги
                 </Link>
             </div>
@@ -41,7 +42,7 @@ const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
                     <img src={boostersIcon} className={styles.icon} alt="Бустеры" />
                 </div>
 
-                <Link to={RoutePath[AppRoute.RANKS]} className={styles.link}>
+                <Link to={RoutePath[AppRoute.BOOSTERS]} className={styles.link} onClick={onClose}>
                     Бустеры
                 </Link>
             </div>
@@ -51,7 +52,7 @@ const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
                     <img src={chestsIcon} className={styles.icon} alt="Сундуки" />
                 </div>
 
-                <Link to={RoutePath[AppRoute.RANKS]} className={styles.link}>
+                <Link to={RoutePath[AppRoute.CHESTS]} className={styles.link} onClick={onClose}>
                     Сундуки
                 </Link>
             </div>
@@ -61,7 +62,7 @@ const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
                     <img src={resourcesIcon} className={styles.icon} alt="Ресурсы" />
                 </div>
 
-                <Link to={RoutePath[AppRoute.RANKS]} className={styles.link}>
+                <Link to={RoutePath[AppRoute.RESOURCES]} className={styles.link} onClick={onClose}>
                     Ресурсы
                 </Link>
             </div>
