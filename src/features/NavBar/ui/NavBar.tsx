@@ -7,10 +7,15 @@ import boostersIcon from './images/boostersIcon.png';
 import chestsIcon from './images/chestsIcon.png';
 import resourcesIcon from './images/resourcesIcon.png';
 import styles from './NavBar.module.scss';
+import classNames from 'shared/lib/aliases/classNames';
 
-const NavBar: FunctionComponent = () => {
+interface Props {
+    closing?: boolean;
+}
+
+const NavBar: FunctionComponent<Props> = ({ closing: isClosing }) => {
     return (
-        <div className={styles.navBar}>
+        <div className={classNames(styles.navBar, { [styles.isClosing]: isClosing })}>
             <div className={styles.linkContainer}>
                 <div className={styles.iconContainer}>
                     <img src={homeIcon} className={styles.icon} alt="Главная" />

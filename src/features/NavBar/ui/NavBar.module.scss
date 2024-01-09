@@ -1,5 +1,27 @@
 @import '/src/app/styles/media/media';
 
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutFromRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
 .navBar {
     padding: 15px;
     border-radius: 15px;
@@ -13,6 +35,12 @@
 
     background: var(--black-opacity-50);
     box-shadow: 0 10px 50px var(--black-opacity-5);
+
+    animation: slideInFromLeft 0.5s ease forwards;
+
+    &.isClosing {
+        animation: slideOutFromRight 0.3s ease forwards;
+    }
 
     @include mediaS {
         flex-direction: row;

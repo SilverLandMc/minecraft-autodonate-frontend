@@ -7,34 +7,46 @@ import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
 import { NavBar } from 'features/NavBar';
 import { useClickAway } from 'react-use';
 
-interface Props {
-    className?: string;
-}
+// При изменении длительность также править в NavBar.module.scss (анимация slideOutFromRight) в &.isClosing
+const MODAL_CLOSE_ANIMATION_DURATION = 300;
 
-const ButterMenu: FunctionComponent<Props> = ({ className }) => {
-    const [isOpened, setIsOpened] = useState(false);
+const ButterMenu: FunctionComponent = () => {
+    const [isOpened, setIsOpened] = useState<boolean>(false);
+    const [isClosing, setIsClosing] = useState<boolean>(false);
 
     const openModal = () => setIsOpened(true);
-    const closeModal = () => setIsOpened(false);
+
+    const closeModal = (event: Event) => {
+        // useClickAway триггерится на события touchstart и click, из-за чего происходит закрытие и моментальное открытие
+        // модального окна, если клик был совершён по области крестика закрытия модалки (а под ней расположен бутерброд)
+        // Поэтому ничего не делаем для touchstart
+        if (event.type === 'touchstart') {
+            return;
+        }
+
+        setIsClosing(true);
+        setTimeout(() => {
+            setIsClosing(false);
+            setIsOpened(false);
+        }, MODAL_CLOSE_ANIMATION_DURATION);
+    };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
-    useClickAway(wrapperRef, () => closeModal());
+    useClickAway(wrapperRef, (event) => closeModal(event));
 
     if (isOpened) {
         return (
             <Portal>
                 <ModalBackground>
                     <div ref={wrapperRef} className={styles.modalWrapper}>
-                        <NavBar />
+                        <NavBar closing={isClosing} />
                     </div>
                 </ModalBackground>
             </Portal>
         );
     }
 
-    return (
-        <img src={butterIcon} className={classNames(styles.butterMenu, [className])} alt="Меню" onClick={openModal} />
-    );
+    return <img src={butterIcon} className={classNames(styles.butterMenu)} alt="Меню" onClick={openModal} />;
 };
 
 export default ButterMenu;
