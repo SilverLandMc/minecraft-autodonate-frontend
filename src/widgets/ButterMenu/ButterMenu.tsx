@@ -37,7 +37,7 @@ const ButterMenu: FunctionComponent = () => {
     if (isOpened) {
         return (
             <Portal>
-                <ModalBackground>
+                <ModalBackground closing={isClosing}>
                     <div ref={wrapperRef} className={styles.modalWrapper}>
                         <NavBar onClose={closeModal} closing={isClosing} />
                     </div>

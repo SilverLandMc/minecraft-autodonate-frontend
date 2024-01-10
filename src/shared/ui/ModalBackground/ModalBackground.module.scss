@@ -8,21 +8,47 @@
     }
 }
 
-.modal {
-    backdrop-filter: blur(14px);
-    background-color: rgba(255, 255, 255, 0.67);
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.modal {
     z-index: var(--modal-index);
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    overflow-y: auto;
+
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.4);
+
+    overflow: hidden;
+
+    animation: fadeIn 0.3s;
+
+    &.isClosing {
+        animation: fadeOut 0.4s;
+    }
 
     @include mediaS {
         padding: 0 28px;
