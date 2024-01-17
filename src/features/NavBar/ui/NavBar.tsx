@@ -16,7 +16,7 @@ interface Props {
 
 type NavBarLink = { icon: string; verboseName: string };
 
-const navBarLinks: Record<AppRoute, NavBarLink> = {
+const navBarLinks: Partial<Record<AppRoute, NavBarLink>> = {
     [AppRoute.MAIN]: { icon: homeIcon, verboseName: 'Главная' },
     [AppRoute.RANKS]: { icon: ranksIcon, verboseName: 'Ранги' },
     [AppRoute.BOOSTERS]: { icon: boostersIcon, verboseName: 'Бустеры' },

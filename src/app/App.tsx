@@ -5,6 +5,8 @@ import { AppRouter } from 'app/providers/router';
 import Header from 'widgets/Header/Header';
 import classNames from 'shared/lib/aliases/classNames';
 import './styles/index.scss';
+import Footer from 'widgets/Footer/Footer';
+import Spacing from 'shared/ui/spacing/Spacing';
 
 const App = () => {
     const { theme } = useTheme();
@@ -14,6 +16,10 @@ const App = () => {
             <Header />
 
             <AppRouter />
+
+            <Spacing size={20} />
+
+            <Footer />
         </div>
     );
 };
