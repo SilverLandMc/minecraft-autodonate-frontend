@@ -15,7 +15,8 @@ const TermsOfServicePage: FunctionComponent<Props> = () => {
                 <h1 className={styles.title}>Условия использования</h1>
 
                 <p className={styles.paragraph}>
-                    1. Основные положения <br />
+                    <span className={styles.subHeader}>1. Основные положения</span>
+                    <br />
                     1.1 Каждый пользователь, посетивший проект SilverLand Minecraft Server, автоматически соглашается
                     с&nbsp;данным сводом правил. <br />
                     1.2 Администратор имеет право на&nbsp;редактирование данных правил в&nbsp;любое время суток. <br />
@@ -38,7 +39,8 @@ const TermsOfServicePage: FunctionComponent<Props> = () => {
                 <hr className={styles.line} />
 
                 <p className={styles.paragraph}>
-                    2. Поведение в&nbsp;игре <br />
+                    <span className={styles.subHeader}>2. Поведение в&nbsp;игре</span>
+                    <br />
                     2.1 Игрок имеет право материться, но&nbsp;не&nbsp;оскорблять других. <br />
                     2.2 Запрещен расизм, нацизм, розжиг межрасовой розни и&nbsp;другое. <br />
                     2.3 Запрещена реклама сторонних проектов, кроме каналов YouTube. <br />
@@ -58,7 +60,8 @@ const TermsOfServicePage: FunctionComponent<Props> = () => {
                 <hr className={styles.line} />
 
                 <p className={styles.paragraph}>
-                    3. Строительство <br />
+                    <span className={styles.subHeader}>3. Строительство</span>
+                    <br />
                     3.1 Запрещен бессмысленный разлив жидкостей. <br />
                     3.2 Запрещено возведение бессмысленных построек. <br />
                     3.3 Запрещено портить карту любыми способами.{' '}
@@ -67,7 +70,8 @@ const TermsOfServicePage: FunctionComponent<Props> = () => {
                 <hr className={styles.line} />
 
                 <p className={styles.paragraph}>
-                    4. Игрок и&nbsp;модерация <br />
+                    <span className={styles.subHeader}>4. Игрок и&nbsp;модерация</span>
+                    <br />
                     4.1 Запрещено оскорблять модератора. <br />
                     4.2 Запрещено препятствовать действиям модератора. <br />
                     4.3 Модератору запрещено оскорблять игрока.
