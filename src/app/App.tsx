@@ -4,9 +4,9 @@ import { useTheme } from 'app/providers/ThemeProvider/lib/useTheme';
 import { AppRouter } from 'app/providers/router';
 import Header from 'widgets/Header/Header';
 import classNames from 'shared/lib/aliases/classNames';
-import './styles/index.scss';
 import Footer from 'widgets/Footer/Footer';
 import Spacing from 'shared/ui/spacing/Spacing';
+import './styles/index.scss';
 
 const App = () => {
     const { theme } = useTheme();

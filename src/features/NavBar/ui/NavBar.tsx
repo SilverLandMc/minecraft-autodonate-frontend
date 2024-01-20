@@ -6,8 +6,8 @@ import ranksIcon from './images/ranksIcon.png';
 import boostersIcon from './images/boostersIcon.png';
 import chestsIcon from './images/chestsIcon.png';
 import resourcesIcon from './images/resourcesIcon.png';
-import styles from './NavBar.module.scss';
 import classNames from 'shared/lib/aliases/classNames';
+import styles from './NavBar.module.scss';
 
 interface Props {
     onClose?(event: MouseEvent): void;

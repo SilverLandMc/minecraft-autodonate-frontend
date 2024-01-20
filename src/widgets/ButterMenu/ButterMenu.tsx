@@ -1,11 +1,11 @@
 import { FunctionComponent, MouseEvent, useRef, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import butterIcon from './images/butterIcon.svg';
-import styles from './ButterMenu.module.scss';
 import Portal from 'shared/ui/Portal/Portal';
 import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
 import { NavBar } from 'features/NavBar';
 import { useClickAway } from 'react-use';
+import styles from './ButterMenu.module.scss';
 
 // При изменении длительность также править в NavBar.module.scss (анимация slideOutFromRight) в &.isClosing
 const MODAL_CLOSE_ANIMATION_DURATION = 300;

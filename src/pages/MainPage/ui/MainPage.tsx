@@ -10,7 +10,7 @@ interface MainPageProps {
 
 const MainPage: FunctionComponent<MainPageProps> = () => {
     return (
-        <>
+        <div className={styles.wrapper}>
             <NicknameBlock />
 
             <Spacing size={25} />
@@ -47,7 +47,7 @@ const MainPage: FunctionComponent<MainPageProps> = () => {
                     мира Minecraft на&nbsp;сервере SilverHand!
                 </p>
             </TextBlock>
-        </>
+        </div>
     );
 };
 

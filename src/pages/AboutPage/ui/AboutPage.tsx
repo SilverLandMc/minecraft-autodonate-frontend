@@ -1,11 +1,8 @@
 import React from 'react';
+import styles from './AboutPage.module.scss';
 
 const AboutPage = () => {
-    return (
-        <div>
-            ABOUT PAGE. THAT'S IT!
-        </div>
-    );
+    return <div className={styles.wrapper}>ABOUT PAGE. THAT'S IT!</div>;
 };
 
 export default AboutPage;

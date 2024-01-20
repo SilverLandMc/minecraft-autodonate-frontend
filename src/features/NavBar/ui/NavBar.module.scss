@@ -11,7 +11,7 @@
     }
 }
 
-@keyframes slideOutFromRight {
+@keyframes slideOutToRight {
     0% {
         transform: translateX(0);
         opacity: 1;
@@ -39,7 +39,7 @@
     animation: slideInFromLeft 0.5s ease forwards;
 
     &.isClosing {
-        animation: slideOutFromRight 0.3s ease forwards;
+        animation: slideOutToRight 0.3s ease forwards;
     }
 
     @include mediaS {
