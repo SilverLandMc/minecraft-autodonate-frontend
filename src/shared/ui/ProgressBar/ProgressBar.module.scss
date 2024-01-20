@@ -1,0 +1,15 @@
+@import '/src/app/styles/media/media.scss';
+
+.progressBar,
+.filament {
+    height: 8px;
+    border-radius: 4px;
+}
+
+.progressBar {
+    width: 100%;
+}
+
+.filament {
+    transition: 0.3s;
+}

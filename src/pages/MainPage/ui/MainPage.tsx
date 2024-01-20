@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import NicknameBlock from 'widgets/NicknameBlock/NicknameBlock';
 import Spacing from 'shared/ui/spacing/Spacing';
-import styles from './MainPage.module.scss';
 import TextBlock from 'entities/TextBlock/TextBlock';
+import styles from './MainPage.module.scss';
 
 interface MainPageProps {
     className?: string;

@@ -3,9 +3,8 @@
 .roundedUnifiedForm {
     display: flex;
     flex-direction: row;
-
     border-radius: 10px;
-    background: var(--color-white);
+
     overflow: hidden;
 }
 
@@ -13,6 +12,7 @@
     width: 60%;
     border: none;
     padding: 8px 12px;
+    background: var(--color-white-opacity-95);
     color: var(--primary-color);
 
     &:active,
