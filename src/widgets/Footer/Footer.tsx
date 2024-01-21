@@ -18,7 +18,8 @@ const Footer: FunctionComponent<Props> = ({ className }) => {
             <Section className={styles.section}>
                 <div className={styles.innerRowWrapper}>
                     <div className={styles.declarationBlock}>
-                        SilverLand Minecraft Server никоим образом не&nbsp;связан с&nbsp;Mojang AB. <br />
+                        silverland.fun никоим образом не&nbsp;связан с&nbsp;Mojang AB.
+                        <br />
                         Все средства идут на&nbsp;поддержку и&nbsp;развитие сервера.
                     </div>
 
