@@ -15,7 +15,7 @@ const initializeSentry = () => {
             environment: STAND_NAME ?? 'development',
             release: RELEASE_NAME ?? 'not versioned',
             initialScope: { tags: { ENV_NAME, STAND_NAME, layer: 'frontend' } },
-            integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+            integrations: [new Sentry.BrowserTracing()],
             tracesSampleRate: 1
         });
 

@@ -4,7 +4,7 @@ import { BuildOptions } from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import Dotenv from 'dotenv-webpack';
 
-export const buildPlugins = ({ paths }: BuildOptions): webpack.WebpackPluginInstance[] => [
+export const buildPlugins = ({ paths, isDev, apiHost }: BuildOptions): webpack.WebpackPluginInstance[] => [
     new HTMLWebpackPlugin({
         template: paths.html
     }),
@@ -13,5 +13,9 @@ export const buildPlugins = ({ paths }: BuildOptions): webpack.WebpackPluginInst
         filename: 'css/[name].[contenthash:8].css', // названия для файлов css
         chunkFilename: 'css/[name].[contenthash:8].css' // названия для чанков при асинхронной подгрузке
     }),
-    new Dotenv()
+    new Dotenv(),
+    new webpack.DefinePlugin({
+        __IS_DEV__: JSON.stringify(isDev),
+        __API_HOST__: JSON.stringify(apiHost)
+    })
 ];

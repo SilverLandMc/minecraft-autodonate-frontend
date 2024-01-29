@@ -5,11 +5,14 @@ import initializeSentry from 'shared/lib/initializeSentry/initializeSentry';
 import combineProviders from 'shared/lib/combineProviders/combineProviders';
 import { MediaContextProvider } from 'app/providers/MediaProvider';
 import { createRoot } from 'react-dom/client';
+import { StoreProvider } from 'app/providers/StoreProvider';
 import './app/styles/index.scss';
 
-initializeSentry();
+if (!__IS_DEV__) {
+    initializeSentry();
+}
 
-const AppContainer = combineProviders(BrowserRouter, ThemeProvider, MediaContextProvider);
+const AppContainer = combineProviders(BrowserRouter, StoreProvider, ThemeProvider, MediaContextProvider);
 const rootContainer = document.getElementById('root');
 
 const root = createRoot(rootContainer);

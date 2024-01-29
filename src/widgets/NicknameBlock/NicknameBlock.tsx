@@ -1,16 +1,38 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
 import styles from './NicknameBlock.module.scss';
 import ProgressBar from 'shared/ui/ProgressBar/ProgressBar';
+import { useSelector } from 'react-redux';
+import selectOnline from 'shared/redux/selectors/selectOnline';
+import fetchOnlineInfo from 'pages/MainPage/utils/fetchOnlineInfo';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 
 interface Props {
     className?: string;
 }
 
 const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
+    const dispatch = useAppDispatch();
+
+    const [isOnlineFetching, setIsOnlineFetching] = useState(true);
+    const [isServerDown, setIsServerDown] = useState(false);
+
+    useEffect(() => {
+        setIsOnlineFetching(true);
+        try {
+            dispatch(fetchOnlineInfo());
+        } catch (error) {
+            setIsServerDown(true);
+        }
+        setIsOnlineFetching(false);
+    }, []);
+
+    const { online: currentOnline, max: maxOnline } = useSelector(selectOnline);
+    const percentOnline = (currentOnline / maxOnline) * 100;
+
     return (
         <div className={classNames(styles.backgroundWrapper, [className])}>
             <Section className={styles.section}>
@@ -37,9 +59,11 @@ const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
                         <h3 className={styles.onlineSubheader}>Онлайн на сервере:</h3>
 
                         <div>
-                            <ProgressBar percentFilled={0} />
+                            <ProgressBar percentFilled={percentOnline} />
                             <Spacing size={10} />
-                            <span>0 / 100 чел.</span>
+                            <span>
+                                {currentOnline} / {maxOnline} чел.
+                            </span>
                         </div>
                     </div>
                 </div>

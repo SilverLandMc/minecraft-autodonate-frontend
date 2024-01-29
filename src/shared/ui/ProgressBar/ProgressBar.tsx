@@ -15,7 +15,7 @@ const ProgressBar: FunctionComponent<Props> = ({
     filamentColor = '#6277e3',
     className
 }) => {
-    percentFilled = percentFilled || 3;
+    percentFilled = percentFilled < 3 ? 3 : percentFilled;
     return (
         <div className={classNames(styles.progressBar, [className])} style={{ background: backgroundColor }}>
             <div className={styles.filament} style={{ width: `${percentFilled}%`, background: filamentColor }}></div>
