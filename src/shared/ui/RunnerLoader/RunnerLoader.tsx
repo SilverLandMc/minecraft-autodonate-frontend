@@ -11,7 +11,7 @@ const RunnerLoader: FunctionComponent<Props> = ({ className }) => {
     return (
         <div className={classNames(styles.wrapper, [className])}>
             <div className={styles.runnerWrapper}>
-                <img src={spinnerImage} className={styles.spinner} alt="Загрузка..." />
+                <img src={spinnerImage} className={styles.runningMan} alt="Загрузка..." />
             </div>
 
             <h2 className={styles.description}>Загрузка...</h2>

@@ -36,16 +36,12 @@
     width: 100vw;
 }
 
-.spinner {
+.runningMan {
     height: 60px;
     animation: runFromLeftToRight 3s infinite;
 
     @include mediaS {
         height: 70px;
-    }
-
-    @include mediaM {
-        height: 80px;
     }
 }
 

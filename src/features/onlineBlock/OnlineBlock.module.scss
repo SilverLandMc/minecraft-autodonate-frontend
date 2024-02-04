@@ -1,0 +1,28 @@
+@import '/src/app/styles/media/media.scss';
+
+.wrapper,
+.runnerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 96px;
+
+    background: var(--color-white-opacity-95);
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.runnerWrapper {
+    padding: 0;
+}
+
+.onlineSubheader {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.runnerLoader {
+    gap: 0;
+}

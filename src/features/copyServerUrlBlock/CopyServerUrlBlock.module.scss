@@ -1,0 +1,51 @@
+@import '/src/app/styles/media/media.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.text {
+    width: 60%;
+    border: none;
+    padding: 8px 12px;
+    background: var(--color-white-opacity-95);
+    color: var(--primary-color);
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include mediaS {
+            font-size: 16px;
+        }
+    }
+}
+
+.button {
+    width: 40%;
+    border: none;
+    background: #1d7f16;
+    cursor: pointer;
+    transition: 0.3s;
+
+    color: var(--color-white);
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+.url {
+    background: var(--black-opacity-10);
+}

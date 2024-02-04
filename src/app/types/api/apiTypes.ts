@@ -248,6 +248,7 @@ export interface ProductEditInDto {
     singlePurchase?: boolean;
 }
 
+/** DTO для создания платежа */
 export interface CreatePaymentDto {
     /**
      * Имя игрока
@@ -263,7 +264,7 @@ export interface CreatePaymentDto {
     promocode?: string | null;
 }
 
-/** Список товаров */
+/** DTO для добавления товара в корзину */
 export interface ProductToBuyInDto {
     /**
      * Идентификатор продукта
@@ -277,6 +278,18 @@ export interface ProductToBuyInDto {
      * @example 1
      */
     amount: number;
+}
+
+export interface ResultPaymentDto {
+    /** @format double */
+    outSum?: number;
+    invId?: string;
+    fee?: string;
+    email?: string;
+    signatureValue?: string;
+    paymentMethod?: string;
+    incCurrLabel?: string;
+    shr?: object;
 }
 
 export interface ProductCreateInDto {
@@ -332,4 +345,20 @@ export interface ProductCreateInDto {
      */
     order: number;
     singlePurchase?: boolean;
+}
+
+/** Информация о количестве игроков на сервере */
+export interface Players {
+    /**
+     * Количество игроков на сервере
+     * @format int32
+     * @example 13
+     */
+    online?: number;
+    /**
+     * Максимальное количество игроков на сервере
+     * @format int32
+     * @example 100
+     */
+    max?: number;
 }

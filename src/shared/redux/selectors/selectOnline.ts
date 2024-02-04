@@ -1,9 +1,9 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 import selectMainPagePart from 'shared/redux/selectors/selectMainPagePart';
-import { OnlineDto } from 'app/types/api/apiTypesHelper';
+import { MainPagePartState } from 'pages/MainPage/slices/mainPageSlice';
 
-const selectOnline = createSelector(selectMainPagePart, (mainPagePartState): OnlineDto => {
-    return { online: mainPagePartState.online, max: mainPagePartState.max };
+const selectOnline = createSelector(selectMainPagePart, (mainPagePartState: MainPagePartState) => {
+    return { online: mainPagePartState.online, max: mainPagePartState.max, isLoaded: mainPagePartState.isLoaded };
 });
 
 export default selectOnline;

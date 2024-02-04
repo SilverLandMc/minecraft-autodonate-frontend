@@ -1,38 +1,17 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
+import OnlineBlock from 'features/onlineBlock/OnlineBlock';
 import styles from './NicknameBlock.module.scss';
-import ProgressBar from 'shared/ui/ProgressBar/ProgressBar';
-import { useSelector } from 'react-redux';
-import selectOnline from 'shared/redux/selectors/selectOnline';
-import fetchOnlineInfo from 'pages/MainPage/utils/fetchOnlineInfo';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import CopyServerUrlBlock from 'features/copyServerUrlBlock/CopyServerUrlBlock';
 
 interface Props {
     className?: string;
 }
 
 const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
-    const dispatch = useAppDispatch();
-
-    const [isOnlineFetching, setIsOnlineFetching] = useState(true);
-    const [isServerDown, setIsServerDown] = useState(false);
-
-    useEffect(() => {
-        setIsOnlineFetching(true);
-        try {
-            dispatch(fetchOnlineInfo());
-        } catch (error) {
-            setIsServerDown(true);
-        }
-        setIsOnlineFetching(false);
-    }, []);
-
-    const { online: currentOnline, max: maxOnline } = useSelector(selectOnline);
-    const percentOnline = (currentOnline / maxOnline) * 100;
-
     return (
         <div className={classNames(styles.backgroundWrapper, [className])}>
             <Section className={styles.section}>
@@ -40,31 +19,30 @@ const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
 
                 <div className={styles.innerWrapper}>
                     <div className={styles.firstBlock}>
-                        <h1 className={styles.header}>SilverLand</h1>
+                        <div>
+                            <h1 className={styles.header}>SilverLand</h1>
 
-                        <Spacing size={8} />
+                            <Spacing size={8} />
 
-                        <h2 className={styles.subHeader}>Minecraft Server</h2>
+                            <h2 className={styles.subHeader}>Minecraft Server</h2>
+                        </div>
 
-                        <Spacing size={20} />
+                        <div>
+                            <span className={styles.enterProposal}>Введите ваш ник:</span>
 
-                        <span className={styles.enterProposal}>Введите ваш ник:</span>
+                            <Spacing size={8} />
 
-                        <Spacing size={8} />
-
-                        <RoundedSingleFieldForm className={styles.nicknameForm} placeholderText="Например, BrainRTP" />
+                            <RoundedSingleFieldForm
+                                className={styles.nicknameForm}
+                                placeholderText="Например, BrainRTP"
+                            />
+                        </div>
                     </div>
 
                     <div className={styles.secondBlock}>
-                        <h3 className={styles.onlineSubheader}>Онлайн на сервере:</h3>
+                        <OnlineBlock />
 
-                        <div>
-                            <ProgressBar percentFilled={percentOnline} />
-                            <Spacing size={10} />
-                            <span>
-                                {currentOnline} / {maxOnline} чел.
-                            </span>
-                        </div>
+                        <CopyServerUrlBlock />
                     </div>
                 </div>
 
