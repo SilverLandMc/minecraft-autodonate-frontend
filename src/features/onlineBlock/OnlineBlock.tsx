@@ -43,7 +43,7 @@ const OnlineBlock: FunctionComponent = () => {
     if (isOnlineFetching) {
         return (
             <div className={styles.runnerWrapper}>
-                <RunnerLoader className={styles.runnerLoader} />
+                <RunnerLoader small />
             </div>
         );
     }

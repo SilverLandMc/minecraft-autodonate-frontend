@@ -5,6 +5,8 @@ import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
+import OuterLink from 'shared/ui/OuterLink/OuterLink';
+import { LinkURL } from 'app/const/enum/LinkURL';
 
 interface Props {
     className?: string;
@@ -28,9 +30,9 @@ const Footer: FunctionComponent<Props> = ({ className }) => {
                             Условия использования
                         </Link>
                         |
-                        <Link to="https://vk.com/arhone" className={styles.link}>
+                        <OuterLink to={LinkURL.CONTACTS} className={styles.link}>
                             Контакты
-                        </Link>
+                        </OuterLink>
                     </div>
                 </div>
             </Section>

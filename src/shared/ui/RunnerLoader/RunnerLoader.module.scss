@@ -56,3 +56,19 @@
         line-height: 20px;
     }
 }
+
+.isSmall {
+    &.wrapper {
+        gap: 5px;
+    }
+
+    .runningMan {
+        height: 50px;
+        animation: runFromLeftToRight 3s infinite;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 16px;
+    }
+}

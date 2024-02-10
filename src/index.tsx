@@ -6,13 +6,20 @@ import combineProviders from 'shared/lib/combineProviders/combineProviders';
 import { MediaContextProvider } from 'app/providers/MediaProvider';
 import { createRoot } from 'react-dom/client';
 import { StoreProvider } from 'app/providers/StoreProvider';
+import { AppContextProvider } from 'app/providers/AppContextProvider';
 import './app/styles/index.scss';
 
 if (!__IS_DEV__) {
     initializeSentry();
 }
 
-const AppContainer = combineProviders(BrowserRouter, StoreProvider, ThemeProvider, MediaContextProvider);
+const AppContainer = combineProviders(
+    BrowserRouter,
+    StoreProvider,
+    ThemeProvider,
+    MediaContextProvider,
+    AppContextProvider
+);
 const rootContainer = document.getElementById('root');
 
 const root = createRoot(rootContainer);

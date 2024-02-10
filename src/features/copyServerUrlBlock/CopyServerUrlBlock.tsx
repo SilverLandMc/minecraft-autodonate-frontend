@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import styles from './CopyServerUrlBlock.module.scss';
 
-const DISPLAYED_SERVER_URL = 'silverland.fun';
+const DISPLAYED_SERVER_URL = 'play.silverland.fun';
 
 interface Props {
     className?: string;
@@ -20,7 +20,7 @@ const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
     return (
         <div className={classNames(styles.wrapper, [className])}>
             <div className={styles.text}>
-                Наш URL: <span className={styles.url}>{DISPLAYED_SERVER_URL}</span>
+                Наш IP: <span className={styles.url}>{DISPLAYED_SERVER_URL}</span>
             </div>
 
             <button className={styles.button} onClick={onCopy}>

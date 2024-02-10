@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import TextBlock from 'entities/TextBlock/TextBlock';
 import styles from './TermsOfServicePage.module.scss';
 import Spacing from 'shared/ui/spacing/Spacing';
@@ -77,6 +77,8 @@ const TermsOfServicePage: FunctionComponent<Props> = () => {
                     4.3 Модератору запрещено оскорблять игрока.
                 </p>
             </TextBlock>
+
+            <Spacing size={20} />
         </>
     );
 };

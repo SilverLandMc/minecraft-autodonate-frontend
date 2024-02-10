@@ -5,7 +5,6 @@ import { AppRouter } from 'app/providers/router';
 import Header from 'widgets/Header/Header';
 import classNames from 'shared/lib/aliases/classNames';
 import Footer from 'widgets/Footer/Footer';
-import Spacing from 'shared/ui/spacing/Spacing';
 import './styles/index.scss';
 
 const App = () => {
@@ -16,8 +15,6 @@ const App = () => {
             <Header />
 
             <AppRouter />
-
-            <Spacing size={20} />
 
             <Footer />
         </div>

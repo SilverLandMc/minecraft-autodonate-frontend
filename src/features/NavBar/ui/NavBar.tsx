@@ -20,7 +20,7 @@ const navBarLinks: Partial<Record<AppRoute, NavBarLink>> = {
     [AppRoute.MAIN]: { icon: homeIcon, verboseName: 'Главная' },
     [AppRoute.RANKS]: { icon: ranksIcon, verboseName: 'Ранги' },
     [AppRoute.BOOSTERS]: { icon: boostersIcon, verboseName: 'Бустеры' },
-    [AppRoute.CHESTS]: { icon: chestsIcon, verboseName: 'Сундуки' },
+    [AppRoute.CASES]: { icon: chestsIcon, verboseName: 'Сундуки' },
     [AppRoute.RESOURCES]: { icon: resourcesIcon, verboseName: 'Ресурсы' }
 };
 

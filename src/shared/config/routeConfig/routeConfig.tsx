@@ -1,13 +1,14 @@
 import { RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
-import { AboutPage } from 'pages/AboutPage';
 import { TermsOfServicePage } from 'pages/TermsOfServicePage';
+import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { ShopPage } from 'pages/ShopPage';
 
 export const enum AppRoutes {
     MAIN = 'main',
     RANKS = 'ranks',
     BOOSTERS = 'boosters',
-    CHESTS = 'chests',
+    CASES = 'cases',
     RESOURCES = 'resources',
     TERMS_OF_SERVICE = 'tos'
 }
@@ -16,7 +17,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.RANKS]: '/ranks',
     [AppRoutes.BOOSTERS]: '/boosters',
-    [AppRoutes.CHESTS]: '/chests',
+    [AppRoutes.CASES]: '/cases',
     [AppRoutes.RESOURCES]: '/resources',
     [AppRoutes.TERMS_OF_SERVICE]: '/tos'
 };
@@ -28,19 +29,19 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.RANKS]: {
         path: RoutePath.ranks,
-        element: <AboutPage />
+        element: <ShopPage productCategory={ProductCategory.RANKS} />
     },
     [AppRoutes.BOOSTERS]: {
         path: RoutePath.boosters,
-        element: <AboutPage />
+        element: <ShopPage productCategory={ProductCategory.BOOSTERS} />
     },
-    [AppRoutes.CHESTS]: {
-        path: RoutePath.chests,
-        element: <AboutPage />
+    [AppRoutes.CASES]: {
+        path: RoutePath.cases,
+        element: <ShopPage productCategory={ProductCategory.CASES} />
     },
     [AppRoutes.RESOURCES]: {
         path: RoutePath.resources,
-        element: <AboutPage />
+        element: <ShopPage productCategory={ProductCategory.RESOURCES} />
     },
     [AppRoutes.TERMS_OF_SERVICE]: {
         path: RoutePath.tos,

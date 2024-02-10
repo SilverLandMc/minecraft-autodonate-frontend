@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import NicknameBlock from 'widgets/NicknameBlock/NicknameBlock';
 import Spacing from 'shared/ui/spacing/Spacing';
 import TextBlock from 'entities/TextBlock/TextBlock';
@@ -47,6 +47,8 @@ const MainPage: FunctionComponent<MainPageProps> = () => {
                     мира Minecraft на&nbsp;сервере SilverHand!
                 </p>
             </TextBlock>
+
+            <Spacing size={20} />
         </div>
     );
 };
