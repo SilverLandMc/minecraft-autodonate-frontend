@@ -11,6 +11,11 @@ export const buildDevServer = ({ port, proxyTarget }: BuildOptions): DevServerCo
                 target: `http://localhost:${port}/`,
                 router: () => proxyTarget,
                 changeOrigin: true
+            },
+            '/public/files': {
+                target: `http://localhost:${port}/`,
+                router: () => proxyTarget,
+                changeOrigin: true
             }
         }
     };

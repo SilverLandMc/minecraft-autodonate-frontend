@@ -5,10 +5,8 @@ import Portal from 'shared/ui/Portal/Portal';
 import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
 import { NavBar } from 'features/NavBar';
 import { useClickAway } from 'react-use';
+import { Time } from 'app/const/enum/Time';
 import styles from './ButterMenu.module.scss';
-
-// При изменении длительность также править в NavBar.module.scss (анимация slideOutFromRight) в &.isClosing
-const MODAL_CLOSE_ANIMATION_DURATION = 300;
 
 const ButterMenu: FunctionComponent = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
@@ -28,7 +26,7 @@ const ButterMenu: FunctionComponent = () => {
         setTimeout(() => {
             setIsClosing(false);
             setIsOpened(false);
-        }, MODAL_CLOSE_ANIMATION_DURATION);
+        }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);

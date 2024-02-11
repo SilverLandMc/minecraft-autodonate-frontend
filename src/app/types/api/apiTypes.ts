@@ -51,14 +51,8 @@ export enum Category {
     OTHER = 'OTHER'
 }
 
-/** Скидка */
-export type DiscountDto = {
-    /**
-     * Идентификатор скидки
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    id?: string;
+/** Скидка c id */
+export interface DiscountOutDto {
     /**
      * Название скидки
      * @example "Скидка на ранги"
@@ -89,7 +83,13 @@ export type DiscountDto = {
      * @example 10
      */
     discountAmount?: number;
-} | null;
+    /**
+     * Идентификатор скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id?: string;
+}
 
 /**
  * Тип скидки
@@ -100,6 +100,7 @@ export enum DiscountType {
     PERCENTAGE = 'PERCENTAGE'
 }
 
+/** Продукт */
 export interface ProductOutDto {
     /**
      * Идентификатор продукта
@@ -140,20 +141,14 @@ export interface ProductOutDto {
      * @example "00000000-0000-0000-0000-000000000000"
      */
     previousProductForTopUpId?: string | null;
-    /**
-     * Количество покупаемого товара
-     * @format int32
-     * @example 1
-     */
-    quantity?: number;
     /** Категория продукта */
     category?: Category;
     /** Категория длительности продукта */
     validityType?: ValidityType;
     /** Длительность продукта */
     validityPeriod?: ValidityPeriod;
-    /** Скидка */
-    discount?: DiscountDto;
+    /** Скидка c id */
+    discount?: DiscountOutDto;
     /**
      * Порядковый номер для сортировки
      * @format int32
@@ -232,8 +227,8 @@ export interface ProductEditInDto {
     validityType: ValidityType;
     /** Длительность продукта */
     validityPeriod?: ValidityPeriod;
-    /** Скидка */
-    discount?: DiscountDto;
+    /** Скидка c id */
+    discount?: DiscountOutDto;
     /**
      * Порядковый номер для сортировки
      * @format int32
@@ -246,6 +241,44 @@ export interface ProductEditInDto {
      */
     isAlreadyBought?: boolean;
     singlePurchase?: boolean;
+}
+
+/** Скидка c id */
+export interface DiscountInDto {
+    /**
+     * Название скидки
+     * @example "Скидка на ранги"
+     */
+    name?: string;
+    /** Тип скидки */
+    discountType?: DiscountType;
+    /**
+     * Ограничена ли скидка по времени
+     * @example true
+     */
+    isDiscountLimited?: boolean;
+    /**
+     * Дата начала скидки
+     * @format date-time
+     */
+    startDate: string;
+    /**
+     * Дата окончания скидки
+     * @format date-time
+     */
+    endDate: string;
+    /**
+     * Размер скидки в рублях или процентах
+     * @format double
+     * @example 10
+     */
+    discountAmount?: number;
+    /**
+     * Идентификатор скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id?: string;
 }
 
 /** DTO для создания платежа */
@@ -278,18 +311,6 @@ export interface ProductToBuyInDto {
      * @example 1
      */
     amount: number;
-}
-
-export interface ResultPaymentDto {
-    /** @format double */
-    outSum?: number;
-    invId?: string;
-    fee?: string;
-    email?: string;
-    signatureValue?: string;
-    paymentMethod?: string;
-    incCurrLabel?: string;
-    shr?: object;
 }
 
 export interface ProductCreateInDto {
@@ -347,6 +368,114 @@ export interface ProductCreateInDto {
     singlePurchase?: boolean;
 }
 
+/** Базовая информация о скидке */
+export interface DiscountBaseInDto {
+    /**
+     * Название скидки
+     * @example "Скидка на ранги"
+     */
+    name?: string;
+    /** Тип скидки */
+    discountType?: DiscountType;
+    /**
+     * Ограничена ли скидка по времени
+     * @example true
+     */
+    isDiscountLimited?: boolean;
+    /**
+     * Дата начала скидки
+     * @format date-time
+     */
+    startDate: string;
+    /**
+     * Дата окончания скидки
+     * @format date-time
+     */
+    endDate: string;
+    /**
+     * Размер скидки в рублях или процентах
+     * @format double
+     * @example 10
+     */
+    discountAmount?: number;
+}
+
+/** Цвет в формате RGB */
+export type Color = {
+    /**
+     * Красный цвет в формате RGB
+     * @format int32
+     * @default 0
+     */
+    red?: number;
+    /**
+     * Зеленый цвет в формате RGB
+     * @format int32
+     * @default 0
+     */
+    green?: number;
+    /**
+     * Синий цвет в формате RGB
+     * @format int32
+     * @default 0
+     */
+    blue?: number;
+} | null;
+
+/** DTO для отправки новостей в Discord */
+export interface DiscordNewsDto {
+    /**
+     * Заголовок новости
+     * @example "Новое обновление"
+     */
+    title: string;
+    /**
+     * Описание новости
+     * @example "Сегодня донат стал ещё дороже!"
+     */
+    description: string;
+    /**
+     * Ссылка на изображение справа от описания
+     * @default "https://cdn4.iconfinder.com/data/icons/business-set-4-8/128/b-73-512.png"
+     */
+    thumbnail?: string | null;
+    /** Цвет в формате RGB */
+    color?: Color;
+    /** Список сообщений */
+    messageList?: Message[] | null;
+    /**
+     * ID канала, в который будет отправлено сообщение
+     * @format int64
+     * @default 1205470236388626400
+     */
+    channelId?: number | null;
+}
+
+/** Список сообщений */
+export type Message = {
+    /**
+     * Заголовок сообщения
+     * @example "Важное сообщение"
+     */
+    title: string;
+    /**
+     * Тело сообщения
+     * @example "Сегодня донат стал ещё дороже. Второй раз."
+     */
+    content: string;
+} | null;
+
+/** Информация о игроке */
+export interface PlayerInfoOutDto {
+    /**
+     * Имя игрока
+     * @example "BrainRTP"
+     */
+    playerName?: string;
+    /** Уникальные товары (единоразовые покупки), которые есть у игрока */
+    uniqueProducts?: (string | null)[];
+}
+
 /** Информация о количестве игроков на сервере */
 export interface Players {
     /**
@@ -361,4 +490,162 @@ export interface Players {
      * @example 100
      */
     max?: number;
+}
+
+/** Топ продуктов */
+export interface PurchaseTopProductsOutDto {
+    /**
+     * Название продукта
+     * @example "VIP"
+     */
+    productName?: string;
+    /**
+     * Количество проданных продуктов
+     * @format int32
+     * @example 100
+     */
+    totalSold?: number;
+}
+
+/** Пагинация (query параметры) */
+export interface PageDto {
+    /**
+     * Общее количество элементов
+     * @format int64
+     * @example 100
+     */
+    totalElements?: number;
+    /**
+     * Общее количество страниц
+     * @format int32
+     * @example 10
+     */
+    totalPages?: number;
+    /**
+     * Номер страницы
+     * @format int32
+     * @min 1
+     * @default 1
+     * @example 1
+     */
+    page?: number;
+    /**
+     * Количество элементов на странице
+     * @format int32
+     * @default 15
+     * @example 15
+     */
+    size?: number;
+}
+
+export interface PagePaymentOutDto {
+    /** @format int32 */
+    totalPages?: number;
+    /** @format int64 */
+    totalElements?: number;
+    /** @format int32 */
+    size?: number;
+    content?: PaymentOutDto[];
+    /** @format int32 */
+    number?: number;
+    sort?: SortObject;
+    pageable?: PageableObject;
+    /** @format int32 */
+    numberOfElements?: number;
+    first?: boolean;
+    last?: boolean;
+    empty?: boolean;
+}
+
+export interface PageableObject {
+    /** @format int64 */
+    offset?: number;
+    sort?: SortObject;
+    /** @format int32 */
+    pageNumber?: number;
+    /** @format int32 */
+    pageSize?: number;
+    paged?: boolean;
+    unpaged?: boolean;
+}
+
+/** Платеж */
+export interface PaymentOutDto {
+    /**
+     * Идентификатор платежа
+     * @example "1"
+     */
+    paymentId?: string;
+    /**
+     * Ник игрока
+     * @example "BrainRTP"
+     */
+    playerName?: string;
+    /**
+     * Общая стоимость
+     * @format double
+     * @example 100
+     */
+    totalPrice?: number;
+    /** Промокод */
+    promocode?: PromocodeOutDto;
+    /** Статус платежа */
+    status?: 'INCOMPLETE' | 'SUCCESS' | 'FAILED' | 'EXPIRED' | 'UNTRACKABLE';
+    /** Список товаров */
+    paymentProductList?: PaymentProductOutDto[];
+}
+
+/** Товар в платеже */
+export interface PaymentProductOutDto {
+    /** Продукт */
+    product?: ProductOutDto;
+    /**
+     * Количество товара
+     * @format int32
+     * @example 1
+     */
+    amount?: number;
+}
+
+/** Промокод */
+export interface PromocodeOutDto {
+    /**
+     * Название промокода
+     * @example "VIP"
+     */
+    name?: string;
+    /**
+     * Максимальное количество использований промокода
+     * @format int32
+     * @example 10
+     */
+    maxUseCount?: number;
+    /**
+     * Текущее количество использований промокода
+     * @format int32
+     * @example 5
+     */
+    currentUseCount?: number;
+    /**
+     * Дата начала промокода
+     * @format int64
+     * @example 1693914524
+     */
+    startDate: number;
+    /**
+     * Дата окончания промокода
+     * @format int64
+     * @example 1693914524
+     */
+    endDate: number;
+    /** Скидка c id */
+    discount?: DiscountOutDto;
+    limitedUse?: boolean;
+    deleted?: boolean;
+}
+
+export interface SortObject {
+    empty?: boolean;
+    sorted?: boolean;
+    unsorted?: boolean;
 }

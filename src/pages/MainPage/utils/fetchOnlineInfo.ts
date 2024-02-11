@@ -5,7 +5,7 @@ import { request } from 'shared/lib/request/request';
 import { setOnline } from 'pages/MainPage/slices/mainPageSlice';
 import { Players } from 'app/types/api/apiTypes';
 
-const logger = createLogger('fetchPublishedCourses');
+const logger = createLogger('fetchOnlineInfo');
 
 const fetchOnlineInfo = (): AppThunkAction => async (dispatch) => {
     try {
