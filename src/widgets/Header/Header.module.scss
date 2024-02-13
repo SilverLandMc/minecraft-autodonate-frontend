@@ -24,6 +24,11 @@
 
     @include mediaS {
         padding: 0;
+        max-width: calc(100% - 30px);
+    }
+
+    @include mediaM {
+        max-width: 960px;
     }
 }
 
@@ -54,50 +59,4 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-}
-
-.cartWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 3px;
-    border-radius: 10px;
-    background: var(--black-opacity-30);
-
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-        filter: brightness(0.8);
-    }
-
-    @include mediaM {
-        padding: 5px;
-    }
-}
-
-.cartImage {
-    height: 35px;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(109%) contrast(101%);
-
-    @include mediaM {
-        height: 42px;
-    }
-}
-
-.cartNumber {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-white);
-    background-color: var(--black-opacity-70);
 }

@@ -55,6 +55,35 @@
     text-decoration: line-through;
 }
 
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+}
+
+.button {
+    background-color: var(--color-vivid-malachite);
+}
+
+.trashIconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    border-radius: 4px;
+    padding: 2px;
+    transition: 0.3s;
+
+    &:hover {
+        filter: brightness(0.9);
+    }
+}
+
+.trashIcon {
+    width: 20px;
+    filter: invert(100%) sepia(0%) saturate(4898%) hue-rotate(305deg) brightness(123%) contrast(100%);
+}
+
 .modalWrapper {
     width: 300px;
     margin: auto;

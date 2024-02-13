@@ -8,8 +8,10 @@ import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
 import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
 import classNames from 'shared/lib/aliases/classNames';
-import styles from './ProductCard.module.scss';
+import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 import { AppContext } from 'app/providers/AppContextProvider';
+import trashIcon from './images/trashIcon.svg';
+import styles from './ProductCard.module.scss';
 
 interface Props {
     product: ProductOutDto;
@@ -18,17 +20,11 @@ interface Props {
 const ProductCard: FunctionComponent<Props> = ({ product }) => {
     const [isCardModalOpened, setIsCardModalOpened] = useState<boolean>(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
-    const { addOrIncrementProductToList } = useContext(AppContext);
 
-    const {
-        id: productId,
-        imagePath: rawImagePath,
-        name,
-        description,
-        priceWithDiscount,
-        priceWithoutDiscount
-    } = product;
-    const [imagePath, setImagePath] = useState(() => rawImagePath ?? chestImage);
+    const { productsToBuy, addOrIncrementProductToList, deleteProductFromList } = useContext(AppContext);
+    const { id: productId, imagePath, name, description, priceWithDiscount, priceWithoutDiscount } = product;
+    const isInShoppingList = productsToBuy.some((product) => product.id === productId);
+    const buttonText = isInShoppingList ? 'Купить ещё' : 'Купить';
 
     const openModal = () => setIsCardModalOpened(true);
     const closeModal = (event: MouseEvent) => {
@@ -46,18 +42,19 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const handleImageLoadFailure = () => {
-        setImagePath(chestImage);
-    };
-
-    const handleAddToBuyList = () => {
-        addOrIncrementProductToList(productId);
+    const addProductToBuyList = () => {
+        addOrIncrementProductToList(productId, name, priceWithDiscount ?? priceWithoutDiscount);
 
         setIsClosing(true);
         setTimeout(() => {
             setIsClosing(false);
             setIsCardModalOpened(false);
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
+    };
+
+    const deleteProductFromBuyList = (event: MouseEvent) => {
+        event.stopPropagation();
+        deleteProductFromList(productId);
     };
 
     const priceBlock = priceWithDiscount ? (
@@ -75,16 +72,22 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
     return (
         <>
             <div className={styles.productCard} onClick={openModal}>
-                <img
-                    src={imagePath}
-                    className={styles.productImage}
-                    alt="Картинка товара"
-                    onError={handleImageLoadFailure}
-                />
+                <FailSafeImage className={styles.productImage} src={imagePath} fallbackSrc={chestImage} />
+
                 <div className={styles.bottomBlock}>
                     <h3 className={styles.productName}>{name}</h3>
+
                     {priceBlock}
-                    <Button>Купить</Button>
+
+                    <div className={styles.buttonRow}>
+                        <Button className={styles.button}>{buttonText}</Button>
+
+                        {isInShoppingList && (
+                            <div className={styles.trashIconWrapper} onClick={deleteProductFromBuyList}>
+                                <img src={trashIcon} className={styles.trashIcon} alt="" />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -93,11 +96,10 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
                     <ModalBackground closing={isClosing}>
                         <div ref={wrapperRef} className={styles.modalWrapper}>
                             <div className={classNames(styles.modal, { [styles.isClosing]: isClosing })}>
-                                <img
-                                    src={imagePath}
+                                <FailSafeImage
                                     className={styles.productImage}
-                                    alt="Картинка товара"
-                                    onError={handleImageLoadFailure}
+                                    src={imagePath}
+                                    fallbackSrc={chestImage}
                                 />
 
                                 <div className={styles.bottomBlock}>
@@ -109,7 +111,9 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
 
                                     {priceBlock}
 
-                                    <Button onClick={handleAddToBuyList}>Добавить в корзину</Button>
+                                    <Button className={styles.button} onClick={addProductToBuyList}>
+                                        Добавить в корзину
+                                    </Button>
                                 </div>
                             </div>
                         </div>

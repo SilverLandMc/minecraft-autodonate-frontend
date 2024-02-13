@@ -1,23 +1,23 @@
 import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import AppContext from 'app/providers/AppContextProvider/lib/AppContext';
-import { ProductToBuyInDto } from 'app/types/api/apiTypes';
+import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
 
 const AppContextProvider: FunctionComponent<PropsWithChildren<any>> = ({ children }) => {
-    const [productsToBuy, setProductsToBuy] = useState<ProductToBuyInDto[]>([]);
+    const [productsToBuy, setProductsToBuy] = useState<ShoppingListProductToBuyInDto[]>([]);
 
-    const addOrIncrementProductToList = (productId: string) =>
+    const addOrIncrementProductToList = (productId: string, name: string, displayedPrice: number) =>
         setProductsToBuy((currentProducts) => {
             const isProductInList = currentProducts.some((product) => product.id === productId);
 
-            let nextProductList: ProductToBuyInDto[];
+            let nextProductList: ShoppingListProductToBuyInDto[];
 
             if (isProductInList) {
-                nextProductList = currentProducts.map(({ id, amount }) => ({
-                    id,
-                    amount: id === productId ? amount + 1 : amount
+                nextProductList = currentProducts.map(({ amount, ...props }) => ({
+                    ...props,
+                    amount: props.id === productId ? amount + 1 : amount
                 }));
             } else {
-                nextProductList = [...currentProducts, { id: productId, amount: 1 }];
+                nextProductList = [...currentProducts, { id: productId, amount: 1, name, displayedPrice }];
             }
 
             return nextProductList;
@@ -34,9 +34,9 @@ const AppContextProvider: FunctionComponent<PropsWithChildren<any>> = ({ childre
         }
 
         setProductsToBuy((currentProducts) =>
-            currentProducts.map(({ id, amount }) => ({
-                id,
-                amount: id === productId ? amount - 1 : amount
+            currentProducts.map(({ amount, ...props }) => ({
+                ...props,
+                amount: props.id === productId ? amount - 1 : amount
             }))
         );
     };

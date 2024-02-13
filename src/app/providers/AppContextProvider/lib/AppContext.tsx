@@ -1,10 +1,10 @@
 import { createContext } from 'react';
-import { ProductToBuyInDto } from 'app/types/api/apiTypes';
 import noop from 'shared/lib/noop/noop';
+import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
 
 export interface AppContextState {
-    productsToBuy: ProductToBuyInDto[];
-    addOrIncrementProductToList(productId: string): void;
+    productsToBuy: ShoppingListProductToBuyInDto[];
+    addOrIncrementProductToList(productId: string, name: string, displayedPrice: number): void;
     deleteProductFromList(productId: string): void;
     decrementProductAmountInList(productId: string): void;
 }

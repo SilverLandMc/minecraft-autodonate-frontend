@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react';
+import { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import styles from './Button.module.scss';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
 }
 
