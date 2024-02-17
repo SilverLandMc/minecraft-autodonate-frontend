@@ -7,13 +7,15 @@ export interface AppContextState {
     addOrIncrementProductToList(productId: string, name: string, displayedPrice: number): void;
     deleteProductFromList(productId: string): void;
     decrementProductAmountInList(productId: string): void;
+    getProductsListPrice(): number;
 }
 
 const AppContext = createContext<AppContextState>({
     productsToBuy: [],
     addOrIncrementProductToList: noop,
     deleteProductFromList: noop,
-    decrementProductAmountInList: noop
+    decrementProductAmountInList: noop,
+    getProductsListPrice: noop
 });
 
 export default AppContext;

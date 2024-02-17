@@ -82,14 +82,16 @@
 }
 
 .productRow {
-    display: flex;
+    display: grid;
     flex-direction: row;
-    gap: 10px;
-    border-bottom: 1px solid lightgray;
-    padding: 4px 0;
+    gap: 6px;
+    grid-template-columns: 1fr auto 25px auto;
+    border: 1px solid lightgray;
+    border-bottom: none;
+    padding: 4px;
 
     &:last-of-type {
-        border-bottom: none;
+        border-bottom: 1px solid lightgray;
     }
 }
 
@@ -100,12 +102,7 @@
     align-items: center;
 }
 
-.numberInList {
-    width: 25px;
-}
-
 .name {
-    flex-grow: 1;
 }
 
 .price {
@@ -115,6 +112,14 @@
 }
 
 .productTotalPrice {
+}
+
+.totalListPrice {
+    text-align: right;
+}
+
+.totalListPriceDescription {
+    font-weight: 800;
 }
 
 .button {

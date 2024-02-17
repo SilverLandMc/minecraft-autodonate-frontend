@@ -8,6 +8,7 @@ import Portal from 'shared/ui/Portal/Portal';
 import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
 import styles from './ShoppingList.module.scss';
+import Spacing from 'shared/ui/spacing/Spacing';
 
 const ShoppingList: FunctionComponent = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
@@ -28,7 +29,8 @@ const ShoppingList: FunctionComponent = () => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productsToBuy } = useContext(AppContext);
+    const { productsToBuy, getProductsListPrice } = useContext(AppContext);
+    const totalListPrice = getProductsListPrice();
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => closeModal(event as unknown as MouseEvent));
@@ -47,19 +49,29 @@ const ShoppingList: FunctionComponent = () => {
                             <h2 className={styles.header}>Ваша корзина:</h2>
 
                             <div className={styles.table}>
-                                {productsToBuy.map((product, index) => (
-                                    <div className={styles.productRow}>
-                                        <div className={classNames(styles.cell, styles.numberInList)}>{index + 1}</div>
-                                        <div className={classNames(styles.cell, styles.name)}>{product.name}</div>
-                                        <div className={classNames(styles.cell, styles.price)}>
-                                            {product.displayedPrice.toFixed(2)} руб.
+                                <div>
+                                    {productsToBuy.map((product) => (
+                                        <div className={styles.productRow}>
+                                            <div className={classNames(styles.cell, styles.name)}>{product.name}</div>
+                                            <div className={classNames(styles.cell, styles.price)}>
+                                                {product.displayedPrice.toFixed(1)} ₽
+                                            </div>
+                                            <div className={classNames(styles.cell, styles.amount)}>
+                                                x{product.amount}
+                                            </div>
+                                            <div className={classNames(styles.cell, styles.productTotalPrice)}>
+                                                {(product.displayedPrice * product.amount).toFixed(1)} ₽
+                                            </div>
                                         </div>
-                                        <div className={classNames(styles.cell, styles.amount)}>x{product.amount}</div>
-                                        <div className={classNames(styles.cell, styles.productTotalPrice)}>
-                                            {(product.displayedPrice * product.amount).toFixed(2)} руб.
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+
+                                <Spacing size={20} />
+
+                                <div className={styles.totalListPrice}>
+                                    <span className={styles.totalListPriceDescription}>Итого: </span>
+                                    {totalListPrice} ₽
+                                </div>
                             </div>
 
                             <Button className={styles.button}>Купить</Button>

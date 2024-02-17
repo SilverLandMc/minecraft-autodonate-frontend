@@ -23,9 +23,8 @@ const AppContextProvider: FunctionComponent<PropsWithChildren<any>> = ({ childre
             return nextProductList;
         });
 
-    const deleteProductFromList = (productId: string) => {
+    const deleteProductFromList = (productId: string) =>
         setProductsToBuy((currentProducts) => currentProducts.filter((product) => product.id !== productId));
-    };
 
     const decrementProductAmountInList = (productId: string) => {
         if (productsToBuy.find((product) => product.id === productId)?.amount === 1) {
@@ -41,9 +40,18 @@ const AppContextProvider: FunctionComponent<PropsWithChildren<any>> = ({ childre
         );
     };
 
+    const getProductsListPrice = () =>
+        productsToBuy.reduce((totalPrice, product) => totalPrice + product.displayedPrice * product.amount, 0);
+
     return (
         <AppContext.Provider
-            value={{ productsToBuy, addOrIncrementProductToList, deleteProductFromList, decrementProductAmountInList }}
+            value={{
+                productsToBuy,
+                addOrIncrementProductToList,
+                deleteProductFromList,
+                decrementProductAmountInList,
+                getProductsListPrice
+            }}
         >
             {children}
         </AppContext.Provider>
