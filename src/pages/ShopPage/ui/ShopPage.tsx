@@ -21,7 +21,7 @@ const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
     const dispatch = useAppDispatch();
 
     const { productsByCategory, isCategoryLoaded, isFetchingFailed } = useSelector(selectShopInfo);
-    const productsList = productsByCategory[productCategory];
+    const productsList = productsByCategory[productCategory] ?? [];
 
     useEffect(() => {
         if (isCategoryLoaded[productCategory]) {
