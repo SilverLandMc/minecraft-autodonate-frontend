@@ -64,7 +64,7 @@ const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
         );
     }
 
-    if (productsList.length === 0) {
+    if (!productsList || productsList.length === 0) {
         return (
             <div className={styles.centeringErrorWrapper}>
                 <Spacing size={15} sizeS={30} />
