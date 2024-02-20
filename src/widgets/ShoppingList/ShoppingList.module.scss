@@ -57,14 +57,28 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 50px;
 
     padding: 15px 10px;
     background-color: white;
+    box-shadow:
+        0 34px 138px 0 rgba(0, 0, 0, 0.35),
+        0 36px 150px 0 rgba(0, 0, 0, 0.35);
+
+    @include mediaS {
+        position: absolute;
+        height: fit-content;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
 }
 
 .header,
 .table,
-.button {
+.button,
+.emptyListSubheader,
+.emptyListDescription {
     font-family: var(--font-family-main);
 }
 
@@ -124,4 +138,26 @@
 
 .button {
     background-color: var(--color-vivid-malachite) !important;
+}
+
+.emptyListSubheader {
+}
+
+.emptyListImageBLock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.chestImage {
+    border-radius: 10px;
+    max-width: 200px;
+
+    @include mediaS {
+        max-width: 300px;
+    }
+}
+
+.emptyListDescription {
 }

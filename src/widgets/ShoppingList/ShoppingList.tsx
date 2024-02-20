@@ -7,8 +7,9 @@ import Button from 'shared/ui/Button/Button';
 import Portal from 'shared/ui/Portal/Portal';
 import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
-import styles from './ShoppingList.module.scss';
 import Spacing from 'shared/ui/spacing/Spacing';
+import chestImage from 'shared/assets/chest.png';
+import styles from './ShoppingList.module.scss';
 
 const ShoppingList: FunctionComponent = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
@@ -46,35 +47,59 @@ const ShoppingList: FunctionComponent = () => {
                 <Portal>
                     <ModalBackground closing={isClosing}>
                         <div ref={wrapperRef} className={styles.modalWrapper}>
-                            <h2 className={styles.header}>Ваша корзина:</h2>
+                            {productsToBuy.length > 0 ? (
+                                <>
+                                    <h2 className={styles.header}>Ваша корзина:</h2>
 
-                            <div className={styles.table}>
-                                <div>
-                                    {productsToBuy.map((product) => (
-                                        <div className={styles.productRow}>
-                                            <div className={classNames(styles.cell, styles.name)}>{product.name}</div>
-                                            <div className={classNames(styles.cell, styles.price)}>
-                                                {product.displayedPrice.toFixed(1)} ₽
-                                            </div>
-                                            <div className={classNames(styles.cell, styles.amount)}>
-                                                x{product.amount}
-                                            </div>
-                                            <div className={classNames(styles.cell, styles.productTotalPrice)}>
-                                                {(product.displayedPrice * product.amount).toFixed(1)} ₽
-                                            </div>
+                                    <div className={styles.table}>
+                                        <div>
+                                            {productsToBuy.map((product) => (
+                                                <div key={product.id} className={styles.productRow}>
+                                                    <div className={classNames(styles.cell, styles.name)}>
+                                                        {product.name}
+                                                    </div>
+
+                                                    <div className={classNames(styles.cell, styles.price)}>
+                                                        {product.displayedPrice.toFixed(1)} ₽
+                                                    </div>
+
+                                                    <div className={classNames(styles.cell, styles.amount)}>
+                                                        x{product.amount}
+                                                    </div>
+
+                                                    <div className={classNames(styles.cell, styles.productTotalPrice)}>
+                                                        {(product.displayedPrice * product.amount).toFixed(1)} ₽
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
 
-                                <Spacing size={20} />
+                                        <Spacing size={20} />
 
-                                <div className={styles.totalListPrice}>
-                                    <span className={styles.totalListPriceDescription}>Итого: </span>
-                                    {totalListPrice} ₽
-                                </div>
-                            </div>
+                                        <div className={styles.totalListPrice}>
+                                            <span className={styles.totalListPriceDescription}>Итого: </span>
+                                            {totalListPrice} ₽
+                                        </div>
+                                    </div>
 
-                            <Button className={styles.button}>Купить</Button>
+                                    <Button className={styles.button}>Купить</Button>
+                                </>
+                            ) : (
+                                <>
+                                    <h1 className={styles.emptyListSubheader}>Упс.</h1>
+
+                                    <div className={styles.emptyListImageBLock}>
+                                        <img src={chestImage} className={styles.chestImage} alt="Корзина пуста!" />{' '}
+                                        <span className={styles.emptyListDescription}>
+                                            В вашей корзине пока что ничего нет!
+                                        </span>
+                                    </div>
+
+                                    <Button className={styles.button} onClick={closeModal}>
+                                        Вернуться в магазин
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </ModalBackground>
                 </Portal>
