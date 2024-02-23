@@ -66,11 +66,16 @@
         0 36px 150px 0 rgba(0, 0, 0, 0.35);
 
     @include mediaS {
-        position: absolute;
+        position: unset;
         height: fit-content;
-        width: 500px;
-        margin: 0 auto;
+        width: 600px;
+        margin: auto;
         border-radius: 8px;
+        padding: 20px;
+    }
+
+    @include mediaM {
+        width: 650px;
     }
 }
 
@@ -98,14 +103,19 @@
 .productRow {
     display: grid;
     flex-direction: row;
-    gap: 6px;
-    grid-template-columns: 1fr auto 25px auto;
+    gap: 10px;
+    grid-template-columns: 1fr 50px 44px 80px;
     border: 1px solid lightgray;
     border-bottom: none;
     padding: 4px;
 
+    &:first-of-type {
+        border-radius: 4px 4px 0 0;
+    }
+
     &:last-of-type {
         border-bottom: 1px solid lightgray;
+        border-radius: 0 0 4px 4px;
     }
 }
 
@@ -114,6 +124,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    gap: 4px;
 }
 
 .name {
@@ -160,4 +172,36 @@
 }
 
 .emptyListDescription {
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.incrementButton,
+.decrementButton {
+    min-width: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+.decrementButton {
+    background: red;
+}
+
+.incrementButton {
+    background-color: var(--color-vivid-malachite);
 }

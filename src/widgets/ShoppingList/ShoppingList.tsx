@@ -30,8 +30,17 @@ const ShoppingList: FunctionComponent = () => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productsToBuy, getProductsListPrice } = useContext(AppContext);
+    const { productsToBuy, getProductsListPrice, addOrIncrementProductToList, decrementProductAmountInList } =
+        useContext(AppContext);
     const totalListPrice = getProductsListPrice();
+
+    const incrementProduct = (productId: string, name: string, displayedPrice: number) => () => {
+        addOrIncrementProductToList(productId, name, displayedPrice);
+    };
+
+    const decrementProduct = (productId: string) => () => {
+        decrementProductAmountInList(productId);
+    };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => closeModal(event as unknown as MouseEvent));
@@ -45,7 +54,7 @@ const ShoppingList: FunctionComponent = () => {
 
             {isModalOpened && (
                 <Portal>
-                    <ModalBackground closing={isClosing}>
+                    <ModalBackground closing={isClosing} fullScreenAtMobile>
                         <div ref={wrapperRef} className={styles.modalWrapper}>
                             {productsToBuy.length > 0 ? (
                                 <>
@@ -53,32 +62,78 @@ const ShoppingList: FunctionComponent = () => {
 
                                     <div className={styles.table}>
                                         <div>
-                                            {productsToBuy.map((product) => (
-                                                <div key={product.id} className={styles.productRow}>
-                                                    <div className={classNames(styles.cell, styles.name)}>
-                                                        {product.name}
-                                                    </div>
-
-                                                    <div className={classNames(styles.cell, styles.price)}>
-                                                        {product.displayedPrice.toFixed(1)} ₽
-                                                    </div>
-
-                                                    <div className={classNames(styles.cell, styles.amount)}>
-                                                        x{product.amount}
-                                                    </div>
-
-                                                    <div className={classNames(styles.cell, styles.productTotalPrice)}>
-                                                        {(product.displayedPrice * product.amount).toFixed(1)} ₽
-                                                    </div>
+                                            <div className={styles.productRow}>
+                                                <div className={classNames(styles.cell, styles.name, styles.bold)}>
+                                                    Товар:
                                                 </div>
-                                            ))}
+
+                                                <div className={classNames(styles.cell, styles.amount, styles.bold)}>
+                                                    Шт.:
+                                                </div>
+
+                                                <div className={classNames(styles.cell)}></div>
+
+                                                <div
+                                                    className={classNames(
+                                                        styles.cell,
+                                                        styles.productTotalPrice,
+                                                        styles.bold
+                                                    )}
+                                                >
+                                                    Итог:
+                                                </div>
+                                            </div>
+
+                                            {productsToBuy.map((product) => {
+                                                const { id: productId, name, amount, displayedPrice } = product;
+
+                                                return (
+                                                    <div key={productId} className={styles.productRow}>
+                                                        <div className={classNames(styles.cell, styles.name)}>
+                                                            {name}
+                                                        </div>
+
+                                                        <div className={classNames(styles.cell, styles.amount)}>
+                                                            x{amount}
+                                                        </div>
+
+                                                        <div className={classNames(styles.cell)}>
+                                                            <button
+                                                                className={styles.incrementButton}
+                                                                onClick={incrementProduct(
+                                                                    productId,
+                                                                    name,
+                                                                    displayedPrice
+                                                                )}
+                                                            >
+                                                                +
+                                                            </button>
+                                                            <button
+                                                                className={styles.decrementButton}
+                                                                onClick={decrementProduct(productId)}
+                                                            >
+                                                                -
+                                                            </button>
+                                                        </div>
+
+                                                        <div
+                                                            className={classNames(
+                                                                styles.cell,
+                                                                styles.productTotalPrice
+                                                            )}
+                                                        >
+                                                            {(displayedPrice * amount).toFixed(1)} ₽
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
 
                                         <Spacing size={20} />
 
                                         <div className={styles.totalListPrice}>
                                             <span className={styles.totalListPriceDescription}>Итого: </span>
-                                            {totalListPrice} ₽
+                                            {totalListPrice.toFixed(1)} ₽
                                         </div>
                                     </div>
 
@@ -89,7 +144,7 @@ const ShoppingList: FunctionComponent = () => {
                                     <h1 className={styles.emptyListSubheader}>Упс.</h1>
 
                                     <div className={styles.emptyListImageBLock}>
-                                        <img src={chestImage} className={styles.chestImage} alt="Корзина пуста!" />{' '}
+                                        <img src={chestImage} className={styles.chestImage} alt="Корзина пуста!" />
                                         <span className={styles.emptyListDescription}>
                                             В вашей корзине пока что ничего нет!
                                         </span>
