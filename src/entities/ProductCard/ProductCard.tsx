@@ -10,7 +10,7 @@ import { Time } from 'app/const/enum/Time';
 import classNames from 'shared/lib/aliases/classNames';
 import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 import { AppContext } from 'app/providers/AppContextProvider';
-import trashIcon from './images/trashIcon.svg';
+import trashIcon from 'shared/assets/trashIcon.svg';
 import styles from './ProductCard.module.scss';
 
 interface Props {

@@ -100,22 +100,38 @@
     width: 100%;
 }
 
+.rowWrapper {
+    display: grid;
+    grid-template-columns: 1fr 20px;
+    gap: 4px;
+    align-items: center;
+    width: 100%;
+
+    @include mediaS {
+        gap: 10px;
+    }
+}
+
 .productRow {
     display: grid;
     flex-direction: row;
     gap: 10px;
-    grid-template-columns: 1fr 50px 44px 80px;
+    grid-template-columns: 1fr 35px 44px 80px;
     border: 1px solid lightgray;
     border-bottom: none;
     padding: 4px;
 
-    &:first-of-type {
+    &.roundedTop {
         border-radius: 4px 4px 0 0;
     }
 
-    &:last-of-type {
-        border-bottom: 1px solid lightgray;
+    &.roundedBottom {
         border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    @include mediaS {
+        grid-template-columns: 1fr 50px 44px 80px;
     }
 }
 
@@ -179,7 +195,8 @@
 }
 
 .incrementButton,
-.decrementButton {
+.decrementButton,
+.deleteButton {
     min-width: 20px;
     display: flex;
     flex-direction: row;
@@ -198,7 +215,8 @@
     }
 }
 
-.decrementButton {
+.decrementButton,
+.deleteButton {
     background: red;
 }
 

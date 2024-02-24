@@ -9,6 +9,7 @@ import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
 import Spacing from 'shared/ui/spacing/Spacing';
 import chestImage from 'shared/assets/chest.png';
+import trashIcon from 'shared/assets/trashIcon.svg';
 import styles from './ShoppingList.module.scss';
 
 const ShoppingList: FunctionComponent = () => {
@@ -30,8 +31,13 @@ const ShoppingList: FunctionComponent = () => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productsToBuy, getProductsListPrice, addOrIncrementProductToList, decrementProductAmountInList } =
-        useContext(AppContext);
+    const {
+        productsToBuy,
+        getProductsListPrice,
+        addOrIncrementProductToList,
+        decrementProductAmountInList,
+        deleteProductFromList
+    } = useContext(AppContext);
     const totalListPrice = getProductsListPrice();
 
     const incrementProduct = (productId: string, name: string, displayedPrice: number) => () => {
@@ -40,6 +46,10 @@ const ShoppingList: FunctionComponent = () => {
 
     const decrementProduct = (productId: string) => () => {
         decrementProductAmountInList(productId);
+    };
+
+    const deleteProduct = (productId: string) => () => {
+        deleteProductFromList(productId);
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -62,68 +72,90 @@ const ShoppingList: FunctionComponent = () => {
 
                                     <div className={styles.table}>
                                         <div>
-                                            <div className={styles.productRow}>
-                                                <div className={classNames(styles.cell, styles.name, styles.bold)}>
-                                                    Товар:
-                                                </div>
+                                            <div className={styles.rowWrapper}>
+                                                <div className={classNames(styles.productRow, styles.roundedTop)}>
+                                                    <div className={classNames(styles.cell, styles.name, styles.bold)}>
+                                                        Товар:
+                                                    </div>
 
-                                                <div className={classNames(styles.cell, styles.amount, styles.bold)}>
-                                                    Шт.:
-                                                </div>
+                                                    <div
+                                                        className={classNames(styles.cell, styles.amount, styles.bold)}
+                                                    >
+                                                        Шт.:
+                                                    </div>
 
-                                                <div className={classNames(styles.cell)}></div>
+                                                    <div className={classNames(styles.cell)}></div>
 
-                                                <div
-                                                    className={classNames(
-                                                        styles.cell,
-                                                        styles.productTotalPrice,
-                                                        styles.bold
-                                                    )}
-                                                >
-                                                    Итог:
+                                                    <div
+                                                        className={classNames(
+                                                            styles.cell,
+                                                            styles.productTotalPrice,
+                                                            styles.bold
+                                                        )}
+                                                    >
+                                                        Итог:
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            {productsToBuy.map((product) => {
+                                            {productsToBuy.map((product, index) => {
                                                 const { id: productId, name, amount, displayedPrice } = product;
+                                                const isLastInList = index === productsToBuy.length - 1;
 
                                                 return (
-                                                    <div key={productId} className={styles.productRow}>
-                                                        <div className={classNames(styles.cell, styles.name)}>
-                                                            {name}
-                                                        </div>
+                                                    <div className={styles.rowWrapper}>
+                                                        <div
+                                                            className={classNames(styles.productRow, {
+                                                                [styles.roundedBottom]: isLastInList
+                                                            })}
+                                                        >
+                                                            <div className={classNames(styles.cell, styles.name)}>
+                                                                {name}
+                                                            </div>
 
-                                                        <div className={classNames(styles.cell, styles.amount)}>
-                                                            x{amount}
-                                                        </div>
+                                                            <div className={classNames(styles.cell, styles.amount)}>
+                                                                x{amount}
+                                                            </div>
 
-                                                        <div className={classNames(styles.cell)}>
-                                                            <button
-                                                                className={styles.incrementButton}
-                                                                onClick={incrementProduct(
-                                                                    productId,
-                                                                    name,
-                                                                    displayedPrice
+                                                            <div className={classNames(styles.cell)}>
+                                                                <button
+                                                                    className={styles.incrementButton}
+                                                                    onClick={incrementProduct(
+                                                                        productId,
+                                                                        name,
+                                                                        displayedPrice
+                                                                    )}
+                                                                >
+                                                                    +
+                                                                </button>
+                                                                <button
+                                                                    className={styles.decrementButton}
+                                                                    onClick={decrementProduct(productId)}
+                                                                >
+                                                                    -
+                                                                </button>
+                                                            </div>
+
+                                                            <div
+                                                                className={classNames(
+                                                                    styles.cell,
+                                                                    styles.productTotalPrice
                                                                 )}
                                                             >
-                                                                +
-                                                            </button>
-                                                            <button
-                                                                className={styles.decrementButton}
-                                                                onClick={decrementProduct(productId)}
-                                                            >
-                                                                -
-                                                            </button>
+                                                                {(displayedPrice * amount).toFixed(1)} ₽
+                                                            </div>
                                                         </div>
 
-                                                        <div
-                                                            className={classNames(
-                                                                styles.cell,
-                                                                styles.productTotalPrice
-                                                            )}
+                                                        <button
+                                                            className={styles.deleteButton}
+                                                            onClick={deleteProduct(productId)}
                                                         >
-                                                            {(displayedPrice * amount).toFixed(1)} ₽
-                                                        </div>
+                                                            <img
+                                                                src={trashIcon}
+                                                                className={styles.trashIcon}
+                                                                alt="Удалить"
+                                                            />
+                                                        </button>
                                                     </div>
                                                 );
                                             })}
