@@ -4,8 +4,8 @@ import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
 import OnlineBlock from 'features/onlineBlock/OnlineBlock';
-import styles from './NicknameBlock.module.scss';
 import CopyServerUrlBlock from 'features/copyServerUrlBlock/CopyServerUrlBlock';
+import styles from './NicknameBlock.module.scss';
 
 interface Props {
     className?: string;

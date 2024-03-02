@@ -10,33 +10,33 @@ $mediaM: 1024px;
 $mediaL: 1440px;
 
 @mixin mediaXS {
-  @media (max-width: $mediaXS) {
-    @content;
-  }
+    @media (max-width: $mediaXS) {
+        @content;
+    }
 }
 
 @mixin mediaS {
-  @media (min-width: $mediaS) {
-    @content;
-  }
+    @media (min-width: $mediaS) {
+        @content;
+    }
 }
 
 @mixin mediaM {
-  @media (min-width: $mediaM) {
-    @content;
-  }
+    @media (min-width: $mediaM) {
+        @content;
+    }
 }
 
 @mixin mediaL {
-  @media (min-width: $mediaL) {
-    @content;
-  }
+    @media (min-width: $mediaL) {
+        @content;
+    }
 }
 
-@mixin realHover($placeholder: "") {
-  @media (hover: hover) {
-    &:hover#{$placeholder} {
-      @content;
+@mixin realHover($placeholder: '') {
+    @media (hover: hover) {
+        &:hover#{$placeholder} {
+            @content;
+        }
     }
-  }
 }

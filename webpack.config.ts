@@ -12,11 +12,10 @@ export default (env: BuildEnv) => {
     };
 
     const mode = env.mode || 'development';
+    const isDev = mode === 'development';
     const PORT = env.port || 3000;
     const proxyTarget = env.proxyTarget || 'https://silverland.fun/';
     const apiHost = env.apiHost || '/api/v1';
-
-    const isDev = mode === 'development';
 
     // аналог экспортов JS, но для Node.js
     const config: webpack.Configuration = buildWebpackConfig({
