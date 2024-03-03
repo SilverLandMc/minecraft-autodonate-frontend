@@ -10,6 +10,7 @@
 
 .input {
     width: 60%;
+    min-width: 180px;
     border: none;
     padding: 8px 12px;
     background: var(--color-white-opacity-95);
@@ -44,4 +45,8 @@
     &:hover {
         filter: brightness(0.8);
     }
+}
+
+.redButton {
+    background: orangered;
 }

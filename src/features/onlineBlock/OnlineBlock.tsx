@@ -49,7 +49,11 @@ const OnlineBlock: FunctionComponent = () => {
     }
 
     if (isServerDown) {
-        return <div className={styles.wrapper}>Сервер временно недоступен! Зайдите попозже</div>;
+        return (
+            <div className={styles.serverIsDown}>
+                Сервер временно недоступен! <br /> Зайдите попозже
+            </div>
+        );
     }
 
     return (

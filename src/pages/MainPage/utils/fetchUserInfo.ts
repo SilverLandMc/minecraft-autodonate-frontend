@@ -1,6 +1,5 @@
 import { AppThunkAction } from 'app/types/redux';
 import createLogger from 'shared/lib/logger/logger';
-import Sentry from 'shared/lib/aliases/Sentry';
 import { request } from 'shared/lib/request/request';
 import { setUserInfo } from 'pages/MainPage/slices/mainPageSlice';
 import { PlayerInfoOutDto } from 'app/types/api/apiTypes';
@@ -16,8 +15,8 @@ const fetchUserInfo =
             });
             dispatch(setUserInfo(playerInfo));
         } catch (error) {
-            logger.error(`fetchOnlineInfo: failed to fetch. Error: ${error?.response?.data || error}`);
-            Sentry.captureException(error);
+            // Здесь ответ 404 при несуществующем игроке является ожидаемым
+            logger.info(`fetchOnlineInfo: failed to fetch. Error: ${error}`);
             throw error;
         }
     };

@@ -3,15 +3,15 @@ import { PlayerInfoOutDto, Players } from 'app/types/api/apiTypes';
 
 export interface MainPagePartState extends Players {
     isLoaded: boolean;
-    userNickname?: string;
-    userUniqueProducts: string[];
+    playerName?: string;
+    playerUniqueProducts: string[];
 }
 
 const initialState: MainPagePartState = {
     online: 0,
     max: 100,
     isLoaded: false,
-    userUniqueProducts: []
+    playerUniqueProducts: []
 };
 
 export const mainPageSlice = createSlice({
@@ -24,12 +24,16 @@ export const mainPageSlice = createSlice({
             state.isLoaded = true;
         },
         setUserInfo: (state, action: PayloadAction<PlayerInfoOutDto>) => {
-            state.userNickname = action.payload.playerName;
-            state.userUniqueProducts = action.payload.uniqueProducts;
+            state.playerName = action.payload.playerName;
+            state.playerUniqueProducts = action.payload.uniqueProducts;
+        },
+        erasePlayerInfo: (state) => {
+            state.playerName = undefined;
+            state.playerUniqueProducts = [];
         }
     }
 });
 
-export const { setOnline, setUserInfo } = mainPageSlice.actions;
+export const { setOnline, setUserInfo, erasePlayerInfo } = mainPageSlice.actions;
 
 export default mainPageSlice.reducer;

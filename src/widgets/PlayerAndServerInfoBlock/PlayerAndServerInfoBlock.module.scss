@@ -2,7 +2,7 @@
 
 .backgroundWrapper {
     position: relative;
-    background-image: url('images/nicknameBlockBackground.png');
+    background-image: url('images/background.png');
     background-size: cover;
     background-position: center;
     object-fit: fill;
@@ -38,6 +38,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        gap: 40px;
     }
 }
 
@@ -86,31 +87,21 @@
     font-weight: 400;
 }
 
-.nicknameForm {
-    max-width: 320px;
-}
-
 .firstBlock,
 .secondBlock {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: space-between;
 
     height: 100%;
 
-    @include mediaL {
-        min-height: 190px;
-    }
-}
-
-.firstBlock {
     @include mediaS {
-        min-height: 168px;
+        min-height: 180px;
     }
 }
 
 .secondBlock {
-    min-height: 168px;
     max-width: 320px;
     gap: 10px;
 

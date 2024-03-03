@@ -1,7 +1,8 @@
 @import '/src/app/styles/media/media.scss';
 
 .wrapper,
-.runnerWrapper {
+.runnerWrapper,
+.serverIsDown {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,4 +22,9 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 18px;
+}
+
+.serverIsDown {
+    text-align: center;
+    color: orangered;
 }

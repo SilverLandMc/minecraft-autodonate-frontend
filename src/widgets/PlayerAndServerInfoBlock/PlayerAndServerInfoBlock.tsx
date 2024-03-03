@@ -2,16 +2,16 @@ import { FunctionComponent } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
-import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
 import OnlineBlock from 'features/onlineBlock/OnlineBlock';
 import CopyServerUrlBlock from 'features/copyServerUrlBlock/CopyServerUrlBlock';
-import styles from './NicknameBlock.module.scss';
+import styles from './PlayerAndServerInfoBlock.module.scss';
+import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
 
 interface Props {
     className?: string;
 }
 
-const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
+const PlayerAndServerInfoBlock: FunctionComponent<Props> = ({ className }) => {
     return (
         <div className={classNames(styles.backgroundWrapper, [className])}>
             <Section className={styles.section}>
@@ -27,16 +27,7 @@ const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
                             <h2 className={styles.subHeader}>Minecraft Server</h2>
                         </div>
 
-                        <div>
-                            <span className={styles.enterProposal}>Введите ваш ник:</span>
-
-                            <Spacing size={8} />
-
-                            <RoundedSingleFieldForm
-                                className={styles.nicknameForm}
-                                placeholderText="Например, BrainRTP"
-                            />
-                        </div>
+                        <PlayerInfoBlock subheaderClassName={styles.enterProposal} />
                     </div>
 
                     <div className={styles.secondBlock}>
@@ -52,4 +43,4 @@ const NicknameBlock: FunctionComponent<Props> = ({ className }) => {
     );
 };
 
-export default NicknameBlock;
+export default PlayerAndServerInfoBlock;
