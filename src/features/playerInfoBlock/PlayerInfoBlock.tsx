@@ -18,17 +18,22 @@ interface Props {
 
 const PlayerInfoBlock: FunctionComponent<Props> = ({ subheaderClassName }) => {
     const [formValue, setFormValue] = useState<string>('');
-    const [hasError, setHasError] = useState(false);
+    const [errorText, setErrorText] = useState<string | null>(null);
 
     const dispatch = useAppDispatch();
     const playerName = useSelector(selectPlayerName);
 
     const confirmForm = async () => {
+        if (!formValue.trim()) {
+            setErrorText('Ник не может быть пустым!');
+            return;
+        }
+
         try {
-            await dispatch(fetchUserInfo(formValue));
-            setHasError(false);
+            await dispatch(fetchUserInfo(formValue.trim()));
+            setErrorText(null);
         } catch (error) {
-            setHasError(true);
+            setErrorText('Игрок не найден! Введите другой ник:');
         }
     };
 
@@ -67,10 +72,8 @@ const PlayerInfoBlock: FunctionComponent<Props> = ({ subheaderClassName }) => {
 
     return (
         <div>
-            {hasError ? (
-                <span className={classNames(subheaderClassName, styles.error)}>
-                    Игрок не найден! Введите другой ник:
-                </span>
+            {errorText ? (
+                <span className={classNames(subheaderClassName, styles.error)}>{errorText}</span>
             ) : (
                 <span className={subheaderClassName}>Введите ваш ник:</span>
             )}
