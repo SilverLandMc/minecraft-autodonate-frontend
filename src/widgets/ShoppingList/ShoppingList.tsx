@@ -11,6 +11,9 @@ import Spacing from 'shared/ui/spacing/Spacing';
 import chestImage from 'shared/assets/chest.png';
 import trashIcon from 'shared/assets/trashIcon.svg';
 import styles from './ShoppingList.module.scss';
+import { useSelector } from 'react-redux';
+import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
+import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
 
 const ShoppingList: FunctionComponent = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
@@ -30,6 +33,8 @@ const ShoppingList: FunctionComponent = () => {
             setIsModalOpened(false);
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
+
+    const playerName = useSelector(selectPlayerName);
 
     const {
         productsToBuy,
@@ -169,7 +174,14 @@ const ShoppingList: FunctionComponent = () => {
                                         </div>
                                     </div>
 
-                                    <Button className={styles.button}>Купить</Button>
+                                    {playerName ? (
+                                        <Button className={styles.button}>Купить</Button>
+                                    ) : (
+                                        <PlayerInfoBlock
+                                            className={styles.playerInfoBlock}
+                                            title="Введите ник игрока, чтобы купить товары:"
+                                        />
+                                    )}
                                 </>
                             ) : (
                                 <>

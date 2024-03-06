@@ -13,10 +13,12 @@ import styles from './PlayerInfoBlock.module.scss';
 import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 
 interface Props {
+    title?: string;
+    className?: string;
     subheaderClassName?: string;
 }
 
-const PlayerInfoBlock: FunctionComponent<Props> = ({ subheaderClassName }) => {
+const PlayerInfoBlock: FunctionComponent<Props> = ({ title = 'Введите ваш ник:', className, subheaderClassName }) => {
     const [formValue, setFormValue] = useState<string>('');
     const [errorText, setErrorText] = useState<string | null>(null);
 
@@ -71,11 +73,11 @@ const PlayerInfoBlock: FunctionComponent<Props> = ({ subheaderClassName }) => {
     }
 
     return (
-        <div>
+        <div className={className}>
             {errorText ? (
                 <span className={classNames(subheaderClassName, styles.error)}>{errorText}</span>
             ) : (
-                <span className={subheaderClassName}>Введите ваш ник:</span>
+                <span className={subheaderClassName}>{title}</span>
             )}
 
             <Spacing size={8} />

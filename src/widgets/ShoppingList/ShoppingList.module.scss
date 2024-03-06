@@ -223,3 +223,13 @@
 .incrementButton {
     background-color: var(--color-vivid-malachite);
 }
+
+.playerInfoBlock {
+    background: var(--black-opacity-20);
+    padding: 10px;
+    border-radius: 10px;
+
+    & * {
+        font-family: var(--font-family-main);
+    }
+}
