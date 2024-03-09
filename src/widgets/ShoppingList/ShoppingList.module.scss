@@ -165,7 +165,13 @@
 }
 
 .button {
+    padding: 17px 10px !important;
     background-color: var(--color-vivid-malachite) !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .emptyListSubheader {
@@ -224,6 +230,14 @@
     background-color: var(--color-vivid-malachite);
 }
 
+.buyBlockWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 .playerInfoBlock {
     background: var(--black-opacity-20);
     padding: 10px;
@@ -232,4 +246,8 @@
     & * {
         font-family: var(--font-family-main);
     }
+}
+
+.playerNameSpan {
+    font-weight: 600;
 }

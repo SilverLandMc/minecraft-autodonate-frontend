@@ -1,9 +1,11 @@
 import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import AppContext from 'app/providers/AppContextProvider/lib/AppContext';
 import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
+import { PromocodeOutDto } from 'app/types/api/apiTypes';
 
 const AppContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
     const [productsToBuy, setProductsToBuy] = useState<ShoppingListProductToBuyInDto[]>([]);
+    const [promoCode, setPromoCode] = useState<PromocodeOutDto | undefined>();
 
     const addOrIncrementProductToList = (productId: string, name: string, displayedPrice: number) =>
         setProductsToBuy((currentProducts) => {
@@ -50,7 +52,10 @@ const AppContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) 
                 addOrIncrementProductToList,
                 deleteProductFromList,
                 decrementProductAmountInList,
-                getProductsListPrice
+                getProductsListPrice,
+
+                promoCode,
+                setPromoCode
             }}
         >
             {children}

@@ -14,6 +14,7 @@ import styles from './ShoppingList.module.scss';
 import { useSelector } from 'react-redux';
 import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
 import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
+import PromoCodeBlock from 'features/PromoCodeBlock/PromoCodeBlock';
 
 const ShoppingList: FunctionComponent = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
@@ -175,7 +176,13 @@ const ShoppingList: FunctionComponent = () => {
                                     </div>
 
                                     {playerName ? (
-                                        <Button className={styles.button}>Купить</Button>
+                                        <div className={styles.buyBlockWrapper}>
+                                            <PromoCodeBlock />
+                                            <Button className={styles.button}>
+                                                Купить товары для игрока
+                                                <span className={styles.playerNameSpan}>{playerName}</span>
+                                            </Button>
+                                        </div>
                                     ) : (
                                         <PlayerInfoBlock
                                             className={styles.playerInfoBlock}

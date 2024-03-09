@@ -1,0 +1,90 @@
+@import '/src/app/styles/media/media.scss';
+
+.button {
+    border-radius: 4px;
+    padding: 7px 10px;
+    background-color: #192fcc;
+    color: var(--color-white);
+    font-family: var(--font-family-main);
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+.verticalFormWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: flex-start;
+}
+
+.horizontalFormWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.input {
+    border-radius: 4px;
+    padding: 6px 10px;
+    border: 1px solid gray;
+    font-family: var(--font-family-main);
+    transition: 0.3s;
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: var(--font-family-main);
+
+        @include mediaS {
+            font-size: 16px;
+        }
+    }
+}
+
+.closeIcon {
+    width: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+.sendButton {
+    background: var(--color-vivid-malachite);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: var(--color-white);
+    text-align: center;
+    padding: 2px 8px;
+    font-size: 20px;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+
+.activePromoCodeSpan {
+    font-family: var(--font-family-main);
+}
+
+.errorSpan {
+    font-family: var(--font-family-main);
+    color: orangered;
+}
