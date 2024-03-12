@@ -83,7 +83,8 @@
 .table,
 .button,
 .emptyListSubheader,
-.emptyListDescription {
+.emptyListDescription,
+.logoutButton {
     font-family: var(--font-family-main);
 }
 
@@ -174,6 +175,11 @@
     gap: 5px;
 }
 
+.logoutButton {
+    background-color: orangered;
+    padding: 17px 10px !important;
+}
+
 .emptyListSubheader {
 }
 
@@ -250,4 +256,12 @@
 
 .playerNameSpan {
     font-weight: 600;
+}
+
+.playerNameLogoutWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
 }

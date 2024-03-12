@@ -10,11 +10,15 @@ import { Time } from 'app/const/enum/Time';
 import Spacing from 'shared/ui/spacing/Spacing';
 import chestImage from 'shared/assets/chest.png';
 import trashIcon from 'shared/assets/trashIcon.svg';
-import styles from './ShoppingList.module.scss';
 import { useSelector } from 'react-redux';
 import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
 import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
 import PromoCodeBlock from 'features/PromoCodeBlock/PromoCodeBlock';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
+import styles from './ShoppingList.module.scss';
+import { CreatePaymentDto } from 'app/types/api/apiTypes';
+import createPayment from 'widgets/ShoppingList/utils/createPayment';
 
 const ShoppingList: FunctionComponent = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
@@ -36,15 +40,33 @@ const ShoppingList: FunctionComponent = () => {
     };
 
     const playerName = useSelector(selectPlayerName);
+    const dispatch = useAppDispatch();
 
     const {
         productsToBuy,
         getProductsListPrice,
         addOrIncrementProductToList,
         decrementProductAmountInList,
-        deleteProductFromList
+        deleteProductFromList,
+        promoCode,
+        setPromoCode
     } = useContext(AppContext);
     const totalListPrice = getProductsListPrice();
+
+    const handlePayment = () => {
+        const paymentInfo: CreatePaymentDto = {
+            playerName,
+            productList: productsToBuy.map(({ id, amount }) => {
+                return {
+                    id,
+                    amount
+                };
+            }),
+            promocode: promoCode?.name ?? null
+        };
+
+        createPayment(paymentInfo);
+    };
 
     const incrementProduct = (productId: string, name: string, displayedPrice: number) => () => {
         addOrIncrementProductToList(productId, name, displayedPrice);
@@ -56,6 +78,11 @@ const ShoppingList: FunctionComponent = () => {
 
     const deleteProduct = (productId: string) => () => {
         deleteProductFromList(productId);
+    };
+
+    const logout = () => {
+        dispatch(erasePlayerInfo());
+        setPromoCode(undefined);
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -178,10 +205,17 @@ const ShoppingList: FunctionComponent = () => {
                                     {playerName ? (
                                         <div className={styles.buyBlockWrapper}>
                                             <PromoCodeBlock />
-                                            <Button className={styles.button}>
-                                                Купить товары для игрока
-                                                <span className={styles.playerNameSpan}>{playerName}</span>
-                                            </Button>
+
+                                            <div className={styles.playerNameLogoutWrapper}>
+                                                <Button className={styles.button} onClick={handlePayment}>
+                                                    Купить товары для игрока
+                                                    <span className={styles.playerNameSpan}>{playerName}</span>
+                                                </Button>
+
+                                                <Button className={styles.logoutButton} onClick={logout}>
+                                                    Выйти
+                                                </Button>
+                                            </div>
                                         </div>
                                     ) : (
                                         <PlayerInfoBlock
