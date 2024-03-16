@@ -42,29 +42,6 @@
     font-family: var(--font-family-main);
 }
 
-.header {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 22px;
-    text-align: center;
-}
-
-.buyBlockWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.playerNameLogoutWrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-content: center;
-}
-
 .button {
     padding: 17px 10px !important;
     background-color: var(--color-vivid-malachite) !important;
@@ -73,25 +50,6 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-}
-
-.playerNameSpan {
-    font-weight: 600;
-}
-
-.logoutButton {
-    background-color: orangered;
-    padding: 17px 10px !important;
-}
-
-.playerInfoBlock {
-    background: var(--black-opacity-20);
-    padding: 10px;
-    border-radius: 10px;
-
-    & * {
-        font-family: var(--font-family-main);
-    }
 }
 
 .emptyListImageBLock {
