@@ -4,7 +4,11 @@ import { AppContext } from 'app/providers/AppContextProvider';
 import styles from './PromoCodeBlock.module.scss';
 import fetchPromoCodeByName from 'features/PromoCodeBlock/utils/fetchPromoCodeByName';
 
-const PromoCodeBlock: FunctionComponent = () => {
+interface Props {
+    disabled?: boolean;
+}
+
+const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
     const [isFormOpened, setIsFormOpened] = useState(false);
     const [formValue, setFormValue] = useState('');
     const [errorText, setErrorText] = useState<string | undefined>();
@@ -19,6 +23,10 @@ const PromoCodeBlock: FunctionComponent = () => {
     };
 
     const erasePromoCode = () => {
+        if (disabled) {
+            return;
+        }
+
         setPromoCode(undefined);
         setFormValue('');
         setIsFormOpened(true);
@@ -57,34 +65,34 @@ const PromoCodeBlock: FunctionComponent = () => {
         );
     }
 
-    if (!isFormOpened) {
+    if (isFormOpened) {
         return (
-            <button className={styles.button} onClick={openForm}>
-                У меня есть промокод
-            </button>
+            <div className={styles.verticalFormWrapper}>
+                <div className={styles.horizontalFormWrapper}>
+                    <input
+                        className={styles.input}
+                        type="text"
+                        value={formValue}
+                        onChange={handleChange}
+                        placeholder="Введите промокод"
+                    />
+
+                    <button className={styles.sendButton} onClick={checkPromoCode} disabled={disabled}>
+                        ✓
+                    </button>
+
+                    <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={closeForm} />
+                </div>
+
+                <span className={styles.errorSpan}>{errorText}</span>
+            </div>
         );
     }
 
     return (
-        <div className={styles.verticalFormWrapper}>
-            <div className={styles.horizontalFormWrapper}>
-                <input
-                    className={styles.input}
-                    type="text"
-                    value={formValue}
-                    onChange={handleChange}
-                    placeholder="Введите промокод"
-                />
-
-                <div className={styles.sendButton} onClick={checkPromoCode}>
-                    ✓
-                </div>
-
-                <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={closeForm} />
-            </div>
-
-            <span className={styles.errorSpan}>{errorText}</span>
-        </div>
+        <button className={styles.button} onClick={openForm} disabled={disabled}>
+            У меня есть промокод
+        </button>
     );
 };
 

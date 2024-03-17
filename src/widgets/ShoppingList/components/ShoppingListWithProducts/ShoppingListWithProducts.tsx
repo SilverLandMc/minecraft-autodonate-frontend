@@ -16,7 +16,7 @@ const ShoppingListWithProducts: FunctionComponent = () => {
     const dispatch = useAppDispatch();
 
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
-    const [paymentError, setPaymentError] = useState('');
+    const [paymentError, setPaymentError] = useState(undefined);
 
     const playerName = useSelector(selectPlayerName);
     const { productsToBuy, promoCode, setPromoCode } = useContext(AppContext);
@@ -40,9 +40,11 @@ const ShoppingListWithProducts: FunctionComponent = () => {
         try {
             setIsPaymentCreating(true);
             await createPayment(paymentInfo);
-            setIsPaymentCreating(false);
+            setPaymentError(undefined);
         } catch (error) {
             setPaymentError('Что-то пошло не так. Попробуйте перезагрузить страницу');
+        } finally {
+            setIsPaymentCreating(false);
         }
     };
 
@@ -59,18 +61,20 @@ const ShoppingListWithProducts: FunctionComponent = () => {
 
             {playerName ? (
                 <div className={styles.buyBlockWrapper}>
-                    <PromoCodeBlock />
+                    <PromoCodeBlock disabled={isPaymentCreating} />
 
                     <div className={styles.playerNameLogoutWrapper}>
-                        <Button className={styles.button} onClick={handlePayment}>
-                            Купить товары для игрока
+                        <Button className={styles.button} onClick={handlePayment} disabled={isPaymentCreating}>
+                            Купить для
                             <span className={styles.playerNameSpan}>{playerName}</span>
                         </Button>
 
-                        <Button className={styles.logoutButton} onClick={logout}>
+                        <Button className={styles.logoutButton} onClick={logout} disabled={isPaymentCreating}>
                             Выйти
                         </Button>
                     </div>
+
+                    {Boolean(paymentError) && <span className={styles.errorSpan}>{paymentError}</span>}
                 </div>
             ) : (
                 <PlayerInfoBlock className={styles.playerInfoBlock} title="Введите ник игрока, чтобы купить товары:" />
