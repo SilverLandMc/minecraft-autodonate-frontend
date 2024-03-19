@@ -54,7 +54,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         element: <TermsOfServicePage />
     },
     [AppRoutes.AUTHENTICATION]: {
-        path: RoutePath.tos,
+        path: RoutePath.auth,
         element: <AuthPage />
     },
     [AppRoutes.ADMIN]: {
