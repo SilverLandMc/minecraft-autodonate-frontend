@@ -10,7 +10,9 @@ export interface BuildPaths {
 export interface BuildEnv {
     mode: BuildMode;
     port: number;
+
     proxyTarget: string;
+    authProxyTarget: string;
     apiHost: string;
 }
 
@@ -19,6 +21,8 @@ export interface BuildOptions {
     paths: BuildPaths;
     isDev: boolean;
     port: number;
+
     proxyTarget: string;
+    authProxyTarget: string;
     apiHost: string;
 }

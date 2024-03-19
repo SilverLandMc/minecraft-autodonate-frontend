@@ -3,6 +3,8 @@ import { MainPage } from 'pages/MainPage';
 import { TermsOfServicePage } from 'pages/TermsOfServicePage';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { ShopPage } from 'pages/ShopPage';
+import { AdminPage } from 'pages/AdminPage';
+import { AuthPage } from 'pages/AuthPage';
 
 export const enum AppRoutes {
     MAIN = 'main',
@@ -10,7 +12,9 @@ export const enum AppRoutes {
     BOOSTERS = 'boosters',
     CASES = 'cases',
     RESOURCES = 'resources',
-    TERMS_OF_SERVICE = 'tos'
+    TERMS_OF_SERVICE = 'tos',
+    AUTHENTICATION = 'auth',
+    ADMIN = 'admin'
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -19,7 +23,9 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.BOOSTERS]: '/boosters',
     [AppRoutes.CASES]: '/cases',
     [AppRoutes.RESOURCES]: '/resources',
-    [AppRoutes.TERMS_OF_SERVICE]: '/tos'
+    [AppRoutes.TERMS_OF_SERVICE]: '/tos',
+    [AppRoutes.AUTHENTICATION]: '/auth',
+    [AppRoutes.ADMIN]: '/admin'
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -46,5 +52,13 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.TERMS_OF_SERVICE]: {
         path: RoutePath.tos,
         element: <TermsOfServicePage />
+    },
+    [AppRoutes.AUTHENTICATION]: {
+        path: RoutePath.tos,
+        element: <AuthPage />
+    },
+    [AppRoutes.ADMIN]: {
+        path: RoutePath.admin,
+        element: <AdminPage />
     }
 };

@@ -5,25 +5,33 @@ import { NavBar } from 'features/NavBar';
 import useDoesMediaMatch from 'shared/hooks/useDoesMediaMatch';
 import media from 'app/const/enum/Media';
 import ButterMenu from 'widgets/ButterMenu/ButterMenu';
-import { AppRoutes as AppRoute, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Link } from 'react-router-dom';
 import ShoppingList from 'widgets/ShoppingList/ShoppingList';
 import styles from './Header.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface HeaderProps {
     className?: string;
 }
 
 const Header: FunctionComponent<HeaderProps> = () => {
+    const navigate = useNavigate();
     const isMobile = useDoesMediaMatch(media.XS);
+
+    const navigateToAdminPanel = () => {
+        navigate(RoutePath['auth']);
+    };
 
     return (
         <div className={styles.backgroundWrapper}>
             <Section className={styles.section}>
                 <div className={styles.innerRowWrapper}>
-                    <Link to={RoutePath[AppRoute.MAIN]}>
-                        <img src={silverLandLogo} className={styles.logo} alt="SilverLand Minecraft server" />
-                    </Link>
+                    <img
+                        src={silverLandLogo}
+                        className={styles.logo}
+                        alt="SilverLand Minecraft server"
+                        onDoubleClick={navigateToAdminPanel}
+                    />
 
                     <div className={styles.rightBlock}>
                         {isMobile ? <ButterMenu /> : <NavBar />}

@@ -15,6 +15,7 @@ export default (env: BuildEnv) => {
     const isDev = mode === 'development';
     const PORT = env.port || 3000;
     const proxyTarget = env.proxyTarget || 'https://silverland.fun/';
+    const authProxyTarget = env.authProxyTarget || 'https://e2ed02d70870.vps.myjino.ru/';
     const apiHost = env.apiHost || '/api/v1';
 
     // аналог экспортов JS, но для Node.js
@@ -24,6 +25,7 @@ export default (env: BuildEnv) => {
         isDev,
         port: PORT,
         proxyTarget,
+        authProxyTarget,
         apiHost
     });
 
