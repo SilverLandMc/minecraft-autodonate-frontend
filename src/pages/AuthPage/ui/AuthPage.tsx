@@ -24,7 +24,7 @@ const AuthPage: FunctionComponent = () => {
             <Section className={styles.section}>
                 <iframe
                     id="telegram-login-silverlandmc_bot"
-                    src={`https://oauth.telegram.org/embed/silverlandmc_bot?origin=${__IS_DEV__ ? 'http%3A%2F%2Flocalhost:3000' : 'https%3A%2F%2Fe2ed02d70870.vps.myjino.ru'}&amp;return_to=${__IS_DEV__ ? 'http%3A%2F%2Flocalhost:3000' : 'https%3A%2F%2Fe2ed02d70870.vps.myjino.ru'}/admin&amp;size=large&amp;request_access=write`}
+                    src={`https://oauth.telegram.org/embed/silverlandmc_bot?origin=${__IS_DEV__ ? 'http%3A%2F%2Flocalhost:3000' : 'https%3A%2F%2Fsilverland.fun'}&amp;return_to=${__IS_DEV__ ? 'http%3A%2F%2Flocalhost:3000' : 'https%3A%2F%2Fsilverland.fun'}/admin&amp;size=large&amp;request_access=write`}
                     width="338"
                     height="60"
                 ></iframe>
@@ -33,7 +33,7 @@ const AuthPage: FunctionComponent = () => {
                     src="https://telegram.org/js/telegram-widget.js?22"
                     data-telegram-login="silverlandmc_bot"
                     data-size="large"
-                    data-auth-url="https://e2ed02d70870.vps.myjino.ru/auth"
+                    data-auth-url="https://silverland.fun/auth/callback"
                     data-request-access="write"
                 ></script>
             </Section>
