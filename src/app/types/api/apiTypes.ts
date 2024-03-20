@@ -39,18 +39,6 @@ export interface ErrorMessageWithField {
     message?: string;
 }
 
-/**
- * Категория продукта
- * @example "RANKS"
- */
-export enum Category {
-    RANKS = 'RANKS',
-    BOOSTERS = 'BOOSTERS',
-    CASES = 'CASES',
-    RESOURCES = 'RESOURCES',
-    OTHER = 'OTHER'
-}
-
 /** Скидка c id */
 export interface DiscountOutDto {
     /**
@@ -98,6 +86,55 @@ export interface DiscountOutDto {
 export enum DiscountType {
     AMOUNT = 'AMOUNT',
     PERCENTAGE = 'PERCENTAGE'
+}
+
+/** Промокод */
+export interface PromocodeDto {
+    /**
+     * Название промокода
+     * @example "VIP"
+     */
+    name?: string;
+    /**
+     * Максимальное количество использований промокода
+     * @format int32
+     * @example 10
+     */
+    maxUseCount?: number;
+    /**
+     * Текущее количество использований промокода
+     * @format int32
+     * @example 5
+     */
+    currentUseCount?: number;
+    /**
+     * Дата начала промокода
+     * @format int64
+     * @example 1693914524
+     */
+    startDate: number;
+    /**
+     * Дата окончания промокода
+     * @format int64
+     * @example 1693914524
+     */
+    endDate: number;
+    /** Скидка c id */
+    discount?: DiscountOutDto;
+    limitedUse?: boolean;
+    deleted?: boolean;
+}
+
+/**
+ * Категория продукта
+ * @example "RANKS"
+ */
+export enum Category {
+    RANKS = 'RANKS',
+    BOOSTERS = 'BOOSTERS',
+    CASES = 'CASES',
+    RESOURCES = 'RESOURCES',
+    OTHER = 'OTHER'
 }
 
 /** Продукт */
@@ -492,6 +529,33 @@ export interface Players {
     max?: number;
 }
 
+export interface AuthUserDto {
+    /**
+     * Идентификатор пользователя
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id: string;
+    /**
+     * Фамилия и Имя пользователя (из Telegram)
+     * @example "Иванов Иван"
+     */
+    fullName: string;
+    /**
+     * Telegram администратора
+     * @example "brainrtp"
+     */
+    tgName: string;
+    /** Роль пользователя (администратора) */
+    role: Role;
+}
+
+/** Роль пользователя (администратора) */
+export enum Role {
+    ADMIN = 'ADMIN',
+    USER = 'USER'
+}
+
 /** Топ продуктов */
 export interface PurchaseTopProductsOutDto {
     /**
@@ -588,7 +652,7 @@ export interface PaymentOutDto {
      */
     totalPrice?: number;
     /** Промокод */
-    promocode?: PromocodeOutDto;
+    promocode?: PromocodeDto;
     /** Статус платежа */
     status?: 'INCOMPLETE' | 'SUCCESS' | 'FAILED' | 'EXPIRED' | 'UNTRACKABLE';
     /** Список товаров */
@@ -605,43 +669,6 @@ export interface PaymentProductOutDto {
      * @example 1
      */
     amount?: number;
-}
-
-/** Промокод */
-export interface PromocodeOutDto {
-    /**
-     * Название промокода
-     * @example "VIP"
-     */
-    name?: string;
-    /**
-     * Максимальное количество использований промокода
-     * @format int32
-     * @example 10
-     */
-    maxUseCount?: number;
-    /**
-     * Текущее количество использований промокода
-     * @format int32
-     * @example 5
-     */
-    currentUseCount?: number;
-    /**
-     * Дата начала промокода
-     * @format int64
-     * @example 1693914524
-     */
-    startDate: number;
-    /**
-     * Дата окончания промокода
-     * @format int64
-     * @example 1693914524
-     */
-    endDate: number;
-    /** Скидка c id */
-    discount?: DiscountOutDto;
-    limitedUse?: boolean;
-    deleted?: boolean;
 }
 
 export interface SortObject {

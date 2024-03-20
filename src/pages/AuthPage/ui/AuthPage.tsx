@@ -1,8 +1,24 @@
 import { FunctionComponent } from 'react';
 import Section from 'shared/ui/Section/Section';
 import styles from './AuthPage.module.scss';
+import { useSelector } from 'react-redux';
+import selectShopPagePart from 'shared/redux/selectors/selectAdminPagePart';
+import { useNavigate } from 'react-router-dom';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { setAuthPageVisited } from 'pages/AdminPage/slices/adminPageSlice';
 
 const AuthPage: FunctionComponent = () => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { isAuthPageVisited } = useSelector(selectShopPagePart);
+
+    if (isAuthPageVisited) {
+        navigate(RoutePath['admin']);
+    }
+
+    dispatch(setAuthPageVisited());
+
     return (
         <div className={styles.wrapper}>
             <Section className={styles.section}>

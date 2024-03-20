@@ -1,12 +1,12 @@
 import createLogger from 'shared/lib/logger/logger';
 import { request } from 'shared/lib/request/request';
-import { PromocodeOutDto } from 'app/types/api/apiTypes';
+import { PromocodeDto } from 'app/types/api/apiTypes';
 
 const logger = createLogger('fetchPromoCodeByName');
 
 const fetchPromoCodeByName = async (promoCodeName: string) => {
     try {
-        return await request<PromocodeOutDto>({
+        return await request<PromocodeDto>({
             url: `/public/prodmocode/${promoCodeName}`
         });
     } catch (error) {

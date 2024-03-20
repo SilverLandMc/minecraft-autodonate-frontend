@@ -1,7 +1,7 @@
 import { BuildOptions } from './types/config';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
-export const buildDevServer = ({ port, proxyTarget, authProxyTarget }: BuildOptions): DevServerConfiguration => {
+export const buildDevServer = ({ port, proxyTarget }: BuildOptions): DevServerConfiguration => {
     return {
         port: port,
         open: true, // автоматически открывать страницу в браузере
@@ -15,11 +15,6 @@ export const buildDevServer = ({ port, proxyTarget, authProxyTarget }: BuildOpti
             '/public/files': {
                 target: `http://localhost:${port}/`,
                 router: () => proxyTarget,
-                changeOrigin: true
-            },
-            '/auth': {
-                target: `http://localhost:${port}/`,
-                router: () => authProxyTarget,
                 changeOrigin: true
             }
         }
