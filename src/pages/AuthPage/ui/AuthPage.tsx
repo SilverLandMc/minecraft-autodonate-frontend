@@ -24,7 +24,7 @@ const AuthPage: FunctionComponent = () => {
             <Section className={styles.section}>
                 <iframe
                     id="telegram-login-silverlandmc_bot"
-                    src="https://oauth.telegram.org/embed/silverlandmc_bot?origin=https%3A%2F%2Fe2ed02d70870.vps.myjino.ru&return_to=https%3A%2F%2Fe2ed02d70870.vps.myjino.ru/admin&size=large&request_access=write"
+                    src="https://oauth.telegram.org/embed/silverlandmc_bot?origin=https%3A%2F%2Fsilverland.fun&return_to=https%3A%2F%2Fsilverland.fun/admin&size=large&request_access=write"
                     width="338"
                     height="60"
                 ></iframe>
