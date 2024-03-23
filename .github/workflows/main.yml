@@ -20,13 +20,15 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-            nvm use
             node -v
             npm -v
             nvm -v
             
             # Переходим в папку проекта
             cd ~/minecraft-silver-frontend/
+            nvm use
+            node -v
+            npm -v
             
             # Обновляем репу
             git pull
