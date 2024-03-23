@@ -20,6 +20,10 @@ jobs:
             # Переходим в папку проекта
             cd ~/minecraft-silver-frontend/
             nvm use
+            whoami
+            node -v
+            npm -v
+            nvm -v
             # Обновляем репу
             git pull
             # Накатываем зависимости
