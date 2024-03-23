@@ -1,6 +1,9 @@
 name: minecraft-silver-frontend workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -10,13 +13,12 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             # Переходим в папку проекта
-            cd /home/${{ secrets.USER }}/dev/minecraft-silver-frontend/
+            cd /minecraft-silver-frontend/
             # Обновляем репу
             git pull
             # Накатываем зависимости

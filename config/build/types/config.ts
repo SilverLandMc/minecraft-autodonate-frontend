@@ -12,7 +12,6 @@ export interface BuildEnv {
     port: number;
 
     proxyTarget: string;
-    authProxyTarget: string;
     apiHost: string;
 }
 
@@ -23,6 +22,5 @@ export interface BuildOptions {
     port: number;
 
     proxyTarget: string;
-    authProxyTarget: string;
     apiHost: string;
 }
