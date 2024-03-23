@@ -19,6 +19,7 @@ jobs:
           script: |
             # Переходим в папку проекта
             cd ~/minecraft-silver-frontend/
+            nvm use
             # Обновляем репу
             git pull
             # Накатываем зависимости
