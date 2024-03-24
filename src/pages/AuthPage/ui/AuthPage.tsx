@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect, useRef } from 'react';
 import Section from 'shared/ui/Section/Section';
 import styles from './AuthPage.module.scss';
 import { useSelector } from 'react-redux';
@@ -9,21 +9,29 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { setAuthPageVisited } from 'pages/AdminPage/slices/adminPageSlice';
 
 const AuthPage: FunctionComponent = () => {
+    const telegramButtonRef = useRef(null);
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { isAuthPageVisited } = useSelector(selectShopPagePart);
 
     useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://telegram.org/js/telegram-widget.js?22';
-        script.setAttribute('data-telegram-login', 'silverlandmc_bot');
-        script.setAttribute('data-size', 'large');
-        script.setAttribute('data-auth-url', 'https://silverland.fun/auth/callback');
-        script.setAttribute('data-request-access', 'write');
+        if (telegramButtonRef.current) {
+            const script = document.createElement('script');
+            script.src = 'https://telegram.org/js/telegram-widget.js?22';
+            script.setAttribute('data-telegram-login', 'silverlandmc_bot');
+            script.setAttribute('data-size', 'large');
+            script.setAttribute('data-auth-url', 'https://silverland.fun/auth/callback');
+            script.setAttribute('data-request-access', 'write');
 
-        return () => {
-            document.body.removeChild(script);
-        };
+            telegramButtonRef.current.appendChild(script);
+
+            return () => {
+                if (telegramButtonRef.current) {
+                    telegramButtonRef.current.removeChild(script);
+                }
+            };
+        }
     }, []);
 
     if (isAuthPageVisited) {
@@ -35,7 +43,7 @@ const AuthPage: FunctionComponent = () => {
     return (
         <div className={styles.wrapper}>
             <Section className={styles.section}>
-                <div id="telegram-button" />
+                <div ref={telegramButtonRef} />
             </Section>
         </div>
     );
