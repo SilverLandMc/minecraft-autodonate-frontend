@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import Section from 'shared/ui/Section/Section';
 import styles from './AuthPage.module.scss';
 import { useSelector } from 'react-redux';
@@ -13,6 +13,19 @@ const AuthPage: FunctionComponent = () => {
     const navigate = useNavigate();
     const { isAuthPageVisited } = useSelector(selectShopPagePart);
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://telegram.org/js/telegram-widget.js?22';
+        script.setAttribute('data-telegram-login', 'silverlandmc_bot');
+        script.setAttribute('data-size', 'large');
+        script.setAttribute('data-auth-url', 'https://silverland.fun/auth/callback');
+        script.setAttribute('data-request-access', 'write');
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     if (isAuthPageVisited) {
         navigate(RoutePath['admin']);
     }
@@ -22,28 +35,7 @@ const AuthPage: FunctionComponent = () => {
     return (
         <div className={styles.wrapper}>
             <Section className={styles.section}>
-                {/*<iframe
-                    id="telegram-login-silverlandmc_bot"
-                    src="https://oauth.telegram.org/embed/silverlandmc_bot?origin=https%3A%2F%2Fsilverland.fun&return_to=https%3A%2F%2Fsilverland.fun/admin&size=large&request_access=write"
-                    width="338"
-                    height="60"
-                ></iframe>
-                <script
-                    async
-                    src="https://telegram.org/js/telegram-widget.js?22"
-                    data-telegram-login="silverlandmc_bot"
-                    data-size="large"
-                    data-auth-url="https://silverland.fun/auth/callback"
-                    data-request-access="write"
-                ></script>*/}
-                <script
-                    async
-                    src="https://telegram.org/js/telegram-widget.js?22"
-                    data-telegram-login="silverlandmc_bot"
-                    data-size="large"
-                    data-auth-url="https://silverland.fun/auth/callback"
-                    data-request-access="write"
-                ></script>
+                <div id="telegram-button" />
             </Section>
         </div>
     );
