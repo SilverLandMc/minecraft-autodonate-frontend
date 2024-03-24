@@ -1,0 +1,29 @@
+@import '/src/app/styles/media/media.scss';
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: scroll;
+
+    @include mediaM {
+        overflow: hidden;
+    }
+}
+
+.tab {
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--black-opacity-50);
+    }
+
+    &.active {
+        color: var(--color-strict-blue);
+        text-decoration: underline 2px var(--color-strict-blue);
+    }
+}

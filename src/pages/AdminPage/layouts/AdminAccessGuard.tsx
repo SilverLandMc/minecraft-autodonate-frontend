@@ -1,15 +1,16 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { useSelector } from 'react-redux';
-import selectShopPagePart from 'shared/redux/selectors/selectAdminPagePart';
+import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
 import useAdminInfo from 'pages/AdminPage/hooks/useAdminInfo';
 import styles from './AdminAccessGuard.module.scss';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 
 const AdminAccessGuard: FunctionComponent<PropsWithChildren> = ({ children }) => {
     useAdminInfo();
-    const { isUserRequestFinished, isAdmin } = useSelector(selectShopPagePart);
+    const { isUserRequestFinished, isAdmin } = useSelector(selectAdminPagePart);
 
     if (!isUserRequestFinished) {
-        return null;
+        return <RunnerLoader />;
     }
 
     if (!isAdmin) {

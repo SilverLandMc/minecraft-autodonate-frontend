@@ -1,7 +1,11 @@
 import { BuildOptions } from './types/config';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
-export const buildDevServer = ({ port, proxyTarget }: BuildOptions): DevServerConfiguration => {
+export const buildDevServer = ({
+    port,
+    proxyTarget,
+    cookieSilverlandCommonId
+}: BuildOptions): DevServerConfiguration => {
     return {
         port: port,
         open: true, // автоматически открывать страницу в браузере
@@ -10,7 +14,10 @@ export const buildDevServer = ({ port, proxyTarget }: BuildOptions): DevServerCo
             '/api': {
                 target: `http://localhost:${port}/`,
                 router: () => proxyTarget,
-                changeOrigin: true
+                changeOrigin: true,
+                onProxyReq: (proxyReq) => {
+                    proxyReq.setHeader('Cookie', `silverland_common_id=${cookieSilverlandCommonId}`);
+                }
             },
             '/public/files': {
                 target: `http://localhost:${port}/`,

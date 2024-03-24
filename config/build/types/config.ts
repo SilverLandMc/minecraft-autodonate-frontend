@@ -23,4 +23,5 @@ export interface BuildOptions {
 
     proxyTarget: string;
     apiHost: string;
+    cookieSilverlandCommonId: string;
 }

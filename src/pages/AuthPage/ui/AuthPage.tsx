@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useRef } from 'react';
 import Section from 'shared/ui/Section/Section';
 import styles from './AuthPage.module.scss';
 import { useSelector } from 'react-redux';
-import selectShopPagePart from 'shared/redux/selectors/selectAdminPagePart';
+import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
 import { useNavigate } from 'react-router-dom';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -13,9 +13,13 @@ const AuthPage: FunctionComponent = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { isAuthPageVisited } = useSelector(selectShopPagePart);
+    const { isAdmin, isAuthPageVisited } = useSelector(selectAdminPagePart);
 
     useEffect(() => {
+        if (isAdmin || isAuthPageVisited) {
+            navigate(RoutePath['admin']);
+        }
+
         if (telegramButtonRef.current) {
             const script = document.createElement('script');
             script.src = 'https://telegram.org/js/telegram-widget.js?22';
@@ -33,10 +37,6 @@ const AuthPage: FunctionComponent = () => {
             };
         }
     }, []);
-
-    if (isAuthPageVisited) {
-        navigate(RoutePath['admin']);
-    }
 
     dispatch(setAuthPageVisited());
 

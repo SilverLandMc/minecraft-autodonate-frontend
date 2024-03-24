@@ -1,6 +1,6 @@
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { useSelector } from 'react-redux';
-import selectShopPagePart from 'shared/redux/selectors/selectAdminPagePart';
+import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
 import { request } from 'shared/lib/request/request';
 import { AuthUserDto, Role } from 'app/types/api/apiTypes';
 import { setAdmin, setUserRequestFinished } from 'pages/AdminPage/slices/adminPageSlice';
@@ -10,7 +10,7 @@ const logger = createLogger('useAdminInfo');
 
 const useAdminInfo = async () => {
     const dispatch = useAppDispatch();
-    const { isUserRequestFinished } = useSelector(selectShopPagePart);
+    const { isUserRequestFinished } = useSelector(selectAdminPagePart);
 
     if (isUserRequestFinished) {
         return;

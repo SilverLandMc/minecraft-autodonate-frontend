@@ -1,0 +1,66 @@
+@import '/src/app/styles/media/media.scss';
+
+.latestPurchases {
+    overflow-y: scroll;
+
+    @include mediaM {
+        overflow-y: hidden;
+    }
+}
+
+.tableRow {
+    display: grid;
+    flex-direction: row;
+    gap: 10px;
+    grid-template-columns: 40px 180px 100px 200px 100px 1fr;
+    border: 1px solid lightgray;
+    border-bottom: none;
+    padding: 4px;
+
+    &.roundedTop {
+        border-radius: 4px 4px 0 0;
+    }
+
+    &.roundedBottom {
+        border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+.cell,
+.bold {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.error {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: orangered;
+}
+
+.pageNumberRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.pageNumber {
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+.pageNumberControl {
+    cursor: pointer;
+    font-weight: 700;
+}
