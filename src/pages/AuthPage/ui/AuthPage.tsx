@@ -22,12 +22,20 @@ const AuthPage: FunctionComponent = () => {
     return (
         <div className={styles.wrapper}>
             <Section className={styles.section}>
-                <iframe
+                {/*<iframe
                     id="telegram-login-silverlandmc_bot"
                     src="https://oauth.telegram.org/embed/silverlandmc_bot?origin=https%3A%2F%2Fsilverland.fun&return_to=https%3A%2F%2Fsilverland.fun/admin&size=large&request_access=write"
                     width="338"
                     height="60"
                 ></iframe>
+                <script
+                    async
+                    src="https://telegram.org/js/telegram-widget.js?22"
+                    data-telegram-login="silverlandmc_bot"
+                    data-size="large"
+                    data-auth-url="https://silverland.fun/auth/callback"
+                    data-request-access="write"
+                ></script>*/}
                 <script
                     async
                     src="https://telegram.org/js/telegram-widget.js?22"
