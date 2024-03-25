@@ -1,0 +1,137 @@
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import classNames from 'shared/lib/aliases/classNames';
+import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import { DiscountBaseInDto, DiscountType } from 'app/types/api/apiTypes';
+import styles from './DiscountCreation.module.scss';
+import Title from 'shared/ui/Title/Title';
+import Button from 'shared/ui/Button/Button';
+import Spacing from 'shared/ui/spacing/Spacing';
+import createDiscount from 'widgets/AdminTabs/DiscountsTab/components/DiscountCreation/utils/createDiscount';
+
+const initialFormValues: DiscountBaseInDto = {
+    name: '',
+    discountType: DiscountType.PERCENTAGE,
+    isDiscountLimited: false,
+    startDate: '',
+    endDate: '',
+    discountAmount: 0
+};
+
+interface Props {
+    setActiveSubTab(subTab: ActiveSubTab): void;
+    className?: string;
+}
+
+const DiscountCreation: FunctionComponent<Props> = ({ setActiveSubTab, className }) => {
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [error, setError] = useState<string | undefined>();
+    const [formValues, setFormValues] = useState<DiscountBaseInDto>(initialFormValues);
+
+    console.log(formValues);
+
+    const changeName = (event: ChangeEvent<HTMLInputElement>) =>
+        setFormValues({ ...formValues, name: event.target.value });
+
+    const changeDiscountType = (event: ChangeEvent<HTMLSelectElement>) =>
+        setFormValues({ ...formValues, discountType: event.target.value as DiscountType, discountAmount: 0 });
+
+    const changeIsLimited = (event: ChangeEvent<HTMLInputElement>) =>
+        setFormValues({ ...formValues, isDiscountLimited: event.target.checked });
+
+    const changeStartDate = (event: ChangeEvent<HTMLInputElement>) =>
+        setFormValues({ ...formValues, startDate: event.target.value });
+
+    const changeEndDate = (event: ChangeEvent<HTMLInputElement>) =>
+        setFormValues({ ...formValues, endDate: event.target.value });
+
+    const changeAmount = (event: ChangeEvent<HTMLInputElement>) => {
+        const nextAmount = Number(event.target.value);
+        if (formValues.discountType === DiscountType.PERCENTAGE && nextAmount > 100) {
+            return;
+        }
+
+        setFormValues({ ...formValues, discountAmount: nextAmount });
+    };
+
+    const navigateToDiscountsList = () => setActiveSubTab(ActiveSubTab.LIST);
+
+    const validateAndCreateDiscount = async () => {
+        if (formValues.name.trim().length === 0) {
+            setError('Название не должно быть пустым!');
+            return;
+        }
+
+        if (formValues.discountAmount <= 0) {
+            setError('Размер скидки не должен быть равен нулю!');
+            return;
+        }
+
+        try {
+            setIsProcessing(true);
+            await createDiscount({
+                ...formValues,
+                startDate: formValues.startDate || null,
+                endDate: formValues.endDate || null
+            });
+            navigateToDiscountsList();
+        } catch (error) {
+            setError('Ошибка при попытке создания скидки');
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    return (
+        <div className={classNames(styles.discountCreation, [className])}>
+            <Title>Название:</Title>
+            <input type="text" value={formValues.name} onChange={changeName} />
+
+            <Title>Тип скидки:</Title>
+            <select value={formValues.discountType} onChange={changeDiscountType}>
+                <option value={DiscountType.PERCENTAGE}>Процентная</option>
+                <option value={DiscountType.AMOUNT}>Фиксированная</option>
+            </select>
+
+            <Title>Размер:</Title>
+            <input
+                type="number"
+                value={formValues.discountAmount}
+                onChange={changeAmount}
+                min={0}
+                max={formValues.discountType === DiscountType.PERCENTAGE ? 100 : undefined}
+            />
+
+            <Title>Лимитированная:</Title>
+            <input type="checkbox" checked={formValues.isDiscountLimited} onChange={changeIsLimited} />
+
+            <Title>Начало:</Title>
+            <input type="datetime-local" value={formValues.startDate} onChange={changeStartDate} />
+
+            <Title>Конец:</Title>
+            <input type="datetime-local" value={formValues.endDate} onChange={changeEndDate} />
+
+            <Spacing size={20} />
+
+            <div className={styles.buttonsRowWrapper}>
+                <Button onClick={validateAndCreateDiscount} disabled={isProcessing}>
+                    Создать
+                </Button>
+
+                <Button className={styles.navigateBackButton} onClick={navigateToDiscountsList} disabled={isProcessing}>
+                    К списку скидок
+                </Button>
+            </div>
+
+            <Spacing size={20} />
+
+            {error && (
+                <>
+                    <div className={styles.error}>{error}</div>
+                    <Spacing size={20} />
+                </>
+            )}
+        </div>
+    );
+};
+
+export default DiscountCreation;

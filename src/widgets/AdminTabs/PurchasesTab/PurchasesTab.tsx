@@ -4,8 +4,8 @@ import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import Title from 'shared/ui/Title/Title';
 import classNames from 'shared/lib/aliases/classNames';
 import LatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/LatestPurchases';
-import styles from './PurchasesBar.module.scss';
 import Spacing from 'shared/ui/spacing/Spacing';
+import styles from './PurchasesBar.module.scss';
 
 const PurchasesTab: FunctionComponent = () => {
     const { purchaseInfo, isLoading, error } = usePurchasesInfo();

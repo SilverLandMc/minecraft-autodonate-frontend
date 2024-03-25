@@ -27,7 +27,6 @@ const LatestPurchases: FunctionComponent = () => {
     const jumpToFirstPage = () => setCurrentPageNumber(1);
 
     const handlePageSizeSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-        console.log(event);
         setCurrentPageNumber(1);
         setPageSize(Number(event.target.value));
     };

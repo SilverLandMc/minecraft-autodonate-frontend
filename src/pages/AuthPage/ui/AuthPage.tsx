@@ -31,14 +31,14 @@ const AuthPage: FunctionComponent = () => {
             telegramButtonRef.current.appendChild(script);
 
             return () => {
+                dispatch(setAuthPageVisited());
+
                 if (telegramButtonRef.current) {
                     telegramButtonRef.current.removeChild(script);
                 }
             };
         }
     }, []);
-
-    dispatch(setAuthPageVisited());
 
     return (
         <div className={styles.wrapper}>

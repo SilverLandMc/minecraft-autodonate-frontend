@@ -26,9 +26,10 @@ const useAdminInfo = async () => {
         }
 
         logger.info(`Авторизован как ${fullName} (${tgName}) с ролью ${role}`);
-        dispatch(setUserRequestFinished());
     } catch (error) {
         logger.error(error);
+    } finally {
+        dispatch(setUserRequestFinished());
     }
 };
 

@@ -1,0 +1,29 @@
+.tableRow {
+    display: grid;
+    gap: 10px;
+    border: 1px solid lightgray;
+    border-bottom: none;
+    padding: 4px;
+
+    &.roundedTop {
+        border-radius: 4px 4px 0 0;
+    }
+
+    &.roundedBottom {
+        border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+.cell,
+.bold {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bold {
+    font-weight: 700;
+}

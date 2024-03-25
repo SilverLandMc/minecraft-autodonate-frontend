@@ -17,7 +17,7 @@ const componentByAdminTab: Record<AdminTab, ComponentType> = {
 };
 
 const AdminPage: FunctionComponent = () => {
-    const [activeTab, setActiveTab] = useState<AdminTab>(AdminTab.PURCHASES);
+    const [activeTab, setActiveTab] = useState<AdminTab>(AdminTab.DISCOUNTS);
     const ActiveTabComponent = componentByAdminTab[activeTab];
 
     return (
