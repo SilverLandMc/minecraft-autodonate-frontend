@@ -3,8 +3,8 @@ import classNames from 'shared/lib/aliases/classNames';
 import styles from './Table.module.scss';
 
 interface RenderProps {
-    fieldName: string | string[];
-    render?(value: any): ReactElement;
+    fieldName?: string | string[];
+    render?(value?: any): ReactElement;
 }
 
 interface Props {
@@ -12,16 +12,18 @@ interface Props {
     items: any[];
     renderProps: RenderProps[];
     gridTemplateColumns?: string;
+    className?: string;
 }
 
 const Table: FunctionComponent<Props> = ({
     columnNames,
     items,
     renderProps,
-    gridTemplateColumns = new Array(columnNames.length).fill('1fr').join(' ')
+    gridTemplateColumns = new Array(columnNames.length).fill('1fr').join(' '),
+    className
 }) => {
     return (
-        <>
+        <div className={className}>
             <div className={classNames(styles.tableRow, styles.roundedTop)} style={{ gridTemplateColumns }}>
                 {columnNames.map((columnName) => (
                     <div key={columnName} className={styles.bold}>
@@ -38,7 +40,15 @@ const Table: FunctionComponent<Props> = ({
                     })}
                     style={{ gridTemplateColumns }}
                 >
-                    {renderProps.map(({ fieldName, render }) => {
+                    {renderProps.map(({ fieldName, render }, index) => {
+                        if (!fieldName) {
+                            return (
+                                <div key={index} className={styles.cell}>
+                                    {render()}
+                                </div>
+                            );
+                        }
+
                         if (typeof fieldName === 'string') {
                             return (
                                 <div key={fieldName} className={styles.cell}>
@@ -60,7 +70,7 @@ const Table: FunctionComponent<Props> = ({
                     })}
                 </div>
             ))}
-        </>
+        </div>
     );
 };
 

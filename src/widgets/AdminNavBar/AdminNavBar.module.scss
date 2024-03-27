@@ -5,11 +5,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    overflow: scroll;
+    gap: 8px;
+    flex-wrap: wrap;
 
     @include mediaM {
-        overflow: hidden;
+        gap: 20px;
     }
 }
 

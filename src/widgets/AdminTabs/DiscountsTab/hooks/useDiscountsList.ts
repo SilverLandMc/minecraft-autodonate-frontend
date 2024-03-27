@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { DiscountOutDto } from 'app/types/api/apiTypes';
 import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/utils/fetchDiscountsList';
 
-const useDiscountsList = () => {
+const useDiscountsList = (reFetchListFlag: boolean) => {
     const [discountsList, setDiscountsList] = useState<DiscountOutDto[]>();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ const useDiscountsList = () => {
         };
 
         loadPurchases();
-    }, []);
+    }, [reFetchListFlag]);
 
     return { discountsList, isLoading, error };
 };

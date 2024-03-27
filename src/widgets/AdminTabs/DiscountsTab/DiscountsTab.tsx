@@ -22,7 +22,7 @@ interface Props {
 }
 
 const DiscountsTab: FunctionComponent<Props> = ({ className }) => {
-    const [activeSubTab, setActiveSubTab] = useState<ActiveSubTab>(ActiveSubTab.CREATION);
+    const [activeSubTab, setActiveSubTab] = useState<ActiveSubTab>(ActiveSubTab.LIST);
 
     const ActiveSubTabComponent = componentBySubTab[activeSubTab];
 

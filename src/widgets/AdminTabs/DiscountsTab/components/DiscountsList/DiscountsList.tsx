@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import styles from './DiscountsList.module.scss';
 import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
@@ -8,6 +8,7 @@ import Table from 'shared/ui/Table/Table';
 import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import Button from 'shared/ui/Button/Button';
 import Spacing from 'shared/ui/spacing/Spacing';
+import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
 
 interface Props {
     setActiveSubTab(subTab: ActiveSubTab): void;
@@ -15,9 +16,19 @@ interface Props {
 }
 
 const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className }) => {
-    const { discountsList, error, isLoading } = useDiscountsList();
+    const [reFetchListFlag, setReFetchListFlag] = useState(false);
+    const { discountsList, error, isLoading } = useDiscountsList(reFetchListFlag);
 
     const handleCreateClick = () => setActiveSubTab(ActiveSubTab.CREATION);
+
+    const handleDelete = (id: string) => async () => {
+        try {
+            await deleteDiscount(id);
+            setReFetchListFlag(!reFetchListFlag);
+        } catch (error) {
+            alert('Ошибка при удалении скидки!');
+        }
+    };
 
     if (isLoading) {
         return <RunnerLoader />;
@@ -32,7 +43,8 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
             <Title>Список скидок:</Title>
 
             <Table
-                columnNames={['ID', 'Название', 'Тип', 'Лимитировано', 'Начало', 'Конец', '% / руб.']}
+                className={styles.table}
+                columnNames={['ID', 'Название', 'Тип', 'Лимитировано', 'Начало', 'Конец', '% / руб.', '🗑']}
                 items={discountsList}
                 renderProps={[
                     { fieldName: 'id' },
@@ -57,7 +69,15 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
                             return <>{new Date(value).toLocaleString()}</>;
                         }
                     },
-                    { fieldName: 'discountAmount' }
+                    { fieldName: 'discountAmount' },
+                    {
+                        fieldName: 'id',
+                        render: (id: string) => (
+                            <div className={styles.trashIcon} onClick={handleDelete(id)}>
+                                🗑
+                            </div>
+                        )
+                    }
                 ]}
             />
 

@@ -1,7 +1,11 @@
+@import '/src/app/styles/media/media.scss';
+
 .wrapper {
     flex-grow: 1;
 }
 
 .section {
-    padding: 0;
+    @include mediaM {
+        padding: 0;
+    }
 }
