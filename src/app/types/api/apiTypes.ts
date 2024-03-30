@@ -42,17 +42,18 @@ export interface ErrorMessageWithField {
 /** Скидка c id */
 export interface DiscountOutDto {
     /**
+     * Дата создания  unix timestamp
+     * @format int64
+     * @example 1693914524
+     */
+    createdDate: number;
+    /**
      * Название скидки
      * @example "Скидка на ранги"
      */
     name?: string;
     /** Тип скидки */
     discountType?: DiscountType;
-    /**
-     * Ограничена ли скидка по времени
-     * @example true
-     */
-    isDiscountLimited?: boolean;
     /**
      * Дата начала скидки unix timestamp
      * @format int64
@@ -77,6 +78,7 @@ export interface DiscountOutDto {
      * @example "00000000-0000-0000-0000-000000000000"
      */
     id?: string;
+    deleted?: boolean;
 }
 
 /**
@@ -290,11 +292,6 @@ export interface DiscountInDto {
     /** Тип скидки */
     discountType?: DiscountType;
     /**
-     * Ограничена ли скидка по времени
-     * @example true
-     */
-    isDiscountLimited?: boolean;
-    /**
      * Дата начала скидки
      * @format date-time
      */
@@ -414,11 +411,6 @@ export interface DiscountBaseInDto {
     name?: string;
     /** Тип скидки */
     discountType?: DiscountType;
-    /**
-     * Ограничена ли скидка по времени
-     * @example true
-     */
-    isDiscountLimited?: boolean;
     /**
      * Дата начала скидки
      * @format date-time
@@ -625,12 +617,12 @@ export interface PageableObject {
     /** @format int64 */
     offset?: number;
     sort?: SortObject;
+    paged?: boolean;
+    unpaged?: boolean;
     /** @format int32 */
     pageNumber?: number;
     /** @format int32 */
     pageSize?: number;
-    paged?: boolean;
-    unpaged?: boolean;
 }
 
 /** Платеж */
@@ -673,6 +665,6 @@ export interface PaymentProductOutDto {
 
 export interface SortObject {
     empty?: boolean;
-    sorted?: boolean;
     unsorted?: boolean;
+    sorted?: boolean;
 }

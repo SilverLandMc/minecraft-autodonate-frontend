@@ -12,6 +12,7 @@ const fetchDiscountsList = async () => {
         const message = 'discounts: failed to fetch discounts list';
         Sentry.captureMessage(message);
         logger.error(message);
+        throw error;
     }
 };
 

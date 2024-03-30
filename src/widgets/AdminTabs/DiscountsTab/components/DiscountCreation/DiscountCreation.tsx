@@ -11,7 +11,6 @@ import createDiscount from 'widgets/AdminTabs/DiscountsTab/components/DiscountCr
 const initialFormValues: DiscountBaseInDto = {
     name: '',
     discountType: DiscountType.PERCENTAGE,
-    isDiscountLimited: false,
     startDate: '',
     endDate: '',
     discountAmount: 0
@@ -34,9 +33,6 @@ const DiscountCreation: FunctionComponent<Props> = ({ setActiveSubTab, className
 
     const changeDiscountType = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, discountType: event.target.value as DiscountType, discountAmount: 0 });
-
-    const changeIsLimited = (event: ChangeEvent<HTMLInputElement>) =>
-        setFormValues({ ...formValues, isDiscountLimited: event.target.checked });
 
     const changeStartDate = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, startDate: event.target.value });
@@ -70,8 +66,8 @@ const DiscountCreation: FunctionComponent<Props> = ({ setActiveSubTab, className
             setIsProcessing(true);
             await createDiscount({
                 ...formValues,
-                startDate: formValues.startDate || null,
-                endDate: formValues.endDate || null
+                startDate: formValues.startDate ? new Date(formValues.startDate).toISOString() : null,
+                endDate: formValues.endDate ? new Date(formValues.endDate).toISOString() : null
             });
             navigateToDiscountsList();
         } catch (error) {
@@ -100,9 +96,6 @@ const DiscountCreation: FunctionComponent<Props> = ({ setActiveSubTab, className
                 min={0}
                 max={formValues.discountType === DiscountType.PERCENTAGE ? 100 : undefined}
             />
-
-            <Title>Лимитированная:</Title>
-            <input type="checkbox" checked={formValues.isDiscountLimited} onChange={changeIsLimited} />
 
             <Title>Начало:</Title>
             <input type="datetime-local" value={formValues.startDate} onChange={changeStartDate} />

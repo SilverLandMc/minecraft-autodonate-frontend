@@ -3,8 +3,9 @@ import classNames from 'shared/lib/aliases/classNames';
 import styles from './Table.module.scss';
 
 interface RenderProps {
-    fieldName?: string | string[];
-    render?(value?: any): ReactElement;
+    firstFieldName?: string | string[];
+    secondFieldName?: string | string[];
+    render?(firstValue?: any, secondValue?: any): ReactElement | string;
 }
 
 interface Props {
@@ -40,8 +41,8 @@ const Table: FunctionComponent<Props> = ({
                     })}
                     style={{ gridTemplateColumns }}
                 >
-                    {renderProps.map(({ fieldName, render }, index) => {
-                        if (!fieldName) {
+                    {renderProps.map(({ firstFieldName, secondFieldName, render }, index) => {
+                        if (!firstFieldName) {
                             return (
                                 <div key={index} className={styles.cell}>
                                     {render()}
@@ -49,22 +50,26 @@ const Table: FunctionComponent<Props> = ({
                             );
                         }
 
-                        if (typeof fieldName === 'string') {
-                            return (
-                                <div key={fieldName} className={styles.cell}>
-                                    {render ? render(item[fieldName]) : item[fieldName]}
-                                </div>
-                            );
-                        }
+                        const firstValue =
+                            typeof firstFieldName === 'string'
+                                ? item[firstFieldName]
+                                : firstFieldName.reduce(
+                                      (accumulatorObject, fieldName) => accumulatorObject[fieldName],
+                                      item
+                                  );
 
-                        const value = fieldName.reduce(
-                            (accumulatorObject, fieldName) => accumulatorObject[fieldName],
-                            item
-                        );
+                        const secondValue =
+                            secondFieldName &&
+                            (typeof secondFieldName === 'string'
+                                ? item[secondFieldName]
+                                : secondFieldName.reduce(
+                                      (accumulatorObject, fieldName) => accumulatorObject[fieldName],
+                                      item
+                                  ));
 
                         return (
-                            <div key={fieldName[0]} className={styles.cell}>
-                                {render ? render(value) : value}
+                            <div key={index} className={styles.cell}>
+                                {render ? render(firstValue, secondValue) : firstValue}
                             </div>
                         );
                     })}
