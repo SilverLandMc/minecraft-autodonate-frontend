@@ -9,7 +9,8 @@ import { AppContext } from 'app/providers/AppContextProvider';
 import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { CreatePaymentDto } from 'app/types/api/apiTypes';
-import createPayment from 'widgets/ShoppingList/utils/createPayment';
+import createPaymentLink from 'widgets/ShoppingList/utils/createPaymentLink';
+import createLinkOpener from 'shared/lib/createLinkOpener/createLinkOpener';
 import styles from './ShoppingListWithProducts.module.scss';
 
 const ShoppingListWithProducts: FunctionComponent = () => {
@@ -39,7 +40,8 @@ const ShoppingListWithProducts: FunctionComponent = () => {
 
         try {
             setIsPaymentCreating(true);
-            await createPayment(paymentInfo);
+            const paymentLink = await createPaymentLink(paymentInfo);
+            createLinkOpener(paymentLink);
             setPaymentError(undefined);
         } catch (error) {
             setPaymentError('Что-то пошло не так. Попробуйте перезагрузить страницу');

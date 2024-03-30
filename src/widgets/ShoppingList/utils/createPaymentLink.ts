@@ -5,9 +5,9 @@ import Sentry from 'shared/lib/aliases/Sentry';
 
 const logger = createLogger('createPayment');
 
-const createPayment = async (paymentInfo: CreatePaymentDto) => {
+const createPaymentLink = async (paymentInfo: CreatePaymentDto) => {
     try {
-        return await post({
+        return await post<string>({
             url: `/public/payment`,
             data: paymentInfo
         });
@@ -19,4 +19,4 @@ const createPayment = async (paymentInfo: CreatePaymentDto) => {
     }
 };
 
-export default createPayment;
+export default createPaymentLink;
