@@ -36,7 +36,7 @@ const LatestPurchases: FunctionComponent = () => {
     }
 
     if (error) {
-        return <div className={styles.error}>{error}</div>;
+        return <div className={styles.error}>{error.message}</div>;
     }
 
     const { empty: isEmpty, content, first: isFirst, last: isLast, totalPages } = purchaseInfo;

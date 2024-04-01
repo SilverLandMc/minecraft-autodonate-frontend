@@ -113,6 +113,8 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
             <Spacing size={15} />
 
             <Button onClick={handleCreateClick}>Создать скидку</Button>
+
+            <Spacing size={15} />
         </div>
     );
 };

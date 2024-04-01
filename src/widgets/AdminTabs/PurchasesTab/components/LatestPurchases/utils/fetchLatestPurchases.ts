@@ -12,7 +12,7 @@ const fetchLatestPurchases = async (pageParameters: PageDto) => {
             params: { ...pageParameters }
         });
     } catch (error) {
-        const message = 'fetchLatestPurchases: failed to fetch';
+        const message = `fetchLatestPurchases: failed to fetch. ${error.message}`;
         Sentry.captureMessage(message);
         logger.error(message);
     }
