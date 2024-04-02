@@ -1,4 +1,4 @@
-import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/utils/fetchDiscountsList';
+import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/actions/fetchDiscountsList';
 import { useAsync } from 'react-use';
 
 const useDiscountsList = (reFetchListFlag: boolean, isOnlyActualMode: boolean) => {
