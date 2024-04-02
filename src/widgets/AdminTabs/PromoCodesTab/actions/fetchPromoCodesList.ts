@@ -10,7 +10,7 @@ const fetchPromoCodesList = async () => {
         return await request<PromocodeDto[]>({ url: '/admin/promocode' });
     } catch (error) {
         const message = 'promoCodes: failed to fetch promoCodes list';
-        Sentry.captureMessage(message, ({ setContext }) => setContext('error', { error }));
+        Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
         logger.error(message);
         throw error;
     }

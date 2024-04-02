@@ -23,8 +23,13 @@
     }
 }
 
-.trashIcon {
-    color: red;
+.actionsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.actionIcon {
     cursor: pointer;
     font-size: 22px;
 }

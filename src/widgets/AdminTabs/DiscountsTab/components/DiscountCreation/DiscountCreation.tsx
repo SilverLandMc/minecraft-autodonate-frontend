@@ -1,6 +1,6 @@
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import { DiscountBaseInDto, DiscountType } from 'app/types/api/apiTypes';
 import styles from './DiscountCreation.module.scss';
 import Title from 'shared/ui/Title/Title';
@@ -16,17 +16,10 @@ const initialFormValues: DiscountBaseInDto = {
     discountAmount: 0
 };
 
-interface Props {
-    setActiveSubTab(subTab: ActiveSubTab): void;
-    className?: string;
-}
-
-const DiscountCreation: FunctionComponent<Props> = ({ setActiveSubTab, className }) => {
+const DiscountCreation: FunctionComponent<DiscountComponentProps> = ({ setActiveSubTab, className }) => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | undefined>();
     const [formValues, setFormValues] = useState<DiscountBaseInDto>(initialFormValues);
-
-    console.log(formValues);
 
     const changeName = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, name: event.target.value });

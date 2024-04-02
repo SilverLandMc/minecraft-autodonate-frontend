@@ -5,21 +5,20 @@ import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsL
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import Title from 'shared/ui/Title/Title';
 import Table from 'shared/ui/Table/Table';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import Button from 'shared/ui/Button/Button';
 import Spacing from 'shared/ui/spacing/Spacing';
 import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
 import { DiscountType } from 'app/types/api/apiTypes';
 import dateOption from 'shared/const/dateOption';
 
-interface Props {
-    setActiveSubTab(subTab: ActiveSubTab): void;
-    className?: string;
-}
-
-const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className }) => {
+const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
+    setActiveSubTab,
+    className,
+    setEditingDiscountId
+}) => {
     const [reFetchListFlag, setReFetchListFlag] = useState(false);
-    const [isOnlyActualMode, setIsOnlyActualMode] = useState(false);
+    const [isOnlyActualMode, setIsOnlyActualMode] = useState(true);
     const { discountsList, error, isLoading } = useDiscountsList(reFetchListFlag, isOnlyActualMode);
 
     const handleCreateClick = () => setActiveSubTab(ActiveSubTab.CREATION);
@@ -31,6 +30,11 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
         } catch (error) {
             alert('Ошибка при удалении скидки!');
         }
+    };
+
+    const handleEditClick = (id: string) => () => {
+        setEditingDiscountId(id);
+        setActiveSubTab(ActiveSubTab.EDITING);
     };
 
     const toggleOnlyActual = (event: ChangeEvent<HTMLInputElement>) => setIsOnlyActualMode(event.target.checked);
@@ -46,7 +50,7 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
     const table = (
         <Table
             className={styles.table}
-            columnNames={['ID', 'Создан', 'Название', 'Начало', 'Конец', '% / руб.', '🗑']}
+            columnNames={['ID', 'Создан', 'Название', 'Период', '% / руб.', 'Действия']}
             items={discountsList}
             renderProps={[
                 {
@@ -61,21 +65,24 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
                 { firstFieldName: 'name' },
                 {
                     firstFieldName: 'startDate',
-                    render: (value: string | null) => {
-                        if (!value) {
-                            return <span>-</span>;
-                        }
-                        return <>{new Date(value).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>;
-                    }
-                },
-                {
-                    firstFieldName: 'endDate',
-                    render: (value: string | null) => {
-                        if (!value) {
-                            return <span>-</span>;
-                        }
-                        return <>{new Date(value).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>;
-                    }
+                    secondFieldName: 'endDate',
+                    render: (startDate: string | null, endDate: string | null) => (
+                        <>
+                            {startDate ? (
+                                <>{new Date(startDate).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>
+                            ) : (
+                                '-'
+                            )}
+
+                            {' - '}
+
+                            {endDate ? (
+                                <>{new Date(endDate).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>
+                            ) : (
+                                '-'
+                            )}
+                        </>
+                    )
                 },
                 {
                     firstFieldName: 'discountAmount',
@@ -90,8 +97,14 @@ const DiscountsList: FunctionComponent<Props> = ({ setActiveSubTab, className })
                         isDeleted ? (
                             'Удалена'
                         ) : (
-                            <div className={styles.trashIcon} onClick={handleDelete(id)}>
-                                🗑
+                            <div className={styles.actionsWrapper}>
+                                <div className={styles.actionIcon} onClick={handleDelete(id)}>
+                                    🗑️
+                                </div>
+
+                                <div className={styles.actionIcon} onClick={handleEditClick(id)}>
+                                    ✏️
+                                </div>
                             </div>
                         )
                 }
