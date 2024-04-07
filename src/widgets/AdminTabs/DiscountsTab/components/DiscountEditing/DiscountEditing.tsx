@@ -1,7 +1,6 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import styles from './DiscountEditing.module.scss';
 import useDiscount from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscount';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import { DiscountInDto, DiscountType } from 'app/types/api/apiTypes';
@@ -9,6 +8,9 @@ import Title from 'shared/ui/Title/Title';
 import Spacing from 'shared/ui/spacing/Spacing';
 import Button from 'shared/ui/Button/Button';
 import editDiscount from 'widgets/AdminTabs/DiscountsTab/actions/editDiscount';
+import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
+import styles from './DiscountEditing.module.scss';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 
 const initialFormValue: DiscountInDto = {
     name: '',
@@ -36,10 +38,8 @@ const DiscountEditing: FunctionComponent<DiscountComponentProps> = ({
 
         setFormValues({
             ...initialDiscount,
-            startDate: initialDiscount.startDate
-                ? new Date(initialDiscount.startDate).toISOString().substring(0, 16)
-                : '',
-            endDate: initialDiscount.endDate ? new Date(initialDiscount.endDate).toISOString().substring(0, 16) : ''
+            startDate: convertTimestampToInputString(initialDiscount.startDate),
+            endDate: convertTimestampToInputString(initialDiscount.endDate)
         });
     }, [isLoading]);
 
@@ -49,10 +49,8 @@ const DiscountEditing: FunctionComponent<DiscountComponentProps> = ({
     const changeDiscountType = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, discountType: event.target.value as DiscountType, discountAmount: 0 });
 
-    const changeStartDate = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
+    const changeStartDate = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, startDate: event.target.value });
-    };
 
     const changeEndDate = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, endDate: event.target.value });
@@ -67,14 +65,6 @@ const DiscountEditing: FunctionComponent<DiscountComponentProps> = ({
     };
 
     const navigateToDiscountsList = () => setActiveSubTab(ActiveSubTab.LIST);
-
-    if (isLoading) {
-        return <RunnerLoader />;
-    }
-
-    if (loadingError) {
-        return <div className={styles.error}>Ошибка при загрузке скидки. Попробуйте обновить страницу</div>;
-    }
 
     const validateAndEditDiscount = async () => {
         if (formValues.name.trim().length === 0) {
@@ -101,6 +91,14 @@ const DiscountEditing: FunctionComponent<DiscountComponentProps> = ({
             setIsProcessing(false);
         }
     };
+
+    if (isLoading) {
+        return <RunnerLoader />;
+    }
+
+    if (loadingError) {
+        return <AdminErrorBlock text="Ошибка при загрузке скидки. Попробуйте обновить страницу" />;
+    }
 
     return (
         <div className={classNames(styles.discountCreation, [className])}>

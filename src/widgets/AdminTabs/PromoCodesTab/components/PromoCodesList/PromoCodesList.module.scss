@@ -1,0 +1,23 @@
+.discountName {
+    &.isDeleted {
+        text-decoration: red line-through;
+    }
+}
+
+.actionsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.actionIcon {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.checkboxContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 8px;
+}

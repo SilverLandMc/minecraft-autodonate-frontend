@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import noop from 'shared/lib/noop/noop';
 import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
-import { PromocodeDto } from 'app/types/api/apiTypes';
+import { PromocodeOutDto } from 'app/types/api/apiTypes';
 
 export interface AppContextState {
     productsToBuy: ShoppingListProductToBuyInDto[];
@@ -10,8 +10,8 @@ export interface AppContextState {
     decrementProductAmountInList(productId: string): void;
     getProductsListPrice(): number;
 
-    promoCode?: PromocodeDto;
-    setPromoCode(promoCode?: PromocodeDto): void;
+    promoCode?: PromocodeOutDto;
+    setPromoCode(promoCode?: PromocodeOutDto): void;
 }
 
 const AppContext = createContext<AppContextState>({

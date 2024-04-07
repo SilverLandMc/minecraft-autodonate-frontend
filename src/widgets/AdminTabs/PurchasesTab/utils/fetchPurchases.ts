@@ -16,7 +16,7 @@ const fetchPurchases = async () => {
         };
     } catch (error) {
         const message = 'fetchPurchases: failed to fetch';
-        Sentry.captureMessage(message);
+        Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
         logger.error(message);
     }
 };

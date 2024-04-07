@@ -6,6 +6,7 @@ import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import { PageDto } from 'app/types/api/apiTypes';
 import Title from 'shared/ui/Title/Title';
 import Spacing from 'shared/ui/spacing/Spacing';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 
 const LatestPurchases: FunctionComponent = () => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
@@ -36,7 +37,7 @@ const LatestPurchases: FunctionComponent = () => {
     }
 
     if (error) {
-        return <div className={styles.error}>{error.message}</div>;
+        return <AdminErrorBlock text="Ошибка при загрузке последних покупок" />;
     }
 
     const { empty: isEmpty, content, first: isFirst, last: isLast, totalPages } = purchaseInfo;

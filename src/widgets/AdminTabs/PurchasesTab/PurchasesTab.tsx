@@ -5,7 +5,8 @@ import Title from 'shared/ui/Title/Title';
 import classNames from 'shared/lib/aliases/classNames';
 import LatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/LatestPurchases';
 import Spacing from 'shared/ui/spacing/Spacing';
-import styles from './PurchasesBar.module.scss';
+import styles from './PurchasesTab.module.scss';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 
 const PurchasesTab: FunctionComponent = () => {
     const { purchaseInfo, isLoading, error } = usePurchasesInfo();
@@ -15,7 +16,7 @@ const PurchasesTab: FunctionComponent = () => {
     }
 
     if (error) {
-        return <div className={styles.error}>{error}</div>;
+        return <AdminErrorBlock text="Ошибка при загрузке числа покупок / топа покупок" />;
     }
 
     const { totalPurchases, topPurchases } = purchaseInfo;

@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
-import styles from './DiscountsList.module.scss';
 import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import Title from 'shared/ui/Title/Title';
@@ -10,7 +9,10 @@ import Button from 'shared/ui/Button/Button';
 import Spacing from 'shared/ui/spacing/Spacing';
 import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
 import { DiscountType } from 'app/types/api/apiTypes';
-import dateOption from 'shared/const/dateOption';
+import { format } from 'date-fns';
+import TimeFormatString from 'shared/const/enum/timeFormatString';
+import styles from './DiscountsList.module.scss';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 
 const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
     setActiveSubTab,
@@ -19,7 +21,7 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
 }) => {
     const [reFetchListFlag, setReFetchListFlag] = useState(false);
     const [isOnlyActualMode, setIsOnlyActualMode] = useState(true);
-    const { discountsList, error, isLoading } = useDiscountsList(reFetchListFlag, isOnlyActualMode);
+    const { discountsList, error, isLoading } = useDiscountsList({ reFetchListFlag, isOnlyActualMode });
 
     const handleCreateClick = () => setActiveSubTab(ActiveSubTab.CREATION);
 
@@ -44,10 +46,10 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
     }
 
     if (error) {
-        return <div className={styles.error}>Ошибка при получении списка скидок</div>;
+        return <AdminErrorBlock text="Ошибка при получении списка скидок" />;
     }
 
-    const table = (
+    const discountsTable = (
         <Table
             className={styles.table}
             columnNames={['ID', 'Создан', 'Название', 'Период', '% / руб.', 'Действия']}
@@ -59,8 +61,7 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
                 },
                 {
                     firstFieldName: 'createdDate',
-                    render: (value: string | null) =>
-                        value ? new Date(value).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM']) : '-'
+                    render: (createdDate: string | null) => format(createdDate, TimeFormatString.DD_MM_YY_HH_MM)
                 },
                 { firstFieldName: 'name' },
                 {
@@ -68,19 +69,11 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
                     secondFieldName: 'endDate',
                     render: (startDate: string | null, endDate: string | null) => (
                         <>
-                            {startDate ? (
-                                <>{new Date(startDate).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>
-                            ) : (
-                                '-'
-                            )}
+                            {startDate ? <>{format(startDate, TimeFormatString.DD_MM_YY_HH_MM)}</> : '-'}
 
                             {' - '}
 
-                            {endDate ? (
-                                <>{new Date(endDate).toLocaleString('ru-RU', dateOption['DD_MM_YY_HH_MM'])}</>
-                            ) : (
-                                '-'
-                            )}
+                            {endDate ? <>{format(endDate, TimeFormatString.DD_MM_YY_HH_MM)}</> : '-'}
                         </>
                     )
                 },
@@ -98,12 +91,12 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
                             'Удалена'
                         ) : (
                             <div className={styles.actionsWrapper}>
-                                <div className={styles.actionIcon} onClick={handleDelete(id)}>
-                                    🗑️
-                                </div>
-
                                 <div className={styles.actionIcon} onClick={handleEditClick(id)}>
                                     ✏️
+                                </div>
+
+                                <div className={styles.actionIcon} onClick={handleDelete(id)}>
+                                    🗑️
                                 </div>
                             </div>
                         )
@@ -121,7 +114,7 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
                 <input type="checkbox" checked={isOnlyActualMode} onChange={toggleOnlyActual} />
             </div>
 
-            {discountsList.length > 0 ? table : <div className={styles.error}>Список скидок пуст!</div>}
+            {discountsList.length > 0 ? discountsTable : <div className={styles.error}>Список скидок пуст!</div>}
 
             <Spacing size={15} />
 

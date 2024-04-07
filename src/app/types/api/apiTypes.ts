@@ -91,24 +91,18 @@ export enum DiscountType {
 }
 
 /** Промокод */
-export interface PromocodeDto {
+export interface PromocodeOutDto {
     /**
      * Название промокода
      * @example "VIP"
      */
-    name?: string;
+    name: string;
     /**
      * Максимальное количество использований промокода
      * @format int32
      * @example 10
      */
     maxUseCount?: number;
-    /**
-     * Текущее количество использований промокода
-     * @format int32
-     * @example 5
-     */
-    currentUseCount?: number;
     /**
      * Дата начала промокода
      * @format int64
@@ -121,10 +115,56 @@ export interface PromocodeDto {
      * @example 1693914524
      */
     endDate: number;
+    /**
+     * Идентификатор промокода
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id?: string;
+    /**
+     * Текущее количество использований промокода
+     * @format int32
+     * @example 5
+     */
+    currentUseCount?: number;
     /** Скидка c id */
     discount?: DiscountOutDto;
-    limitedUse?: boolean;
     deleted?: boolean;
+    limitedUse?: boolean;
+}
+
+/** Промокод */
+export interface PromocodeInDto {
+    /**
+     * Название промокода
+     * @example "VIP"
+     */
+    name: string;
+    /**
+     * Максимальное количество использований промокода
+     * @format int32
+     * @example 10
+     */
+    maxUseCount?: number;
+    /**
+     * Дата начала промокода
+     * @format int64
+     * @example 1693914524
+     */
+    startDate: number;
+    /**
+     * Дата окончания промокода
+     * @format int64
+     * @example 1693914524
+     */
+    endDate: number;
+    /**
+     * ID скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId: string;
+    limitedUse?: boolean;
 }
 
 /**
@@ -605,9 +645,9 @@ export interface PagePaymentOutDto {
     /** @format int32 */
     number?: number;
     sort?: SortObject;
-    pageable?: PageableObject;
     /** @format int32 */
     numberOfElements?: number;
+    pageable?: PageableObject;
     first?: boolean;
     last?: boolean;
     empty?: boolean;
@@ -644,7 +684,7 @@ export interface PaymentOutDto {
      */
     totalPrice?: number;
     /** Промокод */
-    promocode?: PromocodeDto;
+    promocode?: PromocodeOutDto;
     /** Статус платежа */
     status?: 'INCOMPLETE' | 'SUCCESS' | 'FAILED' | 'EXPIRED' | 'UNTRACKABLE';
     /** Список товаров */

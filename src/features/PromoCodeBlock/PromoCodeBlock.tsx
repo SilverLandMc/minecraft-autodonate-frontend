@@ -1,8 +1,9 @@
 import { ChangeEvent, FunctionComponent, useContext, useState } from 'react';
 import closeIcon from 'shared/assets/closeIcon.svg';
 import { AppContext } from 'app/providers/AppContextProvider';
+import fetchPromoCodeByName from 'shared/lib/actions/fetchPromoCodeByName';
+import { DiscountType } from 'app/types/api/apiTypes';
 import styles from './PromoCodeBlock.module.scss';
-import fetchPromoCodeByName from 'features/PromoCodeBlock/utils/fetchPromoCodeByName';
 
 interface Props {
     disabled?: boolean;
@@ -57,7 +58,8 @@ const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
         return (
             <div className={styles.horizontalFormWrapper}>
                 <span className={styles.activePromoCodeSpan}>
-                    Активирован промокод {promoCode.name} (Скидка {promoCode.discount.name})
+                    Активирован промокод {promoCode.name} (Скидка {promoCode.discount.discountAmount}{' '}
+                    {promoCode.discount.discountType === DiscountType.PERCENTAGE ? '%' : '₽'})
                 </span>
 
                 <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={erasePromoCode} />

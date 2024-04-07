@@ -2,10 +2,13 @@ import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import styles from './Table.module.scss';
 
+// Принимает до трёх названий полей - "плоских" или в виде массива ключей для вложенных объектов.
+// Если не передан метод render, вернёт значение поля с ключом firstFieldName, проигнорировав прочие
 interface RenderProps {
     firstFieldName?: string | string[];
     secondFieldName?: string | string[];
-    render?(firstValue?: any, secondValue?: any): ReactElement | string;
+    thirdFieldName?: string | string[];
+    render?(firstValue?: any, secondValue?: any, thirdValue?: any): ReactElement | string;
 }
 
 interface Props {
@@ -41,7 +44,7 @@ const Table: FunctionComponent<Props> = ({
                     })}
                     style={{ gridTemplateColumns }}
                 >
-                    {renderProps.map(({ firstFieldName, secondFieldName, render }, index) => {
+                    {renderProps.map(({ firstFieldName, secondFieldName, thirdFieldName, render }, index) => {
                         if (!firstFieldName) {
                             return (
                                 <div key={index} className={styles.cell}>
@@ -67,9 +70,18 @@ const Table: FunctionComponent<Props> = ({
                                       item
                                   ));
 
+                        const thirdValue =
+                            thirdFieldName &&
+                            (typeof thirdFieldName === 'string'
+                                ? item[thirdFieldName]
+                                : thirdFieldName.reduce(
+                                      (accumulatorObject, fieldName) => accumulatorObject[fieldName],
+                                      item
+                                  ));
+
                         return (
                             <div key={index} className={styles.cell}>
-                                {render ? render(firstValue, secondValue) : firstValue}
+                                {render ? render(firstValue, secondValue, thirdValue) : firstValue}
                             </div>
                         );
                     })}

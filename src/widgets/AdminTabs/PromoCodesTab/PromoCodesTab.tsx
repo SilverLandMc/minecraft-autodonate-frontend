@@ -1,7 +1,7 @@
-import { ComponentType, FunctionComponent, useState } from 'react';
-import DiscountsList from 'widgets/AdminTabs/DiscountsTab/components/DiscountsList/DiscountsList';
-import DiscountCreation from 'widgets/AdminTabs/DiscountsTab/components/DiscountCreation/DiscountCreation';
-import DiscountEditing from 'widgets/AdminTabs/DiscountsTab/components/DiscountEditing/DiscountEditing';
+import { FunctionComponent, useState } from 'react';
+import PromoCodesList from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodesList/PromoCodesList';
+import PromoCodeCreation from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeCreation/PromoCodeCreation';
+import PromoCodeEditing from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeEditing/PromoCodeEditing';
 
 export enum ActiveSubTab {
     LIST = 'list',
@@ -9,10 +9,17 @@ export enum ActiveSubTab {
     EDITING = 'editing'
 }
 
-const componentBySubTab: Record<ActiveSubTab, ComponentType<any>> = {
-    [ActiveSubTab.LIST]: DiscountsList,
-    [ActiveSubTab.CREATION]: DiscountCreation,
-    [ActiveSubTab.EDITING]: DiscountEditing
+export interface PromoCodeComponentProps {
+    setActiveSubTab(subTab: ActiveSubTab): void;
+    setEditingPromoCodeId?(id: string): void;
+    editingPromoCodeId?: string;
+    className?: string;
+}
+
+const componentBySubTab: Record<ActiveSubTab, FunctionComponent<PromoCodeComponentProps>> = {
+    [ActiveSubTab.LIST]: PromoCodesList,
+    [ActiveSubTab.CREATION]: PromoCodeCreation,
+    [ActiveSubTab.EDITING]: PromoCodeEditing
 };
 
 interface Props {
@@ -21,12 +28,17 @@ interface Props {
 
 const PromoCodesTab: FunctionComponent<Props> = ({ className }) => {
     const [activeSubTab, setActiveSubTab] = useState<ActiveSubTab>(ActiveSubTab.LIST);
+    const [editingPromoCodeId, setEditingPromoCodeId] = useState<string>();
 
     const ActiveSubTabComponent = componentBySubTab[activeSubTab];
 
     return (
         <div className={className}>
-            <ActiveSubTabComponent setActiveSubTab={setActiveSubTab} />
+            <ActiveSubTabComponent
+                editingPromoCodeId={editingPromoCodeId}
+                setActiveSubTab={setActiveSubTab}
+                setEditingPromoCodeId={setEditingPromoCodeId}
+            />
         </div>
     );
 };

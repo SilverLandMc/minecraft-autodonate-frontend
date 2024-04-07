@@ -46,6 +46,8 @@
     "@types/lodash-es": "^4.17.12",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
+    "date-fns": "^3.6.0",
+    "date-fns-tz": "^3.0.0",
     "lodash-es": "^4.17.21",
     "query-string": "^8.2.0",
     "react": "^18.2.0",
