@@ -9,7 +9,7 @@ export enum AdminTab {
     PRODUCTS = 'products'
 }
 
-const NameByAdminTab: Record<AdminTab, string> = {
+const nameByAdminTabMap: Record<AdminTab, string> = {
     [AdminTab.PURCHASES]: 'Покупки',
     [AdminTab.DISCOUNTS]: 'Скидки',
     [AdminTab.PROMO_CODES]: 'Промокоды',
@@ -22,21 +22,19 @@ interface Props {
 }
 
 const AdminNavBar: FunctionComponent<Props> = ({ activeTab, setActiveTab }) => {
+    const changeTab = (tab: AdminTab) => () => setActiveTab(tab);
+
     return (
         <div className={styles.navBar}>
-            {Object.values(AdminTab).map((adminTab) => {
-                const changeTab = () => setActiveTab(adminTab);
-
-                return (
-                    <span
-                        key={adminTab}
-                        className={classNames(styles.tab, { [styles.active]: adminTab === activeTab })}
-                        onClick={changeTab}
-                    >
-                        {NameByAdminTab[adminTab]}
-                    </span>
-                );
-            })}
+            {Object.values(AdminTab).map((adminTab) => (
+                <span
+                    key={adminTab}
+                    className={classNames(styles.tab, { [styles.active]: adminTab === activeTab })}
+                    onClick={changeTab(adminTab)}
+                >
+                    {nameByAdminTabMap[adminTab]}
+                </span>
+            ))}
         </div>
     );
 };

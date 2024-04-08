@@ -1,0 +1,45 @@
+@import '/src/app/styles/media/media.scss';
+
+.categoryBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 15px;
+
+    @include mediaM {
+        gap: 20px;
+    }
+}
+
+.tab {
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--black-opacity-50);
+    }
+
+    &.active {
+        color: var(--color-strict-blue);
+        text-decoration: underline 2px var(--color-strict-blue);
+    }
+}
+
+.noProducts {
+    color: orangered;
+}
+
+.actionsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.actionIcon {
+    cursor: pointer;
+    font-size: 22px;
+}

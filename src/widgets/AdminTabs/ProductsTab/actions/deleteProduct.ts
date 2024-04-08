@@ -1,0 +1,18 @@
+import { lowLevelRequest } from 'shared/lib/request/request';
+import createLogger from 'shared/lib/logger/logger';
+import Sentry from 'shared/lib/aliases/Sentry';
+
+const logger = createLogger('deleteProduct');
+
+const deleteProduct = async (id: string) => {
+    try {
+        return await lowLevelRequest<boolean>({ url: `/admin/product/${id}`, method: 'DELETE' });
+    } catch (error) {
+        const message = 'deleteProduct: failed to delete';
+        Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
+        logger.error(message);
+        throw error;
+    }
+};
+
+export default deleteProduct;

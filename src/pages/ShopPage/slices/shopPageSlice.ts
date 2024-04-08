@@ -41,10 +41,19 @@ export const shopPageSlice = createSlice({
         },
         setFetchingFailed: (state) => {
             state.isFetchingFailed = true;
+        },
+        resetCategoriesLoaded: (state) => {
+            state.isCategoryLoaded = {
+                ranks: false,
+                boosters: false,
+                cases: false,
+                resources: false,
+                other: false
+            };
         }
     }
 });
 
-export const { setProducts, setFetchingFailed } = shopPageSlice.actions;
+export const { setProducts, setFetchingFailed, resetCategoriesLoaded } = shopPageSlice.actions;
 
 export default shopPageSlice.reducer;

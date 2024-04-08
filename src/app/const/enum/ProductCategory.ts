@@ -1,4 +1,4 @@
-export const enum ProductCategory {
+export enum ProductCategory {
     RANKS = 'ranks',
     BOOSTERS = 'boosters',
     CASES = 'cases',

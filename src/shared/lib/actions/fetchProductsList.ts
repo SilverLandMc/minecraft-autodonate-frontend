@@ -18,8 +18,9 @@ const fetchProductsList =
             dispatch(setProducts({ products, productCategory }));
         } catch (error) {
             dispatch(setFetchingFailed());
-            logger.error(`fetchProductsList: failed to fetch. Error: ${error?.response?.data || error}`);
-            Sentry.captureException(error);
+            const message = `fetchProductsList: failed to fetch. Error: ${error?.response?.data || error}`;
+            logger.error(message);
+            Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
         }
     };
 

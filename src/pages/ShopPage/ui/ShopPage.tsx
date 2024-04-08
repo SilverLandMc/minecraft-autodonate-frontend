@@ -4,12 +4,12 @@ import Section from 'shared/ui/Section/Section';
 import { useSelector } from 'react-redux';
 import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import fetchProductsList from 'pages/ShopPage/utils/fetchProductsList';
 import errorImage from './images/error.png';
 import chestImage from 'shared/assets/chest.png';
 import Spacing from 'shared/ui/spacing/Spacing';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import ProductCard from 'entities/ProductCard/ProductCard';
+import fetchProductsList from 'shared/lib/actions/fetchProductsList';
 import styles from './ShopPage.module.scss';
 
 interface Props {
