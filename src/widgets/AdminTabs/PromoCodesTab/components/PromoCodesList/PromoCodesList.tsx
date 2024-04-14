@@ -35,9 +35,9 @@ const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({
         setActiveSubTab(ActiveSubTab.CREATION);
     };
 
-    const handleDelete = (name: string) => async () => {
+    const handleDelete = (id: string) => async () => {
         try {
-            await deletePromoCode(name);
+            await deletePromoCode(id);
             setReFetchFlag(!reFetchFlag);
         } catch (error) {
             alert('Ошибка при удалении промокода!');
@@ -101,8 +101,7 @@ const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({
                 {
                     firstFieldName: 'id',
                     secondFieldName: 'deleted',
-                    thirdFieldName: 'name',
-                    render: (id: string, isDeleted: boolean, name: string) =>
+                    render: (id: string, isDeleted: boolean) =>
                         isDeleted ? (
                             'Удалён'
                         ) : (
@@ -111,7 +110,7 @@ const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({
                                     ✏️
                                 </div>
 
-                                <div className={styles.actionIcon} onClick={handleDelete(name)}>
+                                <div className={styles.actionIcon} onClick={handleDelete(id)}>
                                     🗑️
                                 </div>
                             </div>

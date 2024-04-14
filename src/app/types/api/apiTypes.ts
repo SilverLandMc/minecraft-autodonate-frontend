@@ -105,16 +105,14 @@ export interface PromocodeOutDto {
     maxUseCount?: number;
     /**
      * Дата начала промокода
-     * @format int64
-     * @example 1693914524
+     * @example "2024-02-07T15:30:00.000Z"
      */
-    startDate: number;
+    startDate: string;
     /**
      * Дата окончания промокода
-     * @format int64
-     * @example 1693914524
+     * @example "2024-02-07T15:30:00.000Z"
      */
-    endDate: number;
+    endDate: string;
     /**
      * Идентификатор промокода
      * @format uuid
@@ -133,31 +131,30 @@ export interface PromocodeOutDto {
     limitedUse?: boolean;
 }
 
-/** Промокод */
-export interface PromocodeInDto {
+/** Обновление промокода */
+export interface PromocodeUpdateDto {
     /**
-     * Название промокода
-     * @example "VIP"
+     * Идентификатор промокода
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
      */
-    name: string;
+    id: string;
     /**
      * Максимальное количество использований промокода
      * @format int32
      * @example 10
      */
-    maxUseCount?: number;
+    maxUseCount: number;
     /**
      * Дата начала промокода
-     * @format int64
-     * @example 1693914524
+     * @example "2024-02-07T15:30:00.000Z"
      */
-    startDate: number;
+    startDate: string;
     /**
      * Дата окончания промокода
-     * @format int64
-     * @example 1693914524
+     * @example "2024-02-07T15:30:00.000Z"
      */
-    endDate: number;
+    endDate: string;
     /**
      * ID скидки
      * @format uuid
@@ -385,6 +382,38 @@ export interface ProductToBuyInDto {
      * @example 1
      */
     amount: number;
+}
+
+/** Промокод */
+export interface PromocodeInDto {
+    /**
+     * Название промокода
+     * @example "VIP"
+     */
+    name: string;
+    /**
+     * Максимальное количество использований промокода
+     * @format int32
+     * @example 10
+     */
+    maxUseCount?: number;
+    /**
+     * Дата начала промокода
+     * @example "2024-02-07T15:30:00.000Z"
+     */
+    startDate: string;
+    /**
+     * Дата окончания промокода
+     * @example "2024-02-07T15:30:00.000Z"
+     */
+    endDate: string;
+    /**
+     * ID скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId: string;
+    limitedUse?: boolean;
 }
 
 export interface ProductCreateInDto {
@@ -645,9 +674,9 @@ export interface PagePaymentOutDto {
     /** @format int32 */
     number?: number;
     sort?: SortObject;
+    pageable?: PageableObject;
     /** @format int32 */
     numberOfElements?: number;
-    pageable?: PageableObject;
     first?: boolean;
     last?: boolean;
     empty?: boolean;
@@ -657,12 +686,12 @@ export interface PageableObject {
     /** @format int64 */
     offset?: number;
     sort?: SortObject;
-    paged?: boolean;
-    unpaged?: boolean;
     /** @format int32 */
     pageNumber?: number;
     /** @format int32 */
     pageSize?: number;
+    unpaged?: boolean;
+    paged?: boolean;
 }
 
 /** Платеж */
@@ -705,6 +734,6 @@ export interface PaymentProductOutDto {
 
 export interface SortObject {
     empty?: boolean;
-    unsorted?: boolean;
     sorted?: boolean;
+    unsorted?: boolean;
 }

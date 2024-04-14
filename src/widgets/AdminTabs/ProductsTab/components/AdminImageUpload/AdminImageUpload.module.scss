@@ -1,0 +1,18 @@
+.image {
+    max-width: 300px;
+}
+
+.buttonsRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.deleteButton {
+    background: orangered;
+}
+
+.error {
+    color: orangered;
+}

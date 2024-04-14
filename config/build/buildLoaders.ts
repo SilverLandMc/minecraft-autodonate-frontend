@@ -12,7 +12,7 @@ export const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => 
         exclude: /node_modules/ // что исключить
     };
 
-    const cssLoader = {
+    const scssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -29,10 +29,15 @@ export const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => 
         ]
     };
 
+    const cssLoader = {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+    };
+
     const fileLoader = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource'
     };
 
-    return [typescriptLoader, cssLoader, fileLoader];
+    return [typescriptLoader, cssLoader, scssLoader, fileLoader];
 };

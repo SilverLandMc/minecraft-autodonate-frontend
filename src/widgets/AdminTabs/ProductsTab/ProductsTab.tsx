@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from 'react';
-import PromoCodeCreation from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeCreation/PromoCodeCreation';
 import PromoCodeEditing from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeEditing/PromoCodeEditing';
 import ProductsList from 'widgets/AdminTabs/ProductsTab/components/ProductsList/ProductsList';
+import ProductCreation from 'widgets/AdminTabs/ProductsTab/components/ProductCreation/ProductCreation';
 
 export enum ActiveSubTab {
     LIST = 'list',
@@ -18,7 +18,7 @@ export interface ProductComponentProps {
 
 const componentBySubTab: Record<ActiveSubTab, FunctionComponent<ProductComponentProps>> = {
     [ActiveSubTab.LIST]: ProductsList,
-    [ActiveSubTab.CREATION]: PromoCodeCreation,
+    [ActiveSubTab.CREATION]: ProductCreation,
     [ActiveSubTab.EDITING]: PromoCodeEditing
 };
 

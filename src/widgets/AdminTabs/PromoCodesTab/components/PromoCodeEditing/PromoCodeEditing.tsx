@@ -12,7 +12,6 @@ import usePromoCode from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCode';
 import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
 import editPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/editPromoCode';
 import styles from './PromoCodeEditing.module.scss';
-import { PromocodeInDto } from 'app/types/api/apiTypes';
 
 const initialFormValues = {
     name: '',
@@ -43,8 +42,8 @@ const PromoCodeEditing: FunctionComponent<PromoCodeComponentProps> = ({
         setFormValues({
             name: initialPromoCode.name,
             maxUseCount: initialPromoCode?.maxUseCount ?? 0,
-            startDate: convertTimestampToInputString(initialPromoCode?.startDate),
-            endDate: convertTimestampToInputString(initialPromoCode?.endDate),
+            startDate: convertTimestampToInputString(initialPromoCode?.startDate as unknown as number),
+            endDate: convertTimestampToInputString(initialPromoCode?.endDate as unknown as number),
             discountId: initialPromoCode?.discount.id,
             limitedUse: initialPromoCode?.limitedUse ?? false
         });
@@ -84,12 +83,11 @@ const PromoCodeEditing: FunctionComponent<PromoCodeComponentProps> = ({
         try {
             setIsProcessing(true);
 
-            // todo Убрать конвертацию типа после фикса документации https://github.com/SilverLandMc/Site/issues/16
             await editPromoCode({
                 ...formValues,
                 startDate: formValues.startDate ? new Date(formValues.startDate).toISOString() : null,
                 endDate: formValues.endDate ? new Date(formValues.endDate).toISOString() : null
-            } as unknown as PromocodeInDto);
+            });
 
             navigateToDiscountsList();
         } catch (error) {

@@ -12,6 +12,8 @@ import deleteProduct from 'widgets/AdminTabs/ProductsTab/actions/deleteProduct';
 import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Button from 'shared/ui/Button/Button';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {
     [ProductCategory.RANKS]: 'Ранги',
@@ -32,6 +34,8 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
 
     const { productList, isLoading, error } = useProductList({ productCategory: activeProductCategory, reFetchFlag });
     const changeCategory = (category: ProductCategory) => () => setActiveProductCategory(category);
+
+    const navigateToCreation = () => setActiveSubTab(ActiveSubTab.CREATION);
 
     const handleEditClick = (id: string) => () => {
         setEditingProductId(id);
@@ -121,6 +125,10 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
             ) : (
                 <span className={styles.noProducts}>В данной категории нет продуктов</span>
             )}
+
+            <Spacing size={20} />
+
+            <Button onClick={navigateToCreation}>Создать продукт</Button>
         </div>
     );
 };
