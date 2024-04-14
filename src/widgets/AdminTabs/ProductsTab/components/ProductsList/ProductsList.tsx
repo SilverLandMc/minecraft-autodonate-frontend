@@ -14,6 +14,7 @@ import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
 import Spacing from 'shared/ui/spacing/Spacing';
 import Button from 'shared/ui/Button/Button';
+import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {
     [ProductCategory.RANKS]: 'Ранги',
@@ -40,7 +41,6 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
     const handleEditClick = (id: string) => () => {
         setEditingProductId(id);
         setActiveSubTab(ActiveSubTab.EDITING);
-        dispatch(resetCategoriesLoaded());
     };
 
     const handleDelete = (id: string) => async () => {
@@ -63,6 +63,7 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
 
     const productsTable = (
         <Table
+            gridTemplateColumns="100px 1fr 80px 80px 100px 100px 100px"
             columnNames={[
                 'Название',
                 'Описание',
@@ -75,7 +76,10 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
             items={productList}
             renderProps={[
                 { firstFieldName: 'name' },
-                { firstFieldName: 'description' },
+                {
+                    firstFieldName: 'description',
+                    render: (rawHTML: string) => <SafelySetInnerHTML rawHTML={rawHTML} />
+                },
                 { firstFieldName: 'priceWithoutDiscount' },
                 { firstFieldName: 'priceWithDiscount' },
                 {
@@ -129,6 +133,8 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
             <Spacing size={20} />
 
             <Button onClick={navigateToCreation}>Создать продукт</Button>
+
+            <Spacing size={20} />
         </div>
     );
 };

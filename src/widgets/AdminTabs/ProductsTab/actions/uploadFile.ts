@@ -10,9 +10,12 @@ interface UploadResponse {
 
 const uploadFile = async (file: File) => {
     try {
+        const formData = new FormData();
+        formData.append('file', file);
+
         const response = await post<UploadResponse>({
-            url: `/admin/file?fileName=${file.name}`,
-            data: file,
+            url: `/admin/file`,
+            data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

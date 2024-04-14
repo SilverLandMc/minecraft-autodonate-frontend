@@ -1,4 +1,4 @@
-import { ChangeEvent, FunctionComponent, useState } from 'react';
+import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import Title from 'shared/ui/Title/Title';
 import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
 import Spacing from 'shared/ui/spacing/Spacing';
@@ -9,14 +9,23 @@ import Button from 'shared/ui/Button/Button';
 
 interface Props {
     setImageId(imageId: string): void;
+    initialImageSrc?: string;
 }
 
-const AdminImageUpload: FunctionComponent<Props> = ({ setImageId }) => {
+const AdminImageUpload: FunctionComponent<Props> = ({ setImageId, initialImageSrc }) => {
     const [isProcessing, setIsProcessing] = useState(false);
-    const [imagePath, setImagePath] = useState<string>();
+    const [imageSrc, setImageSrc] = useState<string>();
     const [error, setError] = useState<string>();
 
-    const hasImage = Boolean(imagePath);
+    useEffect(() => {
+        if (!initialImageSrc) {
+            return;
+        }
+
+        setImageSrc(initialImageSrc);
+    }, [initialImageSrc]);
+
+    const hasImage = Boolean(imageSrc);
 
     const handleChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files[0];
@@ -35,18 +44,21 @@ const AdminImageUpload: FunctionComponent<Props> = ({ setImageId }) => {
         try {
             const imageId = await uploadFile(file);
             setImageId(imageId);
-            setImagePath(URL.createObjectURL(file));
+            setImageSrc(URL.createObjectURL(file));
             setError(undefined);
         } catch (error) {
             setError('Не удалось загрузить файл на сервер');
             setImageId(undefined);
-            setImagePath(undefined);
+            setImageSrc(undefined);
         } finally {
             setIsProcessing(false);
         }
     };
 
-    const deleteImage = () => setImageId(undefined);
+    const deleteImage = () => {
+        setImageSrc(undefined);
+        setImageId(undefined);
+    };
 
     return (
         <>
@@ -56,7 +68,7 @@ const AdminImageUpload: FunctionComponent<Props> = ({ setImageId }) => {
 
             {hasImage && (
                 <>
-                    <img src={imagePath} className={styles.image} alt="Загружаемое изображение" />
+                    <img src={imageSrc} className={styles.image} alt="Загружаемое изображение" />
                     <Spacing size={15} />
                 </>
             )}

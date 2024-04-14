@@ -1,5 +1,4 @@
 import { FunctionComponent, MouseEvent, useContext, useRef, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 import { ProductOutDto } from 'app/types/api/apiTypes';
 import chestImage from 'shared/assets/chest.png';
 import Button from 'shared/ui/Button/Button';
@@ -12,6 +11,7 @@ import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 import { AppContext } from 'app/providers/AppContextProvider';
 import trashIcon from 'shared/assets/trashIcon.svg';
 import styles from './ProductCard.module.scss';
+import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML';
 
 interface Props {
     product: ProductOutDto;
@@ -106,7 +106,7 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
                                     <h3 className={styles.productName}>{name}</h3>
 
                                     <div className={styles.description}>
-                                        <ReactMarkdown children={description} />
+                                        <SafelySetInnerHTML rawHTML={description} />
                                     </div>
 
                                     {priceBlock}

@@ -40,7 +40,7 @@ export interface ErrorMessageWithField {
 }
 
 /** Скидка c id */
-export interface DiscountOutDto {
+export type DiscountOutDto = {
     /**
      * Дата создания  unix timestamp
      * @format int64
@@ -79,7 +79,7 @@ export interface DiscountOutDto {
      */
     id?: string;
     deleted?: boolean;
-}
+} | null;
 
 /**
  * Тип скидки
@@ -100,19 +100,10 @@ export interface PromocodeOutDto {
     /**
      * Максимальное количество использований промокода
      * @format int32
+     * @min 1
      * @example 10
      */
-    maxUseCount?: number;
-    /**
-     * Дата начала промокода
-     * @example "2024-02-07T15:30:00.000Z"
-     */
-    startDate: string;
-    /**
-     * Дата окончания промокода
-     * @example "2024-02-07T15:30:00.000Z"
-     */
-    endDate: string;
+    maxUseCount: number;
     /**
      * Идентификатор промокода
      * @format uuid
@@ -127,6 +118,18 @@ export interface PromocodeOutDto {
     currentUseCount?: number;
     /** Скидка c id */
     discount?: DiscountOutDto;
+    /**
+     * Дата начала промокода
+     * @format int64
+     * @example 1693914524
+     */
+    startDate: number;
+    /**
+     * Дата окончания промокода
+     * @format int64
+     * @example 1693914524
+     */
+    endDate: number;
     deleted?: boolean;
     limitedUse?: boolean;
 }
@@ -142,6 +145,7 @@ export interface PromocodeUpdateDto {
     /**
      * Максимальное количество использований промокода
      * @format int32
+     * @min 1
      * @example 10
      */
     maxUseCount: number;
@@ -212,6 +216,11 @@ export interface ProductOutDto {
      */
     imagePath?: string | null;
     /**
+     * ID файла картинки
+     * @example "f-00000000-0000-0000-0000-000000000000"
+     */
+    imageId?: string | null;
+    /**
      * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата"
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
@@ -236,6 +245,12 @@ export interface ProductOutDto {
      * @example true
      */
     isAlreadyBought?: boolean | null;
+    /**
+     * Количество покупаемого товара
+     * @format int32
+     * @example 1
+     */
+    quantity: number;
     singlePurchase?: boolean;
 }
 
@@ -296,26 +311,25 @@ export interface ProductEditInDto {
      * @format int32
      * @example 1
      */
-    amount: number;
+    quantity: number;
     /** Категория продукта */
     category: Category;
     /** Категория длительности продукта */
     validityType: ValidityType;
     /** Длительность продукта */
     validityPeriod?: ValidityPeriod;
-    /** Скидка c id */
-    discount?: DiscountOutDto;
+    /**
+     * Скидка
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId?: string | null;
     /**
      * Порядковый номер для сортировки
      * @format int32
      * @example 0
      */
     order: number;
-    /**
-     * Куплен ли товар?
-     * @example true
-     */
-    isAlreadyBought?: boolean;
     singlePurchase?: boolean;
 }
 
@@ -394,9 +408,16 @@ export interface PromocodeInDto {
     /**
      * Максимальное количество использований промокода
      * @format int32
+     * @min 1
      * @example 10
      */
-    maxUseCount?: number;
+    maxUseCount: number;
+    /**
+     * ID скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId: string;
     /**
      * Дата начала промокода
      * @example "2024-02-07T15:30:00.000Z"
@@ -407,12 +428,6 @@ export interface PromocodeInDto {
      * @example "2024-02-07T15:30:00.000Z"
      */
     endDate: string;
-    /**
-     * ID скидки
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    discountId: string;
     limitedUse?: boolean;
 }
 
@@ -690,8 +705,8 @@ export interface PageableObject {
     pageNumber?: number;
     /** @format int32 */
     pageSize?: number;
-    unpaged?: boolean;
     paged?: boolean;
+    unpaged?: boolean;
 }
 
 /** Платеж */
@@ -734,6 +749,6 @@ export interface PaymentProductOutDto {
 
 export interface SortObject {
     empty?: boolean;
-    sorted?: boolean;
     unsorted?: boolean;
+    sorted?: boolean;
 }

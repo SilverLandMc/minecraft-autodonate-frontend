@@ -7,7 +7,7 @@ const logger = createLogger('fetchPromoCodesList');
 
 const fetchPromoCodesList = async () => {
     try {
-        return await request<PromocodeOutDto[]>({ url: '/admin/promocode' });
+        return await request<PromocodeOutDto[]>({ url: '/admin/promocode/all' });
     } catch (error) {
         const message = 'promoCodes: failed to fetch promoCodes list';
         Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));

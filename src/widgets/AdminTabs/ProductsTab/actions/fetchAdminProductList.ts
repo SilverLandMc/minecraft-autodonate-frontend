@@ -13,6 +13,7 @@ const fetchAdminProductList = async (productCategory: ProductCategory) => {
         const message = `fetchAdminProductList: failed to fetch. Error: ${error?.response?.data || error}`;
         logger.error(message);
         Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
+        throw error;
     }
 };
 

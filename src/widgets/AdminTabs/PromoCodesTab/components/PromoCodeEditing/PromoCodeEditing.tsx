@@ -14,6 +14,7 @@ import editPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/editPromoCode
 import styles from './PromoCodeEditing.module.scss';
 
 const initialFormValues = {
+    id: '',
     name: '',
     maxUseCount: 0,
     startDate: '',
@@ -40,6 +41,7 @@ const PromoCodeEditing: FunctionComponent<PromoCodeComponentProps> = ({
         }
 
         setFormValues({
+            id: editingPromoCodeId,
             name: initialPromoCode.name,
             maxUseCount: initialPromoCode?.maxUseCount ?? 0,
             startDate: convertTimestampToInputString(initialPromoCode?.startDate as unknown as number),

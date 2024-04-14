@@ -10,7 +10,6 @@ import createPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/createPromo
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 import styles from './PromoCodeCreation.module.scss';
-import { PromocodeInDto } from 'app/types/api/apiTypes';
 
 const initialFormValues = {
     name: '',
@@ -65,12 +64,11 @@ const PromoCodeCreation: FunctionComponent<PromoCodeComponentProps> = ({ setActi
         try {
             setIsProcessing(true);
 
-            // todo Убрать конвертацию типа после фикса типизации в документации https://github.com/SilverLandMc/Site/issues/16
             await createPromoCode({
                 ...formValues,
                 startDate: formValues.startDate ? new Date(formValues.startDate).toISOString() : null,
                 endDate: formValues.endDate ? new Date(formValues.endDate).toISOString() : null
-            } as unknown as PromocodeInDto);
+            });
 
             navigateToPromoCodesList();
         } catch (error) {
