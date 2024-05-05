@@ -13,6 +13,12 @@ import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
 import useProduct from 'widgets/AdminTabs/ProductsTab/hooks/useProduct';
 import editProduct from 'widgets/AdminTabs/ProductsTab/actions/editProduct';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import useDiscountInfo from 'shared/hooks/useDiscountInfo';
+import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
+import { ProductCategory } from 'app/const/enum/ProductCategory';
+
+const PREVIOUS_PRODUCT_SELECT_DESCRIPTION_LENGTH = 42;
 
 const initialFormValues: ProductEditInDto = {
     id: '',
@@ -38,6 +44,18 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
     const { product: initialProduct, isLoading, error } = useProduct(editingProductId);
 
     const dispatch = useAppDispatch();
+
+    const { discountInfo, isDiscountInfoLoading, discountInfoError } = useDiscountInfo();
+
+    const {
+        productList,
+        isLoading: isProductListLoading,
+        error: productListFetchError
+    } = useProductList({ productCategory: formValues.category.toLowerCase() as ProductCategory });
+    const productListInfo = productList?.map(({ id, description, priceWithoutDiscount, name }) => ({
+        id,
+        description: `${name}. ${description.slice(0, PREVIOUS_PRODUCT_SELECT_DESCRIPTION_LENGTH)}... (${priceWithoutDiscount} руб.)`
+    }));
 
     useEffect(() => {
         if (isLoading) {
@@ -76,7 +94,7 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
 
     const changeImageId = (imageId: string) => setFormValues({ ...formValues, imageId });
 
-    const changePreviousProductId = (event: ChangeEvent<HTMLInputElement>) =>
+    const changePreviousProductId = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, previousProductForTopUpId: event.target.value });
 
     const changeQuantity = (event: ChangeEvent<HTMLInputElement>) =>
@@ -91,7 +109,7 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
     const changeValidityPeriod = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, validityPeriod: event.target.value as ValidityPeriod });
 
-    const changeDiscountId = (event: ChangeEvent<HTMLInputElement>) =>
+    const changeDiscountId = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, discountId: event.target.value });
 
     const changeOrder = (event: ChangeEvent<HTMLInputElement>) =>
@@ -130,11 +148,16 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
         }
     };
 
+    if (isDiscountInfoLoading || isProductListLoading) {
+        return <RunnerLoader />;
+    }
+
     if (error) {
         return <AdminErrorBlock text="Ошибка загрузки продукта" />;
     }
 
     // todo Ререндер через key - это костыль, разобраться, почему в форму не попадают значения после useEffect
+    // todo Также очень много дублирования кода в компонентах создания и редактирования сущностей, переработать
     return (
         <div key={formValues.id} className={styles.productCreation}>
             <Title>Название:</Title>
@@ -148,9 +171,15 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
 
             <AdminImageUpload setImageId={changeImageId} initialImageSrc={initialProduct?.imagePath} />
 
-            {/* todo Сделать выпадающий список для выбора продуктов, блокируется https://github.com/SilverLandMc/Site/issues/25 */}
             <Title>ID предудыщего продукта для акции "Доплата":</Title>
-            <input type="text" value={formValues.previousProductForTopUpId} onChange={changePreviousProductId} />
+            <select value={formValues.previousProductForTopUpId} onChange={changePreviousProductId}>
+                <option value="">Нажмите здесь, чтобы выбрать предыдущий продукт для акции "Доплата"</option>
+                {productListInfo.map(({ id, description }) => (
+                    <option key={id} value={id}>
+                        {description}
+                    </option>
+                ))}
+            </select>
 
             <Title>Количество, шт.:</Title>
             <input type="number" value={formValues.quantity} onChange={changeQuantity} min={0} />
@@ -176,9 +205,14 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
                 <option value={ValidityPeriod.MONTHLY}>Месяц</option>
             </select>
 
-            {/* todo Можно сделать выпадашку со скидками. Но нужно ли? Уточняется в https://github.com/SilverLandMc/Site/issues/26 */}
-            <Title>ID скидки:</Title>
-            <input type="text" value={formValues.discountId} onChange={changeDiscountId} />
+            <Title>Скидка:</Title>
+            <select value={formValues.discountId} onChange={changeDiscountId}>
+                {discountInfo.map(({ id, description }) => (
+                    <option key={id} value={id}>
+                        {description}
+                    </option>
+                ))}
+            </select>
 
             <Title>Порядок для сортировки в выдаче:</Title>
             <input type="number" value={formValues.order} onChange={changeOrder} />
@@ -206,6 +240,10 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
                     <Spacing size={20} />
                 </>
             )}
+
+            {productListFetchError && <AdminErrorBlock text={'Ошибка при загрузке списка продуктов'} />}
+
+            {discountInfoError && <AdminErrorBlock text={'Ошибка при загрузке списка скидок'} />}
         </div>
     );
 };

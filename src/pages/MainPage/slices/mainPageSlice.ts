@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PlayerInfoOutDto, Players } from 'app/types/api/apiTypes';
+import { safeLocalStorage } from '@37bytes/storage-fallback';
+import LocalStorageKey from 'shared/const/enum/localStorageKey';
 
 export interface MainPagePartState extends Players {
     isLoaded: boolean;
@@ -11,7 +13,8 @@ const initialState: MainPagePartState = {
     online: 0,
     max: 100,
     isLoaded: false,
-    playerUniqueProducts: []
+    playerUniqueProducts: [],
+    playerName: safeLocalStorage.getItem(LocalStorageKey.PLAYER_NAME)
 };
 
 export const mainPageSlice = createSlice({
@@ -26,10 +29,12 @@ export const mainPageSlice = createSlice({
         setUserInfo: (state, action: PayloadAction<PlayerInfoOutDto>) => {
             state.playerName = action.payload.playerName;
             state.playerUniqueProducts = action.payload.uniqueProducts;
+            safeLocalStorage.setItem(LocalStorageKey.PLAYER_NAME, action.payload.playerName);
         },
         erasePlayerInfo: (state) => {
             state.playerName = undefined;
             state.playerUniqueProducts = [];
+            safeLocalStorage.removeItem(LocalStorageKey.PLAYER_NAME);
         }
     }
 });

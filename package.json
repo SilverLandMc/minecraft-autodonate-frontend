@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@37bytes/storage-fallback": "^1.0.1",
     "@reduxjs/toolkit": "^2.1.0",
     "@sentry/react": "^7.100.1",
     "@sentry/tracing": "^7.100.1",

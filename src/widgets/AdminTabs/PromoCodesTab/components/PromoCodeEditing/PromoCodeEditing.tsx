@@ -5,12 +5,12 @@ import Title from 'shared/ui/Title/Title';
 import Button from 'shared/ui/Button/Button';
 import Spacing from 'shared/ui/spacing/Spacing';
 import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
-import useDiscountInfo from 'widgets/AdminTabs/PromoCodesTab/hooks/useDiscountInfo';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 import usePromoCode from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCode';
 import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
 import editPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/editPromoCode';
+import useDiscountInfo from 'shared/hooks/useDiscountInfo';
 import styles from './PromoCodeEditing.module.scss';
 
 const initialFormValues = {
