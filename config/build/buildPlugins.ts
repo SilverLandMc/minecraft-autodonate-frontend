@@ -18,5 +18,6 @@ export const buildPlugins = ({ paths, isDev, apiHost, proxyTarget }: BuildOption
         __IS_DEV__: JSON.stringify(isDev),
         __API_HOST__: JSON.stringify(apiHost),
         __PROXY_TARGET__: JSON.stringify(proxyTarget)
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
 ];

@@ -24,6 +24,7 @@ export const buildDevServer = ({
                 router: () => proxyTarget,
                 changeOrigin: true
             }
-        }
+        },
+        hot: true
     };
 };
