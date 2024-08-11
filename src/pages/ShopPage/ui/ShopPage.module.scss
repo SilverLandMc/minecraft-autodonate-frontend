@@ -10,56 +10,6 @@
     }
 }
 
-.centeringErrorWrapper {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.errorSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.errorImage {
-    border-radius: 10px;
-    max-width: 200px;
-
-    @include mediaS {
-        max-width: 300px;
-    }
-}
-
-.errorSubheader,
-.errorDescription {
-    text-align: center;
-}
-
-.errorSubheader {
-    font-size: 18px;
-    line-height: 20px;
-
-    @include mediaM {
-        font-size: 22px;
-        line-height: 26px;
-    }
-}
-
-.errorDescription {
-    font-size: 14px;
-    line-height: 16px;
-
-    @include mediaM {
-        font-size: 18px;
-        line-height: 22px;
-    }
-}
-
 .cardsWrapper {
     display: flex;
     align-items: center;

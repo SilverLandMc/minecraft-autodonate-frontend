@@ -5,6 +5,7 @@ import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { ShopPage } from 'pages/ShopPage';
 import { AdminPage } from 'pages/AdminPage';
 import { AuthPage } from 'pages/AuthPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 export const enum AppRoutes {
     //region public
@@ -39,7 +40,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 
     [AppRoutes.AUTHENTICATION]: '/auth',
     [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.NOT_FOUND]: '/notFound'
+    [AppRoutes.NOT_FOUND]: '*'
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -83,6 +84,6 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.notFound,
-        element: <AdminPage />
+        element: <NotFoundPage />
     }
 };

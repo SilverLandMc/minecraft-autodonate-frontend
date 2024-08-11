@@ -1,0 +1,53 @@
+@import '/src/app/styles/media/media.scss';
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-dark-green-50);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    border-radius: 10px;
+    max-width: 200px;
+
+    @include mediaS {
+        max-width: 300px;
+    }
+}
+
+.subheader,
+.description {
+    text-align: center;
+    font: var(--font-l);
+}
+
+.subheader {
+    font-size: 18px;
+    line-height: 20px;
+
+    @include mediaM {
+        font-size: 22px;
+        line-height: 26px;
+    }
+}
+
+.description {
+    font-size: 14px;
+    line-height: 16px;
+
+    @include mediaM {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

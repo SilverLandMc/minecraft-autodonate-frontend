@@ -7,6 +7,7 @@ import { MediaContextProvider } from 'app/providers/MediaProvider';
 import { createRoot } from 'react-dom/client';
 import { StoreProvider } from 'app/providers/StoreProvider';
 import { AppContextProvider } from 'app/providers/AppContextProvider';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import './app/styles/index.scss';
 
 if (!__IS_DEV__) {
@@ -18,7 +19,8 @@ const AppContainer = combineProviders(
     StoreProvider,
     ThemeProvider,
     MediaContextProvider,
-    AppContextProvider
+    AppContextProvider,
+    ErrorBoundary
 );
 const rootContainer = document.getElementById('root');
 
