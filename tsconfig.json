@@ -20,4 +20,9 @@
       "module": "CommonJS"
     }
   },
+  "include": [
+    "./config/jest/setupTests.ts",  // чтобы использовать методы из testing-library/jest-dom
+    "./src/**/*.ts",           // для работоспособности прочих файлов
+    "./src/**/*.tsx"
+  ]
 }
