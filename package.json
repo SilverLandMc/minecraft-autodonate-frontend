@@ -10,8 +10,10 @@
     "typescript:swagger": "swagger-typescript-api --path ./.api-docs --output ./src/app/types/api --name apiTypes.ts  --no-client",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "test:unit": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
+    "test:ui": "npx loki test",
+    "test:ui:approve": "npx loki approve",
     "storybook": "STORYBOOK_IS_DEV=true storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "storybook:build": "storybook build -c ./config/storybook"
   },
   "keywords": [],
   "author": "",
