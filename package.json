@@ -10,7 +10,7 @@
     "typescript:swagger": "swagger-typescript-api --path ./.api-docs --output ./src/app/types/api --name apiTypes.ts  --no-client",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "test:unit": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
-    "storybook": "storybook dev -p 6006 -c ./config/storybook",
+    "storybook": "STORYBOOK_IS_DEV=true storybook dev -p 6006 -c ./config/storybook",
     "build-storybook": "storybook build -c ./config/storybook"
   },
   "keywords": [],
