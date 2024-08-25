@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import RoundedSingleFieldForm from './RoundedSingleFieldForm';
 import noop from 'shared/lib/noop/noop';
-import { withCustomWrapper } from '../../../../config/storybook/decorators';
+import { withCustomWrapper } from '../../config/storybook';
 
 const meta = {
     title: 'shared/RoundedSingleFieldForm',
@@ -12,11 +12,16 @@ const meta = {
     },
     tags: ['autodocs'],
     argTypes: {
-        buttonText: { control: 'text' },
-        readonly: { control: 'boolean' },
-        redButton: { control: 'boolean' },
-        placeholderText: { control: 'text' },
-        value: { control: 'text' }
+        buttonText: { control: 'text', description: 'Текст кнопки, которая находится справа в форме' },
+        readonly: {
+            control: 'boolean',
+            description:
+                'Флаг режима "только чтение" для поля ввода в форме. Используется для режима отображения информации в форме'
+        },
+        redButton: { control: 'boolean', description: 'Меняет цвет кнопки на красный' },
+        placeholderText: { control: 'text', description: 'Текст плейсхолдера поля ввода, входящего в состав формы' },
+        value: { control: 'text', description: 'Значение в поле ввода формы для controlled режима' },
+        onChange: { description: 'Функция, которая будет передана в onChange поля ввода формы' }
     },
     args: { onChange: noop }
 } satisfies Meta<typeof RoundedSingleFieldForm>;
