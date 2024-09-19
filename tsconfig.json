@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,  // разрешаем импорт json'ов - для работы с фикстурами запросов в storybook
     "skipLibCheck": true,
     "outDir": "./dist/",    // дестинация сборки (не столь важно при использовании бандлера)
     "noImplicitAny": true,  // не позволяет использовать переменные без явного указания типа

@@ -10,9 +10,9 @@
     "typescript:swagger": "swagger-typescript-api --path ./.api-docs --output ./src/app/types/api --name apiTypes.ts  --no-client",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "test:unit": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
-    "test:ui": "npx loki test",
-    "test:ui:approve": "npx loki approve",
-    "storybook": "STORYBOOK_IS_DEV=true storybook dev -p 6006 -c ./config/storybook",
+    "test:ui": "loki test",
+    "test:ui:approve": "loki approve",
+    "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
   "keywords": [],
@@ -54,6 +54,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "loki": "^0.35.1",
     "mini-css-extract-plugin": "^2.8.0",
+    "msw": "^2.4.6",
+    "msw-storybook-addon": "^2.0.3",
     "prettier": "^3.2.5",
     "sass": "^1.70.0",
     "sass-loader": "^14.1.0",
@@ -94,16 +96,21 @@
   "loki": {
     "configurations": {
       "chrome.laptop": {
-        "target": "chrome.docker",
+        "target": "chrome.app",
         "width": 1366,
         "height": 768,
         "deviceScaleFactor": 1,
         "mobile": false
       },
       "chrome.iphone7": {
-        "target": "chrome.docker",
+        "target": "chrome.app",
         "preset": "iPhone 7"
       }
     }
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
