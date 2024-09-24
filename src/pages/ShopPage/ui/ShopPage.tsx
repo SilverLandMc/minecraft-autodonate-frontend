@@ -1,15 +1,10 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
-import Section from 'shared/ui/Section/Section';
 import { useSelector } from 'react-redux';
 import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import chestImage from 'shared/assets/chest.png';
-import Spacing from 'shared/ui/spacing/Spacing';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import ProductCard from 'entities/ProductCard/ProductCard';
 import fetchProductsList from 'shared/lib/actions/fetchProductsList';
-import styles from './ShopPage.module.scss';
+import ShopPagePure from 'pages/ShopPage/ui/ShopPagePure';
 
 interface Props {
     productCategory: ProductCategory;
@@ -41,48 +36,11 @@ const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
         fetchProducts(productCategory);
     }, [productCategory]);
 
-    if (isLoading) {
-        return <RunnerLoader />;
-    }
-
     if (isFetchingFailed) {
         throw new Error('Failed to fetch');
     }
 
-    if (!productsList || productsList.length === 0) {
-        return (
-            <div className={styles.centeringErrorWrapper}>
-                <Spacing size={15} sizeS={30} />
-
-                <Section className={styles.errorSection}>
-                    <img src={chestImage} className={styles.errorImage} alt="Нет товаров!" />
-                    <h3 className={styles.errorSubheader}>Ой.</h3>
-                    <p className={styles.errorDescription}>
-                        В этой категории пока что нет товаров! <br /> Посмотрите товары других категорий или загляните
-                        сюда позднее.
-                    </p>
-                </Section>
-
-                <Spacing size={15} sizeS={30} />
-            </div>
-        );
-    }
-
-    return (
-        <div className={styles.wrapper}>
-            <Spacing size={15} sizeM={20} />
-
-            <Section className={styles.section}>
-                <div className={styles.cardsWrapper}>
-                    {productsList.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-            </Section>
-
-            <Spacing size={15} sizeM={20} />
-        </div>
-    );
+    return <ShopPagePure productsList={productsList} loading={isLoading} />;
 };
 
 export default ShopPage;
