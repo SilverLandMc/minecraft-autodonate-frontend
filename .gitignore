@@ -6,3 +6,5 @@ node_modules
 storybook-static
 stats.json
 *storybook.log
+.loki/report.html
+.loki/report.json

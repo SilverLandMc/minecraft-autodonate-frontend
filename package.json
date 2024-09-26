@@ -9,10 +9,16 @@
     "typescript:validate": "tsc --noEmit",
     "typescript:swagger": "swagger-typescript-api --path ./.api-docs --output ./src/app/types/api --name apiTypes.ts  --no-client",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+
     "test:unit": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
     "test:ui": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static",
     "test:ui:update": "loki update --reactUri=file:./storybook-static",
     "test:ui:approve": "loki approve",
+
+    "test:ui:json": "node scripts/generate-visual-json-report.js",
+    "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html ",
+    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
@@ -58,6 +64,7 @@
     "loki": "^0.35.1",
     "mini-css-extract-plugin": "^2.8.0",
     "prettier": "^3.2.5",
+    "reg-cli": "^0.18.7",
     "sass": "^1.70.0",
     "sass-loader": "^14.1.0",
     "sinon": "^19.0.2",
