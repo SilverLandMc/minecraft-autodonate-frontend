@@ -14,6 +14,7 @@ const FailSafeImage: FunctionComponent<Props> = ({ src: rawSrc, fallbackSrc, cla
         const fetchImage = async () => {
             const imageUrl = `${__IS_DEV__ ? '' : __PROXY_TARGET__}${rawSrc}`;
             try {
+                // eslint-disable-next-line compat/compat
                 const response = await fetch(imageUrl);
 
                 if (response.ok) {
@@ -37,10 +38,10 @@ const FailSafeImage: FunctionComponent<Props> = ({ src: rawSrc, fallbackSrc, cla
     }, [rawSrc, fallbackSrc]);
 
     if (isError && !src) {
-        return <img src={fallbackSrc} className={className} {...props}  alt=''/>;
+        return <img src={fallbackSrc} className={className} {...props} alt="" />;
     }
 
-    return <img src={src || fallbackSrc} className={className} {...props}  alt=''/>;
+    return <img src={src || fallbackSrc} className={className} {...props} alt="" />;
 };
 
 export default FailSafeImage;
