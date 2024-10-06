@@ -1,7 +1,7 @@
 import { ProductOutDto } from 'app/types/api/apiTypes';
 import ProductCard from 'entities/ProductCard/ProductCard';
 import styles from 'pages/ShopPage/ui/ShopPage.module.scss';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import chestImage from 'shared/assets/chest.png';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import Section from 'shared/ui/Section/Section';

@@ -16,17 +16,14 @@
         "lint": "npm-run-all2 --parallel eslint:lint stylelint:lint typescript:lint",
         "lint-staged": "lint-staged",
         "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
-
         "test": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
         "test:ui": "loki test",
         "test:ui:update": "loki update --reactUri=file:./storybook-static",
         "test:ui:approve": "loki approve",
-
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html ",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
-
-        "storybook": "storybook dev -p 6006 -c ./config/storybook",
+        "storybook": "storybook dev -p 6006 -c ./config/storybook --debug-webpack",
         "storybook:build": "storybook build -c ./config/storybook"
     },
     "keywords": [],
@@ -54,13 +51,11 @@
         "@types/react": "^18.2.55",
         "@types/react-dom": "^18.2.19",
         "@types/sinon": "^17.0.3",
-        "@types/webpack": "^5.28.5",
         "@types/webpack-dev-server": "^4.7.2",
         "@types/whatwg-fetch": "^0.0.33",
         "babel-jest": "^29.7.0",
         "css-loader": "^6.10.0",
         "dotenv": "^16.4.1",
-        "dotenv-webpack": "^8.0.1",
         "html-webpack-plugin": "^5.6.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^29.7.0",
@@ -81,12 +76,10 @@
         "ts-loader": "^9.5.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3",
-        "webpack": "5.90.1",
         "webpack-bundle-analyzer": "^4.10.1",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^4.15.1",
         "whatwg-fetch": "^3.6.20"
-
     },
     "dependencies": {
         "@37bytes/eslint-config": "^2.0.1",
@@ -98,11 +91,13 @@
         "@storybook/react": "^8.2.9",
         "@testing-library/react": "^16.0.0",
         "@types/lodash-es": "^4.17.12",
+        "@types/webpack": "^5.28.5",
         "axios": "^1.6.7",
         "clsx": "^2.1.0",
         "date-fns": "^3.6.0",
         "date-fns-tz": "^3.0.0",
         "dompurify": "^3.1.0",
+        "dotenv-webpack": "^8.0.1",
         "eslint": "^8.57.0",
         "lodash-es": "^4.17.21",
         "npm-run-all2": "^6.2.3",
@@ -117,16 +112,17 @@
         "redux": "^5.0.1",
         "redux-thunk": "^3.1.0",
         "reselect": "^5.1.0",
-        "stylelint": "^15.11.0"
+        "stylelint": "^15.11.0",
+        "webpack": "5.90.1"
     },
     "loki": {
         "configurations": {
             "chrome.desktop": {
-              "target": "chrome.docker",
-              "width": 1920,
-              "height": 1080,
-              "deviceScaleFactor": 1,
-              "mobile": false
+                "target": "chrome.docker",
+                "width": 1920,
+                "height": 1080,
+                "deviceScaleFactor": 1,
+                "mobile": false
             },
             "chrome.laptop": {
                 "target": "chrome.docker",
@@ -140,5 +136,6 @@
                 "preset": "iPhone 7"
             }
         }
-    }
+    },
+    "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }
