@@ -1,16 +1,16 @@
+import { DiscountInDto, DiscountType } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
+import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import editDiscount from 'widgets/AdminTabs/DiscountsTab/actions/editDiscount';
 import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import useDiscount from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscount';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import { DiscountInDto, DiscountType } from 'app/types/api/apiTypes';
-import Title from 'shared/ui/Title/Title';
-import Spacing from 'shared/ui/spacing/Spacing';
-import Button from 'shared/ui/Button/Button';
-import editDiscount from 'widgets/AdminTabs/DiscountsTab/actions/editDiscount';
-import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
 import styles from './DiscountEditing.module.scss';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 
 const initialFormValue: DiscountInDto = {
     name: '',
@@ -41,7 +41,7 @@ const DiscountEditing: FunctionComponent<DiscountComponentProps> = ({
             startDate: convertTimestampToInputString(initialDiscount.startDate),
             endDate: convertTimestampToInputString(initialDiscount.endDate)
         });
-    }, [isLoading]);
+    }, [isLoading, initialDiscount]);
 
     const changeName = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, name: event.target.value });

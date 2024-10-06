@@ -5,13 +5,15 @@
 .serverIsDown {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
+
     height: 96px;
+    padding: 8px 12px;
+
+    border-radius: 10px;
 
     background: var(--color-white-opacity-95);
-    padding: 8px 12px;
-    border-radius: 10px;
 }
 
 .runnerWrapper {
@@ -26,5 +28,6 @@
 
 .serverIsDown {
     text-align: center;
+
     color: orangered;
 }

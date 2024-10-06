@@ -1,13 +1,13 @@
+import AdminAccessGuard from 'pages/AdminPage/layouts/AdminAccessGuard';
 import { ComponentType, FunctionComponent, useState } from 'react';
 import Section from 'shared/ui/Section/Section';
-import AdminAccessGuard from 'pages/AdminPage/layouts/AdminAccessGuard';
-import AdminNavBar, { AdminTab } from 'widgets/AdminNavBar/AdminNavBar';
 import Spacing from 'shared/ui/spacing/Spacing';
-import styles from './AdminPage.module.scss';
-import PurchasesTab from 'widgets/AdminTabs/PurchasesTab/PurchasesTab';
+import AdminNavBar, { AdminTab } from 'widgets/AdminNavBar/AdminNavBar';
 import DiscountsTab from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import PromoCodesTab from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
 import ProductsTab from 'widgets/AdminTabs/ProductsTab/ProductsTab';
+import PromoCodesTab from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
+import PurchasesTab from 'widgets/AdminTabs/PurchasesTab/PurchasesTab';
+import styles from './AdminPage.module.scss';
 
 const componentByAdminTab: Record<AdminTab, ComponentType> = {
     [AdminTab.PURCHASES]: PurchasesTab,

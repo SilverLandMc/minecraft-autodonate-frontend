@@ -1,12 +1,15 @@
 @import '/src/app/styles/media/media.scss';
 
 .button {
-    border-radius: 4px;
     padding: 7px 10px;
+
+    border: none;
+    border-radius: 4px;
+
     background-color: gray;
+
     color: var(--color-white);
     font-family: var(--font-family-main);
-    border: none;
     cursor: pointer;
     transition: 0.3s;
 
@@ -25,15 +28,16 @@
 .horizontalFormWrapper {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
+    justify-content: center;
+    align-items: center;
 }
 
 .input {
-    border-radius: 4px;
     padding: 6px 10px;
+
     border: 1px solid gray;
+    border-radius: 4px;
     font-family: var(--font-family-main);
     transition: 0.3s;
 
@@ -45,6 +49,7 @@
     &::placeholder {
         font-size: 14px;
         white-space: nowrap;
+
         overflow: hidden;
         text-overflow: ellipsis;
         font-family: var(--font-family-main);
@@ -66,14 +71,16 @@
 }
 
 .sendButton {
-    background: var(--color-vivid-malachite);
-    border-radius: 4px;
+    padding: 2px 8px;
+
     border: none;
+    border-radius: 4px;
+
+    background: var(--color-vivid-malachite);
+    color: var(--color-white);
     cursor: pointer;
     transition: 0.3s;
-    color: var(--color-white);
     text-align: center;
-    padding: 2px 8px;
     font-size: 20px;
 
     &:hover {
@@ -87,5 +94,6 @@
 
 .errorSpan {
     font-family: var(--font-family-main);
+
     color: orangered;
 }

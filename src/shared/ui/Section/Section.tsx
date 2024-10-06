@@ -6,8 +6,8 @@ interface SectionProps extends PropsWithChildren<any> {
     className?: string;
 }
 
-const Section: FunctionComponent<SectionProps> = ({ className, children }: SectionProps) => {
-    return <div className={classNames(styles.section, [className])}>{children}</div>;
-};
+const Section: FunctionComponent<SectionProps> = ({ className, children }: SectionProps) => (
+    <div className={classNames(styles.section, [className])}>{children}</div>
+);
 
 export default Section;

@@ -1,8 +1,8 @@
+import { AppContext } from 'app/providers/AppContextProvider';
+import { DiscountType } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useContext, useState } from 'react';
 import closeIcon from 'shared/assets/closeIcon.svg';
-import { AppContext } from 'app/providers/AppContextProvider';
 import fetchPromoCodeByName from 'shared/lib/actions/fetchPromoCodeByName';
-import { DiscountType } from 'app/types/api/apiTypes';
 import styles from './PromoCodeBlock.module.scss';
 
 interface Props {
@@ -79,7 +79,7 @@ const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
                         placeholder="Введите промокод"
                     />
 
-                    <button className={styles.sendButton} onClick={checkPromoCode} disabled={disabled}>
+                    <button type="button" className={styles.sendButton} onClick={checkPromoCode} disabled={disabled}>
                         ✓
                     </button>
 
@@ -92,7 +92,7 @@ const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
     }
 
     return (
-        <button className={styles.button} onClick={openForm} disabled={disabled}>
+        <button type="button" className={styles.button} onClick={openForm} disabled={disabled}>
             У меня есть промокод
         </button>
     );

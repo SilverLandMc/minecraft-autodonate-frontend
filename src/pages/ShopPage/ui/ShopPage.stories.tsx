@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import ShopPage from './ShopPage';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import ShopPage from './ShopPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'pages/ShopPage',

@@ -1,7 +1,7 @@
+import { PromocodeOutDto } from 'app/types/api/apiTypes';
+import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
 import { createContext } from 'react';
 import noop from 'shared/lib/noop/noop';
-import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
-import { PromocodeOutDto } from 'app/types/api/apiTypes';
 
 export interface AppContextState {
     productsToBuy: ShoppingListProductToBuyInDto[];

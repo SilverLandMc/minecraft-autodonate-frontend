@@ -1,0 +1,9 @@
+{
+    "extends": "@37bytes/stylelint-config",
+    "rules": {
+        "scale-unlimited/declaration-strict-value": [
+            ["z-index", "font-family"],
+            { "expandShorthand": true, "disableFix": true }
+        ]
+    }
+}

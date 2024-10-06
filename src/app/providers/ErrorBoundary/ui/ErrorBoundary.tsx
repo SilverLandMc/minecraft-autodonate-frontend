@@ -1,7 +1,7 @@
+import { ErrorPage } from 'pages/ErrorPage';
 import React, { ErrorInfo, ReactNode } from 'react';
 import Sentry from 'shared/lib/aliases/Sentry';
 import createLogger from 'shared/lib/logger/logger';
-import { ErrorPage } from 'pages/ErrorPage';
 
 interface ErrorBoundaryProps {
     children: ReactNode;
@@ -27,7 +27,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         const errorMessage = `ErrorBoundary showed! componentStack: ${info.componentStack}`;
         logger.error(errorMessage);
         Sentry.captureMessage(errorMessage);
-        console.log(error, info.componentStack);
     }
 
     render() {

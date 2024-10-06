@@ -1,6 +1,6 @@
-import { lowLevelRequest } from 'shared/lib/request/request';
-import createLogger from 'shared/lib/logger/logger';
 import Sentry from 'shared/lib/aliases/Sentry';
+import createLogger from 'shared/lib/logger/logger';
+import { lowLevelRequest } from 'shared/lib/request/request';
 
 const logger = createLogger('deleteProduct');
 

@@ -2,24 +2,27 @@
 
 .wrapper {
     display: flex;
-    height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    height: 100vh;
+
     background: var(--color-dark-green-50);
 }
 
 .section {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
 .image {
-    border-radius: 10px;
     max-width: 200px;
+
+    border-radius: 10px;
 
     @include mediaS {
         max-width: 300px;

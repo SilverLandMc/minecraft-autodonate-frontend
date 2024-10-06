@@ -1,14 +1,14 @@
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import Title from 'shared/ui/Title/Title';
-import Button from 'shared/ui/Button/Button';
-import Spacing from 'shared/ui/spacing/Spacing';
-import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
-import createPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/createPromoCode';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 import useDiscountInfo from 'shared/hooks/useDiscountInfo';
+import classNames from 'shared/lib/aliases/classNames';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import createPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/createPromoCode';
+import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
 import styles from './PromoCodeCreation.module.scss';
 
 const initialFormValues = {
@@ -50,7 +50,6 @@ const PromoCodeCreation: FunctionComponent<PromoCodeComponentProps> = ({ setActi
     const navigateToPromoCodesList = () => setActiveSubTab(ActiveSubTab.LIST);
 
     const validateAndCreate = async () => {
-        console.log(formValues);
         if (formValues.name.trim().length === 0) {
             setError('Название не должно быть пустым!');
             return;

@@ -1,14 +1,14 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
-import Section from 'shared/ui/Section/Section';
-import { useSelector } from 'react-redux';
-import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import chestImage from 'shared/assets/chest.png';
-import Spacing from 'shared/ui/spacing/Spacing';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import ProductCard from 'entities/ProductCard/ProductCard';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import chestImage from 'shared/assets/chest.png';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import fetchProductsList from 'shared/lib/actions/fetchProductsList';
+import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Section from 'shared/ui/Section/Section';
+import Spacing from 'shared/ui/spacing/Spacing';
 import styles from './ShopPage.module.scss';
 
 interface Props {
@@ -39,7 +39,7 @@ const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
         };
 
         fetchProducts(productCategory);
-    }, [productCategory]);
+    }, [productCategory, dispatch, isCategoryLoaded]);
 
     if (isLoading) {
         return <RunnerLoader />;

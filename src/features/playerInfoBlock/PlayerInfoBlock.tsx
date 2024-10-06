@@ -1,16 +1,16 @@
-import { FunctionComponent, useState } from 'react';
-import Spacing from 'shared/ui/spacing/Spacing';
-import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
-import { useSelector } from 'react-redux';
-import fetchUserInfo from 'pages/MainPage/utils/fetchUserInfo';
-import noop from 'shared/lib/noop/noop';
 import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
+import fetchUserInfo from 'pages/MainPage/utils/fetchUserInfo';
+import { FunctionComponent, useState } from 'react';
+import { useSelector } from 'react-redux';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import classNames from 'shared/lib/aliases/classNames';
+import noop from 'shared/lib/noop/noop';
+import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
+import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
+import RoundedSingleFieldForm from 'shared/ui/RoundedSingleFieldForm/RoundedSingleFieldForm';
+import Spacing from 'shared/ui/spacing/Spacing';
 import defaultIcon from './images/defaultIcon.png';
 import styles from './PlayerInfoBlock.module.scss';
-import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 
 interface Props {
     title?: string;

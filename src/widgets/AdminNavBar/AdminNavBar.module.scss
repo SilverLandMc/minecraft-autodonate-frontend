@@ -3,10 +3,10 @@
 .navBar {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
 
     @include mediaM {
         gap: 20px;

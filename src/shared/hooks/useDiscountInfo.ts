@@ -1,6 +1,6 @@
-import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/actions/fetchDiscountsList';
-import { useAsync } from 'react-use';
 import { DiscountType } from 'app/types/api/apiTypes';
+import { useAsync } from 'react-use';
+import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/actions/fetchDiscountsList';
 
 const DISCOUNT_NAME_SLICE_LENGTH = 32;
 

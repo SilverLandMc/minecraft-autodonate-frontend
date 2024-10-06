@@ -3,18 +3,21 @@
 .backgroundWrapper {
     position: sticky;
     top: 0;
-    background: white;
     z-index: var(--sticky-header-index);
+
+    background: white;
 
     &::before {
         content: '';
+
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
-        background: var(--color-dark-green-50);
+        left: 0;
         z-index: var(--filter-layer-index);
+
+        background: var(--color-dark-green-50);
     }
 }
 
@@ -23,8 +26,8 @@
     z-index: var(--main-content-index);
 
     @include mediaS {
-        padding: 0;
         max-width: calc(100% - 30px);
+        padding: 0;
     }
 
     @include mediaM {
@@ -33,12 +36,12 @@
 }
 
 .innerRowWrapper {
-    padding: 5px 0;
-
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+
+    padding: 5px 0;
 }
 
 .logo {

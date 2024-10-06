@@ -1,8 +1,8 @@
+import { PlayerInfoOutDto } from 'app/types/api/apiTypes';
 import { AppThunkAction } from 'app/types/redux';
+import { setUserInfo } from 'pages/MainPage/slices/mainPageSlice';
 import createLogger from 'shared/lib/logger/logger';
 import { request } from 'shared/lib/request/request';
-import { setUserInfo } from 'pages/MainPage/slices/mainPageSlice';
-import { PlayerInfoOutDto } from 'app/types/api/apiTypes';
 
 const logger = createLogger('fetchUserNickname');
 

@@ -1,9 +1,10 @@
-import Sentry from 'shared/lib/aliases/Sentry';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
+import Sentry from 'shared/lib/aliases/Sentry';
 
 const PAGE_RELOADS_QUERY_PARAMETER = 'componentLoaderReloads';
 
 const setReloadsToQuery = (reloads: number) => {
+    // eslint-disable-next-line compat/compat
     const params = new URLSearchParams(window.location.search);
     if (reloads === 0) {
         params.delete(PAGE_RELOADS_QUERY_PARAMETER);
@@ -22,6 +23,7 @@ const componentLoader = <T>(
     attemptsLeft = 3,
     interval = 1000
 ): Promise<{ default: T }> =>
+    // eslint-disable-next-line compat/compat
     new Promise((resolve, reject) => {
         lazyComponent()
             .then((component) => {
@@ -29,6 +31,7 @@ const componentLoader = <T>(
                 resolve(component);
             })
             .catch((error) => {
+                // eslint-disable-next-line compat/compat
                 const params = new URLSearchParams(window.location.search);
                 const pageReloads = Number(params.get(PAGE_RELOADS_QUERY_PARAMETER) ?? 0);
 

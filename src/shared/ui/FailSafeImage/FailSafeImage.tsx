@@ -6,11 +6,11 @@ interface Props extends HTMLAttributes<HTMLImageElement> {
 }
 
 const FailSafeImage: FunctionComponent<Props> = ({ src: rawSrc, fallbackSrc, className, ...props }) => {
-    const [src, setSrc] = useState(() => `${__IS_DEV__ ? '' : __PROXY_TARGET__}${rawSrc}` ?? fallbackSrc);
+    const [src, setSrc] = useState(() => `${__IS_DEV__ ? '' : __PROXY_TARGET__}${rawSrc}`);
 
     const onError = () => setSrc(fallbackSrc);
 
-    return <img src={src} className={className} onError={onError} {...props} />;
+    return <img src={src} className={className} onError={onError} {...props} alt="" />;
 };
 
 export default FailSafeImage;

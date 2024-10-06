@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema';
+import adminPageReducer from 'pages/AdminPage/slices/adminPageSlice';
 import mainPageReducer from 'pages/MainPage/slices/mainPageSlice';
 import shopPageReducer from 'pages/ShopPage/slices/shopPageSlice';
-import adminPageReducer from 'pages/AdminPage/slices/adminPageSlice';
+import { StateSchema } from './StateSchema';
 
 export const createReduxStore = (initialState?: StateSchema) =>
     configureStore<StateSchema>({

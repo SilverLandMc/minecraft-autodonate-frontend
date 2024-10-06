@@ -23,7 +23,7 @@ const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
                 Наш IP: <span className={styles.url}>{DISPLAYED_SERVER_URL}</span>
             </div>
 
-            <button className={styles.button} onClick={onCopy}>
+            <button type="button" className={styles.button} onClick={onCopy}>
                 {isCopied ? 'Успешно!' : 'Копировать'}
             </button>
         </div>

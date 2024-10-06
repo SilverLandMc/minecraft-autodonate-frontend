@@ -1,12 +1,12 @@
 import { FunctionComponent } from 'react';
-import usePurchasesInfo from 'widgets/AdminTabs/PurchasesTab/hooks/usePurchasesInfo';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import Title from 'shared/ui/Title/Title';
 import classNames from 'shared/lib/aliases/classNames';
-import LatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/LatestPurchases';
-import Spacing from 'shared/ui/spacing/Spacing';
-import styles from './PurchasesTab.module.scss';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import LatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/LatestPurchases';
+import usePurchasesInfo from 'widgets/AdminTabs/PurchasesTab/hooks/usePurchasesInfo';
+import styles from './PurchasesTab.module.scss';
 
 const PurchasesTab: FunctionComponent = () => {
     const { purchaseInfo, isLoading, error } = usePurchasesInfo();
@@ -34,7 +34,7 @@ const PurchasesTab: FunctionComponent = () => {
 
             {topPurchases.map(({ productName, totalSold }, index) => (
                 <div
-                    key={index}
+                    key={productName}
                     className={classNames(styles.tableRow, {
                         [styles.roundedBottom]: index === topPurchases.length - 1
                     })}

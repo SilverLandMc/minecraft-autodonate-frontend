@@ -28,7 +28,7 @@ const RoundedSingleFieldForm: FunctionComponent<Props> = ({
     };
 
     return (
-        <div data-testid={'rounded-single-field-form'} className={classNames(styles.roundedUnifiedForm, [className])}>
+        <div data-testid="rounded-single-field-form" className={classNames(styles.roundedUnifiedForm, [className])}>
             <input
                 type="text"
                 value={value}
@@ -39,7 +39,8 @@ const RoundedSingleFieldForm: FunctionComponent<Props> = ({
             />
 
             <button
-                data-testid={'rounded-single-form-button'}
+                type="button"
+                data-testid="rounded-single-form-button"
                 className={classNames(styles.button, { [styles.redButton]: hasRedButton })}
                 onClick={onButtonClick}
             >

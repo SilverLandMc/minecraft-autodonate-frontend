@@ -7,21 +7,19 @@ interface Props {
     onClose(event: MouseEvent): void;
 }
 
-const EmptyShoppingList: FunctionComponent<Props> = ({ onClose }) => {
-    return (
-        <>
-            <h1 className={styles.emptyListSubheader}>Упс.</h1>
+const EmptyShoppingList: FunctionComponent<Props> = ({ onClose }) => (
+    <>
+        <h1 className={styles.emptyListSubheader}>Упс.</h1>
 
-            <div className={styles.emptyListImageBLock}>
-                <img src={chestImage} className={styles.chestImage} alt="Корзина пуста!" />
-                <span className={styles.emptyListDescription}>В вашей корзине пока что ничего нет!</span>
-            </div>
+        <div className={styles.emptyListImageBLock}>
+            <img src={chestImage} className={styles.chestImage} alt="Корзина пуста!" />
+            <span className={styles.emptyListDescription}>В вашей корзине пока что ничего нет!</span>
+        </div>
 
-            <Button className={styles.button} onClick={onClose}>
-                Вернуться в магазин
-            </Button>
-        </>
-    );
-};
+        <Button className={styles.button} onClick={onClose}>
+            Вернуться в магазин
+        </Button>
+    </>
+);
 
 export default EmptyShoppingList;

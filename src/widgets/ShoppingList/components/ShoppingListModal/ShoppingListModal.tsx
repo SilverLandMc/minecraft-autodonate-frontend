@@ -1,10 +1,10 @@
+import { AppContext } from 'app/providers/AppContextProvider';
 import React, { FunctionComponent, MouseEvent, useContext, useRef } from 'react';
+import { useClickAway } from 'react-use';
 import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
 import Portal from 'shared/ui/Portal/Portal';
-import { useClickAway } from 'react-use';
-import { AppContext } from 'app/providers/AppContextProvider';
-import ShoppingListWithProducts from 'widgets/ShoppingList/components/ShoppingListWithProducts/ShoppingListWithProducts';
 import EmptyShoppingList from 'widgets/ShoppingList/components/EmptyShoppingList/EmptyShoppingList';
+import ShoppingListWithProducts from 'widgets/ShoppingList/components/ShoppingListWithProducts/ShoppingListWithProducts';
 import styles from './ShoppingListModal.module.scss';
 
 interface Props {

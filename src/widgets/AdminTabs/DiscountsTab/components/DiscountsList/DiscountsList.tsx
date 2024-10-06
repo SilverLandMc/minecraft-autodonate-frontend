@@ -1,18 +1,18 @@
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import Title from 'shared/ui/Title/Title';
-import Table from 'shared/ui/Table/Table';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import Button from 'shared/ui/Button/Button';
-import Spacing from 'shared/ui/spacing/Spacing';
-import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
 import { DiscountType } from 'app/types/api/apiTypes';
 import { format } from 'date-fns';
+import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import TimeFormatString from 'shared/const/enum/timeFormatString';
-import styles from './DiscountsList.module.scss';
+import classNames from 'shared/lib/aliases/classNames';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Table from 'shared/ui/Table/Table';
+import Title from 'shared/ui/Title/Title';
+import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
+import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
+import styles from './DiscountsList.module.scss';
 
 const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
     setActiveSubTab,
@@ -30,6 +30,8 @@ const DiscountsList: FunctionComponent<DiscountComponentProps> = ({
             await deleteDiscount(id);
             setReFetchListFlag(!reFetchListFlag);
         } catch (error) {
+            // todo Добавить нотификацию не в виде alert
+            // eslint-disable-next-line no-alert
             alert('Ошибка при удалении скидки!');
         }
     };

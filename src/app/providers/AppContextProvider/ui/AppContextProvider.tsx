@@ -1,7 +1,7 @@
-import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import AppContext from 'app/providers/AppContextProvider/lib/AppContext';
-import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
 import { PromocodeOutDto } from 'app/types/api/apiTypes';
+import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
+import { FunctionComponent, PropsWithChildren, useState } from 'react';
 
 const AppContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
     const [productsToBuy, setProductsToBuy] = useState<ShoppingListProductToBuyInDto[]>([]);

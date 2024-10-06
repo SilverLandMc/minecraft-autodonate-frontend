@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import RoundedSingleFieldForm from './RoundedSingleFieldForm';
 import noop from 'shared/lib/noop/noop';
 import { withCustomWrapper } from '../../config/storybook';
+import RoundedSingleFieldForm from './RoundedSingleFieldForm';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'shared/RoundedSingleFieldForm',

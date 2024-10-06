@@ -1,21 +1,22 @@
 @import '/src/app/styles/media/media.scss';
 
 .productCard {
-    width: 100%;
-    max-width: 300px;
-    height: 488px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
+    width: 100%;
+    max-width: 300px;
+    height: 488px;
+    padding: 15px;
+
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
     box-shadow:
         0 4px 8px 0 rgba(0, 0, 0, 0.1),
         0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    padding: 15px;
 
     cursor: pointer;
     transition: 0.3s;
@@ -33,6 +34,7 @@
 
 .productImage {
     width: 100%;
+
     border-radius: 5px;
 
     @include mediaS {
@@ -43,16 +45,17 @@
 .bottomBlock {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 7px;
+    align-items: center;
 }
 
 .priceBlock {
-    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 5px;
     justify-content: center;
+
+    width: 100%;
 }
 
 .oldPrice {
@@ -73,9 +76,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
-    border-radius: 4px;
+
     padding: 2px;
+
+    border-radius: 4px;
+
+    background: red;
     transition: 0.3s;
 
     &:hover {
@@ -101,20 +107,21 @@
 }
 
 .modal {
-    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+
     min-height: 488px;
+    padding: 15px;
+
+    border-radius: 5px;
+
+    background: white;
     box-shadow:
         0 34px 138px 0 rgba(0, 0, 0, 0.35),
         0 36px 150px 0 rgba(0, 0, 0, 0.35);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-
-    border-radius: 5px;
-    padding: 15px;
 
     font-family: var(--font-family-main);
 

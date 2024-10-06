@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import ProgressBar from './ProgressBar';
 import { SizedDecorator } from 'shared/config/storybook/sizedDecorator/SizedDecorator';
+import ProgressBar from './ProgressBar';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'shared/ProgressBar',

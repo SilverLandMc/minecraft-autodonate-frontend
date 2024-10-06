@@ -1,20 +1,20 @@
-import React, { FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import styles from './ProductsList.module.scss';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
-import { ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
-import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
-import Table from 'shared/ui/Table/Table';
 import { ValidityType } from 'app/types/api/apiTypes';
-import deleteProduct from 'widgets/AdminTabs/ProductsTab/actions/deleteProduct';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
-import Spacing from 'shared/ui/spacing/Spacing';
+import React, { FunctionComponent, useState } from 'react';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import classNames from 'shared/lib/aliases/classNames';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
 import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Table from 'shared/ui/Table/Table';
+import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import deleteProduct from 'widgets/AdminTabs/ProductsTab/actions/deleteProduct';
+import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
+import { ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
+import styles from './ProductsList.module.scss';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {
     [ProductCategory.RANKS]: 'Ранги',
@@ -49,6 +49,8 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
             setReFetchFlag(!reFetchFlag);
             dispatch(resetCategoriesLoaded());
         } catch (error) {
+            // todo Переехать на нотификации
+            // eslint-disable-next-line no-alert
             alert('Ошибка при удалении продукта!');
         }
     };

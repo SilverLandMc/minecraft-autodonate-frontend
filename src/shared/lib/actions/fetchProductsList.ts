@@ -1,10 +1,10 @@
-import { AppThunkAction } from 'app/types/redux';
-import createLogger from 'shared/lib/logger/logger';
-import Sentry from 'shared/lib/aliases/Sentry';
-import { request } from 'shared/lib/request/request';
-import { ProductOutDto } from 'app/types/api/apiTypes';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { ProductOutDto } from 'app/types/api/apiTypes';
+import { AppThunkAction } from 'app/types/redux';
 import { setFetchingFailed, setProducts } from 'pages/ShopPage/slices/shopPageSlice';
+import Sentry from 'shared/lib/aliases/Sentry';
+import createLogger from 'shared/lib/logger/logger';
+import { request } from 'shared/lib/request/request';
 
 const logger = createLogger('fetchProductsList');
 

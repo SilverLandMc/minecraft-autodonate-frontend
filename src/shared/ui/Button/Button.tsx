@@ -6,12 +6,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
 }
 
-const Button: FunctionComponent<Props> = ({ className, children, ...props }) => {
-    return (
-        <button className={classNames(styles.button, [className])} {...props}>
-            {children}
-        </button>
-    );
-};
+const Button: FunctionComponent<Props> = ({ className, children, ...props }) => (
+    <button type="button" className={classNames(styles.button, [className])} {...props}>
+        {children}
+    </button>
+);
 
 export default Button;
