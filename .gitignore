@@ -3,5 +3,8 @@ node_modules
 .idea
 .env
 .api-docs
+storybook-static
 stats.json
 *storybook.log
+.loki/report.html
+.loki/report.json

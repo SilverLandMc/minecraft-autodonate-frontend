@@ -1,10 +1,9 @@
 import type { Preview } from '@storybook/react';
 import '../../src/app/styles/index.scss';
 import { AppContainerDecorator } from '../../src/shared/config/storybook/appContainerDecorator/AppContainerDecorator';
-import { initialize, mswLoader } from 'msw-storybook-addon';
-import { handlers } from './mocks/handlers';
+import { setupSinonMocks } from './mocks/setupSinonMocks';
 
-initialize();
+setupSinonMocks();
 
 const preview: Preview = {
     parameters: {
@@ -13,13 +12,9 @@ const preview: Preview = {
                 color: /(background|color)$/i,
                 date: /Date$/i
             }
-        },
-        msw: {
-            handlers
         }
     },
-    decorators: [AppContainerDecorator],
-    loaders: [mswLoader]
+    decorators: [AppContainerDecorator]
 };
 
 export default preview;
