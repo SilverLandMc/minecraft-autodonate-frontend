@@ -1,11 +1,11 @@
-import { RouteProps } from 'react-router-dom';
-import { MainPage } from 'pages/MainPage';
-import { TermsOfServicePage } from 'pages/TermsOfServicePage';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
-import { ShopPage } from 'pages/ShopPage';
 import { AdminPage } from 'pages/AdminPage';
 import { AuthPage } from 'pages/AuthPage';
+import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import { ShopPage } from 'pages/ShopPage';
+import { TermsOfServicePage } from 'pages/TermsOfServicePage';
+import { RouteProps } from 'react-router-dom';
 
 export const enum AppRoutes {
     //region public

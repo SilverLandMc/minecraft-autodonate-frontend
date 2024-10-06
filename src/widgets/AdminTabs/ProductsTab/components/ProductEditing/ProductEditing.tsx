@@ -1,22 +1,22 @@
-import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import { ActiveSubTab, ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
-import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
-import { Category, ProductEditInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
-import Title from 'shared/ui/Title/Title';
-import Spacing from 'shared/ui/spacing/Spacing';
-import Button from 'shared/ui/Button/Button';
-import styles from './ProductEditing.module.scss';
-import AdminImageUpload from 'widgets/AdminTabs/ProductsTab/components/AdminImageUpload/AdminImageUpload';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
-import useProduct from 'widgets/AdminTabs/ProductsTab/hooks/useProduct';
-import editProduct from 'widgets/AdminTabs/ProductsTab/actions/editProduct';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import useDiscountInfo from 'shared/hooks/useDiscountInfo';
-import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { Category, ProductEditInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
+import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
+import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import useDiscountInfo from 'shared/hooks/useDiscountInfo';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import editProduct from 'widgets/AdminTabs/ProductsTab/actions/editProduct';
+import AdminImageUpload from 'widgets/AdminTabs/ProductsTab/components/AdminImageUpload/AdminImageUpload';
+import useProduct from 'widgets/AdminTabs/ProductsTab/hooks/useProduct';
+import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
+import { ActiveSubTab, ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
+import styles from './ProductEditing.module.scss';
 
 const PREVIOUS_PRODUCT_SELECT_DESCRIPTION_LENGTH = 42;
 
@@ -82,7 +82,7 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
         });
 
         setIsProcessing(false);
-    }, [isLoading]);
+    }, [isLoading, editingProductId, initialProduct]);
 
     const changeName = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, name: event.target.value });
@@ -241,9 +241,9 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
                 </>
             )}
 
-            {productListFetchError && <AdminErrorBlock text={'Ошибка при загрузке списка продуктов'} />}
+            {productListFetchError && <AdminErrorBlock text="Ошибка при загрузке списка продуктов" />}
 
-            {discountInfoError && <AdminErrorBlock text={'Ошибка при загрузке списка скидок'} />}
+            {discountInfoError && <AdminErrorBlock text="Ошибка при загрузке списка скидок" />}
         </div>
     );
 };

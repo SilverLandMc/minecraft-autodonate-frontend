@@ -2,27 +2,31 @@
 
 .backgroundWrapper {
     position: relative;
-    background-image: url('images/background.png');
-    background-size: cover;
-    background-position: center;
-    object-fit: fill;
     z-index: var(--background-index);
+
+    object-fit: fill;
+
+    background-image: url('images/background.png');
+    background-position: center;
+    background-size: cover;
 
     &::before {
         content: '';
+
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.15);
+        left: 0;
         z-index: var(--filter-layer-index);
+
+        background: rgba(0, 0, 0, 0.15);
     }
 }
 
 .section {
-    z-index: var(--main-content-index);
     position: relative;
+    z-index: var(--main-content-index);
 
     @include mediaS {
         padding: 0;
@@ -36,15 +40,18 @@
 
     @include mediaS {
         flex-direction: row;
+        gap: 40px;
         justify-content: space-between;
         align-items: center;
-        gap: 40px;
     }
 }
 
 .header,
 .subHeader,
 .enterProposal {
+    color: var(--color-white);
+    line-height: 100%;
+
     @media (max-width: 544px) {
         text-shadow:
             1px 1px 2px black,
@@ -54,9 +61,6 @@
             -1px 0px 2px black,
             0 -1px 2px black;
     }
-
-    color: var(--color-white);
-    line-height: 100%;
 }
 
 .header {
@@ -102,8 +106,9 @@
 }
 
 .secondBlock {
-    max-width: 320px;
     gap: 10px;
+
+    max-width: 320px;
 
     @include mediaS {
         width: 240px;

@@ -1,8 +1,8 @@
-import React, { FunctionComponent, MouseEvent, useContext, useState } from 'react';
-import cartImage from './images/cartIcon.png';
-import { AppContext } from 'app/providers/AppContextProvider';
 import { Time } from 'app/const/enum/Time';
+import { AppContext } from 'app/providers/AppContextProvider';
+import React, { FunctionComponent, MouseEvent, useContext, useState } from 'react';
 import ShoppingListModal from 'widgets/ShoppingList/components/ShoppingListModal/ShoppingListModal';
+import cartImage from './images/cartIcon.png';
 import styles from './ShoppingList.module.scss';
 
 const ShoppingList: FunctionComponent = () => {

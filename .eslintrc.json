@@ -1,0 +1,41 @@
+{
+    "extends": ["@37bytes/eslint-config/browserCompatibility/.eslintrc.json"],
+    "rules": {
+        "no-await-in-loop": "error",
+        "arrow-body-style": ["warn", "as-needed"],
+        "import/prefer-default-export": "off",
+        "import/default": "off",
+        "no-restricted-imports": [
+            "error",
+            {
+                "paths": [
+                    {
+                        "name": "clsx",
+                        "message": "You must use aliases/className instead"
+                    }
+                ]
+            }
+        ],
+        "import/order": [
+            "warn",
+            {
+                "alphabetize": { "order": "asc", "caseInsensitive": true },
+                "newlines-between": "never",
+                "pathGroupsExcludedImportTypes": ["builtin"],
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index",
+                    "type",
+                    "object",
+                    "unknown"
+                ],
+                "warnOnUnassignedImports": true
+            }
+        ]
+    },
+    "parser": "@typescript-eslint/parser"
+}

@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useContext } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import trashIcon from 'shared/assets/trashIcon.svg';
-import Spacing from 'shared/ui/spacing/Spacing';
 import { AppContext } from 'app/providers/AppContextProvider';
+import React, { FunctionComponent, useContext } from 'react';
+import trashIcon from 'shared/assets/trashIcon.svg';
+import classNames from 'shared/lib/aliases/classNames';
+import Spacing from 'shared/ui/spacing/Spacing';
 import styles from './ShoppingListTable.module.scss';
 
 const ShoppingListTable: FunctionComponent = () => {
@@ -37,7 +37,7 @@ const ShoppingListTable: FunctionComponent = () => {
 
                         <div className={classNames(styles.cell, styles.bold)}>Шт.:</div>
 
-                        <div className={classNames(styles.cell)}></div>
+                        <div className={classNames(styles.cell)} />
 
                         <div className={classNames(styles.cell, styles.bold)}>Итог:</div>
                     </div>
@@ -60,12 +60,17 @@ const ShoppingListTable: FunctionComponent = () => {
 
                                 <div className={styles.cell}>
                                     <button
+                                        type="button"
                                         className={styles.incrementButton}
                                         onClick={incrementProduct(productId, name, displayedPrice)}
                                     >
                                         +
                                     </button>
-                                    <button className={styles.decrementButton} onClick={decrementProduct(productId)}>
+                                    <button
+                                        type="button"
+                                        className={styles.decrementButton}
+                                        onClick={decrementProduct(productId)}
+                                    >
                                         -
                                     </button>
                                 </div>
@@ -73,7 +78,7 @@ const ShoppingListTable: FunctionComponent = () => {
                                 <div className={styles.cell}>{(displayedPrice * amount).toFixed(1)} ₽</div>
                             </div>
 
-                            <button className={styles.deleteButton} onClick={deleteProduct(productId)}>
+                            <button type="button" className={styles.deleteButton} onClick={deleteProduct(productId)}>
                                 <img src={trashIcon} alt="Удалить" />
                             </button>
                         </div>

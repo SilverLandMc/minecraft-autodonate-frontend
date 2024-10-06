@@ -27,21 +27,22 @@
 }
 
 .modal {
-    z-index: var(--modal-index);
     position: fixed;
-    left: 0;
     top: 0;
     right: 0;
     bottom: 0;
+    left: 0;
+    z-index: var(--modal-index);
 
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.4);
+    align-items: center;
 
     overflow: hidden;
+
+    background-color: rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(8px);
 
     animation: fadeIn 0.3s;
 
@@ -59,15 +60,17 @@
 }
 
 .close {
-    cursor: pointer;
     position: absolute;
-    width: 16px;
-    height: 16px;
     top: -30px;
     right: -30px;
-    padding: 9px;
-    background-image: url('shared/assets/closeIcon.svg');
     z-index: var(--modal-index);
+
+    width: 16px;
+    height: 16px;
+    padding: 9px;
+
+    background-image: url('shared/assets/closeIcon.svg');
+    cursor: pointer;
     filter: invert(0);
 
     &.fixedClose {
@@ -85,6 +88,8 @@
 
 .modalContent {
     position: relative;
-    padding-bottom: 24px;
+
     display: flex;
+
+    padding-bottom: 24px;
 }

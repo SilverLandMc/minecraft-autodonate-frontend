@@ -2,11 +2,13 @@
 
 .cartWrapper {
     position: relative;
+
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     padding: 3px;
+
     border-radius: 10px;
 
     cursor: pointer;
@@ -17,8 +19,9 @@
     }
 
     @include mediaS {
-        background: var(--black-opacity-30);
         padding: 5px;
+
+        background: var(--black-opacity-30);
     }
 }
 
@@ -35,13 +38,18 @@
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(50%, -50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color-white);
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 4px;
+
     background-color: var(--black-opacity-70);
+
+    color: var(--color-white);
+    transform: translate(50%, -50%);
 }

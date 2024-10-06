@@ -1,16 +1,16 @@
-import React, { FunctionComponent, useContext, useState } from 'react';
-import ShoppingListTable from 'features/ShoppingListTable/ShoppingListTable';
-import PromoCodeBlock from 'features/PromoCodeBlock/PromoCodeBlock';
-import Button from 'shared/ui/Button/Button';
-import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
-import { useSelector } from 'react-redux';
-import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
 import { AppContext } from 'app/providers/AppContextProvider';
-import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import { CreatePaymentDto } from 'app/types/api/apiTypes';
-import createPaymentLink from 'widgets/ShoppingList/utils/createPaymentLink';
+import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
+import PromoCodeBlock from 'features/PromoCodeBlock/PromoCodeBlock';
+import ShoppingListTable from 'features/ShoppingListTable/ShoppingListTable';
+import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
+import React, { FunctionComponent, useContext, useState } from 'react';
+import { useSelector } from 'react-redux';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import createLinkOpener from 'shared/lib/createLinkOpener/createLinkOpener';
+import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
+import Button from 'shared/ui/Button/Button';
+import createPaymentLink from 'widgets/ShoppingList/utils/createPaymentLink';
 import styles from './ShoppingListWithProducts.module.scss';
 
 const ShoppingListWithProducts: FunctionComponent = () => {
@@ -29,12 +29,10 @@ const ShoppingListWithProducts: FunctionComponent = () => {
 
         const paymentInfo: CreatePaymentDto = {
             playerName,
-            productList: productsToBuy.map(({ id, amount }) => {
-                return {
-                    id,
-                    amount
-                };
-            }),
+            productList: productsToBuy.map(({ id, amount }) => ({
+                id,
+                amount
+            })),
             promocode: promoCode?.name ?? null
         };
 

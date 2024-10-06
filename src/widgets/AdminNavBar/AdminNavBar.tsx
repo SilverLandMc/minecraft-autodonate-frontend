@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import styles from './AdminNavBar.module.scss';
 import classNames from 'shared/lib/aliases/classNames';
+import styles from './AdminNavBar.module.scss';
 
 export enum AdminTab {
     PURCHASES = 'purchases',

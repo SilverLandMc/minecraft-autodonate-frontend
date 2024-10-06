@@ -1,10 +1,9 @@
-import React from 'react';
-
-import { useTheme } from 'app/providers/ThemeProvider/lib/useTheme';
 import { AppRouter } from 'app/providers/router';
-import Header from 'widgets/Header/Header';
+import { useTheme } from 'app/providers/ThemeProvider/lib/useTheme';
+import React from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import Footer from 'widgets/Footer/Footer';
+import Header from 'widgets/Header/Header';
 import './styles/index.scss';
 
 const App = () => {

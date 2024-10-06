@@ -1,11 +1,11 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import Title from 'shared/ui/Title/Title';
-import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
-import Spacing from 'shared/ui/spacing/Spacing';
 import { acceptImageSetting } from 'shared/const/enum/imageType';
-import styles from './AdminImageUpload.module.scss';
-import uploadFile from 'widgets/AdminTabs/ProductsTab/actions/uploadFile';
+import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
 import Button from 'shared/ui/Button/Button';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import uploadFile from 'widgets/AdminTabs/ProductsTab/actions/uploadFile';
+import styles from './AdminImageUpload.module.scss';
 
 interface Props {
     setImageId(imageId: string): void;
@@ -44,6 +44,7 @@ const AdminImageUpload: FunctionComponent<Props> = ({ setImageId, initialImageSr
         try {
             const imageId = await uploadFile(file);
             setImageId(imageId);
+            // eslint-disable-next-line compat/compat
             setImageSrc(URL.createObjectURL(file));
             setError(undefined);
         } catch (error) {

@@ -1,6 +1,6 @@
+import { safeLocalStorage } from '@37bytes/storage-fallback';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PlayerInfoOutDto, Players } from 'app/types/api/apiTypes';
-import { safeLocalStorage } from '@37bytes/storage-fallback';
 import LocalStorageKey from 'shared/const/enum/localStorageKey';
 
 export interface MainPagePartState extends Players {

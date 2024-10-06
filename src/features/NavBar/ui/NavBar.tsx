@@ -1,12 +1,12 @@
 import React, { FunctionComponent, MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoutes as AppRoute, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import homeIcon from './images/homeIcon.png';
-import ranksIcon from './images/ranksIcon.png';
+import classNames from 'shared/lib/aliases/classNames';
 import boostersIcon from './images/boostersIcon.png';
 import chestsIcon from './images/chestsIcon.png';
+import homeIcon from './images/homeIcon.png';
+import ranksIcon from './images/ranksIcon.png';
 import resourcesIcon from './images/resourcesIcon.png';
-import classNames from 'shared/lib/aliases/classNames';
 import styles from './NavBar.module.scss';
 
 interface Props {

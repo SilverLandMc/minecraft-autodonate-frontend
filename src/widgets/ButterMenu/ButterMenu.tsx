@@ -1,12 +1,12 @@
-import { FunctionComponent, MouseEvent, useRef, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import butterIcon from './images/butterIcon.svg';
-import Portal from 'shared/ui/Portal/Portal';
-import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
-import { NavBar } from 'features/NavBar';
-import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
+import { NavBar } from 'features/NavBar';
+import { FunctionComponent, MouseEvent, useRef, useState } from 'react';
+import { useClickAway } from 'react-use';
+import classNames from 'shared/lib/aliases/classNames';
+import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
+import Portal from 'shared/ui/Portal/Portal';
 import styles from './ButterMenu.module.scss';
+import butterIcon from './images/butterIcon.svg';
 
 const ButterMenu: FunctionComponent = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);

@@ -1,20 +1,21 @@
+import { PageDto } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useMemo, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
-import styles from './LatestPurchases.module.scss';
-import useLatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/hooks/useLatestPurchases';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import { PageDto } from 'app/types/api/apiTypes';
-import Title from 'shared/ui/Title/Title';
-import Spacing from 'shared/ui/spacing/Spacing';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import useLatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/hooks/useLatestPurchases';
+import styles from './LatestPurchases.module.scss';
 
 const LatestPurchases: FunctionComponent = () => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
     const [pageSize, setPageSize] = useState(10);
 
-    const pageParameters: PageDto = useMemo(() => {
-        return { page: currentPageNumber, size: pageSize };
-    }, [currentPageNumber, pageSize]);
+    const pageParameters: PageDto = useMemo(
+        () => ({ page: currentPageNumber, size: pageSize }),
+        [currentPageNumber, pageSize]
+    );
     const { purchaseInfo, isLoading, error } = useLatestPurchases(pageParameters);
 
     const incrementPageNumber = () => setCurrentPageNumber(currentPageNumber + 1);

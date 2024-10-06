@@ -12,9 +12,9 @@
 
 .cardsWrapper {
     display: flex;
-    align-items: center;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 
     @include mediaS {
         display: grid;

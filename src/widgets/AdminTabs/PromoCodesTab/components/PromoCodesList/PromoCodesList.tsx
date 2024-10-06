@@ -1,19 +1,19 @@
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import styles from './PromoCodesList.module.scss';
-import usePromoCodesList from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCodesList';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import Title from 'shared/ui/Title/Title';
-import Table from 'shared/ui/Table/Table';
-import { format } from 'date-fns';
-import TimeFormatString from 'shared/const/enum/timeFormatString';
 import { DiscountType } from 'app/types/api/apiTypes';
-import deletePromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/deletePromoCode';
-import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { format } from 'date-fns';
+import React, { ChangeEvent, FunctionComponent, useState } from 'react';
+import TimeFormatString from 'shared/const/enum/timeFormatString';
+import classNames from 'shared/lib/aliases/classNames';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
 import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Table from 'shared/ui/Table/Table';
+import Title from 'shared/ui/Title/Title';
+import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import deletePromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/deletePromoCode';
+import usePromoCodesList from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCodesList';
+import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
+import styles from './PromoCodesList.module.scss';
 
 const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({
     setActiveSubTab,
@@ -40,6 +40,8 @@ const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({
             await deletePromoCode(id);
             setReFetchFlag(!reFetchFlag);
         } catch (error) {
+            // todo Переехать на нотификации
+            // eslint-disable-next-line no-alert
             alert('Ошибка при удалении промокода!');
         }
     };

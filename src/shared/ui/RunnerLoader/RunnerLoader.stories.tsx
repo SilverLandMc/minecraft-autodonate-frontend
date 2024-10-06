@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import RunnerLoader from './RunnerLoader';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'shared/RunnerLoader',

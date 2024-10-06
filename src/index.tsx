@@ -1,13 +1,13 @@
-import App from './app/App';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'app/providers/ThemeProvider';
-import initializeSentry from 'shared/lib/initializeSentry/initializeSentry';
-import combineProviders from 'shared/lib/combineProviders/combineProviders';
-import { MediaContextProvider } from 'app/providers/MediaProvider';
-import { createRoot } from 'react-dom/client';
-import { StoreProvider } from 'app/providers/StoreProvider';
 import { AppContextProvider } from 'app/providers/AppContextProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
+import { MediaContextProvider } from 'app/providers/MediaProvider';
+import { StoreProvider } from 'app/providers/StoreProvider';
+import { ThemeProvider } from 'app/providers/ThemeProvider';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import combineProviders from 'shared/lib/combineProviders/combineProviders';
+import initializeSentry from 'shared/lib/initializeSentry/initializeSentry';
+import App from './app/App';
 import './app/styles/index.scss';
 
 if (!__IS_DEV__) {

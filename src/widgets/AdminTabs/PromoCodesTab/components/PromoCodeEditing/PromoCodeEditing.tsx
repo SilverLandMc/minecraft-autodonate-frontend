@@ -1,16 +1,16 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import Title from 'shared/ui/Title/Title';
-import Button from 'shared/ui/Button/Button';
-import Spacing from 'shared/ui/spacing/Spacing';
-import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
-import usePromoCode from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCode';
-import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
-import editPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/editPromoCode';
 import useDiscountInfo from 'shared/hooks/useDiscountInfo';
+import classNames from 'shared/lib/aliases/classNames';
+import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
+import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import editPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/editPromoCode';
+import usePromoCode from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCode';
+import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
 import styles from './PromoCodeEditing.module.scss';
 
 const initialFormValues = {
@@ -49,7 +49,7 @@ const PromoCodeEditing: FunctionComponent<PromoCodeComponentProps> = ({
             discountId: initialPromoCode?.discount.id,
             limitedUse: initialPromoCode?.limitedUse ?? false
         });
-    }, [isLoading]);
+    }, [isLoading, editingPromoCodeId, initialPromoCode]);
 
     const changeDiscountId = (event: ChangeEvent<HTMLSelectElement>) => {
         const discountId = event.target.value;
@@ -71,7 +71,6 @@ const PromoCodeEditing: FunctionComponent<PromoCodeComponentProps> = ({
     const navigateToDiscountsList = () => setActiveSubTab(ActiveSubTab.LIST);
 
     const validateAndEdit = async () => {
-        console.log(formValues);
         if (formValues.name.trim().length === 0) {
             setError('Название не должно быть пустым!');
             return;

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductOutDto } from 'app/types/api/apiTypes';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { ProductOutDto } from 'app/types/api/apiTypes';
 
 interface SetProductsPayload {
     products: ProductOutDto[];

@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
 import DOMPurify from 'dompurify';
+import { FunctionComponent } from 'react';
 
 interface Props {
     rawHTML?: string;

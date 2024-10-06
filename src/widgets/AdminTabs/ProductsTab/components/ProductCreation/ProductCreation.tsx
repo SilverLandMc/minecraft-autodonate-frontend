@@ -1,20 +1,20 @@
-import { ChangeEvent, FunctionComponent, useState } from 'react';
-import { ActiveSubTab, ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
-import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
-import { Category, ProductCreateInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
-import createProduct from 'widgets/AdminTabs/ProductsTab/actions/createProduct';
-import Title from 'shared/ui/Title/Title';
-import Spacing from 'shared/ui/spacing/Spacing';
-import Button from 'shared/ui/Button/Button';
-import AdminImageUpload from 'widgets/AdminTabs/ProductsTab/components/AdminImageUpload/AdminImageUpload';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
-import useDiscountInfo from 'shared/hooks/useDiscountInfo';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
-import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { Category, ProductCreateInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
+import { resetCategoriesLoaded } from 'pages/ShopPage/slices/shopPageSlice';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import useDiscountInfo from 'shared/hooks/useDiscountInfo';
 import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
+import Button from 'shared/ui/Button/Button';
+import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
+import Title from 'shared/ui/Title/Title';
+import createProduct from 'widgets/AdminTabs/ProductsTab/actions/createProduct';
+import AdminImageUpload from 'widgets/AdminTabs/ProductsTab/components/AdminImageUpload/AdminImageUpload';
+import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
+import { ActiveSubTab, ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
 import styles from './ProductCreation.module.scss';
 
 const PREVIOUS_PRODUCT_SELECT_DESCRIPTION_LENGTH = 42;
@@ -29,6 +29,7 @@ const initialFormValues: ProductCreateInDto = {
     category: Category.RANKS,
     validityType: ValidityType.PERMANENT,
     validityPeriod: ValidityPeriod.LIFE_TIME,
+
     discountId: '',
     order: 0,
     singlePurchase: false
@@ -43,7 +44,9 @@ const ProductCreation: FunctionComponent<ProductComponentProps> = ({ setActiveSu
         productList,
         isLoading: isProductListLoading,
         error: productListFetchError
-    } = useProductList({ productCategory: formValues.category.toLowerCase() as ProductCategory });
+    } = useProductList({
+        productCategory: formValues.category.toLowerCase() as ProductCategory
+    });
     const productListInfo = productList?.map(({ id, description, priceWithoutDiscount, name }) => ({
         id,
         description: `${name}. ${description.slice(0, PREVIOUS_PRODUCT_SELECT_DESCRIPTION_LENGTH)}... (${priceWithoutDiscount} руб.)`
@@ -64,7 +67,10 @@ const ProductCreation: FunctionComponent<ProductComponentProps> = ({ setActiveSu
     const changeImageId = (imageId: string) => setFormValues({ ...formValues, imageId });
 
     const changePreviousProductId = (event: ChangeEvent<HTMLSelectElement>) =>
-        setFormValues({ ...formValues, previousProductForTopUpId: event.target.value });
+        setFormValues({
+            ...formValues,
+            previousProductForTopUpId: event.target.value
+        });
 
     const changeQuantity = (event: ChangeEvent<HTMLInputElement>) =>
         setFormValues({ ...formValues, quantity: Number(event.target.value) });
@@ -73,10 +79,16 @@ const ProductCreation: FunctionComponent<ProductComponentProps> = ({ setActiveSu
         setFormValues({ ...formValues, category: event.target.value as Category });
 
     const changeValidityType = (event: ChangeEvent<HTMLSelectElement>) =>
-        setFormValues({ ...formValues, validityType: event.target.value as ValidityType });
+        setFormValues({
+            ...formValues,
+            validityType: event.target.value as ValidityType
+        });
 
     const changeValidityPeriod = (event: ChangeEvent<HTMLSelectElement>) =>
-        setFormValues({ ...formValues, validityPeriod: event.target.value as ValidityPeriod });
+        setFormValues({
+            ...formValues,
+            validityPeriod: event.target.value as ValidityPeriod
+        });
 
     const changeDiscountId = (event: ChangeEvent<HTMLSelectElement>) =>
         setFormValues({ ...formValues, discountId: event.target.value });
@@ -204,9 +216,9 @@ const ProductCreation: FunctionComponent<ProductComponentProps> = ({ setActiveSu
                 </>
             )}
 
-            {productListFetchError && <AdminErrorBlock text={'Ошибка при загрузке списка продуктов'} />}
+            {productListFetchError && <AdminErrorBlock text="Ошибка при загрузке списка продуктов" />}
 
-            {discountInfoError && <AdminErrorBlock text={'Ошибка при загрузке списка скидок'} />}
+            {discountInfoError && <AdminErrorBlock text="Ошибка при загрузке списка скидок" />}
         </div>
     );
 };

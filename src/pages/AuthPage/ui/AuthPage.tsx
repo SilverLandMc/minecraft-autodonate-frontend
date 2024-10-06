@@ -1,12 +1,13 @@
-import { FunctionComponent, useEffect, useRef } from 'react';
+import { setAuthPageVisited } from 'pages/AdminPage/slices/adminPageSlice';
+import { FunctionComponent, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffectOnce } from 'react-use';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
 import Section from 'shared/ui/Section/Section';
 import styles from './AuthPage.module.scss';
-import { useSelector } from 'react-redux';
-import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
-import { useNavigate } from 'react-router-dom';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { setAuthPageVisited } from 'pages/AdminPage/slices/adminPageSlice';
 
 const AuthPage: FunctionComponent = () => {
     const telegramButtonRef = useRef(null);
@@ -15,12 +16,14 @@ const AuthPage: FunctionComponent = () => {
     const navigate = useNavigate();
     const { isAdmin, isAuthPageVisited } = useSelector(selectAdminPagePart);
 
-    useEffect(() => {
+    useEffectOnce(() => {
         if (isAdmin || isAuthPageVisited) {
             navigate(RoutePath['admin']);
         }
 
-        if (telegramButtonRef.current) {
+        const buttonRef = telegramButtonRef.current;
+
+        if (buttonRef) {
             const script = document.createElement('script');
             script.src = 'https://telegram.org/js/telegram-widget.js?22';
             script.setAttribute('data-telegram-login', 'silverlandmc_bot');
@@ -33,12 +36,12 @@ const AuthPage: FunctionComponent = () => {
             return () => {
                 dispatch(setAuthPageVisited());
 
-                if (telegramButtonRef.current) {
-                    telegramButtonRef.current.removeChild(script);
+                if (buttonRef) {
+                    buttonRef.removeChild(script);
                 }
             };
         }
-    }, []);
+    });
 
     return (
         <div className={styles.wrapper}>

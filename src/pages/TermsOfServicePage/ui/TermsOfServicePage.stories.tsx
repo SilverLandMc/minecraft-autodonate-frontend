@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import TermsOfServicePage from './TermsOfServicePage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'pages/TermsOfServicePage',

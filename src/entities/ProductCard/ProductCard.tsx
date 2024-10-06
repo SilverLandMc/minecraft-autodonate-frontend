@@ -1,17 +1,17 @@
-import { FunctionComponent, MouseEvent, useContext, useRef, useState } from 'react';
-import { ProductOutDto } from 'app/types/api/apiTypes';
-import chestImage from 'shared/assets/chest.png';
-import Button from 'shared/ui/Button/Button';
-import Portal from 'shared/ui/Portal/Portal';
-import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
-import { useClickAway } from 'react-use';
 import { Time } from 'app/const/enum/Time';
-import classNames from 'shared/lib/aliases/classNames';
-import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
 import { AppContext } from 'app/providers/AppContextProvider';
+import { ProductOutDto } from 'app/types/api/apiTypes';
+import { FunctionComponent, MouseEvent, useContext, useRef, useState } from 'react';
+import { useClickAway } from 'react-use';
+import chestImage from 'shared/assets/chest.png';
 import trashIcon from 'shared/assets/trashIcon.svg';
-import styles from './ProductCard.module.scss';
+import classNames from 'shared/lib/aliases/classNames';
+import Button from 'shared/ui/Button/Button';
+import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
+import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
+import Portal from 'shared/ui/Portal/Portal';
 import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML';
+import styles from './ProductCard.module.scss';
 
 interface Props {
     product: ProductOutDto;

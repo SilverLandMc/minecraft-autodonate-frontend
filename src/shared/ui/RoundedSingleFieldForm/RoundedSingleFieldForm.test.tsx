@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import RoundedSingleFieldForm from './RoundedSingleFieldForm';
 import noop from '../../lib/noop/noop';
+import RoundedSingleFieldForm from './RoundedSingleFieldForm';
 
 describe('RoundedSingleFieldForm', () => {
     test('Рендерится', () => {
@@ -19,7 +19,7 @@ describe('RoundedSingleFieldForm', () => {
     });
 
     test('Когда вызывается с текстом для кнопки, кнопка имеет установленный текст', () => {
-        render(<RoundedSingleFieldForm buttonText={'test text'} onChange={noop} />);
+        render(<RoundedSingleFieldForm buttonText="test text" onChange={noop} />);
         expect(screen.getByTestId('rounded-single-form-button')).toHaveTextContent('test text');
     });
 });

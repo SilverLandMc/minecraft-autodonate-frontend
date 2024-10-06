@@ -1,11 +1,12 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import ProgressBar from 'shared/ui/ProgressBar/ProgressBar';
-import Spacing from 'shared/ui/spacing/Spacing';
 import fetchOnlineInfo from 'pages/MainPage/utils/fetchOnlineInfo';
+import { FunctionComponent, useState } from 'react';
 import { useSelector } from 'react-redux';
-import selectOnline from 'shared/redux/selectors/selectOnline';
+import { useEffectOnce } from 'react-use';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
+import selectOnline from 'shared/redux/selectors/selectOnline';
+import ProgressBar from 'shared/ui/ProgressBar/ProgressBar';
 import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import Spacing from 'shared/ui/spacing/Spacing';
 import styles from './OnlineBlock.module.scss';
 
 const OnlineBlock: FunctionComponent = () => {
@@ -21,7 +22,7 @@ const OnlineBlock: FunctionComponent = () => {
         setTimeout(() => setIsOnlineFetching(false), 1400);
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         if (isLoaded) {
             return;
         }
@@ -38,7 +39,7 @@ const OnlineBlock: FunctionComponent = () => {
                 finishFetchingWithDelay();
             }
         })();
-    }, []);
+    });
 
     if (isOnlineFetching) {
         return (

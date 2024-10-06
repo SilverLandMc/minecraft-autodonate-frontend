@@ -1,9 +1,9 @@
-import { AppThunkAction } from 'app/types/redux';
-import createLogger from 'shared/lib/logger/logger';
-import Sentry from 'shared/lib/aliases/Sentry';
-import { request } from 'shared/lib/request/request';
-import { setOnline } from 'pages/MainPage/slices/mainPageSlice';
 import { Players } from 'app/types/api/apiTypes';
+import { AppThunkAction } from 'app/types/redux';
+import { setOnline } from 'pages/MainPage/slices/mainPageSlice';
+import Sentry from 'shared/lib/aliases/Sentry';
+import createLogger from 'shared/lib/logger/logger';
+import { request } from 'shared/lib/request/request';
 
 const logger = createLogger('fetchOnlineInfo');
 

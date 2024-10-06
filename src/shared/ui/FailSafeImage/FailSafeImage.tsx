@@ -37,10 +37,10 @@ const FailSafeImage: FunctionComponent<Props> = ({ src: rawSrc, fallbackSrc, cla
     }, [rawSrc, fallbackSrc]);
 
     if (isError && !src) {
-        return <img src={fallbackSrc} className={className} {...props} />;
+        return <img src={fallbackSrc} className={className} {...props}  alt=''/>;
     }
 
-    return <img src={src || fallbackSrc} className={className} {...props} />;
+    return <img src={src || fallbackSrc} className={className} {...props}  alt=''/>;
 };
 
 export default FailSafeImage;

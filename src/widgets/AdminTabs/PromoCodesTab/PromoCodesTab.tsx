@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from 'react';
-import PromoCodesList from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodesList/PromoCodesList';
 import PromoCodeCreation from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeCreation/PromoCodeCreation';
 import PromoCodeEditing from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodeEditing/PromoCodeEditing';
+import PromoCodesList from 'widgets/AdminTabs/PromoCodesTab/components/PromoCodesList/PromoCodesList';
 
 export enum ActiveSubTab {
     LIST = 'list',

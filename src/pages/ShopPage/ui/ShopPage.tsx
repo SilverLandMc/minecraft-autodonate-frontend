@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
 import { ProductCategory } from 'app/const/enum/ProductCategory';
+import ShopPagePure from 'pages/ShopPage/ui/ShopPagePure';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import fetchProductsList from 'shared/lib/actions/fetchProductsList';
-import ShopPagePure from 'pages/ShopPage/ui/ShopPagePure';
+import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
 
 interface Props {
     productCategory: ProductCategory;
@@ -34,7 +34,7 @@ const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
         };
 
         fetchProducts(productCategory);
-    }, [productCategory]);
+    }, [productCategory, dispatch, isCategoryLoaded]);
 
     if (isFetchingFailed) {
         throw new Error('Failed to fetch');

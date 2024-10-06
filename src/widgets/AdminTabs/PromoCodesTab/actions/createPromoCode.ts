@@ -1,7 +1,7 @@
-import createLogger from 'shared/lib/logger/logger';
-import { post } from 'shared/lib/request/request';
 import { PromocodeInDto } from 'app/types/api/apiTypes';
 import Sentry from 'shared/lib/aliases/Sentry';
+import createLogger from 'shared/lib/logger/logger';
+import { post } from 'shared/lib/request/request';
 
 const logger = createLogger('createPromoCode');
 

@@ -3,10 +3,11 @@
 .categoryBar {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
     margin: 0 0 15px;
 
     @include mediaM {

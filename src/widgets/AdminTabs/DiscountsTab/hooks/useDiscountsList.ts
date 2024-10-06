@@ -1,5 +1,5 @@
-import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/actions/fetchDiscountsList';
 import { useAsync } from 'react-use';
+import fetchDiscountsList from 'widgets/AdminTabs/DiscountsTab/actions/fetchDiscountsList';
 
 interface Props {
     reFetchListFlag?: boolean;

@@ -1,7 +1,7 @@
-import { put } from 'shared/lib/request/request';
-import createLogger from 'shared/lib/logger/logger';
-import Sentry from 'shared/lib/aliases/Sentry';
 import { ProductEditInDto, ProductOutDto } from 'app/types/api/apiTypes';
+import Sentry from 'shared/lib/aliases/Sentry';
+import createLogger from 'shared/lib/logger/logger';
+import { put } from 'shared/lib/request/request';
 
 const logger = createLogger('editProduct');
 
