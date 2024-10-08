@@ -1,0 +1,56 @@
+@import '/src/app/styles/media/media.scss';
+
+.wrapper,
+.errorWrapper {
+    flex-grow: 1;
+}
+
+.section {
+    @include mediaS {
+        padding: 0;
+    }
+}
+
+.errorImage {
+    max-width: 200px;
+
+    border-radius: 10px;
+
+    @include mediaS {
+        max-width: 300px;
+    }
+}
+
+.errorWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.errorDescription {
+    text-align: center;
+}
+
+.cardsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    @include mediaS {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include mediaM {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

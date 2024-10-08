@@ -6,23 +6,28 @@
     "scripts": {
         "setupGitHooks": "node ./.gitHooks/setupGitHooks.cjs",
         "prepare": "npm run setupGitHooks",
+
         "start": "webpack serve --env port=3000",
         "build:prod": "webpack --env mode=production apiHost=https://silverland.fun/api/v1",
         "build:dev": "webpack --env mode=development",
+        "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+
         "typescript:lint": "tsc --noEmit",
         "typescript:swagger": "swagger-typescript-api --path ./.api-docs --output ./src/app/types/api --name apiTypes.ts  --no-client",
         "eslint:lint": "eslint --max-warnings=0 src --fix",
         "stylelint:lint": "stylelint 'src/**/*.{scss,css}' --max-warnings=0 --fix",
         "lint": "npm-run-all2 --parallel eslint:lint stylelint:lint typescript:lint",
         "lint-staged": "lint-staged",
-        "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+
         "test": "jest --config ./config/jest/jest.config.ts --passWithNoTests",
-        "test:ui": "loki test",
-        "test:ui:update": "loki update --reactUri=file:./storybook-static",
-        "test:ui:approve": "loki approve",
+        "test:ui": "npx loki test",
+        "test:ui:update": "npx loki update --reactUri=file:./storybook-static",
+        "test:ui:approve": "npx loki approve",
+
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html ",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+
         "storybook": "storybook dev -p 6006 -c ./config/storybook --debug-webpack",
         "storybook:build": "storybook build -c ./config/storybook"
     },
