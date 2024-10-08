@@ -34,7 +34,7 @@ jobs:
             git pull
             
             # Накатываем зависимости
-            npm i
+            npm ci
             
             # Билдим проект
             npm run build:prod
