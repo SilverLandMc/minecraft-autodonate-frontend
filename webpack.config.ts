@@ -1,7 +1,7 @@
-import webpack from 'webpack';
-import dotenv from 'dotenv';
 import os from 'os';
 import path from 'path';
+import dotenv from 'dotenv';
+import webpack from 'webpack';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildPaths } from './config/build/types/config';
 
