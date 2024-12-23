@@ -1,9 +1,9 @@
-@import 'reset';
-@import 'colors';
-@import 'media/media';
-@import 'variables/global';
-@import 'themes/normal';
-@import 'themes/dark';
+@use 'reset';
+@use 'colors';
+@use 'media/media';
+@use 'variables/global';
+@use 'themes/normal';
+@use 'themes/dark';
 
 .app {
     display: flex;
