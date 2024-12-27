@@ -7,6 +7,7 @@ const logger = createLogger('info', { prefix: '[getProxyConfig]' });
 
 interface ProxyConfig {
     API_HOST: string;
+    AUTH_TOKEN?: string;
 }
 
 const getProxyConfig = (): ProxyConfig => {

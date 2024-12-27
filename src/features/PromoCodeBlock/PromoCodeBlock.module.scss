@@ -54,7 +54,7 @@
         text-overflow: ellipsis;
         font-family: var(--font-family-main);
 
-        @include mediaS {
+        @include media.mediaS {
             font-size: 16px;
         }
     }

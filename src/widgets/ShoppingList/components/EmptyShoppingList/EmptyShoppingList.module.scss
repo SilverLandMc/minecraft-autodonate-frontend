@@ -21,7 +21,7 @@
 
     border-radius: 10px;
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: 300px;
     }
 }

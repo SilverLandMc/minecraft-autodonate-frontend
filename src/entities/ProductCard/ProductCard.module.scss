@@ -27,7 +27,7 @@
             0 6px 20px 0 rgba(0, 0, 0, 0.25);
     }
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: unset;
     }
 }
@@ -37,7 +37,7 @@
 
     border-radius: 5px;
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: 378px;
     }
 }
@@ -97,11 +97,11 @@
     width: 300px;
     margin: auto;
 
-    @include mediaS {
+    @include media.mediaS {
         width: 650px;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         width: 750px;
     }
 }
@@ -125,13 +125,13 @@
 
     font-family: var(--font-family-main);
 
-    @include mediaS {
+    @include media.mediaS {
         flex-direction: row;
         gap: 10px;
     }
 
     & .bottomBlock {
-        @include mediaS {
+        @include media.mediaS {
             flex-grow: 1;
             gap: 10px;
         }

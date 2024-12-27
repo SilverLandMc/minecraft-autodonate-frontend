@@ -11,7 +11,7 @@
 .table {
     overflow: scroll;
 
-    @include mediaM {
+    @include media.mediaM {
         overflow: hidden;
     }
 }

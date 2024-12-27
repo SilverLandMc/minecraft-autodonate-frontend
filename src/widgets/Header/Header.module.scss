@@ -25,12 +25,12 @@
     position: relative;
     z-index: var(--main-content-index);
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: calc(100% - 30px);
         padding: 0;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         max-width: 960px;
     }
 }
@@ -48,11 +48,11 @@
     max-width: 60px;
     height: 100%;
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: 80px;
     }
 
-    @include mediaL {
+    @include media.mediaL {
         max-width: 90px;
     }
 }

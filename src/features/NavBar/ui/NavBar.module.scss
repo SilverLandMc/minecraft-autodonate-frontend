@@ -43,14 +43,14 @@
         animation: slideOutToRight 0.3s ease forwards;
     }
 
-    @include mediaS {
+    @include media.mediaS {
         flex-direction: row;
         flex-wrap: nowrap;
 
         background: var(--black-opacity-30);
     }
 
-    @include mediaM {
+    @include media.mediaM {
         gap: 40px;
     }
 }
@@ -61,7 +61,7 @@
     gap: 6px;
     align-items: center;
 
-    @include mediaM {
+    @include media.mediaM {
         gap: 8px;
     }
 }
@@ -73,7 +73,7 @@
 
     width: 40px;
 
-    @include mediaS {
+    @include media.mediaS {
         width: unset;
     }
 }
@@ -81,11 +81,11 @@
 .icon {
     max-height: 30px;
 
-    @include mediaS {
+    @include media.mediaS {
         max-height: 20px;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         max-height: 30px;
     }
 }
@@ -108,7 +108,7 @@
         border-bottom: 1px solid var(--color-white);
     }
 
-    @include mediaM {
+    @include media.mediaM {
         font-size: 16px;
     }
 }

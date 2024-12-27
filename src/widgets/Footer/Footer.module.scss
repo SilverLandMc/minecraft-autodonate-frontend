@@ -8,7 +8,7 @@
     position: relative;
     z-index: var(--main-content-index);
 
-    @include mediaS {
+    @include media.mediaS {
         padding: 0;
     }
 }
@@ -19,7 +19,7 @@
     gap: 10px;
     align-items: flex-start;
 
-    @include mediaM {
+    @include media.mediaM {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -30,7 +30,7 @@
     font-size: 12px;
     line-height: 14px;
 
-    @include mediaS {
+    @include media.mediaS {
         font-size: 16px;
         line-height: 18px;
     }
@@ -43,7 +43,7 @@
     font-size: 13px;
     line-height: 16px;
 
-    @include mediaS {
+    @include media.mediaS {
         font-size: 16px;
         line-height: 18px;
     }

@@ -28,7 +28,7 @@
     position: relative;
     z-index: var(--main-content-index);
 
-    @include mediaS {
+    @include media.mediaS {
         padding: 0;
     }
 }
@@ -38,7 +38,7 @@
     flex-direction: column;
     gap: 20px;
 
-    @include mediaS {
+    @include media.mediaS {
         flex-direction: row;
         gap: 40px;
         justify-content: space-between;
@@ -66,11 +66,11 @@
 .header {
     font-size: 32px;
 
-    @include mediaS {
+    @include media.mediaS {
         font-size: 42px;
     }
 
-    @include mediaL {
+    @include media.mediaL {
         font-size: 52px;
     }
 }
@@ -78,11 +78,11 @@
 .subHeader {
     font-size: 20px;
 
-    @include mediaS {
+    @include media.mediaS {
         font-size: 26px;
     }
 
-    @include mediaL {
+    @include media.mediaL {
         font-size: 32px;
     }
 }
@@ -100,7 +100,7 @@
 
     height: 100%;
 
-    @include mediaS {
+    @include media.mediaS {
         min-height: 180px;
     }
 }
@@ -110,11 +110,11 @@
 
     max-width: 320px;
 
-    @include mediaS {
+    @include media.mediaS {
         width: 240px;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         width: 400px;
     }
 }

@@ -3,7 +3,7 @@
 .latestPurchases {
     overflow-y: scroll;
 
-    @include mediaM {
+    @include media.mediaM {
         overflow-y: hidden;
     }
 }

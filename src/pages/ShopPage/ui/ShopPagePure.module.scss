@@ -6,7 +6,7 @@
 }
 
 .section {
-    @include mediaS {
+    @include media.mediaS {
         padding: 0;
     }
 }
@@ -16,7 +16,7 @@
 
     border-radius: 10px;
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: 300px;
     }
 }
@@ -45,12 +45,12 @@
     gap: 20px;
     align-items: center;
 
-    @include mediaS {
+    @include media.mediaS {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }

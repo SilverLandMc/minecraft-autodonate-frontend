@@ -10,7 +10,7 @@
 
     margin: 0 0 15px;
 
-    @include mediaM {
+    @include media.mediaM {
         gap: 20px;
     }
 }

@@ -5,7 +5,7 @@
 }
 
 .section {
-    @include mediaM {
+    @include media.mediaM {
         padding: 0;
     }
 }

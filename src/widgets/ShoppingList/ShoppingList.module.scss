@@ -18,7 +18,7 @@
         filter: brightness(0.8);
     }
 
-    @include mediaS {
+    @include media.mediaS {
         padding: 5px;
 
         background: var(--black-opacity-30);
@@ -29,7 +29,7 @@
     height: 35px;
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(109%) contrast(101%);
 
-    @include mediaM {
+    @include media.mediaM {
         height: 42px;
     }
 }

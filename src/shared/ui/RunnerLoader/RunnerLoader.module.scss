@@ -42,7 +42,7 @@
     height: 60px;
     animation: runFromLeftToRight 3s infinite;
 
-    @include mediaS {
+    @include media.mediaS {
         height: 70px;
     }
 }
@@ -53,7 +53,7 @@
     font-size: 14px;
     line-height: 16px;
 
-    @include mediaM {
+    @include media.mediaM {
         font-size: 18px;
         line-height: 20px;
     }

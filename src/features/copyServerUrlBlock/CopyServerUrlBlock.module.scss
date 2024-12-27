@@ -30,7 +30,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
 
-        @include mediaS {
+        @include media.mediaS {
             font-size: 16px;
         }
     }

@@ -7,11 +7,11 @@
     padding-right: 15px;
     padding-left: 15px;
 
-    @include mediaS {
+    @include media.mediaS {
         max-width: 640px;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         max-width: 960px;
     }
 }

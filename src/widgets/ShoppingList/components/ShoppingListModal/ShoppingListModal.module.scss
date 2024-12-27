@@ -21,7 +21,7 @@
         0 34px 138px 0 rgba(0, 0, 0, 0.35),
         0 36px 150px 0 rgba(0, 0, 0, 0.35);
 
-    @include mediaS {
+    @include media.mediaS {
         position: unset;
 
         width: 600px;
@@ -32,7 +32,7 @@
         border-radius: 8px;
     }
 
-    @include mediaM {
+    @include media.mediaM {
         width: 650px;
     }
 }
