@@ -47,9 +47,11 @@ const defineConfig = ({ mode, command }: ConfigEnv): UserConfigExport => {
         },
         // @ts-ignore
         test: {
+            globals: true,
             include: ['**/__tests__/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
             environment: 'jsdom',
-            teardownTimeout: 1000
+            teardownTimeout: 1000,
+            setupFiles: resolve(__dirname, './setupTests.ts')
         }
     };
 };
