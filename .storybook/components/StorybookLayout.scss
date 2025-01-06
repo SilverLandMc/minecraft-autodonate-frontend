@@ -1,0 +1,7 @@
+@use '../../src/app/styles/index' as *;
+
+// Классы из storybook, проблему не исправить
+/* stylelint-disable */
+.sb-show-main.sb-main-padded {
+    padding: unset;
+}

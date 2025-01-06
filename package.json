@@ -22,8 +22,8 @@
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html ",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
-        "storybook": "storybook dev -p 6006 -c ./config/storybook --debug-webpack",
-        "storybook:build": "storybook build -c ./config/storybook"
+        "storybook": "storybook dev -p 3010",
+        "storybook:build": "storybook build"
     },
     "keywords": [],
     "author": "",
@@ -64,8 +64,9 @@
         "@sentry/tracing": "^7.100.1",
         "@sentry/vite-plugin": "^2.22.7",
         "@storybook/react": "^8.2.9",
-        "@testing-library/react": "^16.0.0",
+        "@storybook/react-vite": "^8.4.7",
         "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^16.0.0",
         "@types/lodash-es": "^4.17.12",
         "@vitejs/plugin-basic-ssl": "^1.2.0",
         "@vitejs/plugin-react": "^4.3.4",
