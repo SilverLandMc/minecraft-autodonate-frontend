@@ -37,7 +37,7 @@ jobs:
             npm ci
             
             # Билдим проект
-            npm run build:prod
+            npm run build
 
   send_message:
     runs-on: ubuntu-latest
