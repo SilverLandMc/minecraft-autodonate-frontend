@@ -1,0 +1,39 @@
+@use '/src/app/styles/media/media';
+
+.wrapper {
+    position: sticky;
+    top: 0;
+    z-index: var(--sticky-header-index);
+
+    border-radius: 0 0 42px 42px;
+
+    background: var(--color-smocky-black);
+}
+
+.innerRowWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px 0;
+}
+
+.logo {
+    max-width: 60px;
+    height: 100%;
+
+    @include media.mediaS {
+        max-width: 80px;
+    }
+
+    @include media.mediaL {
+        max-width: 90px;
+    }
+}
+
+.rightBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

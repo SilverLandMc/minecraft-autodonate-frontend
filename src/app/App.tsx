@@ -1,7 +1,7 @@
 import { AppRouter } from 'app/providers/router';
 import Footer from 'widgets/Footer/Footer';
-import Header from 'widgets/Header/Header';
 import './styles/index.scss';
+import { Header } from '@/widgets/Header';
 
 const App = () => (
     <div className="app">

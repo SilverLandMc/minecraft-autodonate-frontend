@@ -1,4 +1,4 @@
-import Header from './Header';
+import { Header } from './Header';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -7,10 +7,7 @@ const meta = {
     parameters: {
         layout: 'centered'
     },
-    tags: ['autodocs'],
-    argTypes: {
-        className: { description: 'Имя класса, котрое будет добавлено к обёртке' }
-    }
+    tags: ['autodocs']
 } satisfies Meta<typeof Header>;
 
 export default meta;
