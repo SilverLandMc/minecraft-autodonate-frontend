@@ -21,19 +21,45 @@
             {
                 "alphabetize": { "order": "asc", "caseInsensitive": true },
                 "newlines-between": "never",
-                "pathGroupsExcludedImportTypes": ["builtin"],
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal",
-                    "parent",
-                    "sibling",
-                    "index",
-                    "type",
-                    "object",
-                    "unknown"
+                "pathGroups": [
+                    {
+                        "pattern": "@/app/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/pages/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/widgets/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/features/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/entities/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/shared/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "./*.module.scss",
+                        "group": "index",
+                        "position": "after"
+                    }
                 ],
-                "warnOnUnassignedImports": true
+                "pathGroupsExcludedImportTypes": ["builtin"],
+                "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type", "object", "unknown"]
             }
         ]
     },

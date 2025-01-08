@@ -10,6 +10,8 @@ interface MainPageProps {
 
 const MainPage: FunctionComponent<MainPageProps> = () => (
     <div className={styles.wrapper}>
+        <Spacing size={8} sizeM={40} sizeL={50} />
+
         <PlayerAndServerInfoBlock />
 
         <Spacing size={25} />

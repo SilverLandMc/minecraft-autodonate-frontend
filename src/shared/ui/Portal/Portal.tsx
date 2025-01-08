@@ -27,7 +27,7 @@ const Portal: FunctionComponent<PropsWithChildren> = ({ children }) => {
         };
     }, [element, portalRoot]);
 
-    return portalRoot ? createPortal(children, element) : null;
+    return portalRoot ? createPortal(<div className="app">{children}</div>, element) : null;
 };
 
 export default Portal;

@@ -1,19 +1,24 @@
 import media from 'app/const/enum/Media';
-import { NavBar } from 'features/NavBar';
 import { FunctionComponent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import useDoesMediaMatch from 'shared/hooks/useDoesMediaMatch';
+import { Optional } from 'shared/ui';
 import Section from 'shared/ui/Section/Section';
-import ButterMenu from 'widgets/ButterMenu/ButterMenu';
 import ShoppingList from 'widgets/ShoppingList/ShoppingList';
+import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
+import { ButterMenu } from './components/ButterMenu/ButterMenu';
+import { NavBar } from './components/NavBar/NavBar';
 import styles from './Header.module.scss';
-import silverLandLogo from './images/silverLandLogo.png';
 
 export const Header: FunctionComponent = () => {
     const navigate = useNavigate();
-    const isMobile = useDoesMediaMatch(media.XS);
+    const currentPath = useLocation().pathname;
 
+    const isMobile = useDoesMediaMatch(media.XS);
+    const isShopPage = currentPath === AppRoutes.SHOP;
+
+    const navigateToMainPage = () => navigate(RoutePath['main']);
     const navigateToAdminPanel = () => navigate(RoutePath['auth']);
 
     return (
@@ -23,12 +28,15 @@ export const Header: FunctionComponent = () => {
                     src={silverLandLogo}
                     className={styles.logo}
                     alt="SilverLand Minecraft server"
+                    onClick={navigateToMainPage}
                     onDoubleClick={navigateToAdminPanel}
                 />
 
                 <div className={styles.rightBlock}>
                     {isMobile ? <ButterMenu /> : <NavBar />}
-                    <ShoppingList />
+                    <Optional visible={isShopPage}>
+                        <ShoppingList />
+                    </Optional>
                 </div>
             </div>
         </Section>

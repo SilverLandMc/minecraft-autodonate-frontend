@@ -1,14 +1,15 @@
 @use 'app/styles/media/media';
 
 .section {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
 
     @include media.mediaS {
         max-width: 640px;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     @include media.mediaM {
@@ -17,5 +18,7 @@
 
     @include media.mediaL {
         max-width: 1280px;
+        padding-right: 88px;
+        padding-left: 88px;
     }
 }

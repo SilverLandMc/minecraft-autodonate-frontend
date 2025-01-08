@@ -2,8 +2,7 @@
 @use 'colors';
 @use 'media/media';
 @use 'variables/global';
-@use 'themes/normal';
-@use 'themes/dark';
+@use 'font';
 
 .app {
     display: flex;
@@ -12,7 +11,7 @@
     min-height: 100vh;
 
     background: var(--color-chinese-black);
-    color: var(--primary-color);
+    color: darkgrey;
     font: var(--font-m);
 }
 
@@ -20,12 +19,12 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
 
-    background-color: darkgrey;
+    background: var(--color-white-opacity-95);
 }
 
 /* Стилизация дорожки скроллбара */
 ::-webkit-scrollbar-track {
-    background: var(--black-opacity-5);
+    background: var(--color-chinese-black);
 }
 
 /* Установка ширины скроллбара */

@@ -5,9 +5,17 @@
     top: 0;
     z-index: var(--sticky-header-index);
 
-    border-radius: 0 0 42px 42px;
+    width: auto;
+
+    border-radius: 0 0 24px 24px;
 
     background: var(--color-smocky-black);
+
+    @include media.mediaS {
+        width: 100%;
+
+        border-radius: 0 0 42px 42px;
+    }
 }
 
 .innerRowWrapper {
@@ -16,19 +24,24 @@
     justify-content: space-between;
     align-items: center;
 
-    padding: 5px 0;
+    padding: 18px 0;
+
+    @include media.mediaS {
+        padding: 25px 0;
+    }
 }
 
 .logo {
-    max-width: 60px;
+    max-width: 105px;
     height: 100%;
+    cursor: pointer;
 
     @include media.mediaS {
-        max-width: 80px;
+        max-width: 140px;
     }
 
-    @include media.mediaL {
-        max-width: 90px;
+    @include media.mediaM {
+        max-width: 254px;
     }
 }
 

@@ -6,11 +6,7 @@ import fetchProductsList from 'shared/lib/actions/fetchProductsList';
 import selectShopInfo from 'shared/redux/selectors/selectShopInfo';
 import ShopPagePure from './ShopPagePure';
 
-interface Props {
-    productCategory: ProductCategory;
-}
-
-const ShopPage: FunctionComponent<Props> = ({ productCategory }) => {
+const ShopPage: FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useAppDispatch();
 

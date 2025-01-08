@@ -47,7 +47,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
 
-        background: var(--black-opacity-30);
+        background: none;
     }
 
     @include media.mediaM {
@@ -92,11 +92,10 @@
 
 .link {
     text-decoration: none;
-    font-weight: 800;
 
     color: var(--color-white);
-    font-size: 14px;
-    font-family: var(--font-family-main);
+    font-size: 18px;
+    line-height: 22px;
 
     transition: 0.3s;
 
