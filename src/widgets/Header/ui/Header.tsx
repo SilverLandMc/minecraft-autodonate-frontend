@@ -34,6 +34,7 @@ export const Header: FunctionComponent = () => {
 
                 <div className={styles.rightBlock}>
                     {isMobile ? <ButterMenu /> : <NavBar />}
+
                     <Optional visible={isShopPage}>
                         <ShoppingList />
                     </Optional>
