@@ -1,9 +1,7 @@
-import media from 'app/const/enum/Media';
 import { FunctionComponent } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import useDoesMediaMatch from 'shared/hooks/useDoesMediaMatch';
-import { Optional } from 'shared/ui';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import useMediaContext from 'shared/hooks/useMediaContext';
 import Section from 'shared/ui/Section/Section';
 import ShoppingList from 'widgets/ShoppingList/ShoppingList';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
@@ -13,10 +11,8 @@ import styles from './Header.module.scss';
 
 export const Header: FunctionComponent = () => {
     const navigate = useNavigate();
-    const currentPath = useLocation().pathname;
 
-    const isMobile = useDoesMediaMatch(media.XS);
-    const isShopPage = currentPath === AppRoutes.SHOP;
+    const { isDesktop } = useMediaContext();
 
     const navigateToMainPage = () => navigate(RoutePath['main']);
     const navigateToAdminPanel = () => navigate(RoutePath['auth']);
@@ -33,11 +29,9 @@ export const Header: FunctionComponent = () => {
                 />
 
                 <div className={styles.rightBlock}>
-                    {isMobile ? <ButterMenu /> : <NavBar />}
+                    {isDesktop ? <NavBar /> : <ButterMenu />}
 
-                    <Optional visible={isShopPage}>
-                        <ShoppingList />
-                    </Optional>
+                    <ShoppingList />
                 </div>
             </div>
         </Section>

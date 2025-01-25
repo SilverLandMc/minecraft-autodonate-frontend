@@ -1,8 +1,8 @@
 // см. src/styles/media.scss
 enum Media {
     // region Breakpoints
-    XS = 739, // для XS указано максимальное значение
-    S = 740,
+    XS = 799, // для XS указано максимальное значение
+    S = 800,
     M = 1024,
     L = 1440
     // endregion

@@ -15,7 +15,7 @@ const getMedia = (): Media[] =>
         .filter((media) => mediaQueriesMap[media as unknown as Media].matches)
         .map((item) => Number(item));
 
-const MediaContextProvider: FunctionComponent<PropsWithChildren<any>> = ({ children }) => {
+const MediaContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
     const [contextState, setContextState] = useState<MediaContextState>(() => ({
         media: getMedia()
     }));

@@ -22,7 +22,30 @@ const useMediaContext = () => {
         throw new Error('useMediaContext: "media" value from MediaContext is unexpectedly falsy');
     }
 
-    return { media, breakpoint: getBreakpoint(media) };
+    const breakpoint = getBreakpoint(media);
+
+    const isLargeDesktop = breakpoint === Media.L;
+    const isMediumDesktop = breakpoint === Media.M;
+    const isTablet = breakpoint === Media.S;
+    const isMobile = breakpoint === Media.XS;
+
+    return {
+        /** all matched media */ media,
+        /** max matched media */
+        breakpoint,
+
+        /** Media.L */
+        isLargeDesktop,
+        /** Media.M */
+        isMediumDesktop,
+        /** Media.S */
+        isTablet,
+        /** Media.XS */
+        isMobile,
+
+        /** Media.L or Media.M */
+        isDesktop: isLargeDesktop || isMediumDesktop
+    };
 };
 
 export default useMediaContext;
