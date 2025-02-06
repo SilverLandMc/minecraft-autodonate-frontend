@@ -58,8 +58,8 @@ const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
         return (
             <div className={styles.horizontalFormWrapper}>
                 <span className={styles.activePromoCodeSpan}>
-                    Активирован промокод {promoCode.name} (Скидка {promoCode.discount.discountAmount}{' '}
-                    {promoCode.discount.discountType === DiscountType.PERCENTAGE ? '%' : '₽'})
+                    Активирован промокод {promoCode.name} (Скидка {promoCode.discount?.discountAmount ?? 0}{' '}
+                    {promoCode.discount?.discountType === DiscountType.PERCENTAGE ? '%' : '₽'})
                 </span>
 
                 <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={erasePromoCode} />

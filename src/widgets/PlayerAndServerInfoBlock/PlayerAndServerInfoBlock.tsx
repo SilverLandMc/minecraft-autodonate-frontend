@@ -1,10 +1,10 @@
-import CopyServerUrlBlock from 'features/copyServerUrlBlock/CopyServerUrlBlock';
-import OnlineBlock from 'features/onlineBlock/OnlineBlock';
 import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
 import { FunctionComponent } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import Section from 'shared/ui/Section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
+import CopyServerUrlBlock from 'widgets/PlayerAndServerInfoBlock/components/copyServerUrlBlock/CopyServerUrlBlock';
+import OnlineBlock from 'widgets/PlayerAndServerInfoBlock/components/onlineBlock/OnlineBlock';
 import styles from './PlayerAndServerInfoBlock.module.scss';
 
 interface Props {

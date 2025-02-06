@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 import { FunctionComponent } from 'react';
 
 interface Props {
-    rawHTML?: string;
+    rawHTML?: string | null;
 }
 
 const SafelySetInnerHTML: FunctionComponent<Props> = ({ rawHTML }) => {

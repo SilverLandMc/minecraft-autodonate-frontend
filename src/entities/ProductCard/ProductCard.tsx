@@ -14,7 +14,7 @@ import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML'
 import styles from './ProductCard.module.scss';
 
 interface Props {
-    product: ProductOutDto;
+    product: Required<ProductOutDto>;
 }
 
 const ProductCard: FunctionComponent<Props> = ({ product }) => {

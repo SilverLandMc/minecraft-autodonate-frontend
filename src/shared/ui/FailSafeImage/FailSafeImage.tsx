@@ -1,7 +1,7 @@
 import { FunctionComponent, HTMLAttributes, useState } from 'react';
 
 interface Props extends HTMLAttributes<HTMLImageElement> {
-    src: string;
+    src: string | null;
     fallbackSrc: string;
 }
 

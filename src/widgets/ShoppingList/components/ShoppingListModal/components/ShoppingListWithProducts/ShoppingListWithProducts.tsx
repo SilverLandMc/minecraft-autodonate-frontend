@@ -1,15 +1,15 @@
 import { AppContext } from 'app/providers/AppContextProvider';
 import { CreatePaymentDto } from 'app/types/api/apiTypes';
 import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
-import PromoCodeBlock from 'features/PromoCodeBlock/PromoCodeBlock';
-import ShoppingListTable from 'features/ShoppingListTable/ShoppingListTable';
 import { erasePlayerInfo } from 'pages/MainPage/slices/mainPageSlice';
-import React, { FunctionComponent, useContext, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import createLinkOpener from 'shared/lib/createLinkOpener/createLinkOpener';
 import selectPlayerName from 'shared/redux/selectors/selectPlayerName';
 import Button from 'shared/ui/Button/Button';
+import PromoCodeBlock from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/PromoCodeBlock/PromoCodeBlock';
+import ShoppingListTable from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/ShoppingListTable/ShoppingListTable';
 import createPaymentLink from 'widgets/ShoppingList/utils/createPaymentLink';
 import styles from './ShoppingListWithProducts.module.scss';
 
@@ -17,7 +17,7 @@ const ShoppingListWithProducts: FunctionComponent = () => {
     const dispatch = useAppDispatch();
 
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
-    const [paymentError, setPaymentError] = useState(undefined);
+    const [paymentError, setPaymentError] = useState<string>();
 
     const playerName = useSelector(selectPlayerName);
     const { productsToBuy, promoCode, setPromoCode } = useContext(AppContext);

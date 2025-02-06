@@ -15,7 +15,7 @@ const OnlineBlock: FunctionComponent = () => {
     const [isOnlineFetching, setIsOnlineFetching] = useState(false);
     const [isServerDown, setIsServerDown] = useState(false);
 
-    const { online: currentOnline, max: maxOnline, isLoaded } = useSelector(selectOnline);
+    const { online: currentOnline = 0, max: maxOnline = 0, isLoaded } = useSelector(selectOnline);
     const percentOnline = (currentOnline / maxOnline) * 100;
 
     const finishFetchingWithDelay = () => {
