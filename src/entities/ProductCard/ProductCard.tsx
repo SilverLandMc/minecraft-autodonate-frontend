@@ -6,11 +6,11 @@ import { useClickAway } from 'react-use';
 import chestImage from 'shared/assets/chest.png';
 import trashIcon from 'shared/assets/trashIcon.svg';
 import classNames from 'shared/lib/aliases/classNames';
-import Button from 'shared/ui/Button/Button';
-import FailSafeImage from 'shared/ui/FailSafeImage/FailSafeImage';
-import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
-import Portal from 'shared/ui/Portal/Portal';
-import SafelySetInnerHTML from 'shared/ui/SafelySetInnerHTML/SafelySetInnerHTML';
+import Button from 'shared/ui/button/Button';
+import FailSafeImage from 'shared/ui/failSafeImage/FailSafeImage';
+import ModalBackground from 'shared/ui/modalBackground/ModalBackground';
+import Portal from 'shared/ui/portal/Portal';
+import SafelySetInnerHTML from 'shared/ui/safelySetInnerHTML/SafelySetInnerHTML';
 import styles from './ProductCard.module.scss';
 
 interface Props {
@@ -21,9 +21,9 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
     const [isCardModalOpened, setIsCardModalOpened] = useState<boolean>(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
-    const { productsToBuy, addOrIncrementProductToList, deleteProductFromList } = useContext(AppContext);
+    const { productsToBuy, addOrIncrementProductToList, deleteProductFromList } = useContext(AppContext) ?? {};
     const { id: productId, imagePath, name, description, priceWithDiscount, priceWithoutDiscount } = product;
-    const isInShoppingList = productsToBuy.some((product) => product.id === productId);
+    const isInShoppingList = productsToBuy?.some((product) => product.id === productId);
     const buttonText = isInShoppingList ? 'Купить ещё' : 'Купить';
 
     const openModal = () => setIsCardModalOpened(true);
@@ -43,7 +43,7 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
     };
 
     const addProductToBuyList = () => {
-        addOrIncrementProductToList(productId, name, priceWithDiscount ?? priceWithoutDiscount);
+        addOrIncrementProductToList?.(productId, name, priceWithDiscount ?? priceWithoutDiscount);
 
         setIsClosing(true);
         setTimeout(() => {
@@ -54,7 +54,7 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
 
     const deleteProductFromBuyList = (event: MouseEvent) => {
         event.stopPropagation();
-        deleteProductFromList(productId);
+        deleteProductFromList?.(productId);
     };
 
     const priceBlock = priceWithDiscount ? (

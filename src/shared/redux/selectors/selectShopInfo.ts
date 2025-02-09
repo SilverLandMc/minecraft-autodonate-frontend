@@ -1,4 +1,4 @@
-import { ShopPagePartState } from 'pages/ShopPage/slices/shopPageSlice';
+import { ShopPagePartState } from 'pages/shopPage/slices/shopPageSlice';
 import { createSelector } from 'reselect';
 import selectShopPagePart from 'shared/redux/selectors/selectShopPagePart';
 

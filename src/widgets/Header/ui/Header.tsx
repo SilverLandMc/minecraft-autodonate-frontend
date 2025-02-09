@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import useMediaContext from 'shared/hooks/useMediaContext';
-import Section from 'shared/ui/Section/Section';
+import Section from 'shared/ui/section/Section';
 import ShoppingList from 'widgets/ShoppingList/ShoppingList';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import { ButterMenu } from './components/ButterMenu/ButterMenu';

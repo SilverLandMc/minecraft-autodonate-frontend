@@ -79,6 +79,8 @@
         "eslint": "^8.57.0",
         "jsdom": "^25.0.1",
         "lodash-es": "^4.17.21",
+        "mobx": "^6.13.6",
+        "mobx-react-lite": "^4.1.0",
         "npm-run-all2": "^6.2.3",
         "query-string": "^8.2.0",
         "react": "^18.2.0",

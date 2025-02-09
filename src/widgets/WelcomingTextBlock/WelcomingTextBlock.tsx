@@ -1,6 +1,6 @@
-import TextBlock from 'entities/TextBlock/TextBlock';
 import React, { FunctionComponent } from 'react';
 import Spacing from 'shared/ui/spacing/Spacing';
+import TextBlock from 'shared/ui/textBlock/TextBlock';
 import styles from './WelcomingTextBlock.module.scss';
 
 const WelcomingTextBlock: FunctionComponent = () => (

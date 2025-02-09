@@ -25,13 +25,15 @@ const ShoppingList: FunctionComponent = () => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productsToBuy } = useContext(AppContext);
+    const { productsToBuy } = useContext(AppContext) ?? {};
 
     return (
         <>
             <div className={styles.cartWrapper} onClick={openModal}>
                 <img src={cartImage} className={styles.cartImage} alt="Корзина" />
-                {Boolean(productsToBuy.length) && <div className={styles.cartNumber}>{productsToBuy.length}</div>}
+                {Boolean(productsToBuy?.length) && (
+                    <div className={styles.cartNumber}>{productsToBuy?.length ?? 0}</div>
+                )}
             </div>
 
             <ShoppingListModal isModalOpened={isModalOpened} isClosing={isClosing} onClose={closeModal} />

@@ -1,9 +1,7 @@
-import { AdminPagePartState } from 'pages/AdminPage/slices/adminPageSlice';
-import { MainPagePartState } from 'pages/MainPage/slices/mainPageSlice';
-import { ShopPagePartState } from 'pages/ShopPage/slices/shopPageSlice';
+import { AdminPagePartState } from 'pages/adminPage/slices/adminPageSlice';
+import { ShopPagePartState } from 'pages/shopPage/slices/shopPageSlice';
 
 export interface StateSchema {
-    mainPagePart: MainPagePartState;
     shopPagePart: ShopPagePartState;
     adminPagePart: AdminPagePartState;
 }

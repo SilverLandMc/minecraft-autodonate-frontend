@@ -1,8 +1,8 @@
 import { AppContext } from 'app/providers/AppContextProvider';
 import React, { FunctionComponent, MouseEvent, useContext, useRef } from 'react';
 import { useClickAway } from 'react-use';
-import ModalBackground from 'shared/ui/ModalBackground/ModalBackground';
-import Portal from 'shared/ui/Portal/Portal';
+import ModalBackground from 'shared/ui/modalBackground/ModalBackground';
+import Portal from 'shared/ui/portal/Portal';
 import EmptyShoppingList from 'widgets/ShoppingList/components/EmptyShoppingList/EmptyShoppingList';
 import ShoppingListWithProducts from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/ShoppingListWithProducts';
 import styles from './ShoppingListModal.module.scss';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ShoppingListModal: FunctionComponent<Props> = ({ isModalOpened, isClosing, onClose }) => {
-    const { productsToBuy } = useContext(AppContext);
+    const { productsToBuy = [] } = useContext(AppContext) ?? {};
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => onClose(event as unknown as MouseEvent));

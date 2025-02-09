@@ -22,7 +22,7 @@ export const lowLevelRequest = async <T>({
 }: LowLevelRequestConfig): Promise<AxiosResponse<T>> => {
     try {
         return await axiosInstance.request<T>(params);
-    } catch (error) {
+    } catch (error: any) {
         const responseStatus = error.isAxiosError ? (error as AxiosError)?.response?.status : undefined;
         if (responseStatus && allowedErrorStatuses.includes(responseStatus)) {
             requestLogger.info(

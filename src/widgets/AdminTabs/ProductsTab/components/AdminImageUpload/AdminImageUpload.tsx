@@ -1,9 +1,9 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { acceptImageSetting } from 'shared/const/enum/imageType';
 import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
-import Button from 'shared/ui/Button/Button';
+import Button from 'shared/ui/button/Button';
 import Spacing from 'shared/ui/spacing/Spacing';
-import Title from 'shared/ui/Title/Title';
+import Title from 'shared/ui/title/Title';
 import uploadFile from 'widgets/AdminTabs/ProductsTab/actions/uploadFile';
 import styles from './AdminImageUpload.module.scss';
 

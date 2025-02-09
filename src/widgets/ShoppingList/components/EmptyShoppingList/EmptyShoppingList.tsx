@@ -1,6 +1,6 @@
 import React, { FunctionComponent, MouseEvent } from 'react';
 import chestImage from 'shared/assets/chest.png';
-import Button from 'shared/ui/Button/Button';
+import Button from 'shared/ui/button/Button';
 import styles from './EmptyShoppingList.module.scss';
 
 interface Props {

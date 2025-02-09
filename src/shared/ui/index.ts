@@ -1,2 +1,2 @@
 export * from './Optional';
-export * from './ModernButton';
+export * from './modernButton';

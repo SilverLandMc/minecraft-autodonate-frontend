@@ -1,10 +1,10 @@
-import { AdminPage } from 'pages/AdminPage';
-import { AuthPage } from 'pages/AuthPage';
-import { MainPage } from 'pages/MainPage';
-import { NotFoundPage } from 'pages/NotFoundPage';
-import { ShopPage } from 'pages/ShopPage';
-import { TermsOfServicePage } from 'pages/TermsOfServicePage';
 import { RouteProps } from 'react-router-dom';
+import { AdminPage } from '../../../pages/adminPage';
+import { AuthPage } from '../../../pages/authPage';
+import { MainPage } from '../../../pages/mainPage';
+import { NotFoundPage } from '../../../pages/notFoundPage';
+import { ShopPage } from '../../../pages/shopPage';
+import { TermsOfServicePage } from '../../../pages/termsOfServicePage';
 
 export const enum AppRoutes {
     //region public

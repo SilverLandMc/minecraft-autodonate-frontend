@@ -3,8 +3,8 @@ import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import classNames from 'shared/lib/aliases/classNames';
-import OuterLink from 'shared/ui/OuterLink/OuterLink';
-import Section from 'shared/ui/Section/Section';
+import OuterLink from 'shared/ui/outerLink/OuterLink';
+import Section from 'shared/ui/section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import styles from './Footer.module.scss';
 

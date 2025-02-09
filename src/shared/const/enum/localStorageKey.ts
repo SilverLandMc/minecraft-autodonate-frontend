@@ -1,5 +1,5 @@
 enum LocalStorageKey {
-    PLAYER_NAME = 'player_name_v1'
+    USER_NAME = 'user_name_v1'
 }
 
 export default LocalStorageKey;

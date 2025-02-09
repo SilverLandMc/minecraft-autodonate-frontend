@@ -1,10 +1,10 @@
 import { PageDto } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useMemo, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
-import AdminErrorBlock from 'shared/ui/AdminErrorBlock/AdminErrorBlock';
-import RunnerLoader from 'shared/ui/RunnerLoader/RunnerLoader';
+import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
+import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
 import Spacing from 'shared/ui/spacing/Spacing';
-import Title from 'shared/ui/Title/Title';
+import Title from 'shared/ui/title/Title';
 import useLatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/hooks/useLatestPurchases';
 import styles from './LatestPurchases.module.scss';
 
