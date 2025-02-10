@@ -1,55 +1,21 @@
 @use '/src/app/styles/media/media.scss';
 
-.cartWrapper {
-    position: relative;
-
+.button {
+    border-radius: 51px;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    gap: 16px;
     align-items: center;
+}
 
-    padding: 3px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-        filter: brightness(0.8);
-    }
-
-    @include media.mediaS {
-        padding: 5px;
-
-        background: var(--black-opacity-30);
-    }
+.cartWrapper {
 }
 
 .cartImage {
-    height: 35px;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(109%) contrast(101%);
-
-    @include media.mediaM {
-        height: 42px;
-    }
 }
 
-.cartNumber {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 20px;
-    height: 20px;
-
-    border-radius: 4px;
-
-    background-color: var(--black-opacity-70);
-
-    color: var(--color-white);
-    transform: translate(50%, -50%);
+.cartLabel {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
 }

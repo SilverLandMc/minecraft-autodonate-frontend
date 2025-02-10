@@ -10,8 +10,11 @@
 
     color: white;
     outline: none;
+    border: none;
 
     transition: 0.3s;
+
+    cursor: pointer;
 
     &:hover {
         filter: brightness(0.8);

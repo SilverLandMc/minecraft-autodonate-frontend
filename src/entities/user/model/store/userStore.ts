@@ -22,7 +22,7 @@ export class UserStore {
 
     eraseUserInfo = () => {
         this.userName = undefined;
-        this.userUniqueProducts = [];
+        this.userUniqueProducts = undefined;
         safeLocalStorage.removeItem(LocalStorageKey.USER_NAME);
     };
 }

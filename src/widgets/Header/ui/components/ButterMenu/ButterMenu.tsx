@@ -1,4 +1,3 @@
-import { Time } from 'app/const/enum/Time';
 import React, { FunctionComponent, MouseEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useClickAway } from 'react-use';
@@ -10,7 +9,6 @@ import styles from './ButterMenu.module.scss';
 
 export const ButterMenu: FunctionComponent = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
-    const [isClosing, setIsClosing] = useState<boolean>(false);
 
     const openModal = () => setIsOpened(true);
 
@@ -22,11 +20,7 @@ export const ButterMenu: FunctionComponent = () => {
             return;
         }
 
-        setIsClosing(true);
-        setTimeout(() => {
-            setIsClosing(false);
-            setIsOpened(false);
-        }, Time.MODAL_CLOSE_ANIMATION_DURATION);
+        setIsOpened(false);
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);

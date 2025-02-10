@@ -99,10 +99,6 @@
 
     transition: 0.3s;
 
-    &:hover {
-        color: var(--secondary-color);
-    }
-
     &.isActive {
         border-bottom: 1px solid var(--color-white);
     }

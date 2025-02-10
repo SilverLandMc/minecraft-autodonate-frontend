@@ -31,14 +31,19 @@ const styleByOutlineMap: Record<OutlineColor, string> = {
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     background: BackgroundColor;
     outline?: OutlineColor;
+    className?: string;
 }
 
-export const ModernButton: FunctionComponent<Props> = ({ background, outline, children, ...props }) => {
+export const ModernButton: FunctionComponent<Props> = ({ background, outline, children, className, ...props }) => {
     const backgroundStyle = styleByBackgroundMap[background];
     const outlineStyle = outline ? styleByOutlineMap[outline] : undefined;
 
     return (
-        <button className={classNames(styles.button, backgroundStyle, outlineStyle)} type="button" {...props}>
+        <button
+            className={classNames(styles.button, backgroundStyle, outlineStyle, className)}
+            type="button"
+            {...props}
+        >
             {children}
         </button>
     );
