@@ -12,7 +12,7 @@ import styles from './Header.module.scss';
 export const Header: FunctionComponent = () => {
     const navigate = useNavigate();
 
-    const { isDesktop } = useMediaContext();
+    const { isMobile } = useMediaContext();
 
     const navigateToMainPage = () => navigate(RoutePath['main']);
     const navigateToAdminPanel = () => navigate(RoutePath['auth']);
@@ -28,11 +28,14 @@ export const Header: FunctionComponent = () => {
                     onDoubleClick={navigateToAdminPanel}
                 />
 
-                <div className={styles.rightBlock}>
-                    {isDesktop ? <NavBar /> : <ButterMenu />}
-
-                    <ShoppingList />
-                </div>
+                {isMobile ? (
+                    <ButterMenu />
+                ) : (
+                    <div className={styles.rightBlock}>
+                        <NavBar />
+                        <ShoppingList />
+                    </div>
+                )}
             </div>
         </Section>
     );

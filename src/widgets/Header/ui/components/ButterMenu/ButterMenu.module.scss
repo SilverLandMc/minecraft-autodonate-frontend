@@ -1,5 +1,13 @@
 @use '/src/app/styles/media/media';
 
 .buttonsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 100%;
+}
+
+.button {
     width: 100%;
 }

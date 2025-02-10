@@ -15,7 +15,7 @@ const PurchasesTab: FunctionComponent = () => {
         return <RunnerLoader />;
     }
 
-    if (error) {
+    if (error || !purchaseInfo) {
         return <AdminErrorBlock text="Ошибка при загрузке числа покупок / топа покупок" />;
     }
 
