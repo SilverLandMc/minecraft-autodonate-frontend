@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import Spacing from 'shared/ui/spacing/Spacing';
-import PlayerAndServerInfoBlock from 'widgets/PlayerAndServerInfoBlock/PlayerAndServerInfoBlock';
-import WelcomingTextBlock from 'widgets/WelcomingTextBlock/WelcomingTextBlock';
+import PlayerAndServerInfoBlock from '@/widgets/PlayerAndServerInfoBlock/PlayerAndServerInfoBlock';
+import WelcomingTextBlock from '@/widgets/WelcomingTextBlock/WelcomingTextBlock';
+import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './MainPage.module.scss';
 
 interface MainPageProps {
