@@ -1,2 +1,2 @@
-export * from './store/userStore';
+export * from './store';
 export * from './selectors';

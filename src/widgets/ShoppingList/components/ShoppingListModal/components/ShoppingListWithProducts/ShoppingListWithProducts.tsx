@@ -1,13 +1,12 @@
-import { AppContext } from 'app/providers/AppContextProvider';
-import { CreatePaymentDto } from 'app/types/api/apiTypes';
-import { useUserInfo, useUserStoreActions } from 'entities/user';
-import PlayerInfoBlock from 'features/playerInfoBlock/PlayerInfoBlock';
 import { FunctionComponent, useContext, useState } from 'react';
-import createLinkOpener from 'shared/lib/createLinkOpener/createLinkOpener';
-import Button from 'shared/ui/button/Button';
-import PromoCodeBlock from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/PromoCodeBlock/PromoCodeBlock';
-import ShoppingListTable from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/ShoppingListTable/ShoppingListTable';
-import createPaymentLink from 'widgets/ShoppingList/utils/createPaymentLink';
+import { AppContext } from '@/app/providers/AppContextProvider';
+import { CreatePaymentDto } from '@/app/types/api/apiTypes';
+import PromoCodeBlock from '@/widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/PromoCodeBlock/PromoCodeBlock';
+import ShoppingListTable from '@/widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/ShoppingListTable/ShoppingListTable';
+import createPaymentLink from '@/widgets/ShoppingList/utils/createPaymentLink';
+import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
+import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
+import Button from '@/shared/ui/button/Button';
 import styles from './ShoppingListWithProducts.module.scss';
 
 const ShoppingListWithProducts: FunctionComponent = () => {
@@ -74,7 +73,7 @@ const ShoppingListWithProducts: FunctionComponent = () => {
                     {Boolean(paymentError) && <span className={styles.errorSpan}>{paymentError}</span>}
                 </div>
             ) : (
-                <PlayerInfoBlock className={styles.playerInfoBlock} title="Введите ник игрока, чтобы купить товары:" />
+                <UserAuthBlock className={styles.playerInfoBlock} title="Введите ник игрока, чтобы купить товары:" />
             )}
         </>
     );

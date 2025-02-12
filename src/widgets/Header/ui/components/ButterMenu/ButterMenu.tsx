@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useClickAway } from 'react-use';
 import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import classNames from '@/shared/lib/aliases/classNames';
 import { BackgroundColor, ModernButton, Optional, OutlineColor } from '@/shared/ui';
@@ -9,27 +8,22 @@ import closeIcon from './images/closeIconWhite.svg';
 import styles from './ButterMenu.module.scss';
 
 export const ButterMenu: FunctionComponent = () => {
-    const [isOpened, setIsOpened] = useState<boolean>(false);
-
-    const openModal = () => setIsOpened(true);
-
-    const closeModal = () => setIsOpened(false);
-
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    useClickAway(wrapperRef, closeModal);
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const toggleExpanded = () => setIsExpanded(!isExpanded);
+    const hideMenu = () => setIsExpanded(false);
 
     return (
         <>
             <img
-                src={isOpened ? closeIcon : butterIcon}
+                src={isExpanded ? closeIcon : butterIcon}
                 className={classNames(styles.butterMenu)}
                 alt="Меню"
-                onClick={isOpened ? closeModal : openModal}
+                onClick={toggleExpanded}
             />
 
-            <Optional visible={isOpened}>
-                <div ref={wrapperRef} className={styles.buttonsWrapper}>
-                    <Link to={RoutePath[AppRoute.SHOP]} onClick={closeModal}>
+            <Optional visible={isExpanded}>
+                <div className={styles.buttonsWrapper}>
+                    <Link to={RoutePath[AppRoute.SHOP]} onClick={hideMenu}>
                         <ModernButton
                             className={styles.button}
                             background={BackgroundColor.TRANSPARENT}
@@ -39,7 +33,7 @@ export const ButterMenu: FunctionComponent = () => {
                         </ModernButton>
                     </Link>
 
-                    <Link to={RoutePath[AppRoute.SHOP]} onClick={closeModal}>
+                    <Link to={RoutePath[AppRoute.SHOP]} onClick={hideMenu}>
                         <ModernButton className={styles.button} background={BackgroundColor.RED}>
                             Корзина
                         </ModernButton>

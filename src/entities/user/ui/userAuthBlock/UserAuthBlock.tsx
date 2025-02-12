@@ -1,15 +1,13 @@
 import { useUserInfo } from 'entities/user';
 import { useUserStoreActions } from 'entities/user/model/selectors/useUserStoreActions';
 import { observer } from 'mobx-react-lite';
-import fetchUserInfo from 'pages/mainPage/utils/fetchUserInfo';
 import { FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
 import noop from 'shared/lib/noop/noop';
-import FailSafeImage from 'shared/ui/failSafeImage/FailSafeImage';
 import RoundedSingleFieldForm from 'shared/ui/roundedSingleFieldForm/RoundedSingleFieldForm';
 import Spacing from 'shared/ui/spacing/Spacing';
-import defaultIcon from './images/defaultIcon.png';
-import styles from './PlayerInfoBlock.module.scss';
+import { fetchUserInfo } from '../../api/fetchUserInfo';
+import styles from './UserAuthBlock.module.scss';
 
 interface Props {
     title?: string;
@@ -17,7 +15,7 @@ interface Props {
     subheaderClassName?: string;
 }
 
-const PlayerInfoBlock: FunctionComponent<Props> = observer(
+export const UserAuthBlock: FunctionComponent<Props> = observer(
     ({ title = 'Введите ваш ник:', className, subheaderClassName }) => {
         const [formValue, setFormValue] = useState<string>('');
         const [errorText, setErrorText] = useState<string | null>(null);
@@ -50,12 +48,6 @@ const PlayerInfoBlock: FunctionComponent<Props> = observer(
                 <div>
                     <div className={styles.subheaderWrapper}>
                         <span className={subheaderClassName}>Ваш ник:</span>
-
-                        <FailSafeImage
-                            src={`https://mc-heads.net/avatar/${userName}`}
-                            fallbackSrc={defaultIcon}
-                            className={styles.playerIcon}
-                        />
                     </div>
 
                     <Spacing size={8} />
@@ -95,5 +87,3 @@ const PlayerInfoBlock: FunctionComponent<Props> = observer(
         );
     }
 );
-
-export default PlayerInfoBlock;

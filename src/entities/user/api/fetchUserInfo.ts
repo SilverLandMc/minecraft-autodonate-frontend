@@ -4,7 +4,7 @@ import { request } from 'shared/lib/request/request';
 
 const logger = createLogger('fetchUserNickname');
 
-const fetchUserInfo = async (userNickName: string) => {
+export const fetchUserInfo = async (userNickName: string) => {
     try {
         return await request<PlayerInfoOutDto>({
             url: `/public/player/${userNickName}`
@@ -15,5 +15,3 @@ const fetchUserInfo = async (userNickName: string) => {
         throw error;
     }
 };
-
-export default fetchUserInfo;
