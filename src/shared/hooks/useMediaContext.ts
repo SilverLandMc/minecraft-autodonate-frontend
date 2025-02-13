@@ -30,7 +30,8 @@ const useMediaContext = () => {
     const isMobile = breakpoint === Media.XS;
 
     return {
-        /** all matched media */ media,
+        /** all matched media */
+        media,
         /** max matched media */
         breakpoint,
 
