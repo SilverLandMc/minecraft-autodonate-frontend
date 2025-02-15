@@ -5,7 +5,8 @@ import Section from 'shared/ui/section/Section';
 import Spacing from 'shared/ui/spacing/Spacing';
 import CopyServerUrlBlock from 'widgets/PlayerAndServerInfoBlock/components/copyServerUrlBlock/CopyServerUrlBlock';
 import { UserAuthBlock } from '@/entities/user';
-import OnlineBlock from './components/onlineBlock/OnlineBlock';
+import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
+import { OnlineBlock } from './components/onlineBlock/OnlineBlock';
 import azureCubesImage from './images/azureCubes.png';
 import styles from './PlayerAndServerInfoBlock.module.scss';
 
@@ -14,18 +15,16 @@ const PlayerAndServerInfoBlock: FunctionComponent = () => {
 
     return (
         <Section className={styles.card}>
-            <img className={styles.cubes} src={azureCubesImage} alt="" />
+            <img className={styles.cubes} src={azureCubesImage} alt="azure cubes" />
             <Spacing size={84} sizeS={72} sizeL={126} />
 
             <div className={styles.innerWrapper}>
                 <div className={styles.firstBlock}>
-                    <div>
-                        <h1 className={styles.header}>Minecraft Server</h1>
+                    <h1 className={styles.header}>Minecraft Server</h1>
 
-                        <Spacing size={8} />
+                    <Spacing size={8} sizeS={16} sizeM={20} sizeL={22} />
 
-                        <h2 className={styles.subHeader}>Minecraft Server</h2>
-                    </div>
+                    <img className={styles.logo} src={silverLandLogo} alt="Silverland" />
 
                     <Optional visible={!isMobile}>
                         <UserAuthBlock subheaderClassName={styles.enterProposal} />

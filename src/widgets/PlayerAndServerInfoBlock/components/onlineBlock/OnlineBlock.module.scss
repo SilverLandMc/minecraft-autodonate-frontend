@@ -9,11 +9,16 @@
     justify-content: center;
 
     height: 96px;
-    padding: 8px 12px;
+    padding: 18px;
 
     border-radius: 10px;
 
-    background: var(--color-white-opacity-95);
+    background: var(--black-opacity-15);
+
+    @include media.mediaS {
+        background: none;
+        padding: 0;
+    }
 }
 
 .runnerWrapper {

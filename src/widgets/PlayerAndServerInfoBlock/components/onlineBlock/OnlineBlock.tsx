@@ -6,7 +6,7 @@ import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
 import Spacing from 'shared/ui/spacing/Spacing';
 import styles from './OnlineBlock.module.scss';
 
-const OnlineBlock: FunctionComponent = () => {
+export const OnlineBlock: FunctionComponent = () => {
     const { loading: isLoading, value: onlineInfo, error } = useAsync(() => fetchOnlineInfo(), []);
     const { online = 0, max = 100 } = onlineInfo ?? {};
 
@@ -30,7 +30,7 @@ const OnlineBlock: FunctionComponent = () => {
 
     return (
         <div className={styles.wrapper}>
-            <h3 className={styles.onlineSubheader}>Онлайн на сервере:</h3>
+            <h3 className={styles.onlineSubheader}>Онлайн</h3>
 
             <div>
                 <ProgressBar percentFilled={percentOnline} />
@@ -42,5 +42,3 @@ const OnlineBlock: FunctionComponent = () => {
         </div>
     );
 };
-
-export default OnlineBlock;
