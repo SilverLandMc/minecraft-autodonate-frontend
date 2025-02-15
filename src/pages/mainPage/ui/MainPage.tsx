@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import PlayerAndServerInfoBlock from '@/widgets/PlayerAndServerInfoBlock/PlayerAndServerInfoBlock';
+import { PlayerAndServerInfoBlock } from '@/widgets/PlayerAndServerInfoBlock';
 import WelcomingTextBlock from '@/widgets/WelcomingTextBlock/WelcomingTextBlock';
 import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './MainPage.module.scss';

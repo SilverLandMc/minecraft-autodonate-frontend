@@ -1,16 +1,16 @@
 import { FunctionComponent } from 'react';
-import useMediaContext from 'shared/hooks/useMediaContext';
-import { Optional } from 'shared/ui';
-import Section from 'shared/ui/section/Section';
-import Spacing from 'shared/ui/spacing/Spacing';
-import CopyServerUrlBlock from 'widgets/PlayerAndServerInfoBlock/components/copyServerUrlBlock/CopyServerUrlBlock';
+import { CurrentOnline } from 'widgets/PlayerAndServerInfoBlock/ui/components/currentOnline/CurrentOnline';
 import { UserAuthBlock } from '@/entities/user';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
-import { OnlineBlock } from './components/onlineBlock/OnlineBlock';
+import useMediaContext from '@/shared/hooks/useMediaContext';
+import { Optional } from '@/shared/ui';
+import Section from '@/shared/ui/section/Section';
+import Spacing from '@/shared/ui/spacing/Spacing';
+import CopyServerUrlBlock from './components/copyServerUrlBlock/CopyServerUrlBlock';
 import azureCubesImage from './images/azureCubes.png';
 import styles from './PlayerAndServerInfoBlock.module.scss';
 
-const PlayerAndServerInfoBlock: FunctionComponent = () => {
+export const PlayerAndServerInfoBlock: FunctionComponent = () => {
     const { isMobile } = useMediaContext();
 
     return (
@@ -32,7 +32,7 @@ const PlayerAndServerInfoBlock: FunctionComponent = () => {
                 </div>
 
                 <div className={styles.secondBlock}>
-                    <OnlineBlock />
+                    <CurrentOnline />
 
                     <CopyServerUrlBlock />
                 </div>
@@ -42,5 +42,3 @@ const PlayerAndServerInfoBlock: FunctionComponent = () => {
         </Section>
     );
 };
-
-export default PlayerAndServerInfoBlock;

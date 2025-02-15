@@ -1,0 +1,75 @@
+@use '/src/app/styles/media/media';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 18px;
+
+    border-radius: 12px;
+    background: var(--black-opacity-15);
+
+    color: var(--color-white);
+
+    @include media.mediaS {
+        background: none;
+        padding: 0;
+    }
+}
+
+.onlineSubheader {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+.currentOnline,
+.maxOnline {
+    font-weight: 900;
+}
+
+.currentOnline {
+    font-size: 38px;
+    line-height: 46px;
+
+    @include media.mediaM {
+        font-size: 52px;
+        line-height: 54px;
+    }
+
+    @include media.mediaL {
+        font-size: 64px;
+        line-height: 78px;
+    }
+}
+
+.maxOnline {
+    font-size: 18px;
+    line-height: 22px;
+
+    @include media.mediaM {
+        font-size: 24px;
+        line-height: 26px;
+    }
+
+    @include media.mediaL {
+        font-size: 32px;
+        line-height: 38px;
+    }
+}

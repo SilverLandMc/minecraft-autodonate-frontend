@@ -1,0 +1,110 @@
+@use '/src/app/styles/media/media';
+
+$step-size-default: 10px;
+$step-size-medium: 12px;
+$step-size-large: 16px;
+
+.progressBar,
+.filament {
+    --step-size: #{$step-size-default};
+
+    height: var(--step-size);
+
+    @include media.mediaM {
+        --step-size: #{$step-size-medium};
+    }
+
+    @include media.mediaL {
+        --step-size: #{$step-size-large};
+    }
+}
+
+.progressBar {
+    overflow: hidden;
+    background: var(--color-jet);
+    width: 100%;
+}
+
+.filament {
+    transition: 0.3s;
+
+    $color1: var(--color-dollar-bill);
+    $color2: var(--color-palm-leaf);
+    $color3: var(--color-dark-moss-green);
+
+    background: repeating-linear-gradient(
+        90deg,
+        $color1 0px,
+        $color1 #{$step-size-default * 1},
+        $color2 #{$step-size-default * 1},
+        $color2 #{$step-size-default * 2},
+        $color1 #{$step-size-default * 2},
+        $color1 #{$step-size-default * 3},
+        $color2 #{$step-size-default * 3},
+        $color2 #{$step-size-default * 4},
+        $color2 #{$step-size-default * 4},
+        $color2 #{$step-size-default * 5},
+        $color3 #{$step-size-default * 5},
+        $color3 #{$step-size-default * 6},
+        $color1 #{$step-size-default * 6},
+        $color1 #{$step-size-default * 7},
+        $color1 #{$step-size-default * 7},
+        $color1 #{$step-size-default * 8},
+        $color2 #{$step-size-default * 8},
+        $color2 #{$step-size-default * 9},
+        $color2 #{$step-size-default * 9},
+        $color2 #{$step-size-default * 10}
+    );
+
+    @include media.mediaM {
+        background: repeating-linear-gradient(
+            90deg,
+            $color1 0px,
+            $color1 #{$step-size-medium * 1},
+            $color2 #{$step-size-medium * 1},
+            $color2 #{$step-size-medium * 2},
+            $color1 #{$step-size-medium * 2},
+            $color1 #{$step-size-medium * 3},
+            $color2 #{$step-size-medium * 3},
+            $color2 #{$step-size-medium * 4},
+            $color2 #{$step-size-medium * 4},
+            $color2 #{$step-size-medium * 5},
+            $color3 #{$step-size-medium * 5},
+            $color3 #{$step-size-medium * 6},
+            $color1 #{$step-size-medium * 6},
+            $color1 #{$step-size-medium * 7},
+            $color1 #{$step-size-medium * 7},
+            $color1 #{$step-size-medium * 8},
+            $color2 #{$step-size-medium * 8},
+            $color2 #{$step-size-medium * 9},
+            $color2 #{$step-size-medium * 9},
+            $color2 #{$step-size-medium * 10}
+        );
+    }
+
+    @include media.mediaL {
+        background: repeating-linear-gradient(
+            90deg,
+            $color1 0px,
+            $color1 #{$step-size-large * 1},
+            $color2 #{$step-size-large * 1},
+            $color2 #{$step-size-large * 2},
+            $color1 #{$step-size-large * 2},
+            $color1 #{$step-size-large * 3},
+            $color2 #{$step-size-large * 3},
+            $color2 #{$step-size-large * 4},
+            $color2 #{$step-size-large * 4},
+            $color2 #{$step-size-large * 5},
+            $color3 #{$step-size-large * 5},
+            $color3 #{$step-size-large * 6},
+            $color1 #{$step-size-large * 6},
+            $color1 #{$step-size-large * 7},
+            $color1 #{$step-size-large * 7},
+            $color1 #{$step-size-large * 8},
+            $color2 #{$step-size-large * 8},
+            $color2 #{$step-size-large * 9},
+            $color2 #{$step-size-large * 9},
+            $color2 #{$step-size-large * 10}
+        );
+    }
+}
