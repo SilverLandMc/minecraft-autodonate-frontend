@@ -33,7 +33,7 @@ export const PlayerAndServerInfoBlock: FunctionComponent = () => {
 
                 <div className={styles.secondBlock}>
                     <CurrentOnline />
-
+                    <Spacing size={20} sizeS={46} sizeM={58} sizeL={68} />
                     <CopyServerUrlBlock />
                 </div>
             </div>

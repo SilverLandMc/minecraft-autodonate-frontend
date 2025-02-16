@@ -1,8 +1,9 @@
-import { FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
+import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { BackgroundColor, ModernButton } from '@/shared/ui';
 import styles from './CopyServerUrlBlock.module.scss';
 
 const DISPLAYED_SERVER_URL = 'play.silverland.fun';
+const NOTIFICATION_DISPLAY_TIME = 5000;
 
 interface Props {
     className?: string;
@@ -11,22 +12,33 @@ interface Props {
 const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
     const [isCopied, setIsCopied] = useState(false);
 
-    const onCopy = () => {
-        navigator.clipboard.writeText(DISPLAYED_SERVER_URL);
-        setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 5000);
+    const timerRef = useRef<number>();
+
+    const copyUrl = async () => {
+        try {
+            navigator.clipboard.writeText(DISPLAYED_SERVER_URL);
+            setIsCopied(true);
+            timerRef.current = window.setTimeout(() => setIsCopied(false), NOTIFICATION_DISPLAY_TIME);
+        } catch {
+            setIsCopied(false);
+        }
     };
 
-    return (
-        <div className={classNames(styles.wrapper, [className])}>
-            <div className={styles.text}>
-                Наш IP: <span className={styles.url}>{DISPLAYED_SERVER_URL}</span>
-            </div>
+    useEffect(
+        () => () => {
+            if (!timerRef.current) {
+                return;
+            }
 
-            <button type="button" className={styles.button} onClick={onCopy}>
-                {isCopied ? 'Успешно!' : 'Копировать'}
-            </button>
-        </div>
+            clearTimeout(timerRef.current);
+        },
+        []
+    );
+
+    return (
+        <ModernButton background={BackgroundColor.RED} className={styles.button} onClick={copyUrl}>
+            {isCopied ? 'Успешно!' : DISPLAYED_SERVER_URL}
+        </ModernButton>
     );
 };
 
