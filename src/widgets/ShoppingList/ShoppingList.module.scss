@@ -1,11 +1,12 @@
 @use '/src/app/styles/media/media.scss';
 
 .button {
-    border-radius: 51px;
     display: flex;
     flex-direction: row;
     gap: 16px;
     align-items: center;
+
+    border-radius: 51px;
 }
 
 .cartWrapper {

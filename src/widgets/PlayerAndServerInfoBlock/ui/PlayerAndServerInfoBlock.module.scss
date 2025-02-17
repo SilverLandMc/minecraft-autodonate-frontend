@@ -2,9 +2,10 @@
 
 .card {
     position: relative;
-    background: linear-gradient(to right, rgba(170, 255, 120, 0.1) 0%, rgba(0, 0, 0, 0.2) 70%);
 
     border-radius: 24px;
+
+    background: linear-gradient(to right, rgba(170, 255, 120, 0.1) 0%, rgba(0, 0, 0, 0.2) 70%);
 
     @include media.mediaS {
         background: radial-gradient(circle at 40% 140%, rgba(170, 255, 120, 0.3) 2%, rgba(0, 0, 0, 0.2) 55%),
@@ -19,19 +20,22 @@
 
 .cubes {
     position: absolute;
-    width: calc(170px + 20vw);
     top: -80px;
     right: -5%;
 
+    width: calc(170px + 20vw);
+
     @include media.mediaS {
-        width: 300px;
         top: -120px;
         right: -3%;
+
+        width: 300px;
     }
 
     @include media.mediaM {
-        width: 400px;
         top: -158px;
+
+        width: 400px;
     }
 }
 

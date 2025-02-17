@@ -21,8 +21,10 @@ $step-size-large: 16px;
 
 .progressBar {
     overflow: hidden;
-    background: var(--color-jet);
+
     width: 100%;
+
+    background: var(--color-jet);
 }
 
 .filament {
