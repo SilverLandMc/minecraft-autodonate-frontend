@@ -1,32 +1,61 @@
 @use '/src/app/styles/media/media.scss';
 
-.nicknameForm,
-.subheaderWrapper {
-    max-width: 320px;
+.card {
+    border-radius: 24px;
+
+    background: linear-gradient(to left, rgba(13, 59, 75, 0.35) 0%, rgba(0, 0, 0, 0.2) 90%);
 }
 
-.error {
-    color: orangered;
-    text-shadow:
-        1px 1px 2px black,
-        1px 0 2px black,
-        0 1px 2px black,
-        -1px -1px 2px black,
-        -1px 0px 2px black,
-        0 -1px 2px black;
-}
-
-.subheaderWrapper {
+.wrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    height: 35px;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.playerIcon {
-    width: 35px;
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
-    border-radius: 4px;
+    @include media.mediaS {
+        flex-direction: row;
+        gap: 12px;
+    }
+}
+
+.title,
+.redText,
+.logout {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @include media.mediaS {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.loginButton {
+    max-width: fit-content;
+}
+
+.redText,
+.logout {
+    color: var(--color-philippine-red);
+}
+
+.logout {
+    cursor: pointer;
+    font-weight: 600;
 }

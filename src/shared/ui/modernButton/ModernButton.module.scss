@@ -20,6 +20,21 @@
     &:hover {
         filter: brightness(0.8);
     }
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 22px;
+    }
 }
 
 .blackBackground {

@@ -1,22 +1,20 @@
-import { useUserInfo } from 'entities/user';
-import { useUserStoreActions } from 'entities/user/model/selectors/useUserStoreActions';
 import { observer } from 'mobx-react-lite';
-import { FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import noop from 'shared/lib/noop/noop';
-import RoundedSingleFieldForm from 'shared/ui/roundedSingleFieldForm/RoundedSingleFieldForm';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import Section from 'shared/ui/section/Section';
+import { useUserInfo, useUserStoreActions } from '@/entities/user';
+import { BackgroundColor, Input, ModernButton } from '@/shared/ui';
+import Spacing from '@/shared/ui/spacing/Spacing';
 import { fetchUserInfo } from '../../api/fetchUserInfo';
 import styles from './UserAuthBlock.module.scss';
 
 interface Props {
     title?: string;
     className?: string;
-    subheaderClassName?: string;
+    standalone?: boolean;
 }
 
 export const UserAuthBlock: FunctionComponent<Props> = observer(
-    ({ title = 'Введите ваш ник:', className, subheaderClassName }) => {
+    ({ title = 'Введите ваш никнейм', className, standalone: isStandalone }) => {
         const [formValue, setFormValue] = useState<string>('');
         const [errorText, setErrorText] = useState<string | null>(null);
 
@@ -25,7 +23,7 @@ export const UserAuthBlock: FunctionComponent<Props> = observer(
 
         const confirmForm = async () => {
             if (!formValue.trim()) {
-                setErrorText('Ник не может быть пустым!');
+                setErrorText('Никнейм не может быть пустым');
                 return;
             }
 
@@ -34,56 +32,61 @@ export const UserAuthBlock: FunctionComponent<Props> = observer(
                 setErrorText(null);
                 setUserInfo(userInfo);
             } catch (error) {
-                setErrorText('Игрок не найден! Введите другой ник:');
+                setErrorText('Игрок не найден! Введите другой никнейм');
             }
         };
 
-        const eraseForm = () => {
+        const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+            setFormValue(event.target.value);
+        };
+
+        const logout = () => {
             setFormValue('');
             eraseUserInfo();
         };
 
-        if (userName) {
-            return (
-                <div>
-                    <div className={styles.subheaderWrapper}>
-                        <span className={subheaderClassName}>Ваш ник:</span>
-                    </div>
+        const anonymousContent = (
+            <div className={styles.wrapper}>
+                {errorText ? (
+                    <span className={styles.redText}>{errorText}</span>
+                ) : (
+                    <h3 className={styles.title}>Введите ваш никнейм</h3>
+                )}
 
-                    <Spacing size={8} />
+                <div className={styles.controls}>
+                    <Input value={formValue} onChange={handleInput} placeholder="Например, Kuplinov" />
 
-                    <RoundedSingleFieldForm
-                        value={userName}
-                        onChange={noop}
-                        onButtonClick={eraseForm}
-                        className={styles.nicknameForm}
-                        buttonText="Выйти"
-                        redButton
-                        readonly
-                    />
+                    <ModernButton className={styles.loginButton} background={BackgroundColor.RED} onClick={confirmForm}>
+                        Войти
+                    </ModernButton>
                 </div>
+            </div>
+        );
+
+        const authorizedContent = (
+            <div className={styles.wrapper}>
+                <h3 className={styles.title}>
+                    Пользователь <b>{userName}</b>
+                </h3>
+
+                <div className={styles.logout} onClick={logout}>
+                    Выйти
+                </div>
+            </div>
+        );
+
+        const content = userName ? authorizedContent : anonymousContent;
+
+        if (isStandalone) {
+            return (
+                <Section className={styles.card}>
+                    <Spacing size={24} />
+                    {content}
+                    <Spacing size={24} />
+                </Section>
             );
         }
 
-        return (
-            <div className={className}>
-                {errorText ? (
-                    <span className={classNames(subheaderClassName, styles.error)}>{errorText}</span>
-                ) : (
-                    <span className={subheaderClassName}>{title}</span>
-                )}
-
-                <Spacing size={8} />
-
-                <RoundedSingleFieldForm
-                    value={formValue}
-                    onChange={setFormValue}
-                    onButtonClick={confirmForm}
-                    className={styles.nicknameForm}
-                    placeholderText="Например, BrainRTP"
-                    buttonText="Войти"
-                />
-            </div>
-        );
+        return content;
     }
 );

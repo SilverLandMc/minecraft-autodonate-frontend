@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { BackgroundColor, ModernButton } from '@/shared/ui';
+import copyIcon from './images/copyIcon.svg';
 import styles from './CopyServerUrlBlock.module.scss';
 
 const DISPLAYED_SERVER_URL = 'play.silverland.fun';
@@ -37,7 +38,8 @@ const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
 
     return (
         <ModernButton background={BackgroundColor.RED} className={styles.button} onClick={copyUrl}>
-            {isCopied ? 'Успешно!' : DISPLAYED_SERVER_URL}
+            <img src={copyIcon} alt="" />
+            {isCopied ? 'URL скопирован!' : DISPLAYED_SERVER_URL}
         </ModernButton>
     );
 };

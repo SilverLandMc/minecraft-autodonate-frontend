@@ -27,7 +27,8 @@ export const PlayerAndServerInfoBlock: FunctionComponent = () => {
                     <img className={styles.logo} src={silverLandLogo} alt="Silverland" />
 
                     <Optional visible={!isMobile}>
-                        <UserAuthBlock subheaderClassName={styles.enterProposal} />
+                        <Spacing size={0} sizeS={32} sizeM={40} sizeL={65} />
+                        <UserAuthBlock />
                     </Optional>
                 </div>
 
