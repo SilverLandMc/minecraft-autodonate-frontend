@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { BackgroundColor, ModernButton } from '@/shared/ui';
 import copyIcon from './images/copyIcon.svg';
-import styles from './CopyServerUrlBlock.module.scss';
+import styles from './CopyServerUrlButton.module.scss';
 
 const DISPLAYED_SERVER_URL = 'play.silverland.fun';
 const NOTIFICATION_DISPLAY_TIME = 5000;
@@ -10,7 +10,7 @@ interface Props {
     className?: string;
 }
 
-const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
+export const CopyServerUrlButton: FunctionComponent<Props> = ({ className }) => {
     const [isCopied, setIsCopied] = useState(false);
 
     const timerRef = useRef<number>();
@@ -43,5 +43,3 @@ const CopyServerUrlBlock: FunctionComponent<Props> = ({ className }) => {
         </ModernButton>
     );
 };
-
-export default CopyServerUrlBlock;

@@ -1,14 +1,14 @@
-import WelcomingTextBlock from './WelcomingTextBlock';
+import { PlayWithBlogger } from './PlayWithBlogger';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'widgets/WelcomingTextBlock',
-    component: WelcomingTextBlock,
+    title: 'widgets/PlayWithBlogger',
+    component: PlayWithBlogger,
     parameters: {
         layout: 'centered'
     },
     tags: ['autodocs']
-} satisfies Meta<typeof WelcomingTextBlock>;
+} satisfies Meta<typeof PlayWithBlogger>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

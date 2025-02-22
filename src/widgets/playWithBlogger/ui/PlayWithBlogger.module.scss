@@ -1,0 +1,68 @@
+@use '/src/app/styles/media/media';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.textBlock {
+    order: 0;
+
+    @include media.mediaS {
+        order: 1;
+    }
+}
+
+.imageBlock {
+    order: 1;
+
+    @include media.mediaS {
+        order: 0;
+    }
+}
+
+.header {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+
+    @include media.mediaS {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    @include media.mediaM {
+        font-size: 48px;
+        line-height: 54px;
+    }
+
+    @include media.mediaL {
+        font-size: 64px;
+        line-height: 78px;
+    }
+}
+
+.paragraph {
+    font-size: 12px;
+    line-height: 16px;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.photo {
+    max-width: 100%;
+}

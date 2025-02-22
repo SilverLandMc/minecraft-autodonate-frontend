@@ -1,5 +1,20 @@
 @use '/src/app/styles/media/media';
 
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -49,6 +64,10 @@
 .currentOnline {
     font-size: 38px;
     line-height: 46px;
+
+    &.isLoading {
+        animation: pulse 1.5s infinite;
+    }
 
     @include media.mediaM {
         font-size: 52px;

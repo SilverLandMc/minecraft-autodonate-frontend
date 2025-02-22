@@ -1,16 +1,16 @@
 import { FunctionComponent } from 'react';
-import { CurrentOnline } from 'widgets/PlayerAndServerInfoBlock/ui/components/currentOnline/CurrentOnline';
 import { UserAuthBlock } from '@/entities/user';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import useMediaContext from '@/shared/hooks/useMediaContext';
 import { Optional } from '@/shared/ui';
 import Section from '@/shared/ui/section/Section';
 import Spacing from '@/shared/ui/spacing/Spacing';
-import CopyServerUrlBlock from './components/copyServerUrlBlock/CopyServerUrlBlock';
+import { CopyServerUrlButton } from './components/copyServerUrlButton/CopyServerUrlButton';
+import { CurrentOnline } from './components/currentOnline/CurrentOnline';
 import azureCubesImage from './images/azureCubes.png';
-import styles from './PlayerAndServerInfoBlock.module.scss';
+import styles from './OnlineAndAuthCard.module.scss';
 
-export const PlayerAndServerInfoBlock: FunctionComponent = () => {
+export const OnlineAndAuthCard: FunctionComponent = () => {
     const { isMobile } = useMediaContext();
 
     return (
@@ -35,7 +35,7 @@ export const PlayerAndServerInfoBlock: FunctionComponent = () => {
                 <div className={styles.secondBlock}>
                     <CurrentOnline />
                     <Spacing size={20} sizeS={46} sizeM={58} sizeL={68} />
-                    <CopyServerUrlBlock />
+                    <CopyServerUrlButton />
                 </div>
             </div>
 

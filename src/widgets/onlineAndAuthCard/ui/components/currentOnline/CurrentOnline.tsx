@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { useAsync } from 'react-use';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import classNames from '@/shared/lib/aliases/classNames';
 import Spacing from '@/shared/ui/spacing/Spacing';
-import fetchOnlineInfo from '../../../api/fetchOnlineInfo';
+import { fetchOnlineInfo } from '../../../api/fetchOnlineInfo';
 import { ProgressBar } from './components/progressBar/ProgressBar';
 import styles from './CurrentOnline.module.scss';
 
@@ -15,21 +15,15 @@ export const CurrentOnline: FunctionComponent = () => {
 
     const percentOnline = (online / max) * 100;
 
-    if (isLoading) {
-        return (
-            <div className={styles.runnerWrapper}>
-                <RunnerLoader small />
-            </div>
-        );
-    }
-
     return (
         <div className={styles.wrapper}>
             <h3 className={styles.onlineSubheader}>Онлайн</h3>
 
             <Spacing size={8} sizeM={10} />
             <div>
-                <span className={styles.currentOnline}>{error ? '??' : online}</span>{' '}
+                <span className={classNames(styles.currentOnline, { [styles.isLoading]: isLoading })}>
+                    {error || isLoading ? '?' : online}
+                </span>{' '}
                 <span className={styles.maxOnline}>/{max}</span>
             </div>
             <Spacing size={10} sizeM={14} sizeL={20} />

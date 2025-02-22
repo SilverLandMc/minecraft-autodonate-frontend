@@ -1,9 +1,9 @@
 import { UserAuthBlock } from 'entities/user';
 import React, { FunctionComponent } from 'react';
-import useMediaContext from 'shared/hooks/useMediaContext';
-import { Optional } from 'shared/ui';
-import { PlayerAndServerInfoBlock } from '@/widgets/PlayerAndServerInfoBlock';
-import WelcomingTextBlock from '@/widgets/WelcomingTextBlock/WelcomingTextBlock';
+import { OnlineAndAuthCard } from '@/widgets/onlineAndAuthCard';
+import { PlayWithBlogger } from '@/widgets/playWithBlogger';
+import useMediaContext from '@/shared/hooks/useMediaContext';
+import { Optional } from '@/shared/ui';
 import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './MainPage.module.scss';
 
@@ -18,7 +18,7 @@ const MainPage: FunctionComponent<MainPageProps> = () => {
         <div className={styles.wrapper}>
             <Spacing size={50} sizeS={76} sizeL={124} />
 
-            <PlayerAndServerInfoBlock />
+            <OnlineAndAuthCard />
 
             <Optional visible={isMobile}>
                 <Spacing size={24} />
@@ -27,7 +27,7 @@ const MainPage: FunctionComponent<MainPageProps> = () => {
 
             <Spacing size={25} />
 
-            <WelcomingTextBlock />
+            <PlayWithBlogger />
 
             <Spacing size={20} />
         </div>

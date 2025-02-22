@@ -5,7 +5,7 @@ import { request } from 'shared/lib/request/request';
 
 const logger = createLogger('fetchOnlineInfo');
 
-const fetchOnlineInfo = async () => {
+export const fetchOnlineInfo = async () => {
     try {
         return await request<Players>({
             url: '/public/online'
@@ -16,5 +16,3 @@ const fetchOnlineInfo = async () => {
         throw error;
     }
 };
-
-export default fetchOnlineInfo;

@@ -1,5 +1,5 @@
 import { SizedDecorator } from 'shared/config/storybook/sizedDecorator/SizedDecorator';
-import ProgressBar from './ProgressBar';
+import { ProgressBar } from './ProgressBar';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -10,10 +10,7 @@ const meta = {
     },
     tags: ['autodocs'],
     argTypes: {
-        backgroundColor: { control: 'color', description: 'Цвет незаполненной части прогрессбара' },
-        filamentColor: { control: 'color', description: 'Цвет заполненной части прогрессбара' },
-        percentFilled: { control: 'number', description: 'Процент заполнения прогрессбара' },
-        className: { description: 'className, который будет передан контейнеру компонента' }
+        percentFilled: { control: 'number', description: 'Процент заполнения прогрессбара' }
     }
 } satisfies Meta<typeof ProgressBar>;
 
