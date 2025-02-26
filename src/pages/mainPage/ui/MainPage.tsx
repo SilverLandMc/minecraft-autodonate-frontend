@@ -1,11 +1,14 @@
-import { UserAuthBlock } from 'entities/user';
 import React, { FunctionComponent } from 'react';
+import { EnticingCards } from 'widgets/enticingCards';
 import { OnlineAndAuthCard } from '@/widgets/onlineAndAuthCard';
 import { PlayWithBlogger } from '@/widgets/playWithBlogger';
+import { UserAuthBlock } from '@/entities/user';
 import useMediaContext from '@/shared/hooks/useMediaContext';
 import { Optional } from '@/shared/ui';
 import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './MainPage.module.scss';
+
+const mainPageSpacing = <Spacing size={50} sizeS={70} sizeM={90} sizeL={150} />;
 
 interface MainPageProps {
     className?: string;
@@ -25,11 +28,15 @@ const MainPage: FunctionComponent<MainPageProps> = () => {
                 <UserAuthBlock standalone />
             </Optional>
 
-            <Spacing size={25} />
+            {mainPageSpacing}
 
             <PlayWithBlogger />
 
-            <Spacing size={20} />
+            {mainPageSpacing}
+
+            <EnticingCards />
+
+            {mainPageSpacing}
         </div>
     );
 };

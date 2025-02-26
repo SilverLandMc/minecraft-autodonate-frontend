@@ -32,16 +32,27 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     background: BackgroundColor;
     outline?: OutlineColor;
     className?: string;
+    linkUrl?: string;
 }
 
-export const ModernButton: FunctionComponent<Props> = ({ background, outline, children, className, ...props }) => {
+export const ModernButton: FunctionComponent<Props> = ({
+    background,
+    outline,
+    children,
+    className,
+    linkUrl,
+    ...props
+}) => {
     const backgroundStyle = styleByBackgroundMap[background];
     const outlineStyle = outline ? styleByOutlineMap[outline] : undefined;
+
+    const onClick = linkUrl ? () => window.open(linkUrl, '_blank', 'noopener noreferrer') : props.onClick;
 
     return (
         <button
             className={classNames(styles.button, backgroundStyle, outlineStyle, className)}
             type="button"
+            onClick={onClick}
             {...props}
         >
             {children}

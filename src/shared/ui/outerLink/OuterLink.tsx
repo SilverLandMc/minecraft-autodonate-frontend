@@ -1,10 +1,9 @@
 import { FunctionComponent } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
+import styles from './OuterLink.module.scss';
 
-const OuterLink: FunctionComponent<LinkProps> = ({ children, to, ...props }) => (
-    <Link to={to} target="_blank" rel="noopener noreferrer" {...props}>
+export const OuterLink: FunctionComponent<LinkProps> = ({ children, to, ...props }) => (
+    <Link className={styles.link} to={to} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
     </Link>
 );
-
-export default OuterLink;

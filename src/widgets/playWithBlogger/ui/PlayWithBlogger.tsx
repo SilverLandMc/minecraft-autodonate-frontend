@@ -1,4 +1,8 @@
 import React, { FunctionComponent } from 'react';
+import youtubeIcon from 'shared/assets/youtubeIcon.svg';
+import { LinkURL } from '@/app/const/enum/linkURL';
+import telegramIcon from '@/shared/assets/telegramIcon.svg';
+import { BackgroundColor, ModernButton } from '@/shared/ui';
 import Section from '@/shared/ui/section/Section';
 import Spacing from '@/shared/ui/spacing/Spacing';
 import silverhandPhoto from './images/silverhandPhoto.png';
@@ -26,6 +30,24 @@ export const PlayWithBlogger: FunctionComponent = () => (
 
             <div className={styles.imageBlock}>
                 <img className={styles.photo} src={silverhandPhoto} alt="" />
+
+                <div className={styles.buttons}>
+                    <ModernButton
+                        className={styles.button}
+                        background={BackgroundColor.RED}
+                        linkUrl={LinkURL.YOUTUBE_CHANNEL}
+                    >
+                        <img className={styles.youtubeIcon} src={youtubeIcon} alt="" /> @silver_head
+                    </ModernButton>
+
+                    <ModernButton
+                        className={styles.button}
+                        background={BackgroundColor.RED}
+                        linkUrl={LinkURL.TELEGRAM_GROUP}
+                    >
+                        <img className={styles.vkIcon} src={telegramIcon} alt="" /> silverlandfun
+                    </ModernButton>
+                </div>
             </div>
         </div>
     </Section>

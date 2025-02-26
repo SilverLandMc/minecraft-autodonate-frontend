@@ -1,15 +1,32 @@
 @use '/src/app/styles/media/media';
 
+$special-breakpoint: 560px;
+
 .wrapper {
+    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @media (min-width: $special-breakpoint) {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    @include media.mediaM {
+        gap: 44px;
+    }
+
+    @include media.mediaS {
+        gap: 54px;
+    }
 }
 
 .textBlock {
     order: 0;
 
-    @include media.mediaS {
+    @media (min-width: $special-breakpoint) {
         order: 1;
     }
 }
@@ -17,13 +34,37 @@
 .imageBlock {
     order: 1;
 
-    @include media.mediaS {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+
+    @media (min-width: $special-breakpoint) {
         order: 0;
+
+        display: flex;
+        flex-direction: column;
+        max-width: 235px;
+    }
+
+    @include media.mediaS {
+        min-width: 235px;
+    }
+
+    @include media.mediaM {
+        max-width: 300px;
+        min-width: 300px;
+    }
+
+    @include media.mediaL {
+        max-width: 384px;
+        min-width: 384px;
     }
 }
 
 .header {
     font-weight: 900;
+
     font-size: 24px;
     line-height: 28px;
 
@@ -64,5 +105,67 @@
 }
 
 .photo {
-    max-width: 100%;
+    width: 100%;
+    max-width: 235px;
+
+    @include media.mediaS {
+        max-width: unset;
+    }
+}
+
+.buttons {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    @include media.mediaL {
+        flex-direction: row;
+    }
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+
+    @include media.mediaL {
+        width: 100%;
+    }
+}
+
+.youtubeIcon {
+    width: 7px;
+
+    @include media.mediaS {
+        width: 9px;
+    }
+
+    @include media.mediaM {
+        width: 12px;
+    }
+
+    @include media.mediaL {
+        width: 14px;
+    }
+}
+
+.vkIcon {
+    width: 13px;
+
+    @include media.mediaS {
+        width: 16px;
+    }
+
+    @include media.mediaM {
+        width: 22px;
+    }
+
+    @include media.mediaL {
+        width: 26px;
+    }
 }
