@@ -1,8 +1,8 @@
 import { RouteProps } from 'react-router-dom';
+import { NotFoundPage } from '@/pages/notFoundPage';
 import { AdminPage } from '../../../pages/adminPage';
 import { AuthPage } from '../../../pages/authPage';
 import { MainPage } from '../../../pages/mainPage';
-import { NotFoundPage } from '../../../pages/notFoundPage';
 import { ShopPage } from '../../../pages/shopPage';
 import { TermsOfServicePage } from '../../../pages/termsOfServicePage';
 

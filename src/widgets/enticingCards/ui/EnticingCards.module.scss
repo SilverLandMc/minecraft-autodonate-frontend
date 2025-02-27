@@ -1,16 +1,52 @@
 @use '/src/app/styles/media/media';
 
+.button {
+    width: fit-content;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 0 15px;
+
+    padding: 0;
 }
 
 .ranksCard,
 .boostersCard,
 .resourcesCard {
+    height: 285px;
     padding: 24px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-radius: 20px;
+
+    position: relative;
+
+    @include media.mediaS {
+        height: 195px;
+
+        padding: 50px 34px;
+        gap: 18px;
+
+        border-radius: 42px;
+    }
+
+    @include media.mediaM {
+        gap: 20px;
+    }
+
+    @include media.mediaL {
+        padding: 58px 68px;
+        gap: 24px;
+    }
+}
+
+.ranksCard {
+    background: radial-gradient(circle at 120% 35%, var(--color-purple-heart) -22%, rgba(0, 0, 0, 0.2) 55%);
 }
 
 .title {
@@ -33,4 +69,8 @@
         font-size: 64px;
         line-height: 78px;
     }
+}
+
+.succubusImage {
+    position: absolute;
 }

@@ -28,14 +28,14 @@ const styleByOutlineMap: Record<OutlineColor, string> = {
     [OutlineColor.RED]: styles.redOutline
 };
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ModernButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     background: BackgroundColor;
     outline?: OutlineColor;
     className?: string;
     linkUrl?: string;
 }
 
-export const ModernButton: FunctionComponent<Props> = ({
+export const ModernButton: FunctionComponent<ModernButtonProps> = ({
     background,
     outline,
     children,
