@@ -25,6 +25,7 @@
     border-radius: 20px;
 
     position: relative;
+    overflow: hidden;
 
     @include media.mediaS {
         height: 195px;
@@ -47,6 +48,14 @@
 
 .ranksCard {
     background: radial-gradient(circle at 120% 35%, var(--color-purple-heart) -22%, rgba(0, 0, 0, 0.2) 55%);
+}
+
+.boostersCard {
+    background: radial-gradient(circle at 120% 35%, var(--color-warm-black) -22%, rgba(0, 0, 0, 0.2) 55%);
+}
+
+.resourcesCard {
+    background: radial-gradient(circle at 120% 0%, var(--color-burnt-umber) -22%, rgba(0, 0, 0, 0.2) 55%);
 }
 
 .title {
@@ -73,4 +82,17 @@
 
 .succubusImage {
     position: absolute;
+    pointer-events: none;
+
+    width: 330px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4.28deg);
+    top: 52px;
+
+    @include media.mediaS {
+        width: 400px;
+        left: 45%;
+        transform: rotate(-4.28deg);
+        top: -54px;
+    }
 }
