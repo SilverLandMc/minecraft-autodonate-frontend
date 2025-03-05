@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { BackgroundColor, ModernButton, ModernButtonProps } from 'shared/ui';
 import Section from 'shared/ui/section/Section';
+import chestImage from './images/chest.png';
+import potionImage from './images/potion.png';
 import succubusImage from './images/succubus.png';
 import styles from './EnticingCards.module.scss';
 
@@ -28,11 +30,13 @@ export const EnticingCards: FunctionComponent = () => (
         <div className={styles.boostersCard}>
             <h3 className={styles.title}>Бустеры</h3>
             <ShoppingButton background={BackgroundColor.GREEN} />
+            <img className={styles.potionImage} src={potionImage} alt="Бустеры" />
         </div>
 
         <div className={styles.resourcesCard}>
             <h3 className={styles.title}>Ресурсы</h3>
             <ShoppingButton background={BackgroundColor.ORANGE} />
+            <img className={styles.chestImage} src={chestImage} alt="Ресурсы" />
         </div>
     </Section>
 );

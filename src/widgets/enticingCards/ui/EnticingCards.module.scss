@@ -10,6 +10,14 @@
     gap: 20px;
 
     padding: 0;
+
+    @include media.mediaL {
+        height: 744px;
+        display: grid;
+        gap: 66px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 }
 
 .ranksCard,
@@ -41,6 +49,7 @@
     }
 
     @include media.mediaL {
+        height: 100%;
         padding: 58px 68px;
         gap: 24px;
     }
@@ -48,6 +57,10 @@
 
 .ranksCard {
     background: radial-gradient(circle at 120% 35%, var(--color-purple-heart) -22%, rgba(0, 0, 0, 0.2) 55%);
+
+    @include media.mediaL {
+        grid-row: span 2;
+    }
 }
 
 .boostersCard {
@@ -80,10 +93,14 @@
     }
 }
 
-.succubusImage {
+.succubusImage,
+.potionImage,
+.chestImage {
     position: absolute;
     pointer-events: none;
+}
 
+.succubusImage {
     width: 330px;
     left: 50%;
     transform: translateX(-50%) rotate(-4.28deg);
@@ -94,5 +111,54 @@
         left: 45%;
         transform: rotate(-4.28deg);
         top: -54px;
+    }
+
+    @include media.mediaL {
+        width: 808px;
+        left: -27%;
+        transform: rotate(-4.28deg);
+        top: 124px;
+    }
+}
+
+.potionImage {
+    width: 400px;
+    left: 59%;
+    transform: translateX(-50%) rotate(21deg);
+    top: -15px;
+
+    @include media.mediaS {
+        width: 400px;
+        left: 45%;
+        transform: rotate(-4.28deg);
+        top: -54px;
+    }
+
+    @include media.mediaL {
+        width: 808px;
+        left: -27%;
+        transform: rotate(-4.28deg);
+        top: 124px;
+    }
+}
+
+.chestImage {
+    width: 330px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4.28deg);
+    top: 52px;
+
+    @include media.mediaS {
+        width: 400px;
+        left: 45%;
+        transform: rotate(-4.28deg);
+        top: -54px;
+    }
+
+    @include media.mediaL {
+        width: 808px;
+        left: -27%;
+        transform: rotate(-4.28deg);
+        top: 124px;
     }
 }
