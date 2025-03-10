@@ -36,9 +36,7 @@ export const UserAuthBlock: FunctionComponent<Props> = observer(
             }
         };
 
-        const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-            setFormValue(event.target.value);
-        };
+        const handleInput = (event: ChangeEvent<HTMLInputElement>) => setFormValue(event.target.value);
 
         const logout = () => {
             setFormValue('');

@@ -1,8 +1,8 @@
-import { PlayerInfoOutDto } from 'app/types/api/apiTypes';
-import createLogger from 'shared/lib/logger/logger';
-import { request } from 'shared/lib/request/request';
+import { PlayerInfoOutDto } from '@/app/types/api/apiTypes';
+import createLogger from '@/shared/lib/logger/logger';
+import { request } from '@/shared/lib/request/request';
 
-const logger = createLogger('fetchUserNickname');
+const logger = createLogger('fetchUserInfo');
 
 export const fetchUserInfo = async (userNickName: string) => {
     try {
