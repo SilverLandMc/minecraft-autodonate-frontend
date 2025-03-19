@@ -5,6 +5,10 @@ import { AppRoutes, RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { OuterLink } from '@/shared/ui';
 import Section from '@/shared/ui/section/Section';
 import Spacing from '@/shared/ui/spacing/Spacing';
+import discordIcon from './images/discordIcon.svg';
+import tgIcon from './images/tgIcon.svg';
+import vkIcon from './images/vkIcon.svg';
+import youTubeIcon from './images/youTubeIcon.svg';
 import styles from './Footer.module.scss';
 
 export const Footer: FunctionComponent = () => (
@@ -30,12 +34,24 @@ export const Footer: FunctionComponent = () => (
             </div>
 
             <div className={styles.socialMediaBlock}>
-                <OuterLink to={LinkURL.CONTACTS} className={styles.link}>
-                    Контакты
+                <OuterLink to={LinkURL.YOUTUBE_CHANNEL}>
+                    <img className={styles.icon} src={youTubeIcon} alt="youTube" />
+                </OuterLink>
+
+                <OuterLink to={LinkURL.DISCORD_CHANNEL}>
+                    <img className={styles.icon} src={discordIcon} alt="discord" />
+                </OuterLink>
+
+                <OuterLink to={LinkURL.VK_CONTACTS}>
+                    <img className={styles.icon} src={vkIcon} alt="vk" />
+                </OuterLink>
+
+                <OuterLink to={LinkURL.TELEGRAM_GROUP}>
+                    <img className={styles.icon} src={tgIcon} alt="telegram" />
                 </OuterLink>
             </div>
         </Section>
 
-        <Spacing size={15} />
+        <Spacing size={24} sizeS={32} sizeL={72} />
     </>
 );

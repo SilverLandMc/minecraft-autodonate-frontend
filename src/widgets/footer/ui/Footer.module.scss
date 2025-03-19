@@ -50,6 +50,14 @@
     }
 }
 
+.icon {
+    width: 38px;
+
+    @include media.mediaS {
+        width: 50px;
+    }
+}
+
 .disclaimer {
     color: var(--color-davys-grey);
     font-size: 12px;
@@ -64,4 +72,10 @@
         font-size: 18px;
         line-height: 24px;
     }
+}
+
+.socialMediaBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
