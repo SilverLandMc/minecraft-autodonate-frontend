@@ -1,23 +1,35 @@
 @use '/src/app/styles/media/media';
 
 .title {
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 900;
 
-    margin: 10px 0 20px;
-    text-align: center;
+    @include media.mediaS {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    @include media.mediaL {
+        font-size: 40px;
+    }
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.paragraph {
+    font-size: 12px;
+    line-height: 18px;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 30px;
+    }
 }
 
 .subHeader {
     font-weight: 600;
-}
-
-.line {
-    opacity: 0.5;
 }
