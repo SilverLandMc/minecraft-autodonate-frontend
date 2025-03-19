@@ -99,6 +99,7 @@ const TermsOfServicePage: FunctionComponent = () => (
         {interBlockSpacing}
 
         {terms.map(({ header, content }, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <TextBlock key={`tos-term-${index}`} header={header} content={content} />
         ))}
     </Section>
