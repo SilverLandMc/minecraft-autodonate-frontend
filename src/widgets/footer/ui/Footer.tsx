@@ -11,47 +11,51 @@ import vkIcon from './images/vkIcon.svg';
 import youTubeIcon from './images/youTubeIcon.svg';
 import styles from './Footer.module.scss';
 
-export const Footer: FunctionComponent = () => (
-    <>
-        <Section className={styles.textureWrapper}>
-            <Spacing className={styles.texture} size={117} />
-        </Section>
+export const Footer: FunctionComponent = () => {
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        <Spacing size={48} />
+    return (
+        <>
+            <Section className={styles.textureWrapper}>
+                <Spacing className={styles.texture} size={117} />
+            </Section>
 
-        <Section className={styles.contentWrapper}>
-            <div>
-                <Link to={RoutePath[AppRoutes.TERMS_OF_SERVICE]} className={styles.link}>
-                    Условия использования
-                </Link>
-                <Spacing size={12} sizeM={16} />
+            <Spacing size={48} />
 
-                <p className={styles.disclaimer}>
-                    silverland.fun никоим образом не&nbsp;связан с&nbsp;Mojang AB.
-                    <br />
-                    Все средства идут на&nbsp;поддержку и&nbsp;развитие сервера.
-                </p>
-            </div>
+            <Section className={styles.contentWrapper}>
+                <div>
+                    <Link to={RoutePath[AppRoutes.TERMS_OF_SERVICE]} className={styles.link} onClick={scrollToTop}>
+                        Условия использования
+                    </Link>
+                    <Spacing size={12} sizeM={16} />
 
-            <div className={styles.socialMediaBlock}>
-                <OuterLink to={LinkURL.YOUTUBE_CHANNEL}>
-                    <img className={styles.icon} src={youTubeIcon} alt="youTube" />
-                </OuterLink>
+                    <p className={styles.disclaimer}>
+                        silverland.fun никоим образом не&nbsp;связан с&nbsp;Mojang AB.
+                        <br />
+                        Все средства идут на&nbsp;поддержку и&nbsp;развитие сервера.
+                    </p>
+                </div>
 
-                <OuterLink to={LinkURL.DISCORD_CHANNEL}>
-                    <img className={styles.icon} src={discordIcon} alt="discord" />
-                </OuterLink>
+                <div className={styles.socialMediaBlock}>
+                    <OuterLink to={LinkURL.YOUTUBE_CHANNEL}>
+                        <img className={styles.icon} src={youTubeIcon} alt="youTube" />
+                    </OuterLink>
 
-                <OuterLink to={LinkURL.VK_CONTACTS}>
-                    <img className={styles.icon} src={vkIcon} alt="vk" />
-                </OuterLink>
+                    <OuterLink to={LinkURL.DISCORD_CHANNEL}>
+                        <img className={styles.icon} src={discordIcon} alt="discord" />
+                    </OuterLink>
 
-                <OuterLink to={LinkURL.TELEGRAM_GROUP}>
-                    <img className={styles.icon} src={tgIcon} alt="telegram" />
-                </OuterLink>
-            </div>
-        </Section>
+                    <OuterLink to={LinkURL.VK_CONTACTS}>
+                        <img className={styles.icon} src={vkIcon} alt="vk" />
+                    </OuterLink>
 
-        <Spacing size={24} sizeS={32} sizeL={72} />
-    </>
-);
+                    <OuterLink to={LinkURL.TELEGRAM_GROUP}>
+                        <img className={styles.icon} src={tgIcon} alt="telegram" />
+                    </OuterLink>
+                </div>
+            </Section>
+
+            <Spacing size={24} sizeS={32} sizeL={72} />
+        </>
+    );
+};
