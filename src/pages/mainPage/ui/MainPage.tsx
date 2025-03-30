@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { EnticingCards } from 'widgets/enticingCards';
+import { EnticingCards } from '@/widgets/enticingCards';
 import { OnlineAndAuthCard } from '@/widgets/onlineAndAuthCard';
 import { PlayWithBlogger } from '@/widgets/playWithBlogger';
 import { UserAuthBlock } from '@/entities/user';
@@ -14,6 +14,16 @@ interface MainPageProps {
     className?: string;
 }
 
+/**
+ * Главная страница приложения.
+ *
+ * Включает в себя:
+ * - Блок авторизации пользователя по `username`'у и информации о текущем онлайне сервера;
+ * - Блок информации о блогере, рекламирующем сервер;
+ * - Блок с карточками категорий товаров, ведущих на страницу магазина.
+ *
+ * @component
+ */
 const MainPage: FunctionComponent<MainPageProps> = () => {
     const { isMobile } = useMediaContext();
 

@@ -1,7 +1,6 @@
 import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { ProductOutDto } from 'app/types/api/apiTypes';
 import { AppThunkAction } from 'app/types/redux';
-import { setFetchingFailed, setProducts } from 'pages/shopPage/slices/shopPageSlice';
 import Sentry from 'shared/lib/aliases/Sentry';
 import createLogger from 'shared/lib/logger/logger';
 import { request } from 'shared/lib/request/request';
@@ -13,11 +12,9 @@ const fetchProductsList =
     async (dispatch) => {
         try {
             const products = await request<ProductOutDto[]>({
-                url: `/public/product/category/${productCategory}`
+                url: '/public/product/all'
             });
-            dispatch(setProducts({ products, productCategory }));
         } catch (error) {
-            dispatch(setFetchingFailed());
             const message = `fetchProductsList: failed to fetch. Error: ${error?.response?.data || error}`;
             logger.error(message);
             Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));

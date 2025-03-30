@@ -1,6 +1,5 @@
 import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { Category, ProductCreateInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
-import { resetCategoriesLoaded } from 'pages/shopPage/slices/shopPageSlice';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -120,7 +119,7 @@ const ProductCreation: FunctionComponent<ProductComponentProps> = ({ setActiveSu
         try {
             setIsProcessing(true);
             await createProduct(formValues);
-            dispatch(resetCategoriesLoaded());
+            // todo Имплементация сброса стора магазина
             setIsProcessing(false);
             navigateToProductsList();
         } catch (error) {

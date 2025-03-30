@@ -10,6 +10,17 @@ import { CurrentOnline } from './components/currentOnline/CurrentOnline';
 import azureCubesImage from './images/azureCubes.png';
 import styles from './OnlineAndAuthCard.module.scss';
 
+/**
+ * Первый блок-карточка главной страницы, состоящий из подкомпонентов:
+ * - авторизации пользователя по `username`'у (`UserAuthBlock`);
+ * - информации о текущем онлайне сервера (`CurrentOnline`);
+ * - кнопки копирования URL сервера (`CopyServerUrlButton`).
+ *
+ * Блок авторизации входит в этот компонент только на немобильных (>= 800 px по ширине) разрешениях, на разрешениях ниже
+ * `UserAuthBlock` используется в качестве самостоятельного элемента главной страницы.
+ *
+ * @component
+ */
 export const OnlineAndAuthCard: FunctionComponent = () => {
     const { isMobile } = useMediaContext();
 

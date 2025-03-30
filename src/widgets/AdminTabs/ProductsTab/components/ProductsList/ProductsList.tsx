@@ -1,6 +1,5 @@
 import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { ValidityType } from 'app/types/api/apiTypes';
-import { resetCategoriesLoaded } from 'pages/shopPage/slices/shopPageSlice';
 import React, { FunctionComponent, useState } from 'react';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import classNames from 'shared/lib/aliases/classNames';
@@ -47,7 +46,7 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
         try {
             await deleteProduct(id);
             setReFetchFlag(!reFetchFlag);
-            dispatch(resetCategoriesLoaded());
+            // todo Имплементация сброса стора магазина
         } catch (error) {
             // todo Переехать на нотификации
             // eslint-disable-next-line no-alert

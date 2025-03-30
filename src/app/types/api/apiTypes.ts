@@ -309,6 +309,7 @@ export interface ProductEditInDto {
     /**
      * Количество покупаемого товара
      * @format int32
+     * @min 1
      * @example 1
      */
     quantity: number;
@@ -355,6 +356,7 @@ export interface DiscountInDto {
     /**
      * Размер скидки в рублях или процентах
      * @format double
+     * @min 1
      * @example 10
      */
     discountAmount?: number;
@@ -462,6 +464,7 @@ export interface ProductCreateInDto {
     /**
      * Количество покупаемого товара
      * @format int32
+     * @min 1
      * @example 1
      */
     quantity: number;
@@ -508,6 +511,7 @@ export interface DiscountBaseInDto {
     /**
      * Размер скидки в рублях или процентах
      * @format double
+     * @min 1
      * @example 10
      */
     discountAmount?: number;
@@ -679,17 +683,17 @@ export interface PageDto {
 }
 
 export interface PagePaymentOutDto {
-    /** @format int32 */
-    totalPages?: number;
     /** @format int64 */
     totalElements?: number;
+    /** @format int32 */
+    totalPages?: number;
+    pageable?: PageableObject;
     /** @format int32 */
     size?: number;
     content?: PaymentOutDto[];
     /** @format int32 */
     number?: number;
     sort?: SortObject;
-    pageable?: PageableObject;
     /** @format int32 */
     numberOfElements?: number;
     first?: boolean;
@@ -698,14 +702,14 @@ export interface PagePaymentOutDto {
 }
 
 export interface PageableObject {
-    /** @format int64 */
-    offset?: number;
-    sort?: SortObject;
+    paged?: boolean;
     /** @format int32 */
     pageNumber?: number;
     /** @format int32 */
     pageSize?: number;
-    paged?: boolean;
+    /** @format int64 */
+    offset?: number;
+    sort?: SortObject;
     unpaged?: boolean;
 }
 
@@ -748,7 +752,7 @@ export interface PaymentProductOutDto {
 }
 
 export interface SortObject {
+    sorted?: boolean;
     empty?: boolean;
     unsorted?: boolean;
-    sorted?: boolean;
 }

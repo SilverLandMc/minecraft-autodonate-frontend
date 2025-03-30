@@ -2,15 +2,24 @@ import { FunctionComponent } from 'react';
 import { useAsync } from 'react-use';
 import classNames from '@/shared/lib/aliases/classNames';
 import Spacing from '@/shared/ui/spacing/Spacing';
-import { fetchOnlineInfo } from '../../../api/fetchOnlineInfo';
+import { fetchOnline } from '../../../api/fetchOnlineInfo';
 import { ProgressBar } from './components/progressBar/ProgressBar';
 import styles from './CurrentOnline.module.scss';
 
 const DEFAULT_CURRENT_ONLINE = 0;
 const DEFAULT_MAX_ONLINE = 2024;
 
+/**
+ * Блок информации о текущем онлайне на сервере.
+ * Во время загрузки информации об онлайне или при ошибке запроса показывает "?" вместо цифры текущего онлайна.
+ *
+ * Предоставляет текстовое отображение информации об онлайне и прогрессбар ниже.
+ *
+ * @component
+ * @see ProgressBar
+ */
 export const CurrentOnline: FunctionComponent = () => {
-    const { loading: isLoading, value: onlineInfo, error } = useAsync(() => fetchOnlineInfo(), []);
+    const { loading: isLoading, value: onlineInfo, error } = useAsync(() => fetchOnline(), []);
     const { online = DEFAULT_CURRENT_ONLINE, max = DEFAULT_MAX_ONLINE } = onlineInfo ?? {};
 
     const percentOnline = (online / max) * 100;

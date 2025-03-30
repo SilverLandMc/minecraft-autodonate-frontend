@@ -1,6 +1,5 @@
 import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { Category, ProductEditInDto, ValidityPeriod, ValidityType } from 'app/types/api/apiTypes';
-import { resetCategoriesLoaded } from 'pages/shopPage/slices/shopPageSlice';
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -139,7 +138,7 @@ const ProductEditing: FunctionComponent<ProductComponentProps> = ({ editingProdu
         try {
             setIsProcessing(true);
             await editProduct(formValues);
-            dispatch(resetCategoriesLoaded());
+            // todo Имплементация сброса стора магазина
             navigateToProductsList();
         } catch (error) {
             setErrorText('Ошибка при редактировании продукта');
