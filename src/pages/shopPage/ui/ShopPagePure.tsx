@@ -24,7 +24,7 @@ const ShopPagePure: FunctionComponent = observer(() => {
                     <img src={chestImage} className={styles.errorImage} alt="Нет товаров!" />
                     <h3 className={styles.errorSubheader}>Ой.</h3>
                     <p className={styles.errorDescription}>
-                        В нашем магазине пока что нет товаров! <br />
+                        В нашем магазине пока что нет товаров! Должно быть, произошла ошибка. <br />
                         Попробуйте заглянуть сюда позднее.
                     </p>
                 </Section>

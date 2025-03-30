@@ -9,40 +9,10 @@
  * ---------------------------------------------------------------
  */
 
-export interface ErrorMessageResponse {
+/** Базовая информация о скидке */
+export interface DiscountBaseOutDto {
     /**
-     * Одиночная ошибка, описание этой ошибки
-     * @example "Файл не найден"
-     */
-    message?: string;
-    /**
-     * Список ошибок, описание ошибок
-     * @example [{"fieldName":"fileId","message":"Файл не найден"},{"fieldName":"fileId","message":"Файл не найден"}]
-     */
-    errors?: ErrorMessageWithField[];
-}
-
-/**
- * Список ошибок, описание ошибок
- * @example [{"fieldName":"fileId","message":"Файл не найден"},{"fieldName":"fileId","message":"Файл не найден"}]
- */
-export interface ErrorMessageWithField {
-    /**
-     * Название поля, в котором произошла ошибка
-     * @example "fileId"
-     */
-    fieldName?: string;
-    /**
-     * Описание ошибки
-     * @example "Файл не найден"
-     */
-    message?: string;
-}
-
-/** Скидка c id */
-export type DiscountOutDto = {
-    /**
-     * Дата создания  unix timestamp
+     * Дата создания unix timestamp
      * @format int64
      * @example 1693914524
      */
@@ -51,9 +21,9 @@ export type DiscountOutDto = {
      * Название скидки
      * @example "Скидка на ранги"
      */
-    name?: string;
+    name: string;
     /** Тип скидки */
-    discountType?: DiscountType;
+    discountType: DiscountType;
     /**
      * Дата начала скидки unix timestamp
      * @format int64
@@ -65,107 +35,229 @@ export type DiscountOutDto = {
      * @format int64
      * @example 1693914524
      */
-    endDate: number;
+    endDate?: number;
     /**
      * Размер скидки в рублях или процентах
      * @format double
      * @example 10
      */
-    discountAmount?: number;
+    discountAmount: number;
+}
+
+/** Скидка с id */
+export type DiscountOutDto = DiscountBaseOutDto & {
+    /**
+     * Идентификатор скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id: string;
+    /**
+     * Удалена ли скидка
+     * @example false
+     */
+    isDeleted: boolean;
+};
+
+/** Базовая информация о скидке */
+export interface DiscountBaseInDto {
+    /**
+     * Название скидки
+     * @example "Скидка на ранги"
+     */
+    name: string;
+    /** Тип скидки */
+    discountType: DiscountType;
+    /**
+     * Дата начала скидки
+     * @format date-time
+     * @example "2024-02-07T15:30:00.000Z"
+     */
+    startDate: string;
+    /**
+     * Дата окончания скидки
+     * @format date-time
+     * @example "2024-02-08T15:30:00.000Z"
+     */
+    endDate?: string;
+    /**
+     * Размер скидки в рублях или процентах
+     * @format double
+     * @min 1
+     * @example 10
+     */
+    discountAmount: number;
+}
+
+/** Скидка с ID */
+export type DiscountInDto = DiscountBaseInDto & {
     /**
      * Идентификатор скидки
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
      */
     id?: string;
-    deleted?: boolean;
-} | null;
+};
 
 /**
  * Тип скидки
- * @example "PERCENT"
+ * @example "PERCENTAGE"
  */
 export enum DiscountType {
-    AMOUNT = 'AMOUNT',
-    PERCENTAGE = 'PERCENTAGE'
+    PERCENTAGE = 'PERCENTAGE',
+    AMOUNT = 'AMOUNT'
 }
 
-/** Промокод */
-export interface PromocodeOutDto {
+/** Информация о сервере */
+export interface ServerInfo {
     /**
-     * Название промокода
-     * @example "VIP"
+     * Количество игроков на сервере
+     * @example 13
      */
-    name: string;
+    online: number;
     /**
-     * Максимальное количество использований промокода
-     * @format int32
-     * @min 1
-     * @example 10
+     * Максимальное количество игроков на сервере
+     * @example 100
      */
-    maxUseCount: number;
-    /**
-     * Идентификатор промокода
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    id?: string;
-    /**
-     * Текущее количество использований промокода
-     * @format int32
-     * @example 5
-     */
-    currentUseCount?: number;
-    /** Скидка c id */
-    discount?: DiscountOutDto;
-    /**
-     * Дата начала промокода
-     * @format int64
-     * @example 1693914524
-     */
-    startDate: number;
-    /**
-     * Дата окончания промокода
-     * @format int64
-     * @example 1693914524
-     */
-    endDate: number;
-    deleted?: boolean;
-    limitedUse?: boolean;
+    max: number;
 }
 
-/** Обновление промокода */
-export interface PromocodeUpdateDto {
+/** DTO для создания платежа */
+export interface CreatePaymentDto {
     /**
-     * Идентификатор промокода
+     * Имя игрока
+     * @example "BrainRTP"
+     */
+    playerName: string;
+    /** Список товаров */
+    productList: ProductToBuyInDto[];
+    /**
+     * UUID промокода
+     * @example "123e4567-e89b-12d3-a456-426614174000"
+     */
+    promocode?: string | null;
+}
+
+/** DTO для добавления товара в корзину */
+export interface ProductToBuyInDto {
+    /**
+     * Идентификатор продукта
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
      */
     id: string;
     /**
-     * Максимальное количество использований промокода
-     * @format int32
-     * @min 1
-     * @example 10
+     * Количество покупаемого товара
+     * @example 1
      */
-    maxUseCount: number;
+    amount: number;
+}
+
+/** Информация о игроке */
+export interface PlayerInfoOutDto {
     /**
-     * Дата начала промокода
-     * @example "2024-02-07T15:30:00.000Z"
+     * Имя игрока
+     * @example "BrainRTP"
      */
-    startDate: string;
+    playerName: string;
+    /** Уникальные товары (единоразовые покупки), которые есть у игрока */
+    uniqueProducts?: string[] | null;
+}
+
+/** Ошибка или список ошибок */
+export interface ErrorMessageResponse {
     /**
-     * Дата окончания промокода
-     * @example "2024-02-07T15:30:00.000Z"
+     * Одиночная ошибка, описание этой ошибки
+     * @example "Файл не найден"
      */
-    endDate: string;
+    message: string;
+    /** Список ошибок с полями */
+    errors?: ErrorMessageWithField[] | null;
+}
+
+/** Детализация ошибки с полем */
+export interface ErrorMessageWithField {
     /**
-     * ID скидки
+     * Поле, к которому относится ошибка
+     * @example "fileId"
+     */
+    fieldName: string;
+    /**
+     * Описание ошибки
+     * @example "Файл не найден"
+     */
+    message: string;
+}
+
+/** Продукт */
+export interface ProductOutDto {
+    /**
+     * Идентификатор продукта
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
      */
-    discountId: string;
-    limitedUse?: boolean;
+    id: string;
+    /**
+     * Название продукта
+     * @example "VIP"
+     */
+    name: string;
+    /**
+     * Описание продукта (markdown support)
+     * @example "Подписка на *VIP-статус* на _30 дней_"
+     */
+    description?: string | null;
+    /**
+     * Цена продукта без скидки
+     * @format double
+     * @example 1000.02
+     */
+    priceWithoutDiscount: number;
+    /**
+     * Цена продукта со скидкой
+     * @format double
+     * @example 500.01
+     */
+    priceWithDiscount?: number | null;
+    /**
+     * Ссылка картинки продукта
+     * @example "/public/files/f-00000000-0000-0000-0000-000000000000-example.png"
+     */
+    imagePath?: string | null;
+    /**
+     * ID файла картинки
+     * @example "f-00000000-0000-0000-0000-000000000000"
+     */
+    imageId?: string | null;
+    /**
+     * Товар можно купить только один раз?
+     * @example true
+     */
+    isSinglePurchase: boolean;
+    /**
+     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата")
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    previousProductForTopUpId?: string | null;
+    /** Категория продукта */
+    category: Category;
+    /** Категория длительности продукта */
+    validityType: ValidityType;
+    /** Длительность продукта */
+    validityPeriod: ValidityPeriod;
+    /** Скидка с id */
+    discount?: DiscountOutDto;
+    /**
+     * Порядковый номер для сортировки
+     * @example 0
+     */
+    order: number;
+    /**
+     * Количество покупаемого товара
+     * @example 1
+     */
+    quantity: number;
 }
 
 /**
@@ -180,78 +272,13 @@ export enum Category {
     OTHER = 'OTHER'
 }
 
-/** Продукт */
-export interface ProductOutDto {
-    /**
-     * Идентификатор продукта
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    id?: string;
-    /**
-     * Название продукта
-     * @example "VIP"
-     */
-    name?: string;
-    /**
-     * Описание продукта (markdown support)
-     * @example "Подписка на *VIP-статус* на _30 дней_"
-     */
-    description?: string | null;
-    /**
-     * Цена продукта без скидки
-     * @format double
-     * @example 1000.02
-     */
-    priceWithoutDiscount?: number;
-    /**
-     * Цена продукта со скидкой
-     * @format double
-     * @example 500.01
-     */
-    priceWithDiscount?: number;
-    /**
-     * Ссылка картинки продукта
-     * @example "/public/files/f-00000000-0000-0000-0000-000000000000-example.png"
-     */
-    imagePath?: string | null;
-    /**
-     * ID файла картинки
-     * @example "f-00000000-0000-0000-0000-000000000000"
-     */
-    imageId?: string | null;
-    /**
-     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата"
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    previousProductForTopUpId?: string | null;
-    /** Категория продукта */
-    category?: Category;
-    /** Категория длительности продукта */
-    validityType?: ValidityType;
-    /** Длительность продукта */
-    validityPeriod?: ValidityPeriod;
-    /** Скидка c id */
-    discount?: DiscountOutDto;
-    /**
-     * Порядковый номер для сортировки
-     * @format int32
-     * @example 0
-     */
-    order?: number;
-    /**
-     * Куплен ли товар?
-     * @example true
-     */
-    isAlreadyBought?: boolean | null;
-    /**
-     * Количество покупаемого товара
-     * @format int32
-     * @example 1
-     */
-    quantity: number;
-    singlePurchase?: boolean;
+/**
+ * Категория длительности продукта
+ * @example "PERMANENT"
+ */
+export enum ValidityType {
+    PERMANENT = 'PERMANENT',
+    TEMPORARY = 'TEMPORARY'
 }
 
 /**
@@ -263,15 +290,101 @@ export enum ValidityPeriod {
     LIFE_TIME = 'LIFE_TIME'
 }
 
-/**
- * Категория длительности продукта
- * @example "PERMANENT"
- */
-export enum ValidityType {
-    PERMANENT = 'PERMANENT',
-    TEMPORARY = 'TEMPORARY'
+/** Промокод */
+export type PromocodeOutDto = PromocodeBaseDto & {
+    /**
+     * Идентификатор промокода
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    id?: string;
+    /**
+     * Текущее количество использований промокода
+     * @example 5
+     */
+    currentUseCount?: number;
+    /**
+     * Удален ли промокод
+     * @example true
+     */
+    isDeleted?: boolean;
+    /** Скидка с id */
+    discount?: DiscountOutDto;
+    /**
+     * Дата начала промокода (Unix timestamp)
+     * @format int64
+     * @example 1693914524
+     */
+    startDate?: number;
+    /**
+     * Дата окончания промокода (Unix timestamp)
+     * @format int64
+     * @example 1693914524
+     */
+    endDate?: number;
+};
+
+/** DTO для создания продукта */
+export interface ProductCreateInDto {
+    /**
+     * Название продукта
+     * @example "VIP"
+     */
+    name: string;
+    /**
+     * Описание продукта (markdown support)
+     * @example "Подписка на *VIP-статус* на _30 дней_"
+     */
+    description?: string | null;
+    /**
+     * Цена продукта
+     * @format double
+     * @example 1000
+     */
+    price: number;
+    /**
+     * Картинка продукта
+     * @format uuid
+     * @example "f-00000000-0000-0000-0000-000000000000"
+     */
+    imageId?: string | null;
+    /**
+     * Можно купить только один раз?
+     * @example true
+     */
+    isSinglePurchase: boolean;
+    /**
+     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата")
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    previousProductForTopUpId?: string | null;
+    /**
+     * Количество покупаемого товара
+     * @min 1
+     * @example 1
+     */
+    quantity: number;
+    /** Категория продукта */
+    category: Category;
+    /** Категория длительности продукта */
+    validityType: ValidityType;
+    /** Длительность продукта */
+    validityPeriod?: ValidityPeriod;
+    /**
+     * Скидка
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId?: string | null;
+    /**
+     * Порядковый номер для сортировки
+     * @example 0
+     */
+    order: number;
 }
 
+/** DTO для редактирования продукта */
 export interface ProductEditInDto {
     /**
      * Идентификатор продукта
@@ -297,18 +410,23 @@ export interface ProductEditInDto {
     price: number;
     /**
      * ID картинки
+     * @format uuid
      * @example "f-00000000-0000-0000-0000-000000000000"
      */
     imageId?: string | null;
     /**
-     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата"
+     * Можно купить только один раз?
+     * @example true
+     */
+    isSinglePurchase: boolean;
+    /**
+     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата")
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
      */
     previousProductForTopUpId?: string | null;
     /**
      * Количество покупаемого товара
-     * @format int32
      * @min 1
      * @example 1
      */
@@ -327,93 +445,53 @@ export interface ProductEditInDto {
     discountId?: string | null;
     /**
      * Порядковый номер для сортировки
-     * @format int32
      * @example 0
      */
     order: number;
-    singlePurchase?: boolean;
 }
 
-/** Скидка c id */
-export interface DiscountInDto {
+/** Обновление промокода */
+export interface PromocodeUpdateDto {
     /**
-     * Название скидки
-     * @example "Скидка на ранги"
-     */
-    name?: string;
-    /** Тип скидки */
-    discountType?: DiscountType;
-    /**
-     * Дата начала скидки
-     * @format date-time
-     */
-    startDate: string;
-    /**
-     * Дата окончания скидки
-     * @format date-time
-     */
-    endDate: string;
-    /**
-     * Размер скидки в рублях или процентах
-     * @format double
-     * @min 1
-     * @example 10
-     */
-    discountAmount?: number;
-    /**
-     * Идентификатор скидки
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    id?: string;
-}
-
-/** DTO для создания платежа */
-export interface CreatePaymentDto {
-    /**
-     * Имя игрока
-     * @example "BrainRTP"
-     */
-    playerName: string;
-    /** Список товаров */
-    productList?: ProductToBuyInDto[];
-    /**
-     * UUID промокода
-     * @format uuid
-     */
-    promocode?: string | null;
-}
-
-/** DTO для добавления товара в корзину */
-export interface ProductToBuyInDto {
-    /**
-     * Идентификатор продукта
+     * Идентификатор промокода
      * @format uuid
      * @example "00000000-0000-0000-0000-000000000000"
      */
     id: string;
     /**
-     * Количество покупаемого товара
-     * @format int32
-     * @example 1
+     * Ограничение на использование промокода
+     * @default false
+     * @example true
      */
-    amount: number;
-}
-
-/** Промокод */
-export interface PromocodeInDto {
-    /**
-     * Название промокода
-     * @example "VIP"
-     */
-    name: string;
+    isLimitedUse: boolean;
     /**
      * Максимальное количество использований промокода
-     * @format int32
      * @min 1
      * @example 10
      */
     maxUseCount: number;
+    /**
+     * Дата начала промокода
+     * @format date-time
+     * @example "2024-02-07T15:30:00.000Z"
+     */
+    startDate: string;
+    /**
+     * Дата окончания промокода
+     * @format date-time
+     * @example "2024-02-07T15:30:00.000Z"
+     */
+    endDate: string;
+    /**
+     * ID скидки
+     * @format uuid
+     * @example "00000000-0000-0000-0000-000000000000"
+     */
+    discountId: string;
+}
+
+/** Промокод */
+export type PromocodeInDto = PromocodeBaseDto & {
     /**
      * ID скидки
      * @format uuid
@@ -422,295 +500,37 @@ export interface PromocodeInDto {
     discountId: string;
     /**
      * Дата начала промокода
+     * @format date-time
      * @example "2024-02-07T15:30:00.000Z"
      */
     startDate: string;
     /**
      * Дата окончания промокода
+     * @format date-time
      * @example "2024-02-07T15:30:00.000Z"
      */
     endDate: string;
-    limitedUse?: boolean;
-}
+};
 
-export interface ProductCreateInDto {
+/** Базовая информация о промокоде */
+export interface PromocodeBaseDto {
     /**
-     * Название продукта
+     * Название промокода
      * @example "VIP"
      */
     name: string;
     /**
-     * Описание продукта (markdown support)
-     * @example "Подписка на *VIP-статус* на _30 дней_"
+     * Ограничение на использование промокода
+     * @default false
+     * @example true
      */
-    description?: string | null;
+    isLimitedUse: boolean;
     /**
-     * Цена продукта
-     * @format double
-     * @example 1000
-     */
-    price: number;
-    /**
-     * Картинка продукта
-     * @example "f-00000000-0000-0000-0000-000000000000"
-     */
-    imageId?: string | null;
-    /**
-     * Ссылка на предыдущий товар для расчета цены доплаты (если товар участвует в системе "Доплата"
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    previousProductForTopUpId?: string | null;
-    /**
-     * Количество покупаемого товара
-     * @format int32
-     * @min 1
-     * @example 1
-     */
-    quantity: number;
-    /** Категория продукта */
-    category: Category;
-    /** Категория длительности продукта */
-    validityType: ValidityType;
-    /** Длительность продукта */
-    validityPeriod?: ValidityPeriod;
-    /**
-     * Скидка
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    discountId?: string | null;
-    /**
-     * Порядковый номер для сортировки
-     * @format int32
-     * @example 0
-     */
-    order: number;
-    singlePurchase?: boolean;
-}
-
-/** Базовая информация о скидке */
-export interface DiscountBaseInDto {
-    /**
-     * Название скидки
-     * @example "Скидка на ранги"
-     */
-    name?: string;
-    /** Тип скидки */
-    discountType?: DiscountType;
-    /**
-     * Дата начала скидки
-     * @format date-time
-     */
-    startDate: string;
-    /**
-     * Дата окончания скидки
-     * @format date-time
-     */
-    endDate: string;
-    /**
-     * Размер скидки в рублях или процентах
-     * @format double
+     * Максимальное количество использований промокода
      * @min 1
      * @example 10
      */
-    discountAmount?: number;
-}
-
-/** Цвет в формате RGB */
-export type Color = {
-    /**
-     * Красный цвет в формате RGB
-     * @format int32
-     * @default 0
-     */
-    red?: number;
-    /**
-     * Зеленый цвет в формате RGB
-     * @format int32
-     * @default 0
-     */
-    green?: number;
-    /**
-     * Синий цвет в формате RGB
-     * @format int32
-     * @default 0
-     */
-    blue?: number;
-} | null;
-
-/** DTO для отправки новостей в Discord */
-export interface DiscordNewsDto {
-    /**
-     * Заголовок новости
-     * @example "Новое обновление"
-     */
-    title: string;
-    /**
-     * Описание новости
-     * @example "Сегодня донат стал ещё дороже!"
-     */
-    description: string;
-    /**
-     * Ссылка на изображение справа от описания
-     * @default "https://cdn4.iconfinder.com/data/icons/business-set-4-8/128/b-73-512.png"
-     */
-    thumbnail?: string | null;
-    /** Цвет в формате RGB */
-    color?: Color;
-    /** Список сообщений */
-    messageList?: Message[] | null;
-    /**
-     * ID канала, в который будет отправлено сообщение
-     * @format int64
-     * @default 1205470236388626400
-     */
-    channelId?: number | null;
-}
-
-/** Список сообщений */
-export type Message = {
-    /**
-     * Заголовок сообщения
-     * @example "Важное сообщение"
-     */
-    title: string;
-    /**
-     * Тело сообщения
-     * @example "Сегодня донат стал ещё дороже. Второй раз."
-     */
-    content: string;
-} | null;
-
-/** Информация о игроке */
-export interface PlayerInfoOutDto {
-    /**
-     * Имя игрока
-     * @example "BrainRTP"
-     */
-    playerName?: string;
-    /** Уникальные товары (единоразовые покупки), которые есть у игрока */
-    uniqueProducts?: (string | null)[];
-}
-
-/** Информация о количестве игроков на сервере */
-export interface Players {
-    /**
-     * Количество игроков на сервере
-     * @format int32
-     * @example 13
-     */
-    online?: number;
-    /**
-     * Максимальное количество игроков на сервере
-     * @format int32
-     * @example 100
-     */
-    max?: number;
-}
-
-export interface AuthUserDto {
-    /**
-     * Идентификатор пользователя
-     * @format uuid
-     * @example "00000000-0000-0000-0000-000000000000"
-     */
-    id: string;
-    /**
-     * Фамилия и Имя пользователя (из Telegram)
-     * @example "Иванов Иван"
-     */
-    fullName: string;
-    /**
-     * Telegram администратора
-     * @example "brainrtp"
-     */
-    tgName: string;
-    /** Роль пользователя (администратора) */
-    role: Role;
-}
-
-/** Роль пользователя (администратора) */
-export enum Role {
-    ADMIN = 'ADMIN',
-    USER = 'USER'
-}
-
-/** Топ продуктов */
-export interface PurchaseTopProductsOutDto {
-    /**
-     * Название продукта
-     * @example "VIP"
-     */
-    productName?: string;
-    /**
-     * Количество проданных продуктов
-     * @format int32
-     * @example 100
-     */
-    totalSold?: number;
-}
-
-/** Пагинация (query параметры) */
-export interface PageDto {
-    /**
-     * Общее количество элементов
-     * @format int64
-     * @example 100
-     */
-    totalElements?: number;
-    /**
-     * Общее количество страниц
-     * @format int32
-     * @example 10
-     */
-    totalPages?: number;
-    /**
-     * Номер страницы
-     * @format int32
-     * @min 1
-     * @default 1
-     * @example 1
-     */
-    page?: number;
-    /**
-     * Количество элементов на странице
-     * @format int32
-     * @default 15
-     * @example 15
-     */
-    size?: number;
-}
-
-export interface PagePaymentOutDto {
-    /** @format int64 */
-    totalElements?: number;
-    /** @format int32 */
-    totalPages?: number;
-    pageable?: PageableObject;
-    /** @format int32 */
-    size?: number;
-    content?: PaymentOutDto[];
-    /** @format int32 */
-    number?: number;
-    sort?: SortObject;
-    /** @format int32 */
-    numberOfElements?: number;
-    first?: boolean;
-    last?: boolean;
-    empty?: boolean;
-}
-
-export interface PageableObject {
-    paged?: boolean;
-    /** @format int32 */
-    pageNumber?: number;
-    /** @format int32 */
-    pageSize?: number;
-    /** @format int64 */
-    offset?: number;
-    sort?: SortObject;
-    unpaged?: boolean;
+    maxUseCount: number;
 }
 
 /** Платеж */
@@ -734,9 +554,31 @@ export interface PaymentOutDto {
     /** Промокод */
     promocode?: PromocodeOutDto;
     /** Статус платежа */
-    status?: 'INCOMPLETE' | 'SUCCESS' | 'FAILED' | 'EXPIRED' | 'UNTRACKABLE';
+    status?: PaymentStatus;
     /** Список товаров */
     paymentProductList?: PaymentProductOutDto[];
+}
+
+/** Pageable Платеж */
+export interface PageablePaymentOutDto {
+    /** Список платежей */
+    content?: PaymentOutDto[];
+    /**
+     * Общее количество элементов
+     * @format int64
+     * @example 100
+     */
+    totalElements?: number;
+    /**
+     * Общее количество страниц
+     * @example 10
+     */
+    totalPages?: number;
+    /**
+     * Текущая страница
+     * @example 1
+     */
+    currentPage?: number;
 }
 
 /** Товар в платеже */
@@ -745,14 +587,44 @@ export interface PaymentProductOutDto {
     product?: ProductOutDto;
     /**
      * Количество товара
-     * @format int32
      * @example 1
      */
     amount?: number;
 }
 
-export interface SortObject {
-    sorted?: boolean;
-    empty?: boolean;
-    unsorted?: boolean;
+/** Статус платежа */
+export enum PaymentStatus {
+    INCOMPLETE = 'INCOMPLETE',
+    SUCCESS = 'SUCCESS',
+    FAILED = 'FAILED',
+    EXPIRED = 'EXPIRED',
+    UNTRACKABLE = 'UNTRACKABLE'
+}
+
+/** Топ продуктов */
+export interface PurchaseTopProductsOutDto {
+    /**
+     * Название продукта
+     * @example "VIP"
+     */
+    productName?: string;
+    /**
+     * Количество проданных продуктов
+     * @example 100
+     */
+    totalSold?: number;
+}
+
+/** DTO для авторизации */
+export interface LoginRequestDto {
+    /**
+     * Логин
+     * @example "admin"
+     */
+    username: string;
+    /**
+     * Пароль
+     * @example "admin"
+     */
+    password: string;
 }
