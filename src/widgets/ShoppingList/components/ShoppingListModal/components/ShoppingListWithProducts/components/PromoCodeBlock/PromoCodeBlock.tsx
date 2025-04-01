@@ -1,20 +1,21 @@
-import { AppContext } from 'app/providers/AppContextProvider';
-import { DiscountType } from 'app/types/api/apiTypes';
-import { ChangeEvent, FunctionComponent, useContext, useState } from 'react';
-import closeIcon from 'shared/assets/closeIcon.svg';
-import fetchPromoCodeByName from 'shared/lib/actions/fetchPromoCodeByName';
+import { observer } from 'mobx-react-lite';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import { DiscountType } from '@/app/types/api/apiTypes';
+import { cartStore } from '@/entities/cart';
+import closeIcon from '@/shared/assets/closeIcon.svg';
+import fetchPromoCodeByName from '@/shared/lib/actions/fetchPromoCodeByName';
 import styles from './PromoCodeBlock.module.scss';
 
 interface Props {
     disabled?: boolean;
 }
 
-const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
+const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled }) => {
     const [isFormOpened, setIsFormOpened] = useState(false);
     const [formValue, setFormValue] = useState('');
     const [errorText, setErrorText] = useState<string | undefined>();
 
-    const { promoCode, setPromoCode } = useContext(AppContext);
+    const { promoCode, setPromoCode } = cartStore;
 
     const openForm = () => setIsFormOpened(true);
     const closeForm = () => {
@@ -96,6 +97,6 @@ const PromoCodeBlock: FunctionComponent<Props> = ({ disabled }) => {
             У меня есть промокод
         </button>
     );
-};
+});
 
 export default PromoCodeBlock;

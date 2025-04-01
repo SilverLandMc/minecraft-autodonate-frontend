@@ -1,10 +1,11 @@
-import { AppContext } from 'app/providers/AppContextProvider';
-import React, { FunctionComponent, MouseEvent, useContext, useRef } from 'react';
+import { cartStore } from 'entities/cart';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent, MouseEvent, useRef } from 'react';
 import { useClickAway } from 'react-use';
-import ModalBackground from 'shared/ui/modalBackground/ModalBackground';
-import Portal from 'shared/ui/portal/Portal';
-import EmptyShoppingList from 'widgets/ShoppingList/components/EmptyShoppingList/EmptyShoppingList';
-import ShoppingListWithProducts from 'widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/ShoppingListWithProducts';
+import EmptyShoppingList from '@/widgets/ShoppingList/components/EmptyShoppingList/EmptyShoppingList';
+import ShoppingListWithProducts from '@/widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/ShoppingListWithProducts';
+import ModalBackground from '@/shared/ui/modalBackground/ModalBackground';
+import Portal from '@/shared/ui/portal/Portal';
 import styles from './ShoppingListModal.module.scss';
 
 interface Props {
@@ -13,8 +14,8 @@ interface Props {
     onClose(event: MouseEvent): void;
 }
 
-const ShoppingListModal: FunctionComponent<Props> = ({ isModalOpened, isClosing, onClose }) => {
-    const { productsToBuy = [] } = useContext(AppContext) ?? {};
+const ShoppingListModal: FunctionComponent<Props> = observer(({ isModalOpened, isClosing, onClose }) => {
+    const { productAmountById } = cartStore;
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => onClose(event as unknown as MouseEvent));
@@ -27,11 +28,15 @@ const ShoppingListModal: FunctionComponent<Props> = ({ isModalOpened, isClosing,
         <Portal>
             <ModalBackground closing={isClosing} fullScreenAtMobile>
                 <div ref={wrapperRef} className={styles.modalWrapper}>
-                    {productsToBuy.length > 0 ? <ShoppingListWithProducts /> : <EmptyShoppingList onClose={onClose} />}
+                    {Object.keys(productAmountById).length > 0 ? (
+                        <ShoppingListWithProducts />
+                    ) : (
+                        <EmptyShoppingList onClose={onClose} />
+                    )}
                 </div>
             </ModalBackground>
         </Portal>
     );
-};
+});
 
 export default ShoppingListModal;

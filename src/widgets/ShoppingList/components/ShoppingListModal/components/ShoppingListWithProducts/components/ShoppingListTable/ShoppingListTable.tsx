@@ -1,32 +1,37 @@
-import { AppContext } from 'app/providers/AppContextProvider';
-import React, { FunctionComponent, useContext } from 'react';
-import trashIcon from 'shared/assets/trashIcon.svg';
-import classNames from 'shared/lib/aliases/classNames';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { productStore } from 'entities/product';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent } from 'react';
+import { cartStore } from '@/entities/cart';
+import trashIcon from '@/shared/assets/trashIcon.svg';
+import classNames from '@/shared/lib/aliases/classNames';
+import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './ShoppingListTable.module.scss';
 
-const ShoppingListTable: FunctionComponent = () => {
-    const {
-        productsToBuy,
-        getProductsListPrice,
-        addOrIncrementProductToList,
-        decrementProductAmountInList,
-        deleteProductFromList
-    } = useContext(AppContext);
+const ShoppingListTable: FunctionComponent = observer(() => {
+    const { productAmountById, incrementProduct, decrementProduct, deleteProduct } = cartStore;
+    const { products } = productStore;
+    const flatProducts = Object.values(products ?? {}).reduce((accumulator, list) => [...accumulator, ...list]);
 
-    const incrementProduct = (productId: string, name: string, displayedPrice: number) => () => {
-        addOrIncrementProductToList(productId, name, displayedPrice);
+    const increment = (productId: string) => () => {
+        incrementProduct(productId);
     };
 
-    const decrementProduct = (productId: string) => () => {
-        decrementProductAmountInList(productId);
+    const decrement = (productId: string) => () => {
+        decrementProduct(productId);
     };
 
-    const deleteProduct = (productId: string) => () => {
-        deleteProductFromList(productId);
+    const handleDelete = (productId: string) => () => {
+        deleteProduct(productId);
     };
 
-    const totalListPrice = getProductsListPrice();
+    const totalListPrice = Object.entries(productAmountById).reduce((priceAccumulator, [id, amount]) => {
+        const product = flatProducts.find((product) => product.id === id);
+        if (!product) {
+            return priceAccumulator;
+        }
+
+        return priceAccumulator + product.priceWithoutDiscount * amount;
+    }, 0);
 
     return (
         <div className={styles.table}>
@@ -43,12 +48,18 @@ const ShoppingListTable: FunctionComponent = () => {
                     </div>
                 </div>
 
-                {productsToBuy.map((product, index) => {
-                    const { id: productId, name, amount, displayedPrice } = product;
-                    const isLastInList = index === productsToBuy.length - 1;
+                {Object.entries(productAmountById).map(([id, amount], index) => {
+                    const product = flatProducts.find((product) => product.id === id);
+
+                    if (!product) {
+                        return null;
+                    }
+
+                    const { name } = product;
+                    const isLastInList = index === Object.values(productAmountById).length - 1;
 
                     return (
-                        <div key={productId} className={styles.rowWrapper}>
+                        <div key={id} className={styles.rowWrapper}>
                             <div
                                 className={classNames(styles.productRow, {
                                     [styles.roundedBottom]: isLastInList
@@ -59,26 +70,20 @@ const ShoppingListTable: FunctionComponent = () => {
                                 <div className={styles.cell}>x{amount}</div>
 
                                 <div className={styles.cell}>
-                                    <button
-                                        type="button"
-                                        className={styles.incrementButton}
-                                        onClick={incrementProduct(productId, name, displayedPrice)}
-                                    >
+                                    <button type="button" className={styles.incrementButton} onClick={increment(id)}>
                                         +
                                     </button>
-                                    <button
-                                        type="button"
-                                        className={styles.decrementButton}
-                                        onClick={decrementProduct(productId)}
-                                    >
+                                    <button type="button" className={styles.decrementButton} onClick={decrement(id)}>
                                         -
                                     </button>
                                 </div>
 
-                                <div className={styles.cell}>{(displayedPrice * amount).toFixed(1)} ₽</div>
+                                <div className={styles.cell}>
+                                    {(product.priceWithoutDiscount * amount).toFixed(1)} ₽
+                                </div>
                             </div>
 
-                            <button type="button" className={styles.deleteButton} onClick={deleteProduct(productId)}>
+                            <button type="button" className={styles.deleteButton} onClick={handleDelete(id)}>
                                 <img src={trashIcon} alt="Удалить" />
                             </button>
                         </div>
@@ -94,6 +99,6 @@ const ShoppingListTable: FunctionComponent = () => {
             </div>
         </div>
     );
-};
+});
 
 export default ShoppingListTable;

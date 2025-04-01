@@ -1,5 +1,6 @@
-import { FunctionComponent, useContext, useState } from 'react';
-import { AppContext } from '@/app/providers/AppContextProvider';
+import { cartStore } from 'entities/cart';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent, useState } from 'react';
 import { CreatePaymentDto } from '@/app/types/api/apiTypes';
 import PromoCodeBlock from '@/widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/PromoCodeBlock/PromoCodeBlock';
 import ShoppingListTable from '@/widgets/ShoppingList/components/ShoppingListModal/components/ShoppingListWithProducts/components/ShoppingListTable/ShoppingListTable';
@@ -9,27 +10,28 @@ import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
 import Button from '@/shared/ui/button/Button';
 import styles from './ShoppingListWithProducts.module.scss';
 
-const ShoppingListWithProducts: FunctionComponent = () => {
+const ShoppingListWithProducts: FunctionComponent = observer(() => {
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
     const [paymentError, setPaymentError] = useState<string>();
 
     const { userName } = useUserInfo();
     const { eraseUserInfo } = useUserStoreActions();
 
-    const { productsToBuy, promoCode, setPromoCode } = useContext(AppContext) ?? {};
+    const { productAmountById, promoCode, deletePromoCode } = cartStore;
 
     const handlePayment = async () => {
-        if (!userName || productsToBuy?.length === 0) {
+        if (!userName || Object.keys(productAmountById).length === 0) {
             return;
         }
 
         const paymentInfo: CreatePaymentDto = {
             playerName: userName,
-            productList: productsToBuy?.map(({ id, amount }) => ({
-                id,
-                amount
-            })),
-            promocode: promoCode?.name ?? null
+            productList:
+                Object.entries(productAmountById).map(([id, amount]) => ({
+                    id,
+                    amount
+                })) ?? [],
+            promocode: promoCode?.name
         };
 
         try {
@@ -46,7 +48,7 @@ const ShoppingListWithProducts: FunctionComponent = () => {
 
     const logout = () => {
         eraseUserInfo();
-        setPromoCode?.(undefined);
+        deletePromoCode();
     };
 
     return (
@@ -73,10 +75,10 @@ const ShoppingListWithProducts: FunctionComponent = () => {
                     {Boolean(paymentError) && <span className={styles.errorSpan}>{paymentError}</span>}
                 </div>
             ) : (
-                <UserAuthBlock className={styles.playerInfoBlock} title="Введите ник игрока, чтобы купить товары:" />
+                <UserAuthBlock />
             )}
         </>
     );
-};
+});
 
 export default ShoppingListWithProducts;

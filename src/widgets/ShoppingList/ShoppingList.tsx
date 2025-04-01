@@ -1,12 +1,13 @@
-import { FunctionComponent, MouseEvent, useContext, useState } from 'react';
+import { cartStore } from 'entities/cart';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent, MouseEvent, useState } from 'react';
 import { Time } from '@/app/const/enum/Time';
-import { AppContext } from '@/app/providers/AppContextProvider';
 import ShoppingListModal from '@/widgets/ShoppingList/components/ShoppingListModal/ShoppingListModal';
 import { BackgroundColor, ModernButton } from '@/shared/ui';
 import cartImage from './images/cartIcon.svg';
 import styles from './ShoppingList.module.scss';
 
-const ShoppingList: FunctionComponent = () => {
+const ShoppingList: FunctionComponent = observer(() => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
@@ -26,12 +27,12 @@ const ShoppingList: FunctionComponent = () => {
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productsToBuy } = useContext(AppContext) ?? {};
+    const { productAmountById } = cartStore;
 
     return (
         <>
             <ModernButton background={BackgroundColor.RED} onClick={openModal} className={styles.button}>
-                <span className={styles.cartLabel}>{productsToBuy?.length || 'Корзина'}</span>
+                <span className={styles.cartLabel}>{Object.keys(productAmountById).length || 'Корзина'}</span>
 
                 <img src={cartImage} className={styles.cartImage} alt="Корзина" />
             </ModernButton>
@@ -39,6 +40,6 @@ const ShoppingList: FunctionComponent = () => {
             <ShoppingListModal isModalOpened={isModalOpened} isClosing={isClosing} onClose={closeModal} />
         </>
     );
-};
+});
 
 export default ShoppingList;

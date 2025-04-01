@@ -1,29 +1,31 @@
-import { Time } from 'app/const/enum/Time';
-import { AppContext } from 'app/providers/AppContextProvider';
-import { ProductOutDto } from 'app/types/api/apiTypes';
-import { FunctionComponent, MouseEvent, useContext, useRef, useState } from 'react';
+import { cartStore } from 'entities/cart';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent, MouseEvent, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
-import chestImage from 'shared/assets/chest.png';
-import trashIcon from 'shared/assets/trashIcon.svg';
-import classNames from 'shared/lib/aliases/classNames';
-import Button from 'shared/ui/button/Button';
-import FailSafeImage from 'shared/ui/failSafeImage/FailSafeImage';
-import ModalBackground from 'shared/ui/modalBackground/ModalBackground';
-import Portal from 'shared/ui/portal/Portal';
-import SafelySetInnerHTML from 'shared/ui/safelySetInnerHTML/SafelySetInnerHTML';
+import { Time } from '@/app/const/enum/Time';
+import { ProductOutDto } from '@/app/types/api/apiTypes';
+import chestImage from '@/shared/assets/chest.png';
+import trashIcon from '@/shared/assets/trashIcon.svg';
+import classNames from '@/shared/lib/aliases/classNames';
+import Button from '@/shared/ui/button/Button';
+import FailSafeImage from '@/shared/ui/failSafeImage/FailSafeImage';
+import ModalBackground from '@/shared/ui/modalBackground/ModalBackground';
+import Portal from '@/shared/ui/portal/Portal';
+import SafelySetInnerHTML from '@/shared/ui/safelySetInnerHTML/SafelySetInnerHTML';
 import styles from './ProductCard.module.scss';
 
 interface Props {
     product: Required<ProductOutDto>;
 }
 
-const ProductCard: FunctionComponent<Props> = ({ product }) => {
+const ProductCard: FunctionComponent<Props> = observer(({ product }) => {
     const [isCardModalOpened, setIsCardModalOpened] = useState<boolean>(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
-    const { productsToBuy, addOrIncrementProductToList, deleteProductFromList } = useContext(AppContext) ?? {};
+    const { productAmountById, incrementProduct, deleteProduct } = cartStore;
+
     const { id: productId, imagePath, name, description, priceWithDiscount, priceWithoutDiscount } = product;
-    const isInShoppingList = productsToBuy?.some((product) => product.id === productId);
+    const isInShoppingList = Boolean(productAmountById[productId]);
     const buttonText = isInShoppingList ? 'Купить ещё' : 'Купить';
 
     const openModal = () => setIsCardModalOpened(true);
@@ -43,7 +45,7 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
     };
 
     const addProductToBuyList = () => {
-        addOrIncrementProductToList?.(productId, name, priceWithDiscount ?? priceWithoutDiscount);
+        incrementProduct(productId);
 
         setIsClosing(true);
         setTimeout(() => {
@@ -54,7 +56,7 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
 
     const deleteProductFromBuyList = (event: MouseEvent) => {
         event.stopPropagation();
-        deleteProductFromList?.(productId);
+        deleteProduct(productId);
     };
 
     const priceBlock = priceWithDiscount ? (
@@ -122,6 +124,6 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
             )}
         </>
     );
-};
+});
 
 export default ProductCard;
