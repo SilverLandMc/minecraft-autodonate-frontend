@@ -15,6 +15,11 @@ class CartStore {
     }
 
     incrementProduct = (productId: string) => {
+        if (!this.productAmountById[productId]) {
+            this.productAmountById[productId] = 1;
+            return;
+        }
+
         this.productAmountById[productId] += 1;
     };
 

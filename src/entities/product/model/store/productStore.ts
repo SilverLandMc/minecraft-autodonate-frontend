@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { fetchProducts } from '../../api/fetchProducts';
-import { AllProductsOutDto } from '../../types';
+import { AllProductsOutDto, ProductsByIds } from '../../types';
 
 /**
  * Стор информации о продуктах (товарах).
@@ -30,6 +30,12 @@ class ProductStore {
         this.setProducts(nextProducts);
         this.isProductsFetching = false;
     };
+
+    get productsByIds(): ProductsByIds {
+        return Object.values(this.products ?? {})
+            .flat()
+            .reduce((result, product) => ({ ...result, [product.id]: product }), {});
+    }
 }
 
 export const productStore = new ProductStore();
