@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { fetchProducts } from '../../api/fetchProducts';
-import { AllProductsOutDto, ProductsByIds } from '../../types';
+import { AllProductsOutDto, ProductsById } from '../../types';
 
 /**
  * Стор информации о продуктах (товарах).
@@ -8,7 +8,7 @@ import { AllProductsOutDto, ProductsByIds } from '../../types';
  * @see authProvider
  */
 class ProductStore {
-    products?: AllProductsOutDto;
+    productsByCategory?: AllProductsOutDto;
     isProductsFetching?: boolean;
 
     constructor() {
@@ -16,12 +16,11 @@ class ProductStore {
     }
 
     setProducts = (nextProducts?: AllProductsOutDto) => {
-        this.products = nextProducts;
+        this.productsByCategory = nextProducts;
     };
-    resetProducts = () => this.setProducts(undefined);
 
     fetchProducts = async () => {
-        if (this.products) {
+        if (this.productsByCategory) {
             return;
         }
 
@@ -31,8 +30,8 @@ class ProductStore {
         this.isProductsFetching = false;
     };
 
-    get productsByIds(): ProductsByIds {
-        return Object.values(this.products ?? {})
+    get productsById(): ProductsById {
+        return Object.values(this.productsByCategory ?? {})
             .flat()
             .reduce((result, product) => ({ ...result, [product.id]: product }), {});
     }

@@ -1,24 +1,27 @@
-import { productStore } from 'entities/product';
-import ProductCard from 'entities/ProductCard/ProductCard';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
-import chestImage from 'shared/assets/chest.png';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Section from 'shared/ui/section/Section';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { Category } from '@/app/types/api/apiTypes';
+import { productStore, ProductCard } from '@/entities/product';
+import chestImage from '@/shared/assets/chest.png';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Section from '@/shared/ui/section/Section';
+import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './ShopPagePure.module.scss';
 
+const pageSpacing = <Spacing size={50} sizeM={70} />;
+const ranksSpacing = <Spacing size={24} sizeM={32} />;
+
 const ShopPagePure: FunctionComponent = observer(() => {
-    const { isProductsFetching, products } = productStore;
+    const { isProductsFetching, productsByCategory, productsById } = productStore;
 
     if (isProductsFetching) {
         return <RunnerLoader />;
     }
 
-    if (!products || Object.values(products).every((productList) => productList.length === 0)) {
+    if (!productsByCategory || Object.values(productsById).length === 0) {
         return (
             <div className={styles.errorWrapper}>
-                <Spacing size={15} sizeS={30} />
+                {pageSpacing}
 
                 <Section className={styles.errorSection}>
                     <img src={chestImage} className={styles.errorImage} alt="Нет товаров!" />
@@ -29,24 +32,43 @@ const ShopPagePure: FunctionComponent = observer(() => {
                     </p>
                 </Section>
 
-                <Spacing size={15} sizeS={30} />
+                {pageSpacing}
             </div>
         );
     }
 
+    const rankProducts = productsByCategory[Category.RANKS];
+
+    const otherProducts = Object.entries(productsByCategory)
+        .filter(([category]) => category !== Category.RANKS)
+        .map(([category, products]) => products)
+        .flat();
+
     return (
         <div className={styles.wrapper}>
-            <Spacing size={15} sizeM={20} />
+            {pageSpacing}
 
             <Section className={styles.section}>
+                <h3>Ранги</h3>
+                {ranksSpacing}
                 <div className={styles.cardsWrapper}>
-                    {Object.values(products).map((category) =>
-                        category.map((product) => <ProductCard key={product.id} product={product} />)
-                    )}
+                    {rankProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+
+                {pageSpacing}
+
+                <h3>Прочее разное</h3>
+                {ranksSpacing}
+                <div className={styles.cardsWrapper}>
+                    {otherProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
                 </div>
             </Section>
 
-            <Spacing size={15} sizeM={20} />
+            {pageSpacing}
         </div>
     );
 });

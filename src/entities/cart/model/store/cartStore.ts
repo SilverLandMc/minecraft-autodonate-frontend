@@ -36,10 +36,6 @@ class CartStore {
         delete this.productAmountById[productId];
     };
 
-    resetCart = () => {
-        this.productAmountById = {};
-    };
-
     setPromoCode = (promoCode?: PromocodeOutDto) => {
         this.promoCode = promoCode;
     };

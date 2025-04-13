@@ -42,7 +42,7 @@
 .cardsWrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     align-items: center;
 
     @include media.mediaS {

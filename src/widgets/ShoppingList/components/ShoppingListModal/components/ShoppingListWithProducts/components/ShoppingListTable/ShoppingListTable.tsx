@@ -9,14 +9,14 @@ import styles from './ShoppingListTable.module.scss';
 
 const ShoppingListTable: FunctionComponent = observer(() => {
     const { productAmountById, incrementProduct, decrementProduct, deleteProduct } = cartStore;
-    const { productsByIds } = productStore;
+    const { productsById } = productStore;
 
     const increment = (productId: string) => () => incrementProduct(productId);
     const decrement = (productId: string) => () => decrementProduct(productId);
     const handleDelete = (productId: string) => () => deleteProduct(productId);
 
     const totalListPrice = Object.entries(productAmountById).reduce((priceAccumulator, [id, amount]) => {
-        const product = productsByIds[id];
+        const product = productsById[id];
         return priceAccumulator + product.priceWithoutDiscount * amount;
     }, 0);
 
@@ -36,7 +36,7 @@ const ShoppingListTable: FunctionComponent = observer(() => {
                 </div>
 
                 {Object.entries(productAmountById).map(([id, amount], index) => {
-                    const product = productsByIds[id];
+                    const product = productsById[id];
 
                     const { name } = product;
                     const isLast = index === Object.values(productAmountById).length - 1;
