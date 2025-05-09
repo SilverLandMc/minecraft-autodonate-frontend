@@ -35,7 +35,14 @@ const defineConfig = ({ mode, command }: ConfigEnv): UserConfigExport => {
             port: 3010,
             open: false
         },
-        css: { postcss: resolve(__dirname, './postcss.config.js') },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    loadPaths: [resolve(__dirname, '../src')]
+                }
+            },
+            postcss: resolve(__dirname, './postcss.config.js')
+        },
         build: {
             outDir: 'build',
             sourcemap: 'hidden'

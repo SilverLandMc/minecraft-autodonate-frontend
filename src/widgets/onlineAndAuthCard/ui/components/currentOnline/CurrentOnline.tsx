@@ -7,7 +7,7 @@ import { ProgressBar } from './components/progressBar/ProgressBar';
 import styles from './CurrentOnline.module.scss';
 
 const DEFAULT_CURRENT_ONLINE = 0;
-const DEFAULT_MAX_ONLINE = 2024;
+const DEFAULT_MAX_ONLINE = 100;
 
 /**
  * Блок информации о текущем онлайне на сервере.

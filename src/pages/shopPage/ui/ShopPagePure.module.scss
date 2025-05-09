@@ -1,4 +1,4 @@
-@use '/src/app/styles/media/media.scss';
+@use 'app/styles/media/media.scss';
 
 .wrapper,
 .errorWrapper {
@@ -48,9 +48,14 @@
     @include media.mediaS {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 32px;
     }
 
     @include media.mediaM {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include media.mediaL {
+        gap: 64px;
     }
 }

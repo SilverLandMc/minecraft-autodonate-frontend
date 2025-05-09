@@ -9,7 +9,7 @@ import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './ShopPagePure.module.scss';
 
 const pageSpacing = <Spacing size={50} sizeM={70} />;
-const ranksSpacing = <Spacing size={24} sizeM={32} />;
+const headerSpacing = <Spacing size={24} sizeM={32} />;
 
 const ShopPagePure: FunctionComponent = observer(() => {
     const { isProductsFetching, productsByCategory, productsById } = productStore;
@@ -50,7 +50,7 @@ const ShopPagePure: FunctionComponent = observer(() => {
 
             <Section className={styles.section}>
                 <h3>Ранги</h3>
-                {ranksSpacing}
+                {headerSpacing}
                 <div className={styles.cardsWrapper}>
                     {rankProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
@@ -60,7 +60,7 @@ const ShopPagePure: FunctionComponent = observer(() => {
                 {pageSpacing}
 
                 <h3>Прочее разное</h3>
-                {ranksSpacing}
+                {headerSpacing}
                 <div className={styles.cardsWrapper}>
                     {otherProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />

@@ -1,12 +1,23 @@
-@use '/src/app/styles/media/media.scss';
+@use 'app/styles/media/media.scss';
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     width: 100%;
+
+    max-width: 290px;
+    height: 100%;
     padding: 24px 20px;
 
     border-radius: 20px;
 
     background: rgba(255, 255, 255, 0.03);
+
+    @include media.mediaS {
+        max-width: unset;
+    }
 }
 
 .image {
@@ -19,4 +30,52 @@
     @include media.mediaS {
         max-width: unset;
     }
+}
+
+.descriptionButton {
+    width: 100%;
+}
+
+.name {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 900;
+
+    @include media.mediaL {
+        font-size: 26px;
+        line-height: 26px;
+    }
+}
+
+.pricesBuyRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prices {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.priceWithDiscount {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+.priceWithoutDiscount {
+    text-decoration: line-through;
+
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+
+    color: var(--color-davys-grey);
+}
+
+.buyButton {
+    width: 60%;
 }

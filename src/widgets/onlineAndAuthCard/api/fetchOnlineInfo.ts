@@ -1,4 +1,4 @@
-import { Players } from '@/app/types/api/apiTypes';
+import { ServerInfo } from '@/app/types/api/apiTypes';
 import Sentry from '@/shared/lib/aliases/Sentry';
 import createLogger from '@/shared/lib/logger/logger';
 import { request } from '@/shared/lib/request/request';
@@ -7,7 +7,7 @@ const logger = createLogger('fetchOnlineInfo');
 
 export const fetchOnline = async () => {
     try {
-        return await request<Players>({
+        return await request<ServerInfo>({
             url: '/public/online'
         });
     } catch (error) {
