@@ -1,6 +1,5 @@
 import { FunctionComponent, ReactNode } from 'react';
-import Section from '@/shared/ui/section/Section';
-import Spacing from '@/shared/ui/spacing/Spacing';
+import { Section, Spacing } from '@/shared/ui';
 import styles from './TermsOfServicePage.module.scss';
 
 const interBlockSpacing = <Spacing size={24} sizeS={32} sizeL={50} />;

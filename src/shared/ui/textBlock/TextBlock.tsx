@@ -1,6 +1,6 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
-import Section from 'shared/ui/section/Section';
+import { Section } from '@/shared/ui';
 import styles from './TextBlock.module.scss';
 
 interface Props extends PropsWithChildren {

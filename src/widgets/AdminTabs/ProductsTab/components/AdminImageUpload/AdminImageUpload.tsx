@@ -1,14 +1,14 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { acceptImageSetting } from 'shared/const/enum/imageType';
 import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
+import { Spacing } from 'shared/ui';
 import Button from 'shared/ui/button/Button';
-import Spacing from 'shared/ui/spacing/Spacing';
 import Title from 'shared/ui/title/Title';
 import uploadFile from 'widgets/AdminTabs/ProductsTab/actions/uploadFile';
 import styles from './AdminImageUpload.module.scss';
 
 interface Props {
-    setImageId(imageId: string): void;
+    setImageId(imageId?: string): void;
     initialImageSrc?: string;
 }
 
@@ -28,7 +28,7 @@ const AdminImageUpload: FunctionComponent<Props> = ({ setImageId, initialImageSr
     const hasImage = Boolean(imageSrc);
 
     const handleChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files[0];
+        const file = event.target.files ? event.target.files[0] : undefined;
 
         if (!file) {
             return;

@@ -1,8 +1,8 @@
 import { DiscountBaseInDto, DiscountType } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
+import { Spacing } from 'shared/ui';
 import Button from 'shared/ui/button/Button';
-import Spacing from 'shared/ui/spacing/Spacing';
 import Title from 'shared/ui/title/Title';
 import createDiscount from 'widgets/AdminTabs/DiscountsTab/components/DiscountCreation/utils/createDiscount';
 import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';

@@ -3,16 +3,16 @@ import { ValidityType } from 'app/types/api/apiTypes';
 import React, { FunctionComponent, useState } from 'react';
 import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
 import classNames from 'shared/lib/aliases/classNames';
+import { Spacing } from 'shared/ui';
 import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
 import Button from 'shared/ui/button/Button';
 import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import SafelySetInnerHTML from 'shared/ui/safelySetInnerHTML/SafelySetInnerHTML';
-import Spacing from 'shared/ui/spacing/Spacing';
 import Table from 'shared/ui/table/Table';
 import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import deleteProduct from 'widgets/AdminTabs/ProductsTab/actions/deleteProduct';
 import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
 import { ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
+import { SafeHTML } from '@/shared/ui/safeHTML';
 import styles from './ProductsList.module.scss';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {
@@ -79,7 +79,7 @@ const ProductsList: FunctionComponent<ProductComponentProps> = ({
                 { firstFieldName: 'name' },
                 {
                     firstFieldName: 'description',
-                    render: (rawHTML: string) => <SafelySetInnerHTML rawHTML={rawHTML} />
+                    render: (rawHTML: string) => <SafeHTML rawHTML={rawHTML} />
                 },
                 { firstFieldName: 'priceWithoutDiscount' },
                 { firstFieldName: 'priceWithDiscount' },

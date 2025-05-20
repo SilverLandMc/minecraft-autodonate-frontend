@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
+import { Spacing } from 'shared/ui';
 import { cartStore } from '@/entities/cart';
 import { productStore } from '@/entities/product';
 import trashIcon from '@/shared/assets/trashIcon.svg';
 import classNames from '@/shared/lib/aliases/classNames';
-import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './ShoppingListTable.module.scss';
 
 const ShoppingListTable: FunctionComponent = observer(() => {

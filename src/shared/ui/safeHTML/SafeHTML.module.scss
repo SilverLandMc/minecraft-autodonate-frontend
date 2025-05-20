@@ -1,0 +1,6 @@
+.container {
+    /* stylelint-disable-next-line selector-max-type -- Иначе точки списков внутри игнорируют padding родителя */
+    li {
+        list-style-position: inside;
+    }
+}

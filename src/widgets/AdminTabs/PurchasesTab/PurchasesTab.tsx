@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import classNames from 'shared/lib/aliases/classNames';
+import { Spacing } from 'shared/ui';
 import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
 import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Spacing from 'shared/ui/spacing/Spacing';
 import Title from 'shared/ui/title/Title';
 import LatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/LatestPurchases';
 import usePurchasesInfo from 'widgets/AdminTabs/PurchasesTab/hooks/usePurchasesInfo';

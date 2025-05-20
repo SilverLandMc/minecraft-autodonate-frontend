@@ -3,10 +3,10 @@ import { FunctionComponent, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
-import Section from 'shared/ui/section/Section';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import useAppDispatch from '@/shared/hooks/redux/useAppDispatch';
+import selectAdminPagePart from '@/shared/redux/selectors/selectAdminPagePart';
+import { Section } from '@/shared/ui';
 import styles from './AuthPage.module.scss';
 
 const AuthPage: FunctionComponent = () => {

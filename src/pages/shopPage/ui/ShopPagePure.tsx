@@ -1,11 +1,11 @@
+import { cartStore } from 'entities/cart';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
-import { Category } from '@/app/types/api/apiTypes';
+import { Category, ProductOutDto } from '@/app/types/api/apiTypes';
 import { productStore, ProductCard } from '@/entities/product';
 import chestImage from '@/shared/assets/chest.png';
+import { Section, Spacing } from '@/shared/ui';
 import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
-import Section from '@/shared/ui/section/Section';
-import Spacing from '@/shared/ui/spacing/Spacing';
 import styles from './ShopPagePure.module.scss';
 
 const pageSpacing = <Spacing size={50} sizeM={70} />;
@@ -13,6 +13,7 @@ const headerSpacing = <Spacing size={24} sizeM={32} />;
 
 const ShopPagePure: FunctionComponent = observer(() => {
     const { isProductsFetching, productsByCategory, productsById } = productStore;
+    const { incrementProduct, decrementProduct } = cartStore;
 
     if (isProductsFetching) {
         return <RunnerLoader />;
@@ -37,6 +38,21 @@ const ShopPagePure: FunctionComponent = observer(() => {
         );
     }
 
+    const renderProducts = (products: ProductOutDto[]) =>
+        products.map((product) => {
+            const handleIncrement = () => incrementProduct(product.id);
+            const handleDecrement = () => decrementProduct(product.id);
+
+            return (
+                <ProductCard
+                    key={product.id}
+                    product={product}
+                    onIncrement={handleIncrement}
+                    onDecrement={handleDecrement}
+                />
+            );
+        });
+
     const rankProducts = productsByCategory[Category.RANKS];
 
     const otherProducts = Object.entries(productsByCategory)
@@ -51,21 +67,13 @@ const ShopPagePure: FunctionComponent = observer(() => {
             <Section className={styles.section}>
                 <h3>Ранги</h3>
                 {headerSpacing}
-                <div className={styles.cardsWrapper}>
-                    {rankProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
+                <div className={styles.cardsWrapper}>{renderProducts(rankProducts)}</div>
 
                 {pageSpacing}
 
                 <h3>Прочее разное</h3>
                 {headerSpacing}
-                <div className={styles.cardsWrapper}>
-                    {otherProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
+                <div className={styles.cardsWrapper}>{renderProducts(otherProducts)}</div>
             </Section>
 
             {pageSpacing}

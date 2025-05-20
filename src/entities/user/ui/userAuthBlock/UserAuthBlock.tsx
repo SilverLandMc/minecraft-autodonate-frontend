@@ -1,9 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import { useUserInfo, useUserStoreActions } from '@/entities/user';
-import { BackgroundColor, Input, ModernButton } from '@/shared/ui';
-import Section from '@/shared/ui/section/Section';
-import Spacing from '@/shared/ui/spacing/Spacing';
+import { BackgroundColor, Input, ModernButton, Section, Spacing } from '@/shared/ui';
 import { fetchUserInfo } from '../../api/fetchUserInfo';
 import styles from './UserAuthBlock.module.scss';
 

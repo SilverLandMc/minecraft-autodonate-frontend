@@ -1,7 +1,6 @@
-import React, { FunctionComponent } from 'react';
-import errorImage from 'shared/assets/troubledMan.png';
-import Section from 'shared/ui/section/Section';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { FunctionComponent } from 'react';
+import errorImage from '@/shared/assets/troubledMan.png';
+import { Section, Spacing } from '@/shared/ui';
 import styles from './ErrorPage.module.scss';
 
 export const ErrorPage: FunctionComponent = () => (

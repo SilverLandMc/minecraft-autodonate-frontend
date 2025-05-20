@@ -3,3 +3,6 @@ export * from './modernButton';
 export * from './input';
 export * from './outerLink';
 export * from './failSafeImage';
+export * from './safeHTML';
+export * from './spacing';
+export * from './section';

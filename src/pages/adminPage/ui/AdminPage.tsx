@@ -1,7 +1,6 @@
 import AdminAccessGuard from 'pages/adminPage/layouts/AdminAccessGuard';
 import { ComponentType, FunctionComponent, useState } from 'react';
-import Section from 'shared/ui/section/Section';
-import Spacing from 'shared/ui/spacing/Spacing';
+import { Section, Spacing } from 'shared/ui';
 import AdminNavBar, { AdminTab } from 'widgets/AdminNavBar/AdminNavBar';
 import DiscountsTab from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import ProductsTab from 'widgets/AdminTabs/ProductsTab/ProductsTab';

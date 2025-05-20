@@ -1,10 +1,8 @@
-import React, { FunctionComponent } from 'react';
-import youtubeIcon from 'shared/assets/youtubeIcon.svg';
+import { FunctionComponent } from 'react';
 import { LinkURL } from '@/app/const/enum/linkURL';
 import telegramIcon from '@/shared/assets/telegramIcon.svg';
-import { BackgroundColor, ModernButton } from '@/shared/ui';
-import Section from '@/shared/ui/section/Section';
-import Spacing from '@/shared/ui/spacing/Spacing';
+import youtubeIcon from '@/shared/assets/youtubeIcon.svg';
+import { BackgroundColor, ModernButton, Section, Spacing } from '@/shared/ui';
 import silverhandPhoto from './images/silverhandPhoto.png';
 import styles from './PlayWithBlogger.module.scss';
 

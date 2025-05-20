@@ -1,11 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EnticingCards } from '@/widgets/enticingCards';
 import { OnlineAndAuthCard } from '@/widgets/onlineAndAuthCard';
 import { PlayWithBlogger } from '@/widgets/playWithBlogger';
 import { UserAuthBlock } from '@/entities/user';
 import useMediaContext from '@/shared/hooks/useMediaContext';
-import { Optional } from '@/shared/ui';
-import Spacing from '@/shared/ui/spacing/Spacing';
+import { Optional, Spacing } from '@/shared/ui';
 import styles from './MainPage.module.scss';
 
 const mainPageSpacing = <Spacing size={50} sizeS={70} sizeM={90} sizeL={150} />;

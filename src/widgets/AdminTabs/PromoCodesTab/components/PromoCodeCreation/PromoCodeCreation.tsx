@@ -1,10 +1,10 @@
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import useDiscountInfo from 'shared/hooks/useDiscountInfo';
 import classNames from 'shared/lib/aliases/classNames';
+import { Spacing } from 'shared/ui';
 import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
 import Button from 'shared/ui/button/Button';
 import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Spacing from 'shared/ui/spacing/Spacing';
 import Title from 'shared/ui/title/Title';
 import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
 import createPromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/createPromoCode';
