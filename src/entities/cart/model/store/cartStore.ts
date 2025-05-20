@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { PromocodeOutDto } from '@/app/types/api/apiTypes';
 
 /**
- * Стор информации о продуктах (товарах) в корзине пользователя.
+ * Стор информации о продуктах (товарах) в корзине пользователя и активированном промокоде.
  */
 class CartStore {
     // Число каждого из продуктов в корзине по его id

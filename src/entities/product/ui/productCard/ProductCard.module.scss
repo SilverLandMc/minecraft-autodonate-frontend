@@ -79,3 +79,20 @@
 .buyButton {
     width: 60%;
 }
+
+.amountControlRow {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+
+    min-height: 36px;
+}
+
+.amountControlButton {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+
+    border-radius: 50%;
+}

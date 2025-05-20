@@ -6,13 +6,14 @@ import styles from './ProductCard.module.scss';
 
 interface Props {
     product: ProductOutDto;
+    amount?: number;
     onIncrement(): void;
     onDecrement(): void;
 }
 
-export const ProductCard: FunctionComponent<Props> = ({ product, onIncrement, onDecrement }) => {
+export const ProductCard: FunctionComponent<Props> = ({ product, amount, onIncrement, onDecrement }) => {
     const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-    const { id, name, description, imagePath, priceWithoutDiscount, priceWithDiscount } = product;
+    const { name, description, imagePath, priceWithoutDiscount, priceWithDiscount } = product;
 
     const cardRef = useRef<HTMLDivElement>(null);
 
@@ -59,9 +60,35 @@ export const ProductCard: FunctionComponent<Props> = ({ product, onIncrement, on
                         </Optional>
                     </div>
 
-                    <ModernButton className={styles.buyButton} background={BackgroundColor.RED}>
-                        В корзину
-                    </ModernButton>
+                    {amount ? (
+                        <div className={styles.amountControlRow}>
+                            <ModernButton
+                                className={styles.amountControlButton}
+                                background={BackgroundColor.RED}
+                                onClick={onDecrement}
+                            >
+                                -
+                            </ModernButton>
+
+                            {amount}
+
+                            <ModernButton
+                                className={styles.amountControlButton}
+                                background={BackgroundColor.RED}
+                                onClick={onIncrement}
+                            >
+                                +
+                            </ModernButton>
+                        </div>
+                    ) : (
+                        <ModernButton
+                            className={styles.buyButton}
+                            background={BackgroundColor.RED}
+                            onClick={onIncrement}
+                        >
+                            В корзину
+                        </ModernButton>
+                    )}
                 </div>
             </div>
         </div>
