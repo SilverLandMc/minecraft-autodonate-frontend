@@ -13,7 +13,7 @@ const headerSpacing = <Spacing size={24} sizeM={32} />;
 
 const ShopPagePure: FunctionComponent = observer(() => {
     const { isProductsFetching, productsByCategory, productsById } = productStore;
-    const { incrementProduct, decrementProduct } = cartStore;
+    const { incrementProduct, decrementProduct, productAmountById } = cartStore;
 
     if (isProductsFetching) {
         return <RunnerLoader />;
@@ -42,11 +42,13 @@ const ShopPagePure: FunctionComponent = observer(() => {
         products.map((product) => {
             const handleIncrement = () => incrementProduct(product.id);
             const handleDecrement = () => decrementProduct(product.id);
+            const amount = productAmountById[product.id] ?? 0;
 
             return (
                 <ProductCard
                     key={product.id}
                     product={product}
+                    amount={amount}
                     onIncrement={handleIncrement}
                     onDecrement={handleDecrement}
                 />
