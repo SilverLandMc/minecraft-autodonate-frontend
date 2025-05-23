@@ -11,6 +11,23 @@
     }
 }
 
+.category {
+    font-weight: 900;
+
+    font-size: 24px;
+    line-height: 24px;
+
+    @include media.mediaS {
+        font-size: 32px;
+        line-height: 32px;
+    }
+
+    @include media.mediaL {
+        font-size: 64px;
+        line-height: 64px;
+    }
+}
+
 .errorImage {
     max-width: 200px;
 

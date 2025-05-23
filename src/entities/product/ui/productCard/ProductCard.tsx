@@ -89,7 +89,7 @@ export const ProductCard: FunctionComponent<Props> = ({ product, amount, onIncre
                                 <img src={minusIcon} alt="Убрать" />
                             </ModernButton>
 
-                            {amount}
+                            <span className={styles.amount}>{amount}</span>
 
                             <ModernButton
                                 className={styles.amountControlButton}

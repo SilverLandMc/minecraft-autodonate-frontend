@@ -103,3 +103,14 @@
 
     border-radius: 50%;
 }
+
+.amount {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+
+    @include media.mediaL {
+        font-size: 16px;
+        line-height: 16px;
+    }
+}

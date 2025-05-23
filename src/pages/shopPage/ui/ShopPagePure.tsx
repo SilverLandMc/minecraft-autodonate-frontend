@@ -67,7 +67,7 @@ const ShopPagePure: FunctionComponent = observer(() => {
             {pageSpacing}
 
             <Section className={styles.section}>
-                <h3>Ранги</h3>
+                <h3 className={styles.category}>Ранги</h3>
                 {headerSpacing}
                 <div className={styles.cardsWrapper}>{renderProducts(rankProducts)}</div>
 
