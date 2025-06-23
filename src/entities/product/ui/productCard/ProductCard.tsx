@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useRef, useState } from 'react';
 import { ProductOutDto } from '@/app/types/api/apiTypes';
 import chestImage from '@/shared/assets/chest.png';
@@ -19,13 +20,16 @@ interface Props {
  *
  * При нажатии на кнопку "подробнее" вместо изображения продукта отображает его описание и кнопку "скрыть описание".
  *
+ * Компонент обёрнут в `observer`. Так нужно из-за того, что он обращается к внутренним полям
+ * observable-продукта из стора mobX.
+ *
  * @param {Props} props - Свойства компонента
  * @param {ProductOutDto} props.product - Количество продукта в корзине
  * @param {number} props.amount - Количество продукта в корзине
  * @param {function} props.onIncrement - Коллбэк, вызываемый при добавлении продукта в корзину / увеличении количества
  * @param {function} props.onDecrement - Коллбэк, вызываемый при уменьшении количества продукта в корзине
  */
-export const ProductCard: FunctionComponent<Props> = ({ product, amount, onIncrement, onDecrement }) => {
+export const ProductCard: FunctionComponent<Props> = observer(({ product, amount, onIncrement, onDecrement }) => {
     const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
     const { name, description, imagePath, priceWithoutDiscount, priceWithDiscount } = product;
 
@@ -112,4 +116,4 @@ export const ProductCard: FunctionComponent<Props> = ({ product, amount, onIncre
             </div>
         </div>
     );
-};
+});

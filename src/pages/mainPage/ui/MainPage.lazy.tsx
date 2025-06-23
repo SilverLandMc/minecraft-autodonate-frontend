@@ -1,6 +1,4 @@
-import { lazy } from "react";
-import componentLoader from "shared/lib/componentLoader/componentLoader";
+import { lazy } from 'react';
+import componentLoader from '@/shared/lib/componentLoader/componentLoader';
 
-export const MainPageLazy = lazy(() =>
-  componentLoader(() => import("./MainPage")),
-);
+export const MainPageLazy = lazy(() => componentLoader(() => import('./MainPage')));
