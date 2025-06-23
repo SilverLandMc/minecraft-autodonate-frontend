@@ -2,12 +2,12 @@ import { cartStore } from 'entities/cart';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, MouseEvent, useState } from 'react';
 import { Time } from '@/app/const/enum/Time';
-import ShoppingListModal from '@/widgets/ShoppingList/components/ShoppingListModal/ShoppingListModal';
 import { BackgroundColor, ModernButton } from '@/shared/ui';
+import ShoppingListModal from './components/shoppingListModal/ShoppingListModal';
 import cartImage from './images/cartIcon.svg';
 import styles from './ShoppingList.module.scss';
 
-const ShoppingList: FunctionComponent = observer(() => {
+export const ShoppingList: FunctionComponent = observer(() => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
@@ -41,5 +41,3 @@ const ShoppingList: FunctionComponent = observer(() => {
         </>
     );
 });
-
-export default ShoppingList;
