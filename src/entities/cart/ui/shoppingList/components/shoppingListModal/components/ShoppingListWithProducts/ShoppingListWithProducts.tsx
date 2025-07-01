@@ -1,13 +1,13 @@
-import { cartStore } from 'entities/cart';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
 import { CreatePaymentDto } from '@/app/types/api/apiTypes';
-import PromoCodeBlock from '@/widgets/shoppingList/components/shoppingListModal/components/ShoppingListWithProducts/components/PromoCodeBlock/PromoCodeBlock';
-import ShoppingListTable from '@/widgets/shoppingList/components/shoppingListModal/components/ShoppingListWithProducts/components/ShoppingListTable/ShoppingListTable';
-import createPaymentLink from '@/widgets/shoppingList/utils/createPaymentLink';
 import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
 import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
 import Button from '@/shared/ui/button/Button';
+import { cartStore } from '../../../../../../model/store';
+import createPaymentLink from '../../../../utils/createPaymentLink';
+import PromoCodeBlock from './components/PromoCodeBlock/PromoCodeBlock';
+import ShoppingListTable from './components/ShoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
 const ShoppingListWithProducts: FunctionComponent = observer(() => {

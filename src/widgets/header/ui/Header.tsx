@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ShoppingList from '@/widgets/shoppingList/shoppingList';
+import { ShoppingList } from '@/entities/cart';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import useMediaContext from '@/shared/hooks/useMediaContext';
