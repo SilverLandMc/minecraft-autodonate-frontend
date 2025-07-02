@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ShoppingList } from '@/entities/cart';
 import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import classNames from '@/shared/lib/aliases/classNames';
 import { BackgroundColor, ModernButton, Optional, OutlineColor } from '@/shared/ui';
@@ -33,11 +34,7 @@ export const ButterMenu: FunctionComponent = () => {
                         </ModernButton>
                     </Link>
 
-                    <Link to={RoutePath[AppRoute.SHOP]} onClick={hideMenu}>
-                        <ModernButton className={styles.button} background={BackgroundColor.RED}>
-                            Корзина
-                        </ModernButton>
-                    </Link>
+                    <ShoppingList simpleButton />
                 </div>
             </Optional>
         </>

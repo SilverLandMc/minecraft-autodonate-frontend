@@ -7,7 +7,23 @@ import ShoppingListModal from './components/shoppingListModal/ShoppingListModal'
 import cartImage from './images/cartIcon.svg';
 import styles from './ShoppingList.module.scss';
 
-export const ShoppingList: FunctionComponent = observer(() => {
+interface Props {
+    simpleButton?: boolean;
+}
+
+/**
+ * Компонент, предоставляющий кнопку и модальное окно корзины (списка покупок).
+ * Кнопка при нажатии открывает модальное окно.
+ *
+ * Кнопка имеет "простой" режим. С ним текст кнопки просто "Корзина", без него - варьируется в зависимости от наличия
+ * товаров в корзине:
+ * - текст "Корзина" и иконка корзины - при пустой корзине;
+ * - номер числа уникальных товаров в корзине и иконка - при непустой.
+ *
+ * @param {Props} props - Свойства компонента.
+ * @param {boolean} props.simpleButton - флаг включения "простой" кнопки.
+ */
+export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: isSimpleButton }) => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
@@ -31,10 +47,20 @@ export const ShoppingList: FunctionComponent = observer(() => {
 
     return (
         <>
-            <ModernButton background={BackgroundColor.RED} onClick={openModal} className={styles.button}>
-                <span className={styles.cartLabel}>{Object.keys(productAmountById).length || 'Корзина'}</span>
+            <ModernButton
+                background={BackgroundColor.RED}
+                onClick={openModal}
+                className={isSimpleButton ? undefined : styles.button}
+            >
+                {isSimpleButton ? (
+                    'Корзина'
+                ) : (
+                    <>
+                        <span className={styles.cartLabel}>{Object.keys(productAmountById).length || 'Корзина'}</span>
 
-                <img src={cartImage} className={styles.cartImage} alt="Корзина" />
+                        <img src={cartImage} alt="Корзина" />
+                    </>
+                )}
             </ModernButton>
 
             <ShoppingListModal isModalOpened={isModalOpened} isClosing={isClosing} onClose={closeModal} />

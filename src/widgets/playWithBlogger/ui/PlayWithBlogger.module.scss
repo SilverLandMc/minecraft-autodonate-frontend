@@ -3,11 +3,12 @@
 $special-breakpoint: 560px;
 
 .wrapper {
-    width: 100%;
-    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    width: 100%;
+    max-width: 100%;
 
     @media (min-width: $special-breakpoint) {
         flex-direction: row;
@@ -32,18 +33,18 @@ $special-breakpoint: 560px;
 }
 
 .imageBlock {
-    order: 1;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+    order: 1;
+
     width: 100%;
 
     @media (min-width: $special-breakpoint) {
-        order: 0;
-
         display: flex;
         flex-direction: column;
+        order: 0;
+
         max-width: 235px;
     }
 
@@ -52,13 +53,13 @@ $special-breakpoint: 560px;
     }
 
     @include media.mediaM {
-        max-width: 300px;
         min-width: 300px;
+        max-width: 300px;
     }
 
     @include media.mediaL {
-        max-width: 384px;
         min-width: 384px;
+        max-width: 384px;
     }
 }
 
@@ -114,12 +115,12 @@ $special-breakpoint: 560px;
 }
 
 .buttons {
-    width: 100%;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 10px;
+    justify-content: center;
+
+    width: 100%;
 
     @include media.mediaL {
         flex-direction: row;
@@ -129,9 +130,9 @@ $special-breakpoint: 560px;
 .button {
     display: flex;
     flex-direction: row;
+    gap: 3px;
     justify-content: center;
     align-items: center;
-    gap: 3px;
 
     @include media.mediaL {
         width: 100%;
