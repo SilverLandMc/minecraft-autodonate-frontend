@@ -1,7 +1,7 @@
-import { cartStore } from 'entities/cart';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, MouseEvent, useRef } from 'react';
 import { useClickAway } from 'react-use';
+import { cartStore } from '@/entities/cart';
 import ModalBackground from '@/shared/ui/modalBackground/ModalBackground';
 import Portal from '@/shared/ui/portal/Portal';
 import EmptyShoppingList from '../emptyShoppingList/EmptyShoppingList';
