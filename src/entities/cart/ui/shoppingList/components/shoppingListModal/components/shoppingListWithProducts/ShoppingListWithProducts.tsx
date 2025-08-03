@@ -53,7 +53,7 @@ const ShoppingListWithProducts: FunctionComponent = observer(() => {
 
     return (
         <>
-            <h2 className={styles.header}>Ваша корзина:</h2>
+            <h2 className={styles.header}>Корзина</h2>
 
             <ShoppingListTable />
 

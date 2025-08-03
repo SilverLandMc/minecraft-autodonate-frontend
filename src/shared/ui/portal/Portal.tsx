@@ -5,7 +5,7 @@ import createLogger from 'shared/lib/logger/logger';
 
 const logger = createLogger('Portal');
 
-const Portal: FunctionComponent<PropsWithChildren> = ({ children }) => {
+export const Portal: FunctionComponent<PropsWithChildren> = ({ children }) => {
     const portalRoot = document.getElementById('portalRoot');
     const element = useMemo(() => {
         const element = document.createElement('div');
@@ -29,5 +29,3 @@ const Portal: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
     return portalRoot ? createPortal(<div className="app">{children}</div>, element) : null;
 };
-
-export default Portal;

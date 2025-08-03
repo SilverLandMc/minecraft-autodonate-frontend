@@ -1,11 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import { FunctionComponent, MouseEvent, useRef } from 'react';
+import { FunctionComponent, MouseEvent, useEffect, useRef } from 'react';
 import { useClickAway } from 'react-use';
-import { cartStore } from '@/entities/cart';
-import ModalBackground from '@/shared/ui/modalBackground/ModalBackground';
-import Portal from '@/shared/ui/portal/Portal';
-import EmptyShoppingList from '../emptyShoppingList/EmptyShoppingList';
-import ShoppingListWithProducts from './components/ShoppingListWithProducts/ShoppingListWithProducts';
+import { ModalBackground, Portal } from '@/shared/ui';
+import { cartStore } from '../../../../model/store/cartStore';
+import { EmptyShoppingList } from './components/emptyShoppingList/EmptyShoppingList';
+import ShoppingListWithProducts from './components/shoppingListWithProducts/ShoppingListWithProducts';
 import styles from './ShoppingListModal.module.scss';
 
 interface Props {
@@ -20,15 +19,24 @@ const ShoppingListModal: FunctionComponent<Props> = observer(({ isModalOpened, i
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => onClose(event as unknown as MouseEvent));
 
+    useEffect(() => {
+        // Предотвращаем скролл контента основной страницы
+        document.body.style.overflow = isModalOpened ? 'hidden' : 'auto';
+
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isModalOpened]);
+
     if (!isModalOpened) {
         return null;
     }
 
     return (
         <Portal>
-            <ModalBackground closing={isClosing} fullScreenAtMobile>
+            <ModalBackground closing={isClosing}>
                 <div ref={wrapperRef} className={styles.modalWrapper}>
-                    {Object.keys(productAmountById).length > 0 ? (
+                    {Object.keys(productAmountById).length ? (
                         <ShoppingListWithProducts />
                     ) : (
                         <EmptyShoppingList onClose={onClose} />

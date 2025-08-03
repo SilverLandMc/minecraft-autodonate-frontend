@@ -1,24 +1,18 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
+import classNames from '@/shared/lib/aliases/classNames';
+import closeIcon from './images/closeIcon.svg';
 import styles from './ModalBackground.module.scss';
 
 interface Props extends PropsWithChildren {
     closing?: boolean;
-    className?: string;
-    fullScreenAtMobile?: boolean;
 }
 
-const ModalBackground: FunctionComponent<Props> = ({
-    closing: isClosing,
-    children,
-    fullScreenAtMobile: isFullScreenAtMobile
-}) => (
+export const ModalBackground: FunctionComponent<Props> = ({ closing: isClosing, children }) => (
     <div className={classNames(styles.modal, { [styles.isClosing]: isClosing })}>
         <div className={styles.modalContent}>
-            <div className={classNames(styles.close, { [styles.fixedClose]: isFullScreenAtMobile })} />
+            <img className={styles.close} src={closeIcon} alt="Закрыть" />
+
             {children}
         </div>
     </div>
 );
-
-export default ModalBackground;

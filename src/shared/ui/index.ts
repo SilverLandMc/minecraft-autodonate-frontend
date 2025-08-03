@@ -6,3 +6,5 @@ export * from './failSafeImage';
 export * from './safeHTML';
 export * from './spacing';
 export * from './section';
+export * from './modalBackground';
+export * from './portal';
