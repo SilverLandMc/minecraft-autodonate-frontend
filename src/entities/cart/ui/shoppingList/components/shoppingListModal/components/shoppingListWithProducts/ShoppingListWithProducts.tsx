@@ -1,16 +1,22 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
+import { Optional } from 'shared/ui';
 import { CreatePaymentDto } from '@/app/types/api/apiTypes';
+import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
 import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
 import Button from '@/shared/ui/button/Button';
 import { cartStore } from '../../../../../../model/store';
 import createPaymentLink from '../../../../utils/createPaymentLink';
 import PromoCodeBlock from './components/PromoCodeBlock/PromoCodeBlock';
-import ShoppingListTable from './components/ShoppingListTable/ShoppingListTable';
+import { ShoppingListTable } from './components/ShoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
-const ShoppingListWithProducts: FunctionComponent = observer(() => {
+interface Props {
+    productsById: ProductsById;
+}
+
+export const ShoppingListWithProducts: FunctionComponent<Props> = observer(({ productsById }) => {
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
     const [paymentError, setPaymentError] = useState<string>();
 
@@ -31,7 +37,7 @@ const ShoppingListWithProducts: FunctionComponent = observer(() => {
                     id,
                     amount
                 })) ?? [],
-            promocode: promoCode?.name
+            promocode: promoCode?.id
         };
 
         try {
@@ -39,7 +45,7 @@ const ShoppingListWithProducts: FunctionComponent = observer(() => {
             const paymentLink = await createPaymentLink(paymentInfo);
             createLinkOpener(paymentLink);
             setPaymentError(undefined);
-        } catch (error) {
+        } catch {
             setPaymentError('Что-то пошло не так. Попробуйте перезагрузить страницу');
         } finally {
             setIsPaymentCreating(false);
@@ -55,30 +61,34 @@ const ShoppingListWithProducts: FunctionComponent = observer(() => {
         <>
             <h2 className={styles.header}>Корзина</h2>
 
-            <ShoppingListTable />
-
             {userName ? (
                 <div className={styles.buyBlockWrapper}>
-                    <PromoCodeBlock disabled={isPaymentCreating} />
-
                     <div className={styles.playerNameLogoutWrapper}>
-                        <Button className={styles.button} onClick={handlePayment} disabled={isPaymentCreating}>
-                            Купить для
-                            <span className={styles.playerNameSpan}>{userName}</span>
-                        </Button>
+                        <div>
+                            Пользователь <span className={styles.playerNameSpan}>{userName}</span>
+                        </div>
 
-                        <Button className={styles.logoutButton} onClick={logout} disabled={isPaymentCreating}>
+                        <span className={styles.logoutButton} onClick={logout}>
                             Выйти
-                        </Button>
+                        </span>
                     </div>
 
                     {Boolean(paymentError) && <span className={styles.errorSpan}>{paymentError}</span>}
                 </div>
             ) : (
-                <UserAuthBlock />
+                <UserAuthBlock usedInCart />
             )}
+
+            <ShoppingListTable productsById={productsById} />
+
+            <Optional visible={Boolean(userName)}>
+                <PromoCodeBlock disabled={isPaymentCreating} />
+
+                <Button className={styles.button} onClick={handlePayment} disabled={isPaymentCreating}>
+                    Купить для
+                    <span className={styles.playerNameSpan}>{userName}</span>
+                </Button>
+            </Optional>
         </>
     );
 });
-
-export default ShoppingListWithProducts;

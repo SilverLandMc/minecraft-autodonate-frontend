@@ -10,6 +10,19 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    &.usedInCart {
+        .title {
+            @include media.mediaS {
+                color: var(--color-black);
+            }
+        }
+
+        .controls {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+    }
 }
 
 .controls {

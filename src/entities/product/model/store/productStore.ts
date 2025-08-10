@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
+import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { fetchProducts } from '../../api/fetchProducts';
-import { AllProductsOutDto, ProductsById } from '../../types';
+import { AllProductsOutDto } from '../../types';
 
 /**
  * Стор информации о продуктах (товарах).

@@ -7,101 +7,64 @@
     color: gray;
 }
 
-.table {
+.list {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 
     width: 100%;
 }
 
-.rowWrapper {
-    display: grid;
-    grid-template-columns: 1fr 20px;
-    gap: 4px;
-    align-items: center;
+.card {
+    padding: 24px 20px;
 
-    width: 100%;
+    border-radius: 24px;
 
-    @include media.mediaS {
-        gap: 10px;
-    }
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
-.productRow {
-    display: grid;
-    flex-direction: row;
-    grid-template-columns: 1fr 35px 44px 80px;
-    gap: 10px;
-
-    padding: 4px;
-
-    border: 1px solid lightgray;
-    border-bottom: none;
-
-    &.roundedTop {
-        border-radius: 4px 4px 0 0;
-    }
-
-    &.roundedBottom {
-        border-bottom: 1px solid lightgray;
-        border-radius: 0 0 4px 4px;
-    }
-
-    @include media.mediaS {
-        grid-template-columns: 1fr 50px 44px 80px;
-    }
+.name {
+    font-size: 24px;
+    line-height: 100%;
+    font-weight: 900;
 }
 
-.cell {
+.controlsPriceRow {
     display: flex;
     flex-direction: row;
-    gap: 4px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
 }
 
-.bold {
+.amountControlRow {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+
+    min-height: 36px;
+}
+
+.amountControlButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 28px;
+    height: 28px;
+    padding: 0;
+
+    border-radius: 50%;
+}
+
+.amount {
+    font-size: 12px;
+    line-height: 12px;
     font-weight: 600;
-}
 
-.incrementButton,
-.decrementButton,
-.deleteButton {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    min-width: 20px;
-    height: 20px;
-
-    border: none;
-    border-radius: 4px;
-
-    color: var(--color-white);
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-        filter: brightness(0.8);
+    @include media.mediaL {
+        font-size: 16px;
+        line-height: 16px;
     }
-}
-
-.decrementButton,
-.deleteButton {
-    background: red;
-}
-
-.incrementButton {
-    background-color: var(--color-vivid-malachite);
-}
-
-.totalListPrice {
-    text-align: right;
-}
-
-.totalListPriceDescription {
-    font-weight: 800;
 }

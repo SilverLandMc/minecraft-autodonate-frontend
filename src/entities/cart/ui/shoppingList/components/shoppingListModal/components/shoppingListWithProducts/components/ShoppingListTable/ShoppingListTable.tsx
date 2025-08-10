@@ -1,78 +1,70 @@
+import { productStore } from 'entities/product';
+import minusIcon from 'entities/product/ui/productCard/images/minusIcon.svg';
+import plusIcon from 'entities/product/ui/productCard/images/plusIcon.svg';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
-import { Spacing } from 'shared/ui';
+import { BackgroundColor, ModernButton, Spacing } from 'shared/ui';
+import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { cartStore } from '@/entities/cart';
-import { productStore } from '@/entities/product';
-import trashIcon from '@/shared/assets/trashIcon.svg';
 import classNames from '@/shared/lib/aliases/classNames';
 import styles from './ShoppingListTable.module.scss';
 
-const ShoppingListTable: FunctionComponent = observer(() => {
-    const { productAmountById, incrementProduct, decrementProduct, deleteProduct } = cartStore;
+interface Props {
+    productsById: ProductsById;
+}
+
+export const ShoppingListTable: FunctionComponent<Props> = observer(() => {
+    const { productAmountById, incrementProduct, decrementProduct } = cartStore;
+    // todo Отказаться от использования productStore напрямую и перейти к использованию пропса, сейчас с пропсом странный баг, когда productsById === undefined
     const { productsById } = productStore;
 
     const increment = (productId: string) => () => incrementProduct(productId);
     const decrement = (productId: string) => () => decrementProduct(productId);
-    const handleDelete = (productId: string) => () => deleteProduct(productId);
 
     const totalListPrice = Object.entries(productAmountById).reduce((priceAccumulator, [id, amount]) => {
-        const product = productsById[id];
+        const product = productsById?.[id];
         return priceAccumulator + product.priceWithoutDiscount * amount;
     }, 0);
 
     return (
-        <div className={styles.table}>
-            <div>
-                <div className={styles.rowWrapper}>
-                    <div className={classNames(styles.productRow, styles.roundedTop)}>
-                        <div className={classNames(styles.cell, styles.bold)}>Товар:</div>
+        <div className={styles.list}>
+            {Object.entries(productAmountById).map(([id, amount]) => {
+                const product = productsById[id];
 
-                        <div className={classNames(styles.cell, styles.bold)}>Шт.:</div>
+                const { name } = product;
 
-                        <div className={classNames(styles.cell)} />
+                return (
+                    <div key={id} className={styles.card}>
+                        <div className={styles.name}>{name}</div>
 
-                        <div className={classNames(styles.cell, styles.bold)}>Итог:</div>
-                    </div>
-                </div>
+                        <Spacing size={16} />
 
-                {Object.entries(productAmountById).map(([id, amount], index) => {
-                    const product = productsById[id];
+                        <div className={styles.controlsPriceRow}>
+                            <div className={styles.amountControlRow}>
+                                <ModernButton
+                                    className={styles.amountControlButton}
+                                    background={BackgroundColor.RED}
+                                    onClick={decrement(id)}
+                                >
+                                    <img src={minusIcon} alt="Убрать" />
+                                </ModernButton>
 
-                    const { name } = product;
-                    const isLast = index === Object.values(productAmountById).length - 1;
+                                <span className={styles.amount}>{amount}</span>
 
-                    return (
-                        <div key={id} className={styles.rowWrapper}>
-                            <div
-                                className={classNames(styles.productRow, {
-                                    [styles.roundedBottom]: isLast
-                                })}
-                            >
-                                <div className={styles.cell}>{name}</div>
-
-                                <div className={styles.cell}>x{amount}</div>
-
-                                <div className={styles.cell}>
-                                    <button type="button" className={styles.incrementButton} onClick={increment(id)}>
-                                        +
-                                    </button>
-                                    <button type="button" className={styles.decrementButton} onClick={decrement(id)}>
-                                        -
-                                    </button>
-                                </div>
-
-                                <div className={styles.cell}>
-                                    {(product.priceWithoutDiscount * amount).toFixed(1)} ₽
-                                </div>
+                                <ModernButton
+                                    className={styles.amountControlButton}
+                                    background={BackgroundColor.RED}
+                                    onClick={increment(id)}
+                                >
+                                    <img src={plusIcon} alt="Добавить" />
+                                </ModernButton>
                             </div>
-
-                            <button type="button" className={styles.deleteButton} onClick={handleDelete(id)}>
-                                <img src={trashIcon} alt="Удалить" />
-                            </button>
                         </div>
-                    );
-                })}
-            </div>
+
+                        <div className={styles.cell}>{(product.priceWithoutDiscount * amount).toFixed(1)} руб.</div>
+                    </div>
+                );
+            })}
 
             <Spacing size={20} />
 
@@ -83,5 +75,3 @@ const ShoppingListTable: FunctionComponent = observer(() => {
         </div>
     );
 });
-
-export default ShoppingListTable;
