@@ -65,7 +65,12 @@ export const UserAuthBlock: FunctionComponent<Props> = observer(
                 </Optional>
 
                 <div className={styles.controls}>
-                    <Input value={formValue} onChange={handleInput} placeholder="Например, Kuplinov" />
+                    <Input
+                        className={styles.input}
+                        value={formValue}
+                        onChange={handleInput}
+                        placeholder="Например, Kuplinov"
+                    />
 
                     <ModernButton className={styles.loginButton} background={BackgroundColor.RED} onClick={confirmForm}>
                         Войти

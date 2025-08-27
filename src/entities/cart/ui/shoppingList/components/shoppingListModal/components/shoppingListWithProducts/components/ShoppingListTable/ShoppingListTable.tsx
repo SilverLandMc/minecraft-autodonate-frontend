@@ -6,7 +6,6 @@ import { FunctionComponent } from 'react';
 import { BackgroundColor, ModernButton, Spacing } from 'shared/ui';
 import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { cartStore } from '@/entities/cart';
-import classNames from '@/shared/lib/aliases/classNames';
 import styles from './ShoppingListTable.module.scss';
 
 interface Props {
@@ -37,8 +36,6 @@ export const ShoppingListTable: FunctionComponent<Props> = observer(() => {
                     <div key={id} className={styles.card}>
                         <div className={styles.name}>{name}</div>
 
-                        <Spacing size={16} />
-
                         <div className={styles.controlsPriceRow}>
                             <div className={styles.amountControlRow}>
                                 <ModernButton
@@ -59,9 +56,9 @@ export const ShoppingListTable: FunctionComponent<Props> = observer(() => {
                                     <img src={plusIcon} alt="Добавить" />
                                 </ModernButton>
                             </div>
-                        </div>
 
-                        <div className={styles.cell}>{(product.priceWithoutDiscount * amount).toFixed(1)} руб.</div>
+                            <div className={styles.cell}>{(product.priceWithoutDiscount * amount).toFixed(1)} руб.</div>
+                        </div>
                     </div>
                 );
             })}
