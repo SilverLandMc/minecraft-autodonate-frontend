@@ -1,19 +1,22 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
+import useMediaContext from 'shared/hooks/useMediaContext';
 import { DiscountType } from '@/app/types/api/apiTypes';
 import { cartStore } from '@/entities/cart';
 import closeIcon from '@/shared/assets/closeIcon.svg';
 import fetchPromoCodeByName from '@/shared/lib/actions/fetchPromoCodeByName';
+import { BackgroundColor, Input, ModernButton } from '@/shared/ui';
 import styles from './PromoCodeBlock.module.scss';
 
 interface Props {
     disabled?: boolean;
 }
 
-const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled }) => {
+export const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled: isDisabled }) => {
     const [isFormOpened, setIsFormOpened] = useState(false);
     const [formValue, setFormValue] = useState('');
     const [errorText, setErrorText] = useState<string | undefined>();
+    const { isMobile } = useMediaContext();
 
     const { promoCode, setPromoCode } = cartStore;
 
@@ -25,7 +28,7 @@ const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled }) => {
     };
 
     const erasePromoCode = () => {
-        if (disabled) {
+        if (isDisabled) {
             return;
         }
 
@@ -72,19 +75,26 @@ const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled }) => {
         return (
             <div className={styles.verticalFormWrapper}>
                 <div className={styles.horizontalFormWrapper}>
-                    <input
-                        className={styles.input}
+                    <Input
+                        dark={!isMobile}
                         type="text"
                         value={formValue}
                         onChange={handleChange}
                         placeholder="Введите промокод"
                     />
 
-                    <button type="button" className={styles.sendButton} onClick={checkPromoCode} disabled={disabled}>
+                    <ModernButton
+                        className={styles.modernButton}
+                        background={BackgroundColor.GREEN}
+                        onClick={checkPromoCode}
+                        disabled={isDisabled}
+                    >
                         ✓
-                    </button>
+                    </ModernButton>
 
-                    <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={closeForm} />
+                    <ModernButton className={styles.modernButton} background={BackgroundColor.RED} onClick={closeForm}>
+                        <img src={closeIcon} className={styles.closeIcon} alt="Закрыть форму" onClick={closeForm} />
+                    </ModernButton>
                 </div>
 
                 <span className={styles.errorSpan}>{errorText}</span>
@@ -93,10 +103,13 @@ const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled }) => {
     }
 
     return (
-        <button type="button" className={styles.button} onClick={openForm} disabled={disabled}>
+        <ModernButton
+            className={styles.iHaveButton}
+            background={BackgroundColor.ORANGE}
+            onClick={openForm}
+            disabled={isDisabled}
+        >
             У меня есть промокод
-        </button>
+        </ModernButton>
     );
 });
-
-export default PromoCodeBlock;

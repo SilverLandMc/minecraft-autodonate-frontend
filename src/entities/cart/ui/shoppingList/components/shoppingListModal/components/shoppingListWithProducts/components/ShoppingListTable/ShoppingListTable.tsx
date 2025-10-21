@@ -66,7 +66,7 @@ export const ShoppingListTable: FunctionComponent<Props> = observer(() => {
             <Spacing size={20} />
 
             <div className={styles.totalListPrice}>
-                <span className={styles.totalListPriceDescription}>Итого: </span>
+                <span className={styles.totalListPriceDescription}>Итого:</span>
                 {totalListPrice.toFixed(1)} ₽
             </div>
         </div>

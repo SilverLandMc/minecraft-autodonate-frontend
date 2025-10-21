@@ -30,6 +30,10 @@
     align-items: center;
 
     width: 100%;
+
+    @include media.mediaM {
+        color: var(--color-black);
+    }
 }
 
 .playerNameLogoutWrapper {
@@ -43,6 +47,19 @@
 
     font-size: 12px;
     line-height: 100%;
+}
+
+.buttonBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+
+    @include media.mediaS {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .button {
@@ -64,6 +81,7 @@
 .logoutButton {
     color: var(--color-philippine-red);
     font-weight: 600;
+    cursor: pointer;
 }
 
 .playerInfoBlock {
@@ -82,4 +100,8 @@
     font-family: var(--font-family-main);
 
     color: orangered;
+}
+
+.buyButton {
+    width: 100%;
 }

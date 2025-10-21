@@ -86,3 +86,17 @@
         line-height: 16px;
     }
 }
+
+.totalListPrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    @include media.mediaS {
+        color: var(--color-black);
+    }
+}
+
+.totalListPriceDescription {
+    margin-right: 10px;
+}

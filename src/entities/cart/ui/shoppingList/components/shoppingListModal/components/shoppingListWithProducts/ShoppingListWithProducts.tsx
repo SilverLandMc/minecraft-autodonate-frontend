@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
-import { Optional } from 'shared/ui';
 import { CreatePaymentDto } from '@/app/types/api/apiTypes';
 import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
 import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
-import Button from '@/shared/ui/button/Button';
+import { BackgroundColor, ModernButton, Optional } from '@/shared/ui';
 import { cartStore } from '../../../../../../model/store';
 import createPaymentLink from '../../../../utils/createPaymentLink';
-import PromoCodeBlock from './components/PromoCodeBlock/PromoCodeBlock';
+import { PromoCodeBlock } from './components/PromoCodeBlock/PromoCodeBlock';
 import { ShoppingListTable } from './components/ShoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
@@ -82,12 +81,18 @@ export const ShoppingListWithProducts: FunctionComponent<Props> = observer(({ pr
             <ShoppingListTable productsById={productsById} />
 
             <Optional visible={Boolean(userName)}>
-                <PromoCodeBlock disabled={isPaymentCreating} />
+                <div className={styles.buttonBlock}>
+                    <PromoCodeBlock disabled={isPaymentCreating} />
 
-                <Button className={styles.button} onClick={handlePayment} disabled={isPaymentCreating}>
-                    Купить для
-                    <span className={styles.playerNameSpan}>{userName}</span>
-                </Button>
+                    <ModernButton
+                        background={BackgroundColor.RED}
+                        className={styles.buyButton}
+                        onClick={handlePayment}
+                        disabled={isPaymentCreating}
+                    >
+                        Оплатить
+                    </ModernButton>
+                </div>
             </Optional>
         </>
     );

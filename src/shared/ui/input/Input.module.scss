@@ -15,6 +15,13 @@
     &:focus {
         outline: none;
     }
+
+    &.dark,
+    &.dark::placeholder {
+        border-color: var(--color-black);
+
+        color: var(--color-black);
+    }
 }
 
 .input,
