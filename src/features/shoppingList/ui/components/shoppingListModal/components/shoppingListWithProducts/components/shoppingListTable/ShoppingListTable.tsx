@@ -1,20 +1,14 @@
-import { ProductsById } from 'app/types/api/apiTypesHelper';
-import { cartStore } from 'entities/cart';
-import { productStore } from 'entities/product';
-import minusIcon from 'entities/product/ui/productCard/images/minusIcon.svg';
-import plusIcon from 'entities/product/ui/productCard/images/plusIcon.svg';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
 import { BackgroundColor, ModernButton, Spacing } from 'shared/ui';
+import { cartStore } from '@/entities/cart';
+import { productStore } from '@/entities/product';
+import minusIcon from '@/shared/assets/minusIcon.svg';
+import plusIcon from '@/shared/assets/plusIcon.svg';
 import styles from './ShoppingListTable.module.scss';
 
-interface Props {
-    productsById: ProductsById;
-}
-
-export const ShoppingListTable: FunctionComponent<Props> = observer(() => {
+export const ShoppingListTable: FunctionComponent = observer(() => {
     const { productAmountById, incrementProduct, decrementProduct } = cartStore;
-    // todo Отказаться от использования productStore напрямую и перейти к использованию пропса, сейчас с пропсом странный баг, когда productsById === undefined
     const { productsById } = productStore;
 
     const increment = (productId: string) => () => incrementProduct(productId);

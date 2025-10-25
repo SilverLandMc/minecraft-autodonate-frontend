@@ -1,11 +1,11 @@
-import { PageDto } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useMemo, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Title from 'shared/ui/title/Title';
-import useLatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/hooks/useLatestPurchases';
+import useLatestPurchases from '@/widgets/AdminTabs/PurchasesTab/components/LatestPurchases/hooks/useLatestPurchases';
+import { PageDto } from '@/shared/api/apiTypes';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Title from '@/shared/ui/title/Title';
 import styles from './LatestPurchases.module.scss';
 
 const LatestPurchases: FunctionComponent = () => {

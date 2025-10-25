@@ -1,7 +1,7 @@
-import { ProductOutDto } from 'app/types/api/apiTypes';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
-import { request } from 'shared/lib/request/request';
+import { ProductOutDto } from '@/shared/api/apiTypes';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
+import { request } from '@/shared/lib/request/request';
 
 const logger = createLogger('fetchProductById');
 

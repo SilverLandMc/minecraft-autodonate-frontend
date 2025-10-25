@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { PromocodeOutDto } from '@/app/types/api/apiTypes';
+import { PromocodeOutDto } from '@/shared/api/apiTypes';
 
 /**
  * Стор информации о продуктах (товарах) в корзине пользователя и активированном промокоде.

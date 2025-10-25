@@ -1,6 +1,6 @@
-import { PromocodeOutDto } from 'app/types/api/apiTypes';
-import { ShoppingListProductToBuyInDto } from 'app/types/api/apiTypesHelper';
 import { createContext } from 'react';
+import { PromocodeOutDto } from '@/shared/api/apiTypes';
+import { ShoppingListProductToBuyInDto } from '@/shared/api/apiTypesHelper';
 
 export interface AppContextState {
     productsToBuy: ShoppingListProductToBuyInDto[];

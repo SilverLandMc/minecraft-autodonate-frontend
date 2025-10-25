@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import Media from '@/app/const/enum/Media';
+import Media from '@/shared/enums/Media';
 import useMediaContext from '@/shared/hooks/useMediaContext';
 
 // см. enums/Media.ts

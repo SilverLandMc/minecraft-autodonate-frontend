@@ -1,21 +1,16 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
-import { CreatePaymentDto } from '@/app/types/api/apiTypes';
-import { ProductsById } from '@/app/types/api/apiTypesHelper';
 import { createPaymentLink } from '@/entities/cart';
 import { cartStore } from '@/entities/cart/model/store';
 import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
+import { CreatePaymentDto } from '@/shared/api/apiTypes';
 import { createLinkOpener } from '@/shared/lib/createLinkOpener';
 import { BackgroundColor, ModernButton, Optional } from '@/shared/ui';
 import { PromoCodeBlock } from './components/promoCodeBlock/PromoCodeBlock';
 import { ShoppingListTable } from './components/shoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
-interface Props {
-    productsById: ProductsById;
-}
-
-export const ShoppingListWithProducts: FunctionComponent<Props> = observer(({ productsById }) => {
+export const ShoppingListWithProducts: FunctionComponent = observer(() => {
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
     const [paymentError, setPaymentError] = useState<string>();
 
@@ -78,7 +73,7 @@ export const ShoppingListWithProducts: FunctionComponent<Props> = observer(({ pr
                 <UserAuthBlock usedInCart />
             )}
 
-            <ShoppingListTable productsById={productsById} />
+            <ShoppingListTable />
 
             <Optional visible={Boolean(userName)}>
                 <div className={styles.buttonBlock}>

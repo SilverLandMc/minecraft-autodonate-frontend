@@ -1,7 +1,7 @@
-import { PageDto, PagePaymentOutDto } from 'app/types/api/apiTypes';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
-import { request } from 'shared/lib/request/request';
+import { PageDto, PagePaymentOutDto } from '@/shared/api/apiTypes';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
+import { request } from '@/shared/lib/request/request';
 
 const logger = createLogger('fetchLatestPurchases');
 
@@ -12,7 +12,7 @@ const fetchLatestPurchases = async (pageParameters: PageDto) => {
             params: { ...pageParameters }
         });
     } catch (error) {
-        const message = `fetchLatestPurchases: failed to fetch. ${error.message}`;
+        const message = `fetchLatestPurchases: failed to fetch.`;
         Sentry.captureMessage(message);
         logger.error(message);
     }

@@ -1,7 +1,7 @@
-import { DiscountBaseInDto } from 'app/types/api/apiTypes';
 import Sentry from 'shared/lib/aliases/Sentry';
 import createLogger from 'shared/lib/logger/logger';
 import { post } from 'shared/lib/request/request';
+import { DiscountBaseInDto } from '@/shared/api/apiTypes';
 
 const logger = createLogger('createDiscount');
 
@@ -12,7 +12,7 @@ const createDiscount = async (discount: DiscountBaseInDto) => {
             data: discount
         });
     } catch (error) {
-        const message = `createDiscount: failed to create a discount. Error: ${error?.response?.data || error}`;
+        const message = `createDiscount: failed to create a discount. Error: ${error}`;
         logger.error(message);
         Sentry.captureMessage(message);
         throw error;

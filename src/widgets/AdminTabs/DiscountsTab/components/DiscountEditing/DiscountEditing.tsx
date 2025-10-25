@@ -1,15 +1,15 @@
-import { DiscountInDto, DiscountType } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from 'shared/ui/button/Button';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Title from 'shared/ui/title/Title';
-import editDiscount from 'widgets/AdminTabs/DiscountsTab/actions/editDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import useDiscount from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscount';
+import editDiscount from '@/widgets/AdminTabs/DiscountsTab/actions/editDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import useDiscount from '@/widgets/AdminTabs/DiscountsTab/hooks/useDiscount';
+import { DiscountInDto, DiscountType } from '@/shared/api/apiTypes';
+import classNames from '@/shared/lib/aliases/classNames';
+import convertTimestampToInputString from '@/shared/lib/format/convertTimestampToInputString';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import Button from '@/shared/ui/button/Button';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Title from '@/shared/ui/title/Title';
 import styles from './DiscountEditing.module.scss';
 
 const initialFormValue: DiscountInDto = {

@@ -1,4 +1,4 @@
-import { ProductCategory } from 'app/const/enum/ProductCategory';
+import { ProductCategory } from '@/shared/enums/ProductCategory';
 import ShopPage from './ShopPage';
 import type { Meta, StoryObj } from '@storybook/react';
 

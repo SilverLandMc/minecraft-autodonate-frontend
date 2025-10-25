@@ -1,7 +1,7 @@
-import { PromocodeInDto } from 'app/types/api/apiTypes';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
-import { post } from 'shared/lib/request/request';
+import { PromocodeInDto } from '@/shared/api/apiTypes';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
+import { post } from '@/shared/lib/request/request';
 
 const logger = createLogger('createPromoCode');
 
@@ -12,7 +12,7 @@ const createPromoCode = async (promoCode: PromocodeInDto) => {
             data: promoCode
         });
     } catch (error) {
-        const message = `createPromoCode: failed to create a promocode. Error: ${error?.response?.message || error}`;
+        const message = `createPromoCode: failed to create a promocode. Error: ${error}`;
         logger.error(message);
         Sentry.captureMessage(message, (scope) => scope.setContext('error', { error }));
         throw error;

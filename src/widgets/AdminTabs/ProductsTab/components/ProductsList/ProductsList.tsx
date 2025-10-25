@@ -1,18 +1,18 @@
-import { ProductCategory } from 'app/const/enum/ProductCategory';
-import { ValidityType } from 'app/types/api/apiTypes';
 import React, { FunctionComponent, useState } from 'react';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from 'shared/ui/button/Button';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Table from 'shared/ui/table/Table';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import deleteProduct from 'widgets/AdminTabs/ProductsTab/actions/deleteProduct';
-import useProductList from 'widgets/AdminTabs/ProductsTab/hooks/useProductList';
-import { ProductComponentProps } from 'widgets/AdminTabs/ProductsTab/ProductsTab';
+import { ActiveSubTab } from '@/widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import deleteProduct from '@/widgets/AdminTabs/ProductsTab/actions/deleteProduct';
+import useProductList from '@/widgets/AdminTabs/ProductsTab/hooks/useProductList';
+import { ProductComponentProps } from '@/widgets/AdminTabs/ProductsTab/ProductsTab';
+import { ValidityType } from '@/shared/api/apiTypes';
+import { ProductCategory } from '@/shared/enums/ProductCategory';
+import useAppDispatch from '@/shared/hooks/redux/useAppDispatch';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import Button from '@/shared/ui/button/Button';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
 import { SafeHTML } from '@/shared/ui/safeHTML';
+import Table from '@/shared/ui/table/Table';
 import styles from './ProductsList.module.scss';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {

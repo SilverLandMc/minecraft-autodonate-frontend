@@ -1,6 +1,6 @@
-import { PageDto } from 'app/types/api/apiTypes';
 import { useAsync } from 'react-use';
-import fetchLatestPurchases from 'widgets/AdminTabs/PurchasesTab/components/LatestPurchases/utils/fetchLatestPurchases';
+import fetchLatestPurchases from '@/widgets/AdminTabs/PurchasesTab/components/LatestPurchases/utils/fetchLatestPurchases';
+import { PageDto } from '@/shared/api/apiTypes';
 
 const useLatestPurchases = (pageParameters: PageDto) => {
     const {

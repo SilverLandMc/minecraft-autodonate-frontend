@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { FunctionComponent, MouseEvent, useState } from 'react';
-import { Time } from '@/app/const/enum/Time';
-import { ProductsById } from '@/app/types/api/apiTypesHelper';
+import { FunctionComponent, useState } from 'react';
 import { cartStore } from '@/entities/cart';
+import { Time } from '@/shared/enums/Time';
 import { BackgroundColor, ModernButton } from '@/shared/ui';
 import { ShoppingListModal } from './components/shoppingListModal/ShoppingListModal';
 import cartImage from './images/cartIcon.svg';
@@ -10,7 +9,6 @@ import styles from './ShoppingList.module.scss';
 
 interface Props {
     simpleButton?: boolean;
-    productsById: ProductsById;
 }
 
 /**
@@ -25,12 +23,12 @@ interface Props {
  * @param {Props} props - Свойства компонента.
  * @param {boolean} props.simpleButton - флаг включения "простой" кнопки.
  */
-export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: isSimpleButton, productsById }) => {
+export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: isSimpleButton }) => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
     const openModal = () => setIsModalOpened(true);
-    const closeModal = (event: MouseEvent) => {
+    const closeModal = () => {
         setIsClosing(true);
 
         setTimeout(() => {
@@ -58,12 +56,7 @@ export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: 
                 )}
             </ModernButton>
 
-            <ShoppingListModal
-                productsById={productsById}
-                isModalOpened={isModalOpened}
-                isClosing={isClosing}
-                onClose={closeModal}
-            />
+            <ShoppingListModal isModalOpened={isModalOpened} isClosing={isClosing} onClose={closeModal} />
         </>
     );
 });

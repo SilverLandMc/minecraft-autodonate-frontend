@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { ProductsById } from '@/app/types/api/apiTypesHelper';
+import { ProductsById } from '@/shared/api/apiTypesHelper';
 import { fetchProducts } from '../../api/fetchProducts';
 import { AllProductsOutDto } from '../../types';
 

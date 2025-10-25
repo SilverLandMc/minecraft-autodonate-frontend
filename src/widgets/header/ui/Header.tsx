@@ -1,8 +1,6 @@
-import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShoppingList } from '@/features/shoppingList';
-import { productStore } from '@/entities/product';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import useMediaContext from '@/shared/hooks/useMediaContext';
@@ -11,8 +9,7 @@ import { ButterMenu } from './components/ButterMenu/ButterMenu';
 import { NavBar } from './components/NavBar/NavBar';
 import styles from './Header.module.scss';
 
-export const Header: FunctionComponent = observer(() => {
-    const { productsById } = productStore;
+export const Header: FunctionComponent = () => {
     const navigate = useNavigate();
 
     const { isMobile } = useMediaContext();
@@ -36,10 +33,10 @@ export const Header: FunctionComponent = observer(() => {
                 ) : (
                     <div className={styles.rightBlock}>
                         <NavBar />
-                        <ShoppingList productsById={productsById} />
+                        <ShoppingList />
                     </div>
                 )}
             </div>
         </Section>
     );
-});
+};

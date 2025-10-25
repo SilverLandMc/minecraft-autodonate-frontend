@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
-import { LinkURL } from '@/app/const/enum/linkURL';
 import telegramIcon from '@/shared/assets/telegramIcon.svg';
 import youtubeIcon from '@/shared/assets/youtubeIcon.svg';
+import { LinkURL } from '@/shared/enums/linkURL';
 import { BackgroundColor, ModernButton, Section, Spacing } from '@/shared/ui';
 import silverhandPhoto from './images/silverhandPhoto.png';
 import styles from './PlayWithBlogger.module.scss';

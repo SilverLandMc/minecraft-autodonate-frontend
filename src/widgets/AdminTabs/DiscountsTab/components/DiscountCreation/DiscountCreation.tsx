@@ -1,11 +1,11 @@
-import { DiscountBaseInDto, DiscountType } from 'app/types/api/apiTypes';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import Button from 'shared/ui/button/Button';
-import Title from 'shared/ui/title/Title';
-import createDiscount from 'widgets/AdminTabs/DiscountsTab/components/DiscountCreation/utils/createDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import createDiscount from '@/widgets/AdminTabs/DiscountsTab/components/DiscountCreation/utils/createDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import { DiscountBaseInDto, DiscountType } from '@/shared/api/apiTypes';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import Button from '@/shared/ui/button/Button';
+import Title from '@/shared/ui/title/Title';
 import styles from './DiscountCreation.module.scss';
 
 const initialFormValues: DiscountBaseInDto = {
@@ -55,12 +55,17 @@ const DiscountCreation: FunctionComponent<DiscountComponentProps> = ({ setActive
             return;
         }
 
+        if (!formValues.startDate || !formValues.endDate) {
+            setError('Укажите начало и конец временнрого периода!');
+            return;
+        }
+
         try {
             setIsProcessing(true);
             await createDiscount({
                 ...formValues,
-                startDate: formValues.startDate ? new Date(formValues.startDate).toISOString() : null,
-                endDate: formValues.endDate ? new Date(formValues.endDate).toISOString() : null
+                startDate: new Date(formValues.startDate).toISOString(),
+                endDate: new Date(formValues.endDate).toISOString()
             });
             navigateToDiscountsList();
         } catch (error) {

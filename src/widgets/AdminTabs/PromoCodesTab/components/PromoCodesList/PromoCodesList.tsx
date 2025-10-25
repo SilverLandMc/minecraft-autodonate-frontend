@@ -1,18 +1,18 @@
-import { DiscountType } from 'app/types/api/apiTypes';
 import { format } from 'date-fns';
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
-import TimeFormatString from 'shared/const/enum/timeFormatString';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from 'shared/ui/button/Button';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Table from 'shared/ui/table/Table';
-import Title from 'shared/ui/title/Title';
-import { ActiveSubTab } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import deletePromoCode from 'widgets/AdminTabs/PromoCodesTab/actions/deletePromoCode';
-import usePromoCodesList from 'widgets/AdminTabs/PromoCodesTab/hooks/usePromoCodesList';
-import { PromoCodeComponentProps } from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import { ActiveSubTab } from '@/widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import deletePromoCode from '@/widgets/AdminTabs/PromoCodesTab/actions/deletePromoCode';
+import usePromoCodesList from '@/widgets/AdminTabs/PromoCodesTab/hooks/usePromoCodesList';
+import { PromoCodeComponentProps } from '@/widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
+import { DiscountType } from '@/shared/api/apiTypes';
+import TimeFormatString from '@/shared/const/enum/timeFormatString';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import Button from '@/shared/ui/button/Button';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Table from '@/shared/ui/table/Table';
+import Title from '@/shared/ui/title/Title';
 import styles from './PromoCodesList.module.scss';
 
 const PromoCodesList: FunctionComponent<PromoCodeComponentProps> = ({

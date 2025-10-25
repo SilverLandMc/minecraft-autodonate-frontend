@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useRef, useState } from 'react';
-import { ProductOutDto } from '@/app/types/api/apiTypes';
+import { ProductOutDto } from '@/shared/api/apiTypes';
 import chestImage from '@/shared/assets/chest.png';
+import minusIcon from '@/shared/assets/minusIcon.svg';
+import plusIcon from '@/shared/assets/plusIcon.svg';
 import { BackgroundColor, FailSafeImage, ModernButton, Optional, SafeHTML, Spacing } from '@/shared/ui';
-import minusIcon from './images/minusIcon.svg';
-import plusIcon from './images/plusIcon.svg';
 import styles from './ProductCard.module.scss';
 
 interface Props {

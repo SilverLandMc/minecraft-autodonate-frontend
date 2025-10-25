@@ -1,6 +1,6 @@
-import { ProductCategory } from 'app/const/enum/ProductCategory';
 import { useAsync } from 'react-use';
-import fetchAdminProductList from 'widgets/AdminTabs/ProductsTab/actions/fetchAdminProductList';
+import fetchAdminProductList from '@/widgets/AdminTabs/ProductsTab/actions/fetchAdminProductList';
+import { ProductCategory } from '@/shared/enums/ProductCategory';
 
 interface Props {
     productCategory: ProductCategory;

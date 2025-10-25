@@ -1,6 +1,6 @@
 import { safeLocalStorage } from '@37bytes/storage-fallback';
 import { makeAutoObservable } from 'mobx';
-import { PlayerInfoOutDto } from '@/app/types/api/apiTypes';
+import { PlayerInfoOutDto } from '@/shared/api/apiTypes';
 import LocalStorageKey from '@/shared/const/enum/localStorageKey';
 
 export class UserStore {

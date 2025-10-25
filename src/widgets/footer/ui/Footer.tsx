@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { LinkURL } from '@/app/const/enum/linkURL';
 import { AppRoutes, RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { LinkURL } from '@/shared/enums/linkURL';
 import { Section, Spacing } from '@/shared/ui';
 import { OuterLink } from '@/shared/ui';
 import discordIcon from './images/discordIcon.svg';

@@ -1,3 +1,3 @@
-import { Category, ProductOutDto } from '@/app/types/api/apiTypes';
+import { Category, ProductOutDto } from '@/shared/api/apiTypes';
 
 export type AllProductsOutDto = Record<Category, ProductOutDto[]>;

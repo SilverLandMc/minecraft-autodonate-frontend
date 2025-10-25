@@ -1,17 +1,17 @@
-import { DiscountType } from 'app/types/api/apiTypes';
 import { format } from 'date-fns';
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
-import TimeFormatString from 'shared/const/enum/timeFormatString';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from 'shared/ui/button/Button';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Table from 'shared/ui/table/Table';
-import Title from 'shared/ui/title/Title';
-import deleteDiscount from 'widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import useDiscountsList from 'widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
+import { ChangeEvent, FunctionComponent, useState } from 'react';
+import deleteDiscount from '@/widgets/AdminTabs/DiscountsTab/actions/deleteDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/AdminTabs/DiscountsTab/DiscountsTab';
+import useDiscountsList from '@/widgets/AdminTabs/DiscountsTab/hooks/useDiscountsList';
+import { DiscountType } from '@/shared/api/apiTypes';
+import TimeFormatString from '@/shared/const/enum/timeFormatString';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import Button from '@/shared/ui/button/Button';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Table from '@/shared/ui/table/Table';
+import Title from '@/shared/ui/title/Title';
 import styles from './DiscountsList.module.scss';
 
 const DiscountsList: FunctionComponent<DiscountComponentProps> = ({

@@ -1,7 +1,7 @@
-import { DiscountInDto, DiscountOutDto } from 'app/types/api/apiTypes';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
-import { put } from 'shared/lib/request/request';
+import { DiscountInDto, DiscountOutDto } from '@/shared/api/apiTypes';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
+import { put } from '@/shared/lib/request/request';
 
 const logger = createLogger('editDiscount');
 
