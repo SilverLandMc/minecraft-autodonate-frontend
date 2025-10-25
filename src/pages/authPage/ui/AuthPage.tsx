@@ -10,11 +10,11 @@ import { Section } from '@/shared/ui';
 import styles from './AuthPage.module.scss';
 
 const AuthPage: FunctionComponent = () => {
-    const telegramButtonRef = useRef(null);
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { isAdmin, isAuthPageVisited } = useSelector(selectAdminPagePart);
+
+    const telegramButtonRef = useRef<HTMLDivElement>(null);
 
     useEffectOnce(() => {
         if (isAdmin || isAuthPageVisited) {
@@ -23,7 +23,7 @@ const AuthPage: FunctionComponent = () => {
 
         const buttonRef = telegramButtonRef.current;
 
-        if (buttonRef) {
+        if (buttonRef && telegramButtonRef.current) {
             const script = document.createElement('script');
             script.src = 'https://telegram.org/js/telegram-widget.js?22';
             script.setAttribute('data-telegram-login', 'silverlandmc_bot');
