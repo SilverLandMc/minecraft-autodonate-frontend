@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { UserAuthBlock } from '@/entities/user';
+import { UserAuthBlock } from '@/features/userAuthBlock';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import useMediaContext from '@/shared/hooks/useMediaContext';
 import { Optional, Section, Spacing } from '@/shared/ui';

@@ -1,6 +1,5 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { ProductsById } from '@/shared/api/apiTypesHelper';
-import { fetchProducts } from '../../api/fetchProducts';
 import { AllProductsOutDto } from '../../types';
 
 /**
@@ -10,7 +9,6 @@ import { AllProductsOutDto } from '../../types';
  */
 class ProductStore {
     productsByCategory?: AllProductsOutDto;
-    isProductsFetching?: boolean;
 
     constructor() {
         makeAutoObservable(this);
@@ -18,21 +16,6 @@ class ProductStore {
 
     setProducts = (nextProducts?: AllProductsOutDto) => {
         this.productsByCategory = nextProducts;
-    };
-
-    fetchProducts = async () => {
-        if (this.productsByCategory) {
-            return;
-        }
-
-        this.isProductsFetching = true;
-
-        const nextProducts = await fetchProducts();
-
-        runInAction(() => {
-            this.setProducts(nextProducts);
-            this.isProductsFetching = false;
-        });
     };
 
     get productsById(): ProductsById {

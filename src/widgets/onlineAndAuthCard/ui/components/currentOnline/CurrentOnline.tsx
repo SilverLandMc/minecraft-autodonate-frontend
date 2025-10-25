@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useAsync } from 'react-use';
-import { Spacing } from 'shared/ui';
 import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
 import { fetchOnline } from '../../../api/fetchOnlineInfo';
 import { ProgressBar } from './components/progressBar/ProgressBar';
 import styles from './CurrentOnline.module.scss';

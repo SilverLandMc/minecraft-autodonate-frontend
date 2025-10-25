@@ -1,6 +1,6 @@
+import { AllProductsOutDto } from '@/entities/product/types';
 import createLogger from '@/shared/lib/logger/logger';
 import { request } from '@/shared/lib/request/request';
-import { AllProductsOutDto } from '../types';
 
 const logger = createLogger('fetchProducts');
 
@@ -11,5 +11,6 @@ export const fetchProducts = async () => {
         });
     } catch (error) {
         logger.error(`fetchOnlineInfo: failed to fetch. Error: ${error}`);
+        throw error;
     }
 };
