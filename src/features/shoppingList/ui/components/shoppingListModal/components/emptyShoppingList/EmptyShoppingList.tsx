@@ -1,5 +1,5 @@
-import React, { FunctionComponent, MouseEvent } from 'react';
-import { BackgroundColor, ModernButton } from 'shared/ui';
+import { FunctionComponent, MouseEvent } from 'react';
+import { BackgroundColor, ModernButton } from '@/shared/ui';
 import styles from './EmptyShoppingList.module.scss';
 
 interface Props {

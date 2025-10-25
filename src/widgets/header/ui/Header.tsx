@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingList } from '@/entities/cart';
+import { ShoppingList } from '@/features/shoppingList';
 import { productStore } from '@/entities/product';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';

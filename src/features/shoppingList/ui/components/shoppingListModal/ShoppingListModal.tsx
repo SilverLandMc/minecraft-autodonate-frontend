@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, MouseEvent, useEffect, useRef } from 'react';
 import { useClickAway } from 'react-use';
+import { ModalBackground, Portal } from 'shared/ui';
 import { ProductsById } from '@/app/types/api/apiTypesHelper';
-import { ModalBackground, Portal } from '@/shared/ui';
-import { cartStore } from '../../../../model/store/cartStore';
+import { cartStore } from '@/entities/cart';
 import { EmptyShoppingList } from './components/emptyShoppingList/EmptyShoppingList';
 import { ShoppingListWithProducts } from './components/shoppingListWithProducts/ShoppingListWithProducts';
 import styles from './ShoppingListModal.module.scss';

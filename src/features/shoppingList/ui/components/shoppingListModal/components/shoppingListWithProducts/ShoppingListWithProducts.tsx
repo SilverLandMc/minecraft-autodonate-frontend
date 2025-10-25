@@ -2,13 +2,13 @@ import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
 import { CreatePaymentDto } from '@/app/types/api/apiTypes';
 import { ProductsById } from '@/app/types/api/apiTypesHelper';
+import { createPaymentLink } from '@/entities/cart';
+import { cartStore } from '@/entities/cart/model/store';
 import { UserAuthBlock, useUserInfo, useUserStoreActions } from '@/entities/user';
-import createLinkOpener from '@/shared/lib/createLinkOpener/createLinkOpener';
+import { createLinkOpener } from '@/shared/lib/createLinkOpener';
 import { BackgroundColor, ModernButton, Optional } from '@/shared/ui';
-import { cartStore } from '../../../../../../model/store';
-import createPaymentLink from '../../../../utils/createPaymentLink';
-import { PromoCodeBlock } from './components/PromoCodeBlock/PromoCodeBlock';
-import { ShoppingListTable } from './components/ShoppingListTable/ShoppingListTable';
+import { PromoCodeBlock } from './components/promoCodeBlock/PromoCodeBlock';
+import { ShoppingListTable } from './components/shoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
 interface Props {

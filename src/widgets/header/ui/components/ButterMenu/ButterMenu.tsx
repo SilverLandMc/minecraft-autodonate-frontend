@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingList } from '@/entities/cart';
+import { ShoppingList } from '@/features/shoppingList';
 import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import classNames from '@/shared/lib/aliases/classNames';
 import { BackgroundColor, ModernButton, Optional, OutlineColor } from '@/shared/ui';
