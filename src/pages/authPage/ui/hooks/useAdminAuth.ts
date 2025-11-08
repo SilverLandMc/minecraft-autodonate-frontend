@@ -1,11 +1,11 @@
-import { setAuthPageVisited } from 'pages/adminPage/slices/adminPageSlice';
 import { RefObject } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import useAppDispatch from 'shared/hooks/redux/useAppDispatch';
-import selectAdminPagePart from 'shared/redux/selectors/selectAdminPagePart';
+import { setAuthPageVisited } from '@/pages/adminPage/slices/adminPageSlice';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import useAppDispatch from '@/shared/hooks/redux/useAppDispatch';
+import selectAdminPagePart from '@/shared/redux/selectors/selectAdminPagePart';
 
 interface Params {
     telegramButtonRef: RefObject<HTMLDivElement>;

@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
+import classNames from '@/shared/lib/aliases/classNames';
 import spinnerImage from './images/runningSteve.gif';
 import styles from './RunnerLoader.module.scss';
 

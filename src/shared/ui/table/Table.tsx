@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactElement } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
+import classNames from '@/shared/lib/aliases/classNames';
 import styles from './Table.module.scss';
 
 /* eslint-disable react/no-array-index-key */

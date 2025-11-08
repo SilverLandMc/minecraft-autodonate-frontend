@@ -1,7 +1,7 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import editDiscount from 'widgets/adminTabs/discountTab/actions/editDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/adminTabs/discountTab/DiscountsTab';
-import useDiscount from 'widgets/adminTabs/discountTab/hooks/useDiscount';
+import editDiscount from '@/widgets/adminTabs/discountTab/actions/editDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/adminTabs/discountTab/DiscountsTab';
+import useDiscount from '@/widgets/adminTabs/discountTab/hooks/useDiscount';
 import { DiscountInDto, DiscountType } from '@/shared/api/apiTypes';
 import classNames from '@/shared/lib/aliases/classNames';
 import convertTimestampToInputString from '@/shared/lib/format/convertTimestampToInputString';

@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
+import classNames from '@/shared/lib/aliases/classNames';
 import styles from './AdminNavBar.module.scss';
 
 export enum AdminTab {

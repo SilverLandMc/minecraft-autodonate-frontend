@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import fetchAdminProductList from 'widgets/adminTabs/productTab/actions/fetchAdminProductList';
+import fetchAdminProductList from '@/widgets/adminTabs/productTab/actions/fetchAdminProductList';
 import { ProductCategory } from '@/shared/enums/ProductCategory';
 
 interface Props {

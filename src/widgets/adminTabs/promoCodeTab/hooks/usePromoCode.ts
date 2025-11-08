@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import fetchPromoCodeById from 'widgets/adminTabs/promoCodeTab/actions/fetchPromoCodeById';
+import fetchPromoCodeById from '@/widgets/adminTabs/promoCodeTab/actions/fetchPromoCodeById';
 
 const usePromoCode = (promoCodeId: string) => {
     const {

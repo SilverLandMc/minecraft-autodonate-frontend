@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
-import { BackgroundColor, ModernButton, Spacing } from 'shared/ui';
 import { cartStore } from '@/entities/cart';
 import { productStore } from '@/entities/product';
 import minusIcon from '@/shared/assets/minusIcon.svg';
 import plusIcon from '@/shared/assets/plusIcon.svg';
+import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
 import styles from './ShoppingListTable.module.scss';
 
 export const ShoppingListTable: FunctionComponent = observer(() => {

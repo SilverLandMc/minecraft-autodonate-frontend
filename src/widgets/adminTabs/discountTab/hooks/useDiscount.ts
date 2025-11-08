@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import fetchDiscountById from 'widgets/adminTabs/discountTab/actions/fetchDiscountById';
+import fetchDiscountById from '@/widgets/adminTabs/discountTab/actions/fetchDiscountById';
 
 const useDiscount = (id: string) => {
     const { value: discount, loading: isLoading, error } = useAsync(async () => await fetchDiscountById(id), [id]);

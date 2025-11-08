@@ -1,7 +1,7 @@
 import React, { FunctionComponent, MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AppRoutes as AppRoute, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import classNames from 'shared/lib/aliases/classNames';
+import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import classNames from '@/shared/lib/aliases/classNames';
 import styles from './NavBar.module.scss';
 
 interface Props {

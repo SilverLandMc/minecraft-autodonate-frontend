@@ -1,5 +1,5 @@
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
-import Sentry from 'shared/lib/aliases/Sentry';
+import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
+import Sentry from '@/shared/lib/aliases/Sentry';
 
 const PAGE_RELOADS_QUERY_PARAMETER = 'componentLoaderReloads';
 

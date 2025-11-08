@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Title from 'shared/ui/title/Title';
-import LatestPurchases from 'widgets/adminTabs/purchaseTab/components/LatestPurchases/LatestPurchases';
-import usePurchasesInfo from 'widgets/adminTabs/purchaseTab/hooks/usePurchasesInfo';
+import LatestPurchases from '@/widgets/adminTabs/purchaseTab/components/LatestPurchases/LatestPurchases';
+import usePurchasesInfo from '@/widgets/adminTabs/purchaseTab/hooks/usePurchasesInfo';
+import classNames from '@/shared/lib/aliases/classNames';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Title from '@/shared/ui/title/Title';
 import styles from './PurchasesTab.module.scss';
 
 export const PurchasesTab: FunctionComponent = () => {

@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
-import { ProductEdit } from 'widgets/adminTabs/productTab/components/productEdit/ProductEdit';
-import { ProductsList } from 'widgets/adminTabs/productTab/components/productList/ProductsList';
+import { ProductEdit } from '@/widgets/adminTabs/productTab/components/productEdit/ProductEdit';
+import { ProductsList } from '@/widgets/adminTabs/productTab/components/productList/ProductsList';
 
 export enum ActiveSubTab {
     LIST = 'list',

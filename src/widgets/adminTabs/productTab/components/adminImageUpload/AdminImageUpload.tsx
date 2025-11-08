@@ -1,10 +1,10 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import { acceptImageSetting } from 'shared/const/enum/imageType';
-import validateIsFileImage from 'shared/lib/validation/validateIsFileImage';
-import { Spacing } from 'shared/ui';
-import Button from 'shared/ui/button/Button';
-import Title from 'shared/ui/title/Title';
-import uploadFile from 'widgets/adminTabs/productTab/actions/uploadFile';
+import { acceptImageSetting } from '@/shared/const/enum/imageType';
+import validateIsFileImage from '@/shared/lib/validation/validateIsFileImage';
+import { Spacing } from '@/shared/ui';
+import Button from '@/shared/ui/button/Button';
+import Title from '@/shared/ui/title/Title';
+import uploadFile from '@/widgets/adminTabs/productTab/actions/uploadFile';
 import styles from './AdminImageUpload.module.scss';
 
 interface Props {

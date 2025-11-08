@@ -1,4 +1,4 @@
-import AppContext from 'app/providers/AppContextProvider/lib/AppContext';
+import AppContext from '@/app/providers/AppContextProvider/lib/AppContext';
 import { FunctionComponent, PropsWithChildren, useState } from 'react';
 import { PromocodeOutDto } from '@/shared/api/apiTypes';
 import { ShoppingListProductToBuyInDto } from '@/shared/api/apiTypesHelper';

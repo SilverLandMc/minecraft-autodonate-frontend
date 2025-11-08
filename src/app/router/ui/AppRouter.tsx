@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routeConfig } from 'shared/config/routeConfig/routeConfig';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
+import { routeConfig } from '@/shared/config/routeConfig/routeConfig';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
 
 export const AppRouter = () => (
     <Suspense fallback={<RunnerLoader />}>

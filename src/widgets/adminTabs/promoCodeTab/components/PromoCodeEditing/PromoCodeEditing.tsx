@@ -1,16 +1,16 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
-import useDiscountInfo from 'shared/hooks/useDiscountInfo';
-import classNames from 'shared/lib/aliases/classNames';
-import convertTimestampToInputString from 'shared/lib/format/convertTimestampToInputString';
-import { Spacing } from 'shared/ui';
-import AdminErrorBlock from 'shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from 'shared/ui/button/Button';
-import RunnerLoader from 'shared/ui/runnerLoader/RunnerLoader';
-import Title from 'shared/ui/title/Title';
-import { ActiveSubTab } from 'widgets/adminTabs/discountTab/DiscountsTab';
-import editPromoCode from 'widgets/adminTabs/promoCodeTab/actions/editPromoCode';
-import usePromoCode from 'widgets/adminTabs/promoCodeTab/hooks/usePromoCode';
-import { PromoCodeComponentProps } from 'widgets/adminTabs/promoCodeTab/PromoCodesTab';
+import { ActiveSubTab } from '@/widgets/adminTabs/discountTab/DiscountsTab';
+import editPromoCode from '@/widgets/adminTabs/promoCodeTab/actions/editPromoCode';
+import usePromoCode from '@/widgets/adminTabs/promoCodeTab/hooks/usePromoCode';
+import { PromoCodeComponentProps } from '@/widgets/adminTabs/promoCodeTab/PromoCodesTab';
+import useDiscountInfo from '@/shared/hooks/useDiscountInfo';
+import classNames from '@/shared/lib/aliases/classNames';
+import convertTimestampToInputString from '@/shared/lib/format/convertTimestampToInputString';
+import { Spacing } from '@/shared/ui';
+import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
+import Button from '@/shared/ui/button/Button';
+import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import Title from '@/shared/ui/title/Title';
 import styles from './PromoCodeEditing.module.scss';
 
 const initialFormValues = {

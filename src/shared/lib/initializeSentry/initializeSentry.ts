@@ -1,6 +1,6 @@
-import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from 'shared/config/env/env';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
+import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from '@/shared/config/env/env';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
 
 const logger = createLogger('initializeSentry');
 

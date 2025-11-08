@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import { ActiveSubTab } from 'widgets/adminTabs/discountTab/DiscountsTab';
-import deletePromoCode from 'widgets/adminTabs/promoCodeTab/actions/deletePromoCode';
-import usePromoCodesList from 'widgets/adminTabs/promoCodeTab/hooks/usePromoCodesList';
-import { PromoCodeComponentProps } from 'widgets/adminTabs/promoCodeTab/PromoCodesTab';
+import { ActiveSubTab } from '@/widgets/adminTabs/discountTab/DiscountsTab';
+import deletePromoCode from '@/widgets/adminTabs/promoCodeTab/actions/deletePromoCode';
+import usePromoCodesList from '@/widgets/adminTabs/promoCodeTab/hooks/usePromoCodesList';
+import { PromoCodeComponentProps } from '@/widgets/adminTabs/promoCodeTab/PromoCodesTab';
 import { DiscountType } from '@/shared/api/apiTypes';
 import TimeFormatString from '@/shared/const/enum/timeFormatString';
 import classNames from '@/shared/lib/aliases/classNames';

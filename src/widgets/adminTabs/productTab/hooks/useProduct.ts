@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import { fetchProductById } from 'widgets/adminTabs/productTab/actions/fetchProductById';
+import { fetchProductById } from '@/widgets/adminTabs/productTab/actions/fetchProductById';
 
 export const useProduct = (productId?: string) => {
     const {

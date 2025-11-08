@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import deleteDiscount from 'widgets/adminTabs/discountTab/actions/deleteDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/adminTabs/discountTab/DiscountsTab';
-import useDiscountsList from 'widgets/adminTabs/discountTab/hooks/useDiscountsList';
+import deleteDiscount from '@/widgets/adminTabs/discountTab/actions/deleteDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/adminTabs/discountTab/DiscountsTab';
+import useDiscountsList from '@/widgets/adminTabs/discountTab/hooks/useDiscountsList';
 import { DiscountType } from '@/shared/api/apiTypes';
 import TimeFormatString from '@/shared/const/enum/timeFormatString';
 import classNames from '@/shared/lib/aliases/classNames';

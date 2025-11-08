@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import queryString from 'query-string';
-import createLogger from 'shared/lib/logger/logger';
+import createLogger from '@/shared/lib/logger/logger';
 
 interface LowLevelRequestConfig extends AxiosRequestConfig {
     /**

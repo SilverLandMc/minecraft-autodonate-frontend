@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import TimeFormatString from 'shared/const/enum/timeFormatString';
+import TimeFormatString from '@/shared/const/enum/timeFormatString';
 
 const convertTimestampToInputString = (unixTime?: number) => {
     if (!unixTime) {

@@ -1,6 +1,6 @@
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import createDiscount from 'widgets/adminTabs/discountTab/components/DiscountCreation/utils/createDiscount';
-import { ActiveSubTab, DiscountComponentProps } from 'widgets/adminTabs/discountTab/DiscountsTab';
+import createDiscount from '@/widgets/adminTabs/discountTab/components/DiscountCreation/utils/createDiscount';
+import { ActiveSubTab, DiscountComponentProps } from '@/widgets/adminTabs/discountTab/DiscountsTab';
 import { DiscountBaseInDto, DiscountType } from '@/shared/api/apiTypes';
 import classNames from '@/shared/lib/aliases/classNames';
 import { Spacing } from '@/shared/ui';

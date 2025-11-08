@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
-import { BackgroundColor, Input, ModernButton } from 'shared/ui';
 import { cartStore } from '@/entities/cart';
 import { DiscountType } from '@/shared/api/apiTypes';
 import closeIcon from '@/shared/assets/closeIcon.svg';
 import useMediaContext from '@/shared/hooks/useMediaContext';
 import fetchPromoCodeByName from '@/shared/lib/actions/fetchPromoCodeByName';
+import { BackgroundColor, Input, ModernButton } from '@/shared/ui';
 import styles from './PromoCodeBlock.module.scss';
 
 interface Props {

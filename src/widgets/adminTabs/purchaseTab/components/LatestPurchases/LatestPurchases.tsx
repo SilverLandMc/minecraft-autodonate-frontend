@@ -1,5 +1,5 @@
 import { ChangeEvent, FunctionComponent, useMemo, useState } from 'react';
-import useLatestPurchases from 'widgets/adminTabs/purchaseTab/components/LatestPurchases/hooks/useLatestPurchases';
+import useLatestPurchases from '@/widgets/adminTabs/purchaseTab/components/LatestPurchases/hooks/useLatestPurchases';
 import { PageDto } from '@/shared/api/apiTypes';
 import classNames from '@/shared/lib/aliases/classNames';
 import { Spacing } from '@/shared/ui';

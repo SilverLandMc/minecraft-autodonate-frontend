@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import fetchPromoCodesList from 'widgets/adminTabs/promoCodeTab/actions/fetchPromoCodesList';
+import fetchPromoCodesList from '@/widgets/adminTabs/promoCodeTab/actions/fetchPromoCodesList';
 
 interface Props {
     isOnlyActualMode?: boolean;

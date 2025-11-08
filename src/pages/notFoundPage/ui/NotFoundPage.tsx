@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import troubledManImage from 'shared/assets/troubledMan.png';
+import troubledManImage from '@/shared/assets/troubledMan.png';
 import styles from './NotFoundPage.module.scss';
 
 export const NotFoundPage: FunctionComponent = () => (
