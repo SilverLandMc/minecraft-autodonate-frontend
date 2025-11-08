@@ -1,8 +1,9 @@
-import { useUserInfo, useUserStoreActions, fetchUserInfo } from 'entities/user';
 import { observer } from 'mobx-react-lite';
-import { ChangeEvent, FunctionComponent, useState } from 'react';
-import classNames from 'shared/lib/aliases/classNames';
-import { BackgroundColor, Input, ModernButton, Optional, Section, Spacing } from 'shared/ui';
+import { FunctionComponent } from 'react';
+import { useUserInfo } from '@/entities/user';
+import classNames from '@/shared/lib/aliases/classNames';
+import { BackgroundColor, Input, ModernButton, Optional, Section, Spacing } from '@/shared/ui';
+import { useAuthForm } from './hooks/useAuthForm';
 import styles from './UserAuthBlock.module.scss';
 
 interface Props {
@@ -25,33 +26,8 @@ interface Props {
  */
 export const UserAuthBlock: FunctionComponent<Props> = observer(
     ({ standalone: isStandalone, usedInCart: isUsedInCart }) => {
-        const [formValue, setFormValue] = useState<string>('');
-        const [errorText, setErrorText] = useState<string | null>(null);
-
-        const { setUserInfo, eraseUserInfo } = useUserStoreActions();
         const { userName } = useUserInfo();
-
-        const confirmForm = async () => {
-            if (!formValue.trim()) {
-                setErrorText('Никнейм не может быть пустым');
-                return;
-            }
-
-            try {
-                const userInfo = await fetchUserInfo(formValue.trim());
-                setErrorText(null);
-                setUserInfo(userInfo);
-            } catch {
-                setErrorText('Пользователь не найден!');
-            }
-        };
-
-        const handleInput = (event: ChangeEvent<HTMLInputElement>) => setFormValue(event.target.value);
-
-        const logout = () => {
-            setFormValue('');
-            eraseUserInfo();
-        };
+        const { userNickName, errorText, handleInput, confirmForm, logout } = useAuthForm();
 
         const anonymousContent = (
             <div className={classNames(styles.wrapper, { [styles.usedInCart]: isUsedInCart })}>
@@ -66,7 +42,7 @@ export const UserAuthBlock: FunctionComponent<Props> = observer(
                 <div className={styles.controls}>
                     <Input
                         className={styles.input}
-                        value={formValue}
+                        value={userNickName}
                         onChange={handleInput}
                         placeholder="Например, Kuplinov"
                     />

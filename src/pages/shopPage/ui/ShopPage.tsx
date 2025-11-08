@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
-import { useFetchProducts } from '@/features/fetchProducts';
 import { cartStore } from '@/entities/cart';
 import { productStore, ProductCard } from '@/entities/product';
 import { Category, ProductOutDto } from '@/shared/api/apiTypes';
 import chestImage from '@/shared/assets/chest.png';
 import { Section, Spacing } from '@/shared/ui';
 import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { useFetchProducts } from './hooks/useFetchProducts';
 import styles from './ShopPage.module.scss';
 
 const pageSpacing = <Spacing size={50} sizeM={70} />;
@@ -61,7 +61,7 @@ const ShopPage: FunctionComponent = observer(() => {
 
     const otherProducts = Object.entries(productsByCategory)
         .filter(([category]) => category !== Category.RANKS)
-        .map(([category, products]) => products)
+        .map(([dummy, products]) => products)
         .flat();
 
     return (

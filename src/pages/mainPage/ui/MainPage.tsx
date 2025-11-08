@@ -9,10 +9,6 @@ import styles from './MainPage.module.scss';
 
 const mainPageSpacing = <Spacing size={50} sizeS={70} sizeM={90} sizeL={150} />;
 
-interface MainPageProps {
-    className?: string;
-}
-
 /**
  * Главная страница приложения.
  *
@@ -23,7 +19,7 @@ interface MainPageProps {
  *
  * @component
  */
-const MainPage: FunctionComponent<MainPageProps> = () => {
+const MainPage: FunctionComponent = () => {
     const { isMobile } = useMediaContext();
 
     return (

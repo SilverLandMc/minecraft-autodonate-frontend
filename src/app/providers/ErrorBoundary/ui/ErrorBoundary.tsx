@@ -1,7 +1,7 @@
-import React, { ErrorInfo, ReactNode } from 'react';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
-import { ErrorPage } from '../../../../pages/errorPage';
+import { Component, ErrorInfo, ReactNode } from 'react';
+import { ErrorPage } from '@/pages/errorPage';
+import Sentry from '@/shared/lib/aliases/Sentry';
+import createLogger from '@/shared/lib/logger/logger';
 
 interface ErrorBoundaryProps {
     children: ReactNode;
@@ -13,7 +13,7 @@ interface ErrorBoundaryState {
 
 const logger = createLogger('ErrorBoundary');
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = { hasError: false };

@@ -1,47 +1,12 @@
-import { setAuthPageVisited } from 'pages/adminPage/slices/adminPageSlice';
 import { FunctionComponent, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useEffectOnce } from 'react-use';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
-import useAppDispatch from '@/shared/hooks/redux/useAppDispatch';
-import selectAdminPagePart from '@/shared/redux/selectors/selectAdminPagePart';
 import { Section } from '@/shared/ui';
+import { useAdminAuth } from './hooks/useAdminAuth';
 import styles from './AuthPage.module.scss';
 
 const AuthPage: FunctionComponent = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    const { isAdmin, isAuthPageVisited } = useSelector(selectAdminPagePart);
-
     const telegramButtonRef = useRef<HTMLDivElement>(null);
 
-    useEffectOnce(() => {
-        if (isAdmin || isAuthPageVisited) {
-            navigate(RoutePath['admin']);
-        }
-
-        const buttonRef = telegramButtonRef.current;
-
-        if (buttonRef && telegramButtonRef.current) {
-            const script = document.createElement('script');
-            script.src = 'https://telegram.org/js/telegram-widget.js?22';
-            script.setAttribute('data-telegram-login', 'silverlandmc_bot');
-            script.setAttribute('data-size', 'large');
-            script.setAttribute('data-auth-url', 'https://silverland.fun/auth/callback');
-            script.setAttribute('data-request-access', 'write');
-
-            telegramButtonRef.current.appendChild(script);
-
-            return () => {
-                dispatch(setAuthPageVisited());
-
-                if (buttonRef) {
-                    buttonRef.removeChild(script);
-                }
-            };
-        }
-    });
+    useAdminAuth({ telegramButtonRef });
 
     return (
         <div className={styles.wrapper}>

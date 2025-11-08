@@ -1,11 +1,10 @@
-import AdminAccessGuard from 'pages/adminPage/layouts/AdminAccessGuard';
 import { ComponentType, FunctionComponent, useState } from 'react';
-import { Section, Spacing } from 'shared/ui';
-import AdminNavBar, { AdminTab } from 'widgets/AdminNavBar/AdminNavBar';
-import DiscountsTab from 'widgets/AdminTabs/DiscountsTab/DiscountsTab';
-import ProductsTab from 'widgets/AdminTabs/ProductsTab/ProductsTab';
-import PromoCodesTab from 'widgets/AdminTabs/PromoCodesTab/PromoCodesTab';
-import PurchasesTab from 'widgets/AdminTabs/PurchasesTab/PurchasesTab';
+import { AdminNavBar, AdminTab } from '@/widgets/adminNavBar/AdminNavBar';
+import { DiscountsTab } from '@/widgets/adminTabs/discountTab/DiscountsTab';
+import { ProductsTab } from '@/widgets/adminTabs/productTab/ProductsTab';
+import { PromoCodesTab } from '@/widgets/adminTabs/promoCodeTab/PromoCodesTab';
+import { PurchasesTab } from '@/widgets/adminTabs/purchaseTab/PurchasesTab';
+import { Section, Spacing } from '@/shared/ui';
 import styles from './AdminPage.module.scss';
 
 const componentByAdminTab: Record<AdminTab, ComponentType> = {
@@ -20,19 +19,17 @@ const AdminPage: FunctionComponent = () => {
     const ActiveTabComponent = componentByAdminTab[activeTab];
 
     return (
-        <AdminAccessGuard>
-            <div className={styles.wrapper}>
-                <Section className={styles.section}>
-                    <Spacing size={15} />
+        <div className={styles.wrapper}>
+            <Section className={styles.section}>
+                <Spacing size={15} />
 
-                    <AdminNavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+                <AdminNavBar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-                    <Spacing size={15} />
+                <Spacing size={15} />
 
-                    <ActiveTabComponent />
-                </Section>
-            </div>
-        </AdminAccessGuard>
+                <ActiveTabComponent />
+            </Section>
+        </div>
     );
 };
 

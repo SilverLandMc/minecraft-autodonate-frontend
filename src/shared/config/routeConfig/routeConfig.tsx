@@ -23,11 +23,11 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.SHOP]: '/shop',
     [AppRoutes.TERMS_OF_SERVICE]: '/tos',
+    [AppRoutes.NOT_FOUND]: '*',
     // endregion
 
     [AppRoutes.AUTHENTICATION]: '/auth',
-    [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.NOT_FOUND]: '*'
+    [AppRoutes.ADMIN]: '/admin'
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -44,6 +44,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.tos,
         element: <TermsOfServicePage />
     },
+    [AppRoutes.NOT_FOUND]: {
+        path: RoutePath.notFound,
+        element: <NotFoundPage />
+    },
     // endregion
 
     [AppRoutes.AUTHENTICATION]: {
@@ -53,9 +57,5 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.ADMIN]: {
         path: RoutePath.admin,
         element: <AdminPage />
-    },
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.notFound,
-        element: <NotFoundPage />
     }
 };
