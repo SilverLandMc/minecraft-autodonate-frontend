@@ -1,7 +1,7 @@
 import { debounce, isEqual } from 'lodash-es';
 import { FunctionComponent, PropsWithChildren, useEffect, useState } from 'react';
 import MediaContext, { MediaContextState } from '@/app/providers/mediaProvider/lib/MediaContext';
-import Media from '@/shared/enums/Media';
+import { Media } from '@/shared/enums/Media';
 
 const mediaQueriesMap: Record<Media, MediaQueryList> = {
     [Media.XS]: window.matchMedia(`(max-width: ${Media.XS}px)`),

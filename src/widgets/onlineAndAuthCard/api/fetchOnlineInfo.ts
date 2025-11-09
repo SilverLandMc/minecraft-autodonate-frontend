@@ -1,6 +1,6 @@
 import { ServerInfo } from '@/shared/api/apiTypes';
-import Sentry from '@/shared/lib/aliases/Sentry';
-import createLogger from '@/shared/lib/logger/logger';
+import { Sentry } from '@/shared/lib/aliases';
+import { createLogger } from '@/shared/lib/logger';
 import { request } from '@/shared/lib/request/request';
 
 const logger = createLogger('fetchOnlineInfo');

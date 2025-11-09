@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { ErrorPage } from '@/pages/errorPage';
-import Sentry from '@/shared/lib/aliases/Sentry';
-import createLogger from '@/shared/lib/logger/logger';
+import { Sentry } from '@/shared/lib/aliases';
+import { createLogger } from '@/shared/lib/logger';
 
 interface ErrorBoundaryProps {
     children: ReactNode;

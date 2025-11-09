@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Media, { Breakpoint } from '@/shared/enums/Media';
+import { Media, Breakpoint } from '@/shared/enums/Media';
 import { MediaContext } from '../../app/providers/mediaProvider';
 
 const getBreakpoint = (media: Media[]): Breakpoint => {
@@ -15,7 +15,7 @@ const getBreakpoint = (media: Media[]): Breakpoint => {
     }
 };
 
-const useMediaContext = () => {
+export const useMediaContext = () => {
     const { media } = useContext(MediaContext);
 
     if (!media) {
@@ -48,5 +48,3 @@ const useMediaContext = () => {
         isDesktop: isLargeDesktop || isMediumDesktop
     };
 };
-
-export default useMediaContext;

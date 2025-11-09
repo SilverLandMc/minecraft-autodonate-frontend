@@ -1,5 +1,5 @@
-import Sentry from '@/shared/lib/aliases/Sentry';
-import createLogger from '@/shared/lib/logger/logger';
+import { Sentry } from '@/shared/lib/aliases';
+import { createLogger } from '@/shared/lib/logger';
 import { post } from '@/shared/lib/request/request';
 
 const logger = createLogger('uploadFile');

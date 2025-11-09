@@ -1,6 +1,6 @@
 import React, { ComponentProps, ComponentType, PropsWithChildren } from 'react';
 
-const combineProviders = (
+export const combineProviders = (
     ...components: ComponentType<PropsWithChildren<any>>[]
 ): ComponentType<PropsWithChildren<any>> =>
     components.reduce(
@@ -13,5 +13,3 @@ const combineProviders = (
 
         ({ children }) => <>{children}</>
     );
-
-export default combineProviders;

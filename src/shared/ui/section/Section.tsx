@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import styles from './Section.module.scss';
 
 interface SectionProps extends PropsWithChildren {

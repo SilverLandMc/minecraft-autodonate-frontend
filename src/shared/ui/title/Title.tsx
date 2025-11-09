@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import styles from './Title.module.scss';
 
 interface Props extends PropsWithChildren {
@@ -10,4 +10,4 @@ const Title: FunctionComponent<Props> = ({ className, children }) => (
     <h3 className={classNames(styles.title, [className])}>{children}</h3>
 );
 
-export default Title;
+export { Title };

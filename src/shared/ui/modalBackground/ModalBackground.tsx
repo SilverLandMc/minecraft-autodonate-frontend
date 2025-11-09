@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import closeIcon from './images/closeIcon.svg';
 import styles from './ModalBackground.module.scss';
 

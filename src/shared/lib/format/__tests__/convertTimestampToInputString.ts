@@ -1,4 +1,4 @@
-import convertTimestampToInputString from '../convertTimestampToInputString';
+import { convertTimestampToInputString } from '../convertTimestampToInputString';
 
 describe('convertTimestampToInputString', () => {
     test('Форматирует таймштамп в корректную строку, поддерживаемую элементом input', () => {

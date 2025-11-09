@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from '@/app/App';
 import { setupMobx } from '@/app/config/mobx';
 import { AppContainer } from '@/app/providers/appContainer';
-import initializeSentry from '@/shared/lib/initializeSentry/initializeSentry';
+import { initializeSentry } from '@/shared/lib/initializeSentry';
 import '@/app/styles/index.scss';
 
 setupMobx();

@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import styles from './AdminErrorBlock.module.scss';
 
 interface Props {
@@ -12,4 +12,4 @@ const AdminErrorBlock: FunctionComponent<Props> = ({
     className
 }) => <div className={classNames(styles.adminErrorBlock, [className])}>{text}</div>;
 
-export default AdminErrorBlock;
+export { AdminErrorBlock };

@@ -4,7 +4,7 @@ import { usePromoCode } from '@/entities/promocode';
 import { editPromoCode } from '@/entities/promocode';
 import { createPromoCode } from '@/entities/promocode';
 import { PromocodeUpdateDto } from '@/shared/api/apiTypes';
-import convertTimestampToInputString from '@/shared/lib/format/convertTimestampToInputString';
+import { convertTimestampToInputString } from '@/shared/lib/format';
 
 interface FormValues extends PromocodeUpdateDto {
     name: string;

@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, FunctionComponent } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import styles from './ModernButton.module.scss';
 
 export const enum BackgroundColor {

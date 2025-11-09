@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { createDiscount, editDiscount, useDiscount } from '@/entities/discount';
 import { DiscountInDto, DiscountType } from '@/shared/api/apiTypes';
-import convertTimestampToInputString from '@/shared/lib/format/convertTimestampToInputString';
+import { convertTimestampToInputString } from '@/shared/lib/format';
 
 const initialFormValue: DiscountInDto = {
     name: '',

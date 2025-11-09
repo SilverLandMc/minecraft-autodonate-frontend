@@ -12,5 +12,3 @@ export const FailSafeImage: FunctionComponent<Props> = ({ src: rawSrc, fallbackS
 
     return <img src={src} className={className} onError={onError} {...props} alt="" />;
 };
-
-export default FailSafeImage;

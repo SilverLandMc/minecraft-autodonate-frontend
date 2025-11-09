@@ -1,9 +1,6 @@
 import { FunctionComponent } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
-import { Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import Title from '@/shared/ui/title/Title';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, RunnerLoader, Spacing, Title } from '@/shared/ui';
 import { usePageablePurchases } from '../../../model/hooks/usePageablePurchases';
 import styles from './LatestPurchases.module.scss';
 

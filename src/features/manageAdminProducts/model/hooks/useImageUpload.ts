@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { uploadFile } from '@/entities/adminProduct';
 import { acceptImageSetting } from '@/shared/const/enum/imageType';
-import validateIsFileImage from '@/shared/lib/validation/validateIsFileImage';
+import { validateIsFileImage } from '@/shared/lib/validation';
 
 interface Params {
     setImageId(imageId?: string): void;

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import Media from '@/shared/enums/Media';
+import { Media } from '@/shared/enums/Media';
 
 export interface MediaContextState {
     media: Media[];

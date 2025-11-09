@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ShoppingList } from '@/features/shoppingList';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
-import useMediaContext from '@/shared/hooks/useMediaContext';
+import { useMediaContext } from '@/shared/hooks/useMediaContext';
 import { Section } from '@/shared/ui';
 import { ButterMenu } from './components/ButterMenu/ButterMenu';
 import { NavBar } from './components/NavBar/NavBar';

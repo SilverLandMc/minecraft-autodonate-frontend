@@ -1,10 +1,6 @@
 import { FunctionComponent } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
-import { Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from '@/shared/ui/button/Button';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import Title from '@/shared/ui/title/Title';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, Button, RunnerLoader, Spacing, Title } from '@/shared/ui';
 import { usePromocodeForm } from '../../../model/hooks/usePromocodeForm';
 import { ActiveSubTab, PromoCodeComponentProps } from '../../PromoCodesTab';
 import styles from './PromoCodeEdit.module.scss';

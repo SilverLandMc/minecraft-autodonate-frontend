@@ -1,14 +1,9 @@
 import { format } from 'date-fns';
 import { FunctionComponent } from 'react';
 import { DiscountType } from '@/shared/api/apiTypes';
-import TimeFormatString from '@/shared/const/enum/timeFormatString';
-import classNames from '@/shared/lib/aliases/classNames';
-import { Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from '@/shared/ui/button/Button';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import Table from '@/shared/ui/table/Table';
-import Title from '@/shared/ui/title/Title';
+import { TimeFormatString } from '@/shared/const/enum/timeFormatString';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, Button, RunnerLoader, Spacing, Table, Title } from '@/shared/ui';
 import { useList } from '../../../model/hooks/useList';
 import { PromoCodeComponentProps } from '../../PromoCodesTab';
 import styles from './PromoCodeList.module.scss';

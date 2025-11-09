@@ -1,4 +1,4 @@
-import AdminErrorBlock from './AdminErrorBlock';
+import { AdminErrorBlock } from './AdminErrorBlock';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
 import { useUserInfo } from '@/entities/user';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import { BackgroundColor, Input, ModernButton, Optional, Section, Spacing } from '@/shared/ui';
 import { useAuthForm } from './hooks/useAuthForm';
 import styles from './UserAuthBlock.module.scss';

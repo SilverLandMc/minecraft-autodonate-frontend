@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import combineProviders from '@/shared/lib/combineProviders/combineProviders';
+import { combineProviders } from '@/shared/lib/combineProviders';
 import { ErrorBoundary } from '../errorBoundary';
 import { MediaContextProvider } from '../mediaProvider';
 import { UserStoreProvider } from '../userStoreProvider';

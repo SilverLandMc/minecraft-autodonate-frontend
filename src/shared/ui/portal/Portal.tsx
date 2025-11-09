@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import Sentry from '@/shared/lib/aliases/Sentry';
-import createLogger from '@/shared/lib/logger/logger';
+import { Sentry } from '@/shared/lib/aliases';
+import { createLogger } from '@/shared/lib/logger';
 
 const logger = createLogger('Portal');
 

@@ -1,12 +1,8 @@
 import { FunctionComponent } from 'react';
 import { ValidityType } from '@/shared/api/apiTypes';
 import { ProductCategory } from '@/shared/enums/ProductCategory';
-import classNames from '@/shared/lib/aliases/classNames';
-import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import { SafeHTML } from '@/shared/ui/safeHTML';
-import Table from '@/shared/ui/table/Table';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, BackgroundColor, ModernButton, RunnerLoader, SafeHTML, Spacing, Table } from '@/shared/ui';
 import { useList } from '../../../model/hooks/useList';
 import { ActiveSubTab, ProductComponentProps } from '../../ProductTab';
 import styles from './ProductList.module.scss';

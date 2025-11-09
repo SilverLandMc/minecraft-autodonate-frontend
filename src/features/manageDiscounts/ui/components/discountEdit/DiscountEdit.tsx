@@ -1,11 +1,7 @@
 import { FunctionComponent } from 'react';
 import { DiscountType } from '@/shared/api/apiTypes';
-import classNames from '@/shared/lib/aliases/classNames';
-import { Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import Button from '@/shared/ui/button/Button';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import Title from '@/shared/ui/title/Title';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, Button, RunnerLoader, Spacing, Title } from '@/shared/ui';
 import { useDiscountForm } from '../../../model/hooks/useDiscountForm';
 import { ActiveSubTab, DiscountComponentProps } from '../../DiscountsTab';
 import styles from './DiscountEdit.module.scss';

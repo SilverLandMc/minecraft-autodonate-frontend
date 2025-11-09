@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import createLogger from '@/shared/lib/logger/logger';
+import { createLogger } from '@/shared/lib/logger';
 import { fetchAdminInfo } from '../../api/fetchAdminInfo';
 
 const logger = createLogger('useAdminInfo');

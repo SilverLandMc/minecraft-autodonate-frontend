@@ -1,10 +1,7 @@
 import { FunctionComponent } from 'react';
 import { usePurchasesInfo } from '@/entities/purchase';
-import classNames from '@/shared/lib/aliases/classNames';
-import { Spacing } from '@/shared/ui';
-import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import { RunnerLoader } from '@/shared/ui/runnerLoader';
-import Title from '@/shared/ui/title/Title';
+import { classNames } from '@/shared/lib/aliases';
+import { AdminErrorBlock, RunnerLoader, Spacing, Title } from '@/shared/ui';
 import { LatestPurchases } from './components/latestPurchases/LatestPurchases';
 import styles from './PurchasesTab.module.scss';
 

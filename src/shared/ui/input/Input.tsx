@@ -1,5 +1,5 @@
 import { FunctionComponent, InputHTMLAttributes } from 'react';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import styles from './Input.module.scss';
 
 interface Props {

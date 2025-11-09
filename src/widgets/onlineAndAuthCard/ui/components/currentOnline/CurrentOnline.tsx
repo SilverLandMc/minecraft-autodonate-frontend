@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useAsync } from 'react-use';
-import classNames from '@/shared/lib/aliases/classNames';
+import { classNames } from '@/shared/lib/aliases';
 import { Spacing } from '@/shared/ui';
 import { fetchOnline } from '../../../api/fetchOnlineInfo';
 import { ProgressBar } from './components/progressBar/ProgressBar';

@@ -1,4 +1,4 @@
-import FailSafeImage from './FailSafeImage';
+import { FailSafeImage } from './FailSafeImage';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
