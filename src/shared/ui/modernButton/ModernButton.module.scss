@@ -1,0 +1,66 @@
+@use '/src/app/styles/media/media.scss';
+
+.button {
+    padding: 7px 20px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    color: white;
+    outline: none;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+.blackBackground {
+    background: var(--color-vampire-black);
+}
+
+.redBackground {
+    background: var(--color-philippine-red);
+}
+
+.magentaBackground {
+    background: var(--color-deep-fuchsia);
+}
+
+.greenBackground {
+    background: var(--color-apple-green);
+}
+
+.orangeBackground {
+    background: var(--color-deep-carrot-orange);
+}
+
+.transparentBackground {
+    background: transparent;
+}
+
+.redOutline {
+    border: 1px solid var(--color-philippine-red);
+}

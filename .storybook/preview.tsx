@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { ComponentType } from 'react';
 import { StorybookLayout } from './components/StorybookLayout';
-import Media from '../src/app/const/enum/Media';
+import Media from '../src/shared/enums/Media';
 
 // https://storybook.js.org/docs/react/essentials/viewport
 // region viewports

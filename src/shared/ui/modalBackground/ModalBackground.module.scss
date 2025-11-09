@@ -1,0 +1,79 @@
+@use '/src/app/styles/media/media.scss';
+
+:root {
+    --modal-content-padding-top: 0;
+
+    @include media.mediaS {
+        --modal-content-padding-top: 105px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--modal-index);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background-color: var(--black-opacity-80);
+
+    animation: fadeIn 0.3s;
+
+    &.isClosing {
+        animation: fadeOut 0.4s;
+    }
+
+    @include media.mediaS {
+        padding: 0 28px;
+    }
+
+    @include media.mediaM {
+        padding: 0;
+    }
+}
+
+.close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    @include media.mediaS {
+        position: absolute;
+        top: 42px;
+        right: 42px;
+    }
+}
+
+.modalContent {
+    position: relative;
+
+    display: flex;
+
+    padding-bottom: 24px;
+}

@@ -1,0 +1,86 @@
+@use '/src/app/styles/media/media';
+
+.card {
+    border-radius: 24px;
+
+    background: linear-gradient(to left, rgba(13, 59, 75, 0.35) 0%, rgba(0, 0, 0, 0.2) 90%);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &.usedInCart {
+        .title {
+            @include media.mediaS {
+                color: var(--color-black);
+            }
+        }
+
+        .controls {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        .input {
+            @include media.mediaS {
+                border: 1px solid var(--color-black);
+
+                color: var(--color-black);
+
+                &::placeholder {
+                    color: var(--color-black);
+                }
+            }
+        }
+    }
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include media.mediaS {
+        flex-direction: row;
+        gap: 12px;
+    }
+}
+
+.title,
+.redText,
+.logout {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @include media.mediaS {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.loginButton {
+    max-width: fit-content;
+}
+
+.redText,
+.logout {
+    color: var(--color-philippine-red);
+}
+
+.logout {
+    cursor: pointer;
+    font-weight: 600;
+}

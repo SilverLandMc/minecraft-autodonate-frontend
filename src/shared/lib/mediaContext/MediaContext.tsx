@@ -1,0 +1,9 @@
+import { createContext } from 'react';
+import { Media } from '@/shared/enums/Media';
+
+export interface MediaContextState {
+    media: Media[];
+}
+// undefined для удобства выброса исключения в хуках
+// не может быть ситуации, когда в media undefined при нормальной работе SPA
+export const MediaContext = createContext<MediaContextState>({ media: undefined! });

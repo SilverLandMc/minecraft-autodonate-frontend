@@ -1,0 +1,172 @@
+@use '/src/app/styles/media/media';
+
+$special-breakpoint: 560px;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 100%;
+
+    @media (min-width: $special-breakpoint) {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    @include media.mediaM {
+        gap: 44px;
+    }
+
+    @include media.mediaS {
+        gap: 54px;
+    }
+}
+
+.textBlock {
+    order: 0;
+
+    @media (min-width: $special-breakpoint) {
+        order: 1;
+    }
+}
+
+.imageBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    order: 1;
+
+    width: 100%;
+
+    @media (min-width: $special-breakpoint) {
+        display: flex;
+        flex-direction: column;
+        order: 0;
+
+        max-width: 235px;
+    }
+
+    @include media.mediaS {
+        min-width: 235px;
+    }
+
+    @include media.mediaM {
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    @include media.mediaL {
+        min-width: 384px;
+        max-width: 384px;
+    }
+}
+
+.header {
+    font-weight: 900;
+
+    font-size: 24px;
+    line-height: 28px;
+
+    @include media.mediaS {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    @include media.mediaM {
+        font-size: 48px;
+        line-height: 54px;
+    }
+
+    @include media.mediaL {
+        font-size: 64px;
+        line-height: 78px;
+    }
+}
+
+.paragraph {
+    font-size: 12px;
+    line-height: 16px;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.photo {
+    width: 100%;
+    max-width: 235px;
+
+    @include media.mediaS {
+        max-width: unset;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+
+    width: 100%;
+
+    @include media.mediaL {
+        flex-direction: row;
+    }
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+
+    @include media.mediaL {
+        width: 100%;
+    }
+}
+
+.youtubeIcon {
+    width: 7px;
+
+    @include media.mediaS {
+        width: 9px;
+    }
+
+    @include media.mediaM {
+        width: 12px;
+    }
+
+    @include media.mediaL {
+        width: 14px;
+    }
+}
+
+.vkIcon {
+    width: 13px;
+
+    @include media.mediaS {
+        width: 16px;
+    }
+
+    @include media.mediaM {
+        width: 22px;
+    }
+
+    @include media.mediaL {
+        width: 26px;
+    }
+}

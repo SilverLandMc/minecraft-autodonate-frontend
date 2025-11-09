@@ -1,0 +1,47 @@
+@use '/src/app/styles/media/media';
+
+.input {
+    padding: 5px 20px;
+
+    border: 1px solid var(--color-white);
+    border-radius: 18px;
+
+    background: transparent;
+
+    @include media.mediaL {
+        border-radius: 22px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &.dark,
+    &.dark::placeholder {
+        border-color: var(--color-black);
+
+        color: var(--color-black);
+    }
+}
+
+.input,
+.input::placeholder {
+    color: var(--color-white);
+    font-size: 12px;
+    line-height: 16px;
+
+    @include media.mediaS {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @include media.mediaL {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}

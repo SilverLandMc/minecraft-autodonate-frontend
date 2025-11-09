@@ -1,0 +1,109 @@
+@use '/src/app/styles/media/media';
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.navBar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: var(--black-opacity-50);
+    box-shadow: 0 10px 50px var(--black-opacity-5);
+
+    animation: slideInFromLeft 0.5s ease forwards;
+
+    &.isClosing {
+        animation: slideOutToRight 0.3s ease forwards;
+    }
+
+    @include media.mediaS {
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        background: none;
+    }
+
+    @include media.mediaM {
+        gap: 40px;
+    }
+}
+
+.linkContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+
+    @include media.mediaM {
+        gap: 8px;
+    }
+}
+
+.iconContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width: 40px;
+
+    @include media.mediaS {
+        width: unset;
+    }
+}
+
+.icon {
+    max-height: 30px;
+
+    @include media.mediaS {
+        max-height: 20px;
+    }
+
+    @include media.mediaM {
+        max-height: 30px;
+    }
+}
+
+.link {
+    text-decoration: none;
+
+    color: var(--color-white);
+    font-size: 18px;
+    line-height: 22px;
+
+    transition: 0.3s;
+
+    &.isActive {
+        border-bottom: 1px solid var(--color-white);
+    }
+
+    @include media.mediaM {
+        font-size: 16px;
+    }
+}

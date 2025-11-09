@@ -21,6 +21,4 @@ class Logger {
     }
 }
 
-const createLogger = (messageSource: string) => new Logger(messageSource);
-
-export default createLogger;
+export const createLogger = (messageSource: string) => new Logger(messageSource);

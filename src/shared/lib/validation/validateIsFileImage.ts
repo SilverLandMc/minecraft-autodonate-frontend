@@ -1,5 +1,3 @@
-import { allowedImageTypes, ImageType } from 'shared/const/enum/imageType';
+import { allowedImageTypes, ImageType } from '@/shared/enums/imageType';
 
-const validateIsFileImage = (file: File) => allowedImageTypes.includes(file.type as ImageType);
-
-export default validateIsFileImage;
+export const validateIsFileImage = (file: File) => allowedImageTypes.includes(file.type as ImageType);

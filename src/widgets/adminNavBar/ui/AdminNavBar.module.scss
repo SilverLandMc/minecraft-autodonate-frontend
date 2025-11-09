@@ -1,0 +1,29 @@
+@use '/src/app/styles/media/media';
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
+    @include media.mediaM {
+        gap: 20px;
+    }
+}
+
+.tab {
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--black-opacity-50);
+    }
+
+    &.active {
+        color: var(--color-strict-blue);
+        text-decoration: underline 2px var(--color-strict-blue);
+    }
+}

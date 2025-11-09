@@ -1,0 +1,16 @@
+@use '/src/app/styles/media/media';
+
+.button {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+
+    border-radius: 51px;
+}
+
+.cartLabel {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+}
