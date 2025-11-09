@@ -1,5 +1,5 @@
 import { useAsync } from 'react-use';
-import fetchDiscountsList from '../../api/fetchDiscountsList';
+import { fetchDiscountsList } from '../../api/fetchDiscountsList';
 
 interface Props {
     reFetchListFlag?: boolean;

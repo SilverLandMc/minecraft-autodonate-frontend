@@ -1,6 +1,6 @@
 import { useAsync } from 'react-use';
 import { DiscountType } from '@/shared/api/apiTypes';
-import fetchDiscountsList from '../../api/fetchDiscountsList';
+import { fetchDiscountsList } from '../../api/fetchDiscountsList';
 
 const DISCOUNT_NAME_SLICE_LENGTH = 32;
 

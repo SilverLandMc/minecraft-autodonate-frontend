@@ -18,5 +18,3 @@ export const createDiscount = async (discount: DiscountBaseInDto) => {
         throw error;
     }
 };
-
-export default createDiscount;

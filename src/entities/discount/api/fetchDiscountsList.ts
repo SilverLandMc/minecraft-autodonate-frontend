@@ -15,5 +15,3 @@ export const fetchDiscountsList = async () => {
         throw error;
     }
 };
-
-export default fetchDiscountsList;
