@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { deletePromoCode, usePromoCodesList } from '@/entities/promocode';
-import { ActiveSubTab, PromoCodeComponentProps } from '../PromoCodesTab';
+import { ActiveSubTab, PromoCodeComponentProps } from '../../ui/PromoCodesTab';
 
 export const useList = ({ setEditingPromoCodeId, setActiveSubTab }: PromoCodeComponentProps) => {
     const [isOnlyActualMode, setIsOnlyActualMode] = useState(true);

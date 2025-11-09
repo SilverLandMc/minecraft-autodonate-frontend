@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { deleteProduct, useProductList } from '@/entities/adminProduct';
 import { ProductCategory } from '@/shared/enums/ProductCategory';
-import { ActiveSubTab, ProductComponentProps } from '../ProductTab';
+import { ActiveSubTab, ProductComponentProps } from '../../ui/ProductTab';
 
 export const useList = ({ setEditingProductId, setActiveSubTab }: ProductComponentProps) => {
     const [activeProductCategory, setActiveProductCategory] = useState<ProductCategory>(ProductCategory.RANKS);

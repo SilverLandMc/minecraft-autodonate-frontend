@@ -5,7 +5,7 @@ import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
 import Button from '@/shared/ui/button/Button';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
-import { usePromocodeForm } from '../../hooks/usePromocodeForm';
+import { usePromocodeForm } from '../../../model/hooks/usePromocodeForm';
 import { ActiveSubTab, PromoCodeComponentProps } from '../../PromoCodesTab';
 import styles from './PromoCodeEdit.module.scss';
 

@@ -7,7 +7,7 @@ import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import { SafeHTML } from '@/shared/ui/safeHTML';
 import Table from '@/shared/ui/table/Table';
-import { useList } from '../../hooks/useList';
+import { useList } from '../../../model/hooks/useList';
 import { ActiveSubTab, ProductComponentProps } from '../../ProductTab';
 import styles from './ProductList.module.scss';
 

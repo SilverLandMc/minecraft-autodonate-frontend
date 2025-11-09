@@ -9,7 +9,7 @@ import Button from '@/shared/ui/button/Button';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Table from '@/shared/ui/table/Table';
 import Title from '@/shared/ui/title/Title';
-import { useList } from '../../hooks/useList';
+import { useList } from '../../../model/hooks/useList';
 import { PromoCodeComponentProps } from '../../PromoCodesTab';
 import styles from './PromoCodeList.module.scss';
 

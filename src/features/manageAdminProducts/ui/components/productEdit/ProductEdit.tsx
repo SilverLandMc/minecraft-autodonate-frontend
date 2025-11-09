@@ -8,7 +8,7 @@ import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
 import Button from '@/shared/ui/button/Button';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
-import { useProductForm } from '../../hooks/useProductForm';
+import { useProductForm } from '../../../model/hooks/useProductForm';
 import { ActiveSubTab, ProductComponentProps } from '../../ProductTab';
 import { AdminImageUpload } from '../adminImageUpload/AdminImageUpload';
 import styles from './ProductEdit.module.scss';

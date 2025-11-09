@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { deleteDiscount, useDiscountsList } from '@/entities/discount';
-import { ActiveSubTab, DiscountComponentProps } from '../DiscountsTab';
+import { ActiveSubTab, DiscountComponentProps } from '../../ui/DiscountsTab';
 
 export const useList = ({ setEditingDiscountId, setActiveSubTab }: DiscountComponentProps) => {
     const [reFetchListFlag, setReFetchListFlag] = useState(false);

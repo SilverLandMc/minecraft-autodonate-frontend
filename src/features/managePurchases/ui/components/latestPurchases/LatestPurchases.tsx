@@ -4,7 +4,7 @@ import { Spacing } from '@/shared/ui';
 import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
-import { usePageablePurchases } from '../../hooks/usePageablePurchases';
+import { usePageablePurchases } from '../../../model/hooks/usePageablePurchases';
 import styles from './LatestPurchases.module.scss';
 
 export const LatestPurchases: FunctionComponent = () => {
