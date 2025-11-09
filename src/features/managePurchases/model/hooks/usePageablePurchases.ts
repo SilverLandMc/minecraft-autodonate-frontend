@@ -26,7 +26,7 @@ export const usePageablePurchases = () => {
         setPageSize(Number(event.target.value));
     };
 
-    const { empty: isEmpty, content, first: isFirst, last: isLast, totalPages } = purchaseInfo;
+    const { empty: isEmpty, content, first: isFirst, last: isLast, totalPages } = purchaseInfo ?? {};
 
     const jumpToLastPage = () => setCurrentPageNumber(totalPages);
 
