@@ -1,9 +1,9 @@
 import { ComponentType, FunctionComponent, useState } from 'react';
-import { ProductTab } from 'widgets/adminTabs/productTab/ProductTab';
-import { PurchaseTab } from 'widgets/adminTabs/purchaseTab/PurchaseTab';
-import { AdminNavBar, AdminTab } from '@/widgets/adminNavBar/AdminNavBar';
-import { DiscountsTab } from '@/widgets/adminTabs/discountTab/DiscountsTab';
-import { PromoCodesTab } from '@/widgets/adminTabs/promoCodeTab/PromoCodesTab';
+import { AdminNavBar, AdminTab } from '@/widgets/adminNavBar';
+import { ProductTab } from '@/features/manageAdminProducts';
+import { DiscountsTab } from '@/features/manageDiscounts';
+import { PromoCodesTab } from '@/features/managePromocodes';
+import { PurchaseTab } from '@/features/managePurchases';
 import { Section, Spacing } from '@/shared/ui';
 import styles from './AdminPage.module.scss';
 

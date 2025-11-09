@@ -49,7 +49,7 @@ const Table: FunctionComponent<Props> = ({
                     if (!firstFieldName) {
                         return (
                             <div key={index} className={styles.cell}>
-                                {render()}
+                                {render?.()}
                             </div>
                         );
                     }
