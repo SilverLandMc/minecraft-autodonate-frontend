@@ -13,7 +13,7 @@ import { createProduct } from '../../actions/createProduct';
 import { editProduct } from '../../actions/editProduct';
 import { useProduct } from '../../hooks/useProduct';
 import { useProductList } from '../../hooks/useProductList';
-import { ActiveSubTab, ProductComponentProps } from '../../ProductsTab';
+import { ActiveSubTab, ProductComponentProps } from '../../ProductTab';
 import AdminImageUpload from '../adminImageUpload/AdminImageUpload';
 import styles from './ProductEdit.module.scss';
 

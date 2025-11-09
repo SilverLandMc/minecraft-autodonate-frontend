@@ -8,7 +8,7 @@ import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
 import styles from './PurchasesTab.module.scss';
 
-export const PurchasesTab: FunctionComponent = () => {
+export const PurchaseTab: FunctionComponent = () => {
     const { purchaseInfo, isLoading, error } = usePurchasesInfo();
 
     if (isLoading) {

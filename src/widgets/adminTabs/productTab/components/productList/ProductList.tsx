@@ -9,7 +9,7 @@ import { SafeHTML } from '@/shared/ui/safeHTML';
 import Table from '@/shared/ui/table/Table';
 import { deleteProduct } from '../../actions/deleteProduct';
 import { useProductList } from '../../hooks/useProductList';
-import { ActiveSubTab, ProductComponentProps } from '../../ProductsTab';
+import { ActiveSubTab, ProductComponentProps } from '../../ProductTab';
 import styles from './ProductList.module.scss';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {

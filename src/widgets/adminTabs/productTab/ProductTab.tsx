@@ -18,7 +18,7 @@ const componentBySubTab: Record<ActiveSubTab, FunctionComponent<ProductComponent
     [ActiveSubTab.EDIT]: ProductEdit
 };
 
-export const ProductsTab: FunctionComponent = () => {
+export const ProductTab: FunctionComponent = () => {
     const [activeSubTab, setActiveSubTab] = useState<ActiveSubTab>(ActiveSubTab.LIST);
     const [editingProductId, setEditingProductId] = useState<string>();
 
