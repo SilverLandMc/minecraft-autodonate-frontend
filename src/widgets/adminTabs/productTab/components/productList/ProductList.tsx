@@ -4,13 +4,13 @@ import { ProductCategory } from '@/shared/enums/ProductCategory';
 import classNames from '@/shared/lib/aliases/classNames';
 import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
 import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import { SafeHTML } from '@/shared/ui/safeHTML';
 import Table from '@/shared/ui/table/Table';
 import { deleteProduct } from '../../actions/deleteProduct';
 import { useProductList } from '../../hooks/useProductList';
 import { ActiveSubTab, ProductComponentProps } from '../../ProductsTab';
-import styles from './ProductsList.module.scss';
+import styles from './ProductList.module.scss';
 
 const titleByCategoryMap: Record<ProductCategory, string> = {
     [ProductCategory.RANKS]: 'Ранги',
@@ -20,7 +20,7 @@ const titleByCategoryMap: Record<ProductCategory, string> = {
     [ProductCategory.OTHER]: 'Прочее'
 };
 
-export const ProductsList: FunctionComponent<ProductComponentProps> = ({ setEditingProductId, setActiveSubTab }) => {
+export const ProductList: FunctionComponent<ProductComponentProps> = ({ setEditingProductId, setActiveSubTab }) => {
     const [activeProductCategory, setActiveProductCategory] = useState<ProductCategory>(ProductCategory.RANKS);
     const [reFetchFlag, setReFetchFlag] = useState(false);
 

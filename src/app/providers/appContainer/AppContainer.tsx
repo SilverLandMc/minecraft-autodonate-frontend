@@ -1,16 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import combineProviders from '@/shared/lib/combineProviders/combineProviders';
-import { AppContextProvider } from '../AppContextProvider';
-import { ErrorBoundary } from '../ErrorBoundary';
-import { MediaContextProvider } from '../MediaProvider';
-import { StoreProvider } from '../StoreProvider';
+import { ErrorBoundary } from '../errorBoundary';
+import { MediaContextProvider } from '../mediaProvider';
 import { UserStoreProvider } from '../userStoreProvider';
 
-export const AppContainer = combineProviders(
-    ErrorBoundary,
-    BrowserRouter,
-    StoreProvider,
-    UserStoreProvider,
-    MediaContextProvider,
-    AppContextProvider
-);
+export const AppContainer = combineProviders(ErrorBoundary, BrowserRouter, UserStoreProvider, MediaContextProvider);

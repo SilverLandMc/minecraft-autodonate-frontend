@@ -1,14 +1,14 @@
-import useAdminInfo from '@/pages/adminPage/hooks/useAdminInfo';
-import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { useSelector } from 'react-redux';
+import { observer } from 'mobx-react-lite';
+import { FunctionComponent, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
+import { adminStore, useAdminInfo } from '@/entities/admin';
 import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
-import selectAdminPagePart from '@/shared/redux/selectors/selectAdminPagePart';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { RunnerLoader } from '@/shared/ui/runnerLoader/RunnerLoader';
 
-export const AdminAccessGuard: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    useAdminInfo();
-    const { isUserRequestFinished, isAdmin } = useSelector(selectAdminPagePart);
+export const AdminAccessGuard: FunctionComponent<PropsWithChildren> = observer(({ children }) => {
+    const { isAdmin, isUserRequestFinished, setUserRequestFinished, setAdmin } = adminStore;
+
+    useAdminInfo({ isUserRequestFinished, setUserRequestFinished, setAdmin });
 
     if (!isUserRequestFinished) {
         return <RunnerLoader />;
@@ -19,4 +19,4 @@ export const AdminAccessGuard: FunctionComponent<PropsWithChildren> = ({ childre
     }
 
     return <>{children}</>;
-};
+});

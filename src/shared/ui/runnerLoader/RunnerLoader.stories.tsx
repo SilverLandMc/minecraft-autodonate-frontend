@@ -1,4 +1,4 @@
-import RunnerLoader from './RunnerLoader';
+import { RunnerLoader } from './RunnerLoader';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

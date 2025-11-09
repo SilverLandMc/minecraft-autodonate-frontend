@@ -5,7 +5,7 @@ import { productStore, ProductCard } from '@/entities/product';
 import { Category, ProductOutDto } from '@/shared/api/apiTypes';
 import chestImage from '@/shared/assets/chest.png';
 import { Section, Spacing } from '@/shared/ui';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import { useFetchProducts } from './hooks/useFetchProducts';
 import styles from './ShopPage.module.scss';
 

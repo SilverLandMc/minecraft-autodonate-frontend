@@ -8,7 +8,7 @@ interface Props {
     className?: string;
 }
 
-const RunnerLoader: FunctionComponent<Props> = ({ small: isSmall, className }) => (
+export const RunnerLoader: FunctionComponent<Props> = ({ small: isSmall, className }) => (
     <div className={classNames(styles.wrapper, [className], { [styles.isSmall]: isSmall })}>
         <div className={styles.runnerWrapper}>
             <img src={spinnerImage} className={styles.runningMan} alt="Загрузка..." />
@@ -17,5 +17,3 @@ const RunnerLoader: FunctionComponent<Props> = ({ small: isSmall, className }) =
         <h2 className={styles.description}>Загрузка...</h2>
     </div>
 );
-
-export default RunnerLoader;

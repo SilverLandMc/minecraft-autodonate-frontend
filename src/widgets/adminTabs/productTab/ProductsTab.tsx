@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
+import { ProductList } from 'widgets/adminTabs/productTab/components/productList/ProductList';
 import { ProductEdit } from '@/widgets/adminTabs/productTab/components/productEdit/ProductEdit';
-import { ProductsList } from '@/widgets/adminTabs/productTab/components/productList/ProductsList';
 
 export enum ActiveSubTab {
     LIST = 'list',
@@ -14,7 +14,7 @@ export interface ProductComponentProps {
 }
 
 const componentBySubTab: Record<ActiveSubTab, FunctionComponent<ProductComponentProps>> = {
-    [ActiveSubTab.LIST]: ProductsList,
+    [ActiveSubTab.LIST]: ProductList,
     [ActiveSubTab.EDIT]: ProductEdit
 };
 

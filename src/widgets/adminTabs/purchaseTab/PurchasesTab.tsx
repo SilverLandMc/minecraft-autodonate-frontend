@@ -4,7 +4,7 @@ import usePurchasesInfo from '@/widgets/adminTabs/purchaseTab/hooks/usePurchases
 import classNames from '@/shared/lib/aliases/classNames';
 import { Spacing } from '@/shared/ui';
 import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
 import styles from './PurchasesTab.module.scss';
 

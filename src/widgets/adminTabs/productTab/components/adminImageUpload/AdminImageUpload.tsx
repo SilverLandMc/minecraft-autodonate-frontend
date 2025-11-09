@@ -1,10 +1,9 @@
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import { acceptImageSetting } from '@/shared/const/enum/imageType';
 import validateIsFileImage from '@/shared/lib/validation/validateIsFileImage';
-import { Spacing } from '@/shared/ui';
-import Button from '@/shared/ui/button/Button';
+import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
 import Title from '@/shared/ui/title/Title';
-import uploadFile from '@/widgets/adminTabs/productTab/actions/uploadFile';
+import uploadFile from '../../actions/uploadFile';
 import styles from './AdminImageUpload.module.scss';
 
 interface Props {
@@ -78,9 +77,9 @@ const AdminImageUpload: FunctionComponent<Props> = ({ setImageId, initialImageSr
                 <input type="file" accept={acceptImageSetting} onChange={handleChangeImage} disabled={isProcessing} />
 
                 {hasImage && (
-                    <Button className={styles.deleteButton} onClick={deleteImage} disabled={isProcessing}>
+                    <ModernButton background={BackgroundColor.RED} onClick={deleteImage} disabled={isProcessing}>
                         Удалить изображение
-                    </Button>
+                    </ModernButton>
                 )}
             </div>
 

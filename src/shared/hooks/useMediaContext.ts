@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { MediaContext } from '@/app/providers/MediaProvider';
 import Media, { Breakpoint } from '@/shared/enums/Media';
+import { MediaContext } from '../../app/providers/mediaProvider';
 
 const getBreakpoint = (media: Media[]): Breakpoint => {
     switch (true) {

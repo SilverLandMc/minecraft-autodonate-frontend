@@ -8,7 +8,7 @@ import convertTimestampToInputString from '@/shared/lib/format/convertTimestampT
 import { Spacing } from '@/shared/ui';
 import AdminErrorBlock from '@/shared/ui/adminErrorBlock/AdminErrorBlock';
 import Button from '@/shared/ui/button/Button';
-import RunnerLoader from '@/shared/ui/runnerLoader/RunnerLoader';
+import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import Title from '@/shared/ui/title/Title';
 import styles from './DiscountEditing.module.scss';
 

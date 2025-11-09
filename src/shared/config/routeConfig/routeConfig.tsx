@@ -1,11 +1,3 @@
-import { RouteProps } from 'react-router-dom';
-import { AdminPage } from '@/pages/adminPage';
-import { AuthPage } from '@/pages/authPage';
-import { MainPage } from '@/pages/mainPage';
-import { NotFoundPage } from '@/pages/notFoundPage';
-import { ShopPage } from '@/pages/shopPage';
-import { TermsOfServicePage } from '@/pages/termsOfServicePage';
-
 export const enum AppRoutes {
     //region public
     MAIN = 'main',
@@ -28,34 +20,4 @@ export const RoutePath: Record<AppRoutes, string> = {
 
     [AppRoutes.AUTHENTICATION]: '/auth',
     [AppRoutes.ADMIN]: '/admin'
-};
-
-export const routeConfig: Record<AppRoutes, RouteProps> = {
-    //region public
-    [AppRoutes.MAIN]: {
-        path: RoutePath.main,
-        element: <MainPage />
-    },
-    [AppRoutes.SHOP]: {
-        path: RoutePath.shop,
-        element: <ShopPage />
-    },
-    [AppRoutes.TERMS_OF_SERVICE]: {
-        path: RoutePath.tos,
-        element: <TermsOfServicePage />
-    },
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.notFound,
-        element: <NotFoundPage />
-    },
-    // endregion
-
-    [AppRoutes.AUTHENTICATION]: {
-        path: RoutePath.auth,
-        element: <AuthPage />
-    },
-    [AppRoutes.ADMIN]: {
-        path: RoutePath.admin,
-        element: <AdminPage />
-    }
 };

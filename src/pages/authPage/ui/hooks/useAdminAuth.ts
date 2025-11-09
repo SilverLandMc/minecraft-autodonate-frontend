@@ -1,20 +1,17 @@
 import { RefObject } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
-import { setAuthPageVisited } from '@/pages/adminPage/slices/adminPageSlice';
 import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
-import useAppDispatch from '@/shared/hooks/redux/useAppDispatch';
-import selectAdminPagePart from '@/shared/redux/selectors/selectAdminPagePart';
 
 interface Params {
     telegramButtonRef: RefObject<HTMLDivElement>;
+    isAdmin: boolean;
+    isAuthPageVisited: boolean;
+    setAuthPageVisited(): void;
 }
 
-export const useAdminAuth = ({ telegramButtonRef }: Params) => {
-    const dispatch = useAppDispatch();
+export const useAdminAuth = ({ telegramButtonRef, isAdmin, isAuthPageVisited, setAuthPageVisited }: Params) => {
     const navigate = useNavigate();
-    const { isAdmin, isAuthPageVisited } = useSelector(selectAdminPagePart);
 
     useEffectOnce(() => {
         if (isAdmin || isAuthPageVisited) {
@@ -37,7 +34,7 @@ export const useAdminAuth = ({ telegramButtonRef }: Params) => {
         telegramButtonRef.current.appendChild(script);
 
         return () => {
-            dispatch(setAuthPageVisited());
+            setAuthPageVisited();
 
             if (buttonRef) {
                 buttonRef.removeChild(script);

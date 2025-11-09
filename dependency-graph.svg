@@ -1830,24 +1830,24 @@
 </g>
 <text xml:space="preserve" text-anchor="middle" x="73.8" y="-7722.33" font-family="Helvetica,sans-Serif" font-size="9.00" fill="orange">no&#45;circular</text>
 </g>
-<!-- src/entities/cart/model/store/cartStore.ts -->
+<!-- src/entities/cart/model/store/adminStore.ts -->
 <g id="node45" class="node">
-<title>src/entities/cart/model/store/cartStore.ts</title>
-<g id="a_node45"><a xlink:href="src/entities/cart/model/store/cartStore.ts" xlink:title="cartStore.ts">
+<title>src/entities/cart/model/store/adminStore.ts</title>
+<g id="a_node45"><a xlink:href="src/entities/cart/model/store/adminStore.ts" xlink:title="adminStore.ts">
 <path fill="#ddfeff" stroke="black" d="M1443.83,-7816.08C1443.83,-7816.08 1394.42,-7816.08 1394.42,-7816.08 1391.33,-7816.08 1388.25,-7813 1388.25,-7809.92 1388.25,-7809.92 1388.25,-7803.75 1388.25,-7803.75 1388.25,-7800.67 1391.33,-7797.58 1394.42,-7797.58 1394.42,-7797.58 1443.83,-7797.58 1443.83,-7797.58 1446.92,-7797.58 1450,-7800.67 1450,-7803.75 1450,-7803.75 1450,-7809.92 1450,-7809.92 1450,-7813 1446.92,-7816.08 1443.83,-7816.08"/>
-<text xml:space="preserve" text-anchor="start" x="1396.25" y="-7803.53" font-family="Helvetica,sans-Serif" font-size="9.00">cartStore.ts</text>
+<text xml:space="preserve" text-anchor="start" x="1396.25" y="-7803.53" font-family="Helvetica,sans-Serif" font-size="9.00">adminStore.ts</text>
 </a>
 </g>
 </g>
-<!-- src/entities/cart/model/store/index.ts&#45;&gt;src/entities/cart/model/store/cartStore.ts -->
+<!-- src/entities/cart/model/store/index.ts&#45;&gt;src/entities/cart/model/store/adminStore.ts -->
 <g id="edge47" class="edge">
-<title>src/entities/cart/model/store/index.ts&#45;&gt;src/entities/cart/model/store/cartStore.ts</title>
+<title>src/entities/cart/model/store/index.ts&#45;&gt;src/entities/cart/model/store/adminStore.ts</title>
 <path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M1247.62,-7718.36C1267.55,-7717.31 1294.18,-7719.57 1310.12,-7735.83 1328.35,-7754.41 1299.65,-7775.5 1318.12,-7793.83 1334.31,-7809.9 1359.92,-7812.98 1381.17,-7812.13"/>
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1387.32,-7813.86 1381.2,-7812.13 1387.07,-7809.67 1387.32,-7813.86"/>
 </g>
-<!-- src/entities/cart/model/store/cartStore.ts&#45;&gt;src/app/types/api/apiTypes.ts -->
+<!-- src/entities/cart/model/store/adminStore.ts&#45;&gt;src/app/types/api/apiTypes.ts -->
 <g id="edge46" class="edge">
-<title>src/entities/cart/model/store/cartStore.ts&#45;&gt;src/app/types/api/apiTypes.ts</title>
+<title>src/entities/cart/model/store/adminStore.ts&#45;&gt;src/app/types/api/apiTypes.ts</title>
 <path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M1450.47,-7801.63C1476.23,-7799.06 1512.49,-7800.11 1534.88,-7820.83 1594.79,-7876.28 1613.87,-8146.94 1617.96,-8219.76"/>
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1615.84,-8219.44 1618.26,-8225.31 1620.03,-8219.21 1615.84,-8219.44"/>
 </g>
