@@ -1,0 +1,11 @@
+@use '/src/app/styles/media/media.scss';
+
+.wrapper {
+    flex-grow: 1;
+}
+
+.section {
+    @include media.mediaM {
+        padding: 0;
+    }
+}

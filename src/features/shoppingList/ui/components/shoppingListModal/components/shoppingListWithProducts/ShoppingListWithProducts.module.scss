@@ -1,0 +1,107 @@
+@use '/src/app/styles/media/media';
+
+.header,
+.button,
+.logoutButton {
+    font-family: var(--font-family-main);
+
+    @include media.mediaS {
+        color: var(--color-black);
+    }
+}
+
+.header {
+    font-weight: 900;
+
+    font-size: 24px;
+    line-height: 24px;
+
+    @include media.mediaS {
+        font-size: 48px;
+        line-height: 48px;
+    }
+}
+
+.buyBlockWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    @include media.mediaM {
+        color: var(--color-black);
+    }
+}
+
+.playerNameLogoutWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-content: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    font-size: 12px;
+    line-height: 100%;
+}
+
+.buttonBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+
+    @include media.mediaS {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+    padding: 17px 10px !important;
+
+    background-color: var(--color-vivid-malachite) !important;
+}
+
+.playerNameSpan {
+    font-weight: 600;
+}
+
+.logoutButton {
+    color: var(--color-philippine-red);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.playerInfoBlock {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: var(--black-opacity-20);
+
+    & * {
+        font-family: var(--font-family-main);
+    }
+}
+
+.errorSpan {
+    font-family: var(--font-family-main);
+
+    color: orangered;
+}
+
+.buyButton {
+    width: 100%;
+}

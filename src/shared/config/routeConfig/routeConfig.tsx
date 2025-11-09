@@ -1,23 +1,8 @@
-import { ProductCategory } from 'app/const/enum/ProductCategory';
-import { AdminPage } from 'pages/AdminPage';
-import { AuthPage } from 'pages/AuthPage';
-import { MainPage } from 'pages/MainPage';
-import { NotFoundPage } from 'pages/NotFoundPage';
-import { ShopPage } from 'pages/ShopPage';
-import { TermsOfServicePage } from 'pages/TermsOfServicePage';
-import { RouteProps } from 'react-router-dom';
-
 export const enum AppRoutes {
     //region public
     MAIN = 'main',
+    SHOP = 'shop',
     TERMS_OF_SERVICE = 'tos',
-    // endregion
-
-    // region shop
-    RANKS = 'ranks',
-    BOOSTERS = 'boosters',
-    CASES = 'cases',
-    RESOURCES = 'resources',
     // endregion
 
     AUTHENTICATION = 'auth',
@@ -28,62 +13,11 @@ export const enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     //region public
     [AppRoutes.MAIN]: '/',
+    [AppRoutes.SHOP]: '/shop',
     [AppRoutes.TERMS_OF_SERVICE]: '/tos',
-    // endregion
-
-    // region shop
-    [AppRoutes.RANKS]: '/ranks',
-    [AppRoutes.BOOSTERS]: '/boosters',
-    [AppRoutes.CASES]: '/cases',
-    [AppRoutes.RESOURCES]: '/resources',
+    [AppRoutes.NOT_FOUND]: '*',
     // endregion
 
     [AppRoutes.AUTHENTICATION]: '/auth',
-    [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.NOT_FOUND]: '*'
-};
-
-export const routeConfig: Record<AppRoutes, RouteProps> = {
-    //region public
-    [AppRoutes.MAIN]: {
-        path: RoutePath.main,
-        element: <MainPage />
-    },
-    [AppRoutes.TERMS_OF_SERVICE]: {
-        path: RoutePath.tos,
-        element: <TermsOfServicePage />
-    },
-    // endregion
-
-    // region shop
-    [AppRoutes.RANKS]: {
-        path: RoutePath.ranks,
-        element: <ShopPage productCategory={ProductCategory.RANKS} />
-    },
-    [AppRoutes.BOOSTERS]: {
-        path: RoutePath.boosters,
-        element: <ShopPage productCategory={ProductCategory.BOOSTERS} />
-    },
-    [AppRoutes.CASES]: {
-        path: RoutePath.cases,
-        element: <ShopPage productCategory={ProductCategory.CASES} />
-    },
-    [AppRoutes.RESOURCES]: {
-        path: RoutePath.resources,
-        element: <ShopPage productCategory={ProductCategory.RESOURCES} />
-    },
-    // endregion
-
-    [AppRoutes.AUTHENTICATION]: {
-        path: RoutePath.auth,
-        element: <AuthPage />
-    },
-    [AppRoutes.ADMIN]: {
-        path: RoutePath.admin,
-        element: <AdminPage />
-    },
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.notFound,
-        element: <NotFoundPage />
-    }
+    [AppRoutes.ADMIN]: '/admin'
 };

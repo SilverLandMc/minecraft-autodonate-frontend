@@ -1,0 +1,56 @@
+@use '/src/app/styles/media/media.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+    background: var(--color-dark-green-50);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    max-width: 200px;
+
+    border-radius: 10px;
+
+    @include media.mediaS {
+        max-width: 300px;
+    }
+}
+
+.subheader,
+.description {
+    text-align: center;
+    font: var(--font-l);
+}
+
+.subheader {
+    font-size: 18px;
+    line-height: 20px;
+
+    @include media.mediaM {
+        font-size: 22px;
+        line-height: 26px;
+    }
+}
+
+.description {
+    font-size: 14px;
+    line-height: 16px;
+
+    @include media.mediaM {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

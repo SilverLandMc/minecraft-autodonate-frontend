@@ -1,10 +1,10 @@
-import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from 'shared/config/env/env';
-import Sentry from 'shared/lib/aliases/Sentry';
-import createLogger from 'shared/lib/logger/logger';
+import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from '@/shared/config/env';
+import { Sentry } from '@/shared/lib/aliases';
+import { createLogger } from '@/shared/lib/logger';
 
 const logger = createLogger('initializeSentry');
 
-const initializeSentry = () => {
+export const initializeSentry = () => {
     if (!SENTRY_DSN) {
         logger.warning('SENTRY_DSN is falsy, skipping Sentry initialization');
     }
@@ -22,5 +22,3 @@ const initializeSentry = () => {
         logger.info('Sentry successfully initialized');
     }
 };
-
-export default initializeSentry;

@@ -1,6 +1,6 @@
-import Media from 'app/const/enum/Media';
 import { FunctionComponent } from 'react';
-import useMediaContext from 'shared/hooks/useMediaContext';
+import { Media } from '@/shared/enums/Media';
+import { useMediaContext } from '@/shared/lib/mediaContext';
 
 // см. enums/Media.ts
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     sizeL?: number;
 }
 
-const Spacing: FunctionComponent<Props> = ({ className, size, sizeS = size, sizeM = sizeS, sizeL = sizeM }) => {
+export const Spacing: FunctionComponent<Props> = ({ className, size, sizeS = size, sizeM = sizeS, sizeL = sizeM }) => {
     const { breakpoint } = useMediaContext();
     let height = size;
 
@@ -29,5 +29,3 @@ const Spacing: FunctionComponent<Props> = ({ className, size, sizeS = size, size
 
     return <div className={className} style={{ height, minHeight: height }} />;
 };
-
-export default Spacing;

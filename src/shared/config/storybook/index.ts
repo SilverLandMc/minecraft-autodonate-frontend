@@ -1,1 +1,1 @@
-export * from './withCustomWrapper/withCustomWrapper';
+export * from './sizedDecorator';

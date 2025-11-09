@@ -1,0 +1,190 @@
+@use '/src/app/styles/media/media';
+
+.button {
+    width: fit-content;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 0;
+
+    @include media.mediaL {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 66px;
+
+        height: 744px;
+    }
+}
+
+.ranksCard,
+.boostersCard,
+.resourcesCard {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+
+    height: 285px;
+    padding: 24px 20px;
+
+    border-radius: 20px;
+
+    @include media.mediaS {
+        gap: 18px;
+
+        height: 195px;
+
+        padding: 50px 34px;
+
+        border-radius: 42px;
+    }
+
+    @include media.mediaM {
+        gap: 20px;
+    }
+
+    @include media.mediaL {
+        gap: 24px;
+
+        height: 100%;
+        padding: 58px 68px;
+    }
+}
+
+.ranksCard {
+    background: radial-gradient(circle at 120% 35%, var(--color-purple-heart) -22%, rgba(0, 0, 0, 0.2) 55%);
+
+    @include media.mediaL {
+        grid-row: span 2;
+    }
+}
+
+.boostersCard {
+    background: radial-gradient(circle at 120% 35%, var(--color-warm-black) -22%, rgba(0, 0, 0, 0.2) 55%);
+
+    @include media.mediaL {
+        background: radial-gradient(circle at 55% 97%, var(--color-warm-black) -50%, rgba(0, 0, 0, 0.2) 70%);
+    }
+}
+
+.resourcesCard {
+    background: radial-gradient(circle at 120% 0%, var(--color-burnt-umber) -22%, rgba(0, 0, 0, 0.2) 55%);
+
+    @include media.mediaL {
+        background: linear-gradient(to top, var(--color-burnt-umber) -50%, rgba(0, 0, 0, 0.2) 70%);
+    }
+}
+
+.title {
+    font-weight: 900;
+
+    font-size: 24px;
+    line-height: 28px;
+
+    @include media.mediaS {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    @include media.mediaM {
+        font-size: 48px;
+        line-height: 54px;
+    }
+
+    @include media.mediaL {
+        font-size: 64px;
+        line-height: 78px;
+    }
+}
+
+.succubusImage,
+.potionImage,
+.chestImage {
+    position: absolute;
+    pointer-events: none;
+}
+
+.succubusImage {
+    top: 52px;
+    left: clamp(50%, calc(100% - 160px), 100%);
+
+    width: 330px;
+    transform: translateX(-50%) rotate(-4.28deg);
+
+    @include media.mediaS {
+        top: -54px;
+        left: 45%;
+
+        width: 400px;
+        transform: rotate(-4.28deg);
+    }
+
+    @include media.mediaL {
+        top: 124px;
+        left: -27%;
+
+        width: 808px;
+        transform: rotate(-4.28deg);
+    }
+}
+
+.potionImage {
+    top: -15px;
+    left: clamp(59%, calc(100% - 160px), 100%);
+
+    width: 400px;
+    transform: translateX(-50%) rotate(21deg);
+
+    @include media.mediaS {
+        top: -71px;
+        left: 52%;
+
+        width: 375px;
+        transform: rotate(-21deg) scaleX(-1);
+    }
+
+    @include media.mediaM {
+        left: 48%;
+    }
+
+    @include media.mediaL {
+        top: -91px;
+        left: 27%;
+
+        width: 588px;
+        transform: rotate(-12deg);
+    }
+}
+
+.chestImage {
+    top: 42px;
+    left: clamp(50%, calc(100% - 160px), 100%);
+
+    width: 500px;
+    transform: translateX(-50%);
+
+    @include media.mediaS {
+        top: -70px;
+        left: 79%;
+
+        width: 525px;
+    }
+
+    @include media.mediaM {
+        left: 68%;
+    }
+
+    @include media.mediaL {
+        top: 31px;
+        left: 83%;
+
+        width: 610px;
+    }
+}

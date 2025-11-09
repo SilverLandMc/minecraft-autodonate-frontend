@@ -1,0 +1,121 @@
+@use '/src/app/styles/media/media';
+
+.card {
+    position: relative;
+
+    border-radius: 24px;
+
+    background: linear-gradient(to right, rgba(170, 255, 120, 0.1) 0%, rgba(0, 0, 0, 0.2) 70%);
+
+    @include media.mediaS {
+        background: radial-gradient(circle at 40% 140%, rgba(170, 255, 120, 0.3) 2%, rgba(0, 0, 0, 0.2) 55%),
+            radial-gradient(circle at 0% 20%, rgba(15, 40, 48, 0.8) 8%, rgba(0, 0, 0, 0.2) 38%),
+            radial-gradient(circle at right bottom, rgb(15, 46, 53) 2%, transparent 16%);
+    }
+
+    @include media.mediaL {
+        border-radius: 42px;
+    }
+}
+
+.cubes {
+    position: absolute;
+    top: -80px;
+    right: -5%;
+
+    width: calc(170px + 20vw);
+
+    @include media.mediaS {
+        top: -120px;
+        right: -3%;
+
+        width: 300px;
+    }
+
+    @include media.mediaM {
+        top: -158px;
+
+        width: 400px;
+    }
+}
+
+.innerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include media.mediaS {
+        flex-direction: row;
+        gap: 40px;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.firstBlock,
+.secondBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstBlock {
+    @include media.mediaS {
+        width: 317px;
+    }
+
+    @include media.mediaM {
+        width: 420px;
+    }
+
+    @include media.mediaL {
+        width: 520px;
+    }
+}
+
+.secondBlock {
+    @include media.mediaS {
+        width: 226px;
+    }
+
+    @include media.mediaM {
+        width: 300px;
+    }
+
+    @include media.mediaL {
+        width: 392px;
+    }
+}
+
+.header,
+.enterProposal {
+    color: var(--color-white);
+    line-height: 100%;
+}
+
+.header {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+
+    @include media.mediaM {
+        font-size: 24px;
+        line-height: 26px;
+    }
+
+    @include media.mediaL {
+        font-size: 32px;
+        line-height: 35px;
+    }
+}
+
+.logo {
+    max-width: 300px;
+
+    @include media.mediaM {
+        max-width: 400px;
+    }
+
+    @include media.mediaL {
+        max-width: 520px;
+    }
+}

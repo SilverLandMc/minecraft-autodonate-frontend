@@ -1,5 +1,5 @@
-import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
-import Sentry from 'shared/lib/aliases/Sentry';
+import { AppRoutes } from '@/shared/config/routeConfig';
+import { Sentry } from '@/shared/lib/aliases';
 
 const PAGE_RELOADS_QUERY_PARAMETER = 'componentLoaderReloads';
 
@@ -18,7 +18,7 @@ const setReloadsToQuery = (reloads: number) => {
     window.history.replaceState({}, '', nextUrl);
 };
 
-const componentLoader = <T>(
+export const componentLoader = <T>(
     lazyComponent: () => Promise<{ default: T }>,
     attemptsLeft = 3,
     interval = 1000
@@ -52,5 +52,3 @@ const componentLoader = <T>(
                 }, interval);
             });
     });
-
-export default componentLoader;
