@@ -1,7 +1,7 @@
 import { PromocodeOutDto } from '@/shared/api/apiTypes';
 import { Sentry } from '@/shared/lib/aliases';
 import { createLogger } from '@/shared/lib/logger';
-import { request } from '@/shared/lib/request/request';
+import { request } from '@/shared/lib/request';
 
 const logger = createLogger('fetchPromoCodeByName');
 

@@ -1,7 +1,7 @@
 import { debounce, isEqual } from 'lodash-es';
 import { FunctionComponent, PropsWithChildren, useEffect, useState } from 'react';
-import MediaContext, { MediaContextState } from '@/app/providers/mediaProvider/lib/MediaContext';
 import { Media } from '@/shared/enums/Media';
+import { MediaContext, MediaContextState } from '../MediaContext';
 
 const mediaQueriesMap: Record<Media, MediaQueryList> = {
     [Media.XS]: window.matchMedia(`(max-width: ${Media.XS}px)`),
@@ -15,7 +15,7 @@ const getMedia = (): Media[] =>
         .filter((media) => mediaQueriesMap[media as unknown as Media].matches)
         .map((item) => Number(item));
 
-const MediaContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
+export const MediaContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
     const [contextState, setContextState] = useState<MediaContextState>(() => ({
         media: getMedia()
     }));
@@ -40,5 +40,3 @@ const MediaContextProvider: FunctionComponent<PropsWithChildren> = ({ children }
 
     return <MediaContext.Provider value={contextState}>{children}</MediaContext.Provider>;
 };
-
-export default MediaContextProvider;

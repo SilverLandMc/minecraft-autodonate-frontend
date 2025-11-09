@@ -3,7 +3,7 @@ import { EnticingCards } from '@/widgets/enticingCards';
 import { OnlineAndAuthCard } from '@/widgets/onlineAndAuthCard';
 import { PlayWithBlogger } from '@/widgets/playWithBlogger';
 import { UserAuthBlock } from '@/features/userAuthBlock';
-import { useMediaContext } from '@/shared/hooks/useMediaContext';
+import { useMediaContext } from '@/shared/lib/mediaContext';
 import { Optional, Spacing } from '@/shared/ui';
 import styles from './MainPage.module.scss';
 

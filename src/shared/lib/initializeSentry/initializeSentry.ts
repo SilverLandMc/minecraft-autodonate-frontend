@@ -1,4 +1,4 @@
-import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from '@/shared/config/env/env';
+import { ENV_NAME, RELEASE_NAME, SENTRY_DSN, STAND_NAME } from '@/shared/config/env';
 import { Sentry } from '@/shared/lib/aliases';
 import { createLogger } from '@/shared/lib/logger';
 

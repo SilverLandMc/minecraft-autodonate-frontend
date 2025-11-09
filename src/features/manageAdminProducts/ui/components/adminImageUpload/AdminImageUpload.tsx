@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { acceptImageSetting } from '@/shared/const/enum/imageType';
+import { acceptImageSetting } from '@/shared/enums/imageType';
 import { BackgroundColor, ModernButton, Spacing, Title } from '@/shared/ui';
 import { useImageUpload } from '../../../model/hooks/useImageUpload';
 import styles from './AdminImageUpload.module.scss';

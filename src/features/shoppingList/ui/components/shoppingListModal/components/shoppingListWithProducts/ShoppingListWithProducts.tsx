@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useState } from 'react';
 import { UserAuthBlock } from '@/features/userAuthBlock';
-import { createPaymentLink } from '@/entities/cart';
-import { cartStore } from '@/entities/cart/model/store';
+import { cartStore, createPaymentLink } from '@/entities/cart';
 import { useUserInfo, useUserStoreActions } from '@/entities/user';
 import { CreatePaymentDto } from '@/shared/api/apiTypes';
 import { createLinkOpener } from '@/shared/lib/createLinkOpener';

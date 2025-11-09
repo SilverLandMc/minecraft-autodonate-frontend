@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { uploadFile } from '@/entities/adminProduct';
-import { acceptImageSetting } from '@/shared/const/enum/imageType';
+import { acceptImageSetting } from '@/shared/enums/imageType';
 import { validateIsFileImage } from '@/shared/lib/validation';
 
 interface Params {

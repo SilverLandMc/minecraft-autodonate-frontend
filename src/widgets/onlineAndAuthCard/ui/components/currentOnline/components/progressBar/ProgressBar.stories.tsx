@@ -1,4 +1,4 @@
-import { SizedDecorator } from '@/shared/config/storybook/sizedDecorator/SizedDecorator';
+import { SizedDecorator } from '@/shared/config/storybook';
 import { ProgressBar } from './ProgressBar';
 import type { Meta, StoryObj } from '@storybook/react';
 

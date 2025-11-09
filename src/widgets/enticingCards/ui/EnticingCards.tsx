@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig';
 import { BackgroundColor, ModernButton, ModernButtonProps } from '@/shared/ui';
 import { Section } from '@/shared/ui';
 import chestImage from './images/chest.png';

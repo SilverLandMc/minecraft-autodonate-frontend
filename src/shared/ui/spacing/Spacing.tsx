@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Media } from '@/shared/enums/Media';
-import { useMediaContext } from '@/shared/hooks/useMediaContext';
+import { useMediaContext } from '@/shared/lib/mediaContext';
 
 // см. enums/Media.ts
 interface Props {

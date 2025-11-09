@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { UserAuthBlock } from '@/features/userAuthBlock';
 import silverLandLogo from '@/shared/assets/silverlandLogo.svg';
-import { useMediaContext } from '@/shared/hooks/useMediaContext';
+import { useMediaContext } from '@/shared/lib/mediaContext';
 import { Optional, Section, Spacing } from '@/shared/ui';
 import { CopyServerUrlButton } from './components/copyServerUrlButton/CopyServerUrlButton';
 import { CurrentOnline } from './components/currentOnline/CurrentOnline';

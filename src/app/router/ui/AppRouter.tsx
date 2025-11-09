@@ -6,7 +6,7 @@ import { MainPage } from '@/pages/mainPage';
 import { NotFoundPage } from '@/pages/notFoundPage';
 import { ShopPage } from '@/pages/shopPage';
 import { TermsOfServicePage } from '@/pages/termsOfServicePage';
-import { AppRoutes, RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { AppRoutes, RoutePath } from '@/shared/config/routeConfig';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 import { AdminAccessGuard } from '../guards/AdminAccessGuard';
 import { RouteDescription } from '../types/types';

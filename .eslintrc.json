@@ -1,8 +1,12 @@
 {
     "extends": ["@37bytes/eslint-config/browserCompatibility/.eslintrc.json"],
     "rules": {
+        "react/hook-use-state": "off",
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/alt-text": "off",
         "no-await-in-loop": "error",
         "arrow-body-style": ["warn", "as-needed"],
+        "react/style-prop-object": ["warn"],
         "import/prefer-default-export": "off",
         "import/default": "off",
         "no-restricted-imports": [
@@ -12,6 +16,31 @@
                     {
                         "name": "clsx",
                         "message": "You must use aliases/className instead"
+                    }
+                ],
+                "patterns": [
+                    // Use public API only
+                    {
+                        "group": [
+                            "@/app/*/*/**",
+                            "@/pages/*/**",
+                            "@/widgets/*/**",
+                            "@/features/*/**",
+                            "@/entities/*/**",
+                            "@/shared/*/*/**"
+                        ],
+                        "message": "Use the public API of the module instead of direct imports."
+                    },
+                    {
+                        "group": [
+                            "../**/app",
+                            "../**/pages",
+                            "../**/widgets",
+                            "../**/features",
+                            "../**/entities",
+                            "../**/shared"
+                        ],
+                        "message": "Avoid using relative imports for these modules. Use @layer/"
                     }
                 ]
             }
@@ -61,7 +90,102 @@
                 "pathGroupsExcludedImportTypes": ["builtin"],
                 "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type", "object", "unknown"]
             }
+        ],
+        "import/no-restricted-paths": [
+            "error",
+            {
+                "zones": [
+                    // pages
+                    {
+                        "target": "src/pages",
+                        "from": "src/app"
+                    },
+                    // Cross import
+                    {
+                        "target": "src/pages/*/**/*",
+                        "from": "src/pages/*/index.ts"
+                    },
+
+                    // widgets
+                    {
+                        "target": "src/widgets",
+                        "from": "src/app"
+                    },
+                    {
+                        "target": "src/widgets",
+                        "from": "src/pages"
+                    },
+                    // Cross import
+                    {
+                        "target": "src/widgets/*/**/*",
+                        "from": "src/widgets/*/index.ts"
+                    },
+
+                    // features
+                    {
+                        "target": "src/features",
+                        "from": "src/app"
+                    },
+                    {
+                        "target": "src/features",
+                        "from": "src/pages"
+                    },
+                    {
+                        "target": "src/features",
+                        "from": "src/widgets"
+                    },
+                    // Cross import
+                    {
+                        "target": "src/features/*/**/*",
+                        "from": "src/features/*/index.ts"
+                    },
+
+                    // entities
+                    {
+                        "target": "src/entities",
+                        "from": "src/app"
+                    },
+                    {
+                        "target": "src/entities",
+                        "from": "src/pages"
+                    },
+                    {
+                        "target": "src/entities",
+                        "from": "src/widgets"
+                    },
+                    {
+                        "target": "src/entities",
+                        "from": "src/features"
+                    },
+                    // Cross import
+                    {
+                        "target": "src/entities/*/**/*",
+                        "from": "src/entities/*/index.ts"
+                    },
+
+                    // shared
+                    {
+                        "target": "src/shared",
+                        "from": "src/app"
+                    },
+                    {
+                        "target": "src/shared",
+                        "from": "src/pages"
+                    },
+                    {
+                        "target": "src/shared",
+                        "from": "src/widgets"
+                    },
+                    {
+                        "target": "src/shared",
+                        "from": "src/features"
+                    },
+                    {
+                        "target": "src/shared",
+                        "from": "src/entities"
+                    }
+                ]
+            }
         ]
-    },
-    "parser": "@typescript-eslint/parser"
+    }
 }

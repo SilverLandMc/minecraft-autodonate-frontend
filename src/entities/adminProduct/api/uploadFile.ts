@@ -1,6 +1,6 @@
 import { Sentry } from '@/shared/lib/aliases';
 import { createLogger } from '@/shared/lib/logger';
-import { post } from '@/shared/lib/request/request';
+import { post } from '@/shared/lib/request';
 
 const logger = createLogger('uploadFile');
 

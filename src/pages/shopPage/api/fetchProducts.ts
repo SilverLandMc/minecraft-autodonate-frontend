@@ -1,6 +1,6 @@
-import { AllProductsOutDto } from '@/entities/product/types';
+import { AllProductsOutDto } from '@/entities/product';
 import { createLogger } from '@/shared/lib/logger';
-import { request } from '@/shared/lib/request/request';
+import { request } from '@/shared/lib/request';
 
 const logger = createLogger('fetchProducts');
 

@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { FunctionComponent } from 'react';
 import { DiscountType } from '@/shared/api/apiTypes';
-import { TimeFormatString } from '@/shared/const/enum/timeFormatString';
+import { TimeFormatString } from '@/shared/enums/timeFormatString';
 import { classNames } from '@/shared/lib/aliases';
 import { AdminErrorBlock, Button, RunnerLoader, Spacing, Table, Title } from '@/shared/ui';
 import { useList } from '../../../model/hooks/useList';

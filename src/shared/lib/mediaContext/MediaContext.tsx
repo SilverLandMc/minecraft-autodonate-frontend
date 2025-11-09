@@ -6,6 +6,4 @@ export interface MediaContextState {
 }
 // undefined для удобства выброса исключения в хуках
 // не может быть ситуации, когда в media undefined при нормальной работе SPA
-const MediaContext = createContext<MediaContextState>({ media: undefined! });
-
-export default MediaContext;
+export const MediaContext = createContext<MediaContextState>({ media: undefined! });

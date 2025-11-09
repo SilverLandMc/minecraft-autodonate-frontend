@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig';
 
 interface Params {
     telegramButtonRef: RefObject<HTMLDivElement>;

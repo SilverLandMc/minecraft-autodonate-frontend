@@ -1,7 +1,7 @@
 import { safeLocalStorage } from '@37bytes/storage-fallback';
 import { makeAutoObservable } from 'mobx';
 import { PlayerInfoOutDto } from '@/shared/api/apiTypes';
-import { LocalStorageKey } from '@/shared/const/enum/localStorageKey';
+import { LocalStorageKey } from '@/shared/enums/localStorageKey';
 
 export class UserStore {
     userName?: string = safeLocalStorage.getItem(LocalStorageKey.USER_NAME) || undefined;

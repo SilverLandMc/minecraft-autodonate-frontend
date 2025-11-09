@@ -1,4 +1,4 @@
-import { request } from '@/shared/lib/request/request';
+import { request } from '@/shared/lib/request';
 
 export const fetchAdminInfo = async () => {
     // todo Исправить после переезда авторизации на log / pass

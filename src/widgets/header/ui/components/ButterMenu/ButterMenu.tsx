@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingList } from '@/features/shoppingList';
-import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { AppRoutes as AppRoute, RoutePath } from '@/shared/config/routeConfig';
 import { classNames } from '@/shared/lib/aliases';
 import { BackgroundColor, ModernButton, Optional, OutlineColor } from '@/shared/ui';
 import butterIcon from './images/butterIcon.svg';
