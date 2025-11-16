@@ -1,28 +1,25 @@
-import { makeAutoObservable } from 'mobx';
+import { action, atom, computed } from '@reatom/core';
 import { ProductsById } from '@/shared/api/apiTypesHelper';
 import { AllProductsOutDto } from '../../types';
 
 /**
  * Стор информации о продуктах (товарах).
- *
- * @see authProvider
  */
-class ProductStore {
-    productsByCategory?: AllProductsOutDto;
+export const productStore = atom().extend(() => {
+    const productsByCategory = atom<AllProductsOutDto | undefined>(undefined, 'productsByCategory');
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+    const setProducts = action(
+        (nextProducts?: AllProductsOutDto) => productsByCategory.set(nextProducts),
+        'setProducts'
+    );
 
-    setProducts = (nextProducts?: AllProductsOutDto) => {
-        this.productsByCategory = nextProducts;
-    };
+    const productsById = computed<ProductsById>(
+        () =>
+            Object.values(productsByCategory() ?? {})
+                .flat()
+                .reduce((result, product) => ({ ...result, [product.id]: product }), {}),
+        'getProductsById'
+    );
 
-    get productsById(): ProductsById {
-        return Object.values(this.productsByCategory ?? {})
-            .flat()
-            .reduce((result, product) => ({ ...result, [product.id]: product }), {});
-    }
-}
-
-export const productStore = new ProductStore();
+    return { productsByCategory, productsById, setProducts };
+});

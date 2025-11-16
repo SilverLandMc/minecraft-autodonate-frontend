@@ -1,4 +1,3 @@
-import { runInAction } from 'mobx';
 import { useAsync } from 'react-use';
 import { AllProductsOutDto, productStore } from '@/entities/product';
 import { fetchProducts } from '../../api/fetchProducts';
@@ -10,10 +9,7 @@ export const useFetchProducts = (productsByCategory?: AllProductsOutDto) => {
         }
 
         const products = await fetchProducts();
-
-        runInAction(() => {
-            productStore.setProducts(products);
-        });
+        productStore.setProducts(products);
     });
 
     return { isLoading, error };

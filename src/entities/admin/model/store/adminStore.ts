@@ -1,20 +1,17 @@
-import { makeAutoObservable } from 'mobx';
+import { action, atom } from '@reatom/core';
 
 /**
  * Стор информации об админе.
  */
-class AdminStore {
-    isUserRequestFinished: boolean = false;
-    isAuthPageVisited: boolean = false;
-    isAdmin: boolean = false;
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+export const adminStore = atom().extend(() => {
+    const isUserRequestFinished = atom<boolean>(false, 'isUserRequestFinished');
+    const isAuthPageVisited = atom<boolean>(false, 'isAuthPageVisited');
+    const isAdmin = atom<boolean>(false, 'isAdmin');
 
-    setUserRequestFinished = () => (this.isUserRequestFinished = true);
-    setAuthPageVisited = () => (this.isAuthPageVisited = true);
-    setAdmin = () => (this.isAdmin = true);
-}
+    const setUserRequestFinished = action(() => isUserRequestFinished.set(true), 'setUserRequestFinished');
+    const setAuthPageVisited = action(() => isAuthPageVisited.set(true), 'setAuthPageVisited');
+    const setAdmin = action(() => isAdmin.set(true), 'setAdmin');
 
-export const adminStore = new AdminStore();
+    return { isUserRequestFinished, isAdmin, isAuthPageVisited, setUserRequestFinished, setAuthPageVisited, setAdmin };
+});

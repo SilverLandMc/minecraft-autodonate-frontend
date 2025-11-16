@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { FunctionComponent, useState } from 'react';
 import { cartStore } from '@/entities/cart';
 import { Time } from '@/shared/enums/Time';
@@ -23,7 +23,7 @@ interface Props {
  * @param {Props} props - Свойства компонента.
  * @param {boolean} props.simpleButton - флаг включения "простой" кнопки.
  */
-export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: isSimpleButton }) => {
+export const ShoppingList: FunctionComponent<Props> = reatomComponent(({ simpleButton: isSimpleButton }) => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
@@ -37,7 +37,7 @@ export const ShoppingList: FunctionComponent<Props> = observer(({ simpleButton: 
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const { productAmountById } = cartStore;
+    const productAmountById = cartStore.productAmountById();
 
     return (
         <>

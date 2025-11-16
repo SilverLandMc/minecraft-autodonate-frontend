@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { FunctionComponent, MouseEvent, useEffect, useRef } from 'react';
 import { useClickAway } from 'react-use';
 import { cartStore } from '@/entities/cart';
@@ -13,8 +13,8 @@ interface Props {
     onClose(event: MouseEvent): void;
 }
 
-export const ShoppingListModal: FunctionComponent<Props> = observer(({ isModalOpened, isClosing, onClose }) => {
-    const { productAmountById } = cartStore;
+export const ShoppingListModal: FunctionComponent<Props> = reatomComponent(({ isModalOpened, isClosing, onClose }) => {
+    const productAmountById = cartStore.productAmountById();
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => onClose(event as unknown as MouseEvent));

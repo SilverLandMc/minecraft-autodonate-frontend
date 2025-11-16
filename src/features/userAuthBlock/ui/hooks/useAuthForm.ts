@@ -1,11 +1,9 @@
 import { ChangeEvent, useState } from 'react';
-import { fetchUserInfo, useUserStoreActions } from '@/entities/user';
+import { fetchUserInfo, userStoreAtom } from '@/entities/user';
 
 export const useAuthForm = () => {
     const [userNickName, setUserNickName] = useState<string>('');
     const [errorText, setErrorText] = useState<string | null>(null);
-
-    const { setUserInfo, eraseUserInfo } = useUserStoreActions();
 
     const confirmForm = async () => {
         if (!userNickName.trim()) {
@@ -16,7 +14,7 @@ export const useAuthForm = () => {
         try {
             const userInfo = await fetchUserInfo(userNickName.trim());
             setErrorText(null);
-            setUserInfo(userInfo);
+            userStoreAtom.setUserInfo(userInfo);
         } catch {
             setErrorText('Пользователь не найден!');
         }
@@ -26,7 +24,7 @@ export const useAuthForm = () => {
 
     const logout = () => {
         setUserNickName('');
-        eraseUserInfo();
+        userStoreAtom.eraseUserInfo();
     };
 
     return { userNickName, errorText, confirmForm, handleInput, logout };

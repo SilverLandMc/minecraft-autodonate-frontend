@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { FunctionComponent } from 'react';
-import { useUserInfo } from '@/entities/user';
+import { userStoreAtom } from '@/entities/user';
 import { classNames } from '@/shared/lib/aliases';
 import { BackgroundColor, Input, ModernButton, Optional, Section, Spacing } from '@/shared/ui';
 import { useAuthForm } from './hooks/useAuthForm';
@@ -24,9 +24,9 @@ interface Props {
  * @param {boolean} props.standalone - флаг применения компонента в отдельной карточке на главной странице
  * @param {boolean} props.usedInCart - флаг применения компонента в корзине
  */
-export const UserAuthBlock: FunctionComponent<Props> = observer(
+export const UserAuthBlock: FunctionComponent<Props> = reatomComponent(
     ({ standalone: isStandalone, usedInCart: isUsedInCart }) => {
-        const { userName } = useUserInfo();
+        const userName = userStoreAtom.userName();
         const { userNickName, errorText, handleInput, confirmForm, logout } = useAuthForm();
 
         const anonymousContent = (

@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { FunctionComponent } from 'react';
 import { cartStore } from '@/entities/cart';
 import { productStore } from '@/entities/product';
@@ -7,12 +7,12 @@ import plusIcon from '@/shared/assets/plusIcon.svg';
 import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
 import styles from './ShoppingListTable.module.scss';
 
-export const ShoppingListTable: FunctionComponent = observer(() => {
-    const { productAmountById, incrementProduct, decrementProduct } = cartStore;
-    const { productsById } = productStore;
+export const ShoppingListTable: FunctionComponent = reatomComponent(() => {
+    const productAmountById = cartStore.productAmountById();
+    const productsById = productStore.productsById();
 
-    const increment = (productId: string) => () => incrementProduct(productId);
-    const decrement = (productId: string) => () => decrementProduct(productId);
+    const increment = (productId: string) => () => cartStore.incrementProduct(productId);
+    const decrement = (productId: string) => () => cartStore.decrementProduct(productId);
 
     const totalListPrice = Object.entries(productAmountById).reduce((priceAccumulator, [id, amount]) => {
         const product = productsById?.[id];

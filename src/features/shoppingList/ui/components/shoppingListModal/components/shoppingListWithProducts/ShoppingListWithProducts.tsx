@@ -1,8 +1,8 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { FunctionComponent, useState } from 'react';
 import { UserAuthBlock } from '@/features/userAuthBlock';
 import { cartStore, createPaymentLink } from '@/entities/cart';
-import { useUserInfo, useUserStoreActions } from '@/entities/user';
+import { userStoreAtom } from '@/entities/user';
 import { CreatePaymentDto } from '@/shared/api/apiTypes';
 import { createLinkOpener } from '@/shared/lib/createLinkOpener';
 import { BackgroundColor, ModernButton, Optional } from '@/shared/ui';
@@ -10,14 +10,14 @@ import { PromoCodeBlock } from './components/promoCodeBlock/PromoCodeBlock';
 import { ShoppingListTable } from './components/shoppingListTable/ShoppingListTable';
 import styles from './ShoppingListWithProducts.module.scss';
 
-export const ShoppingListWithProducts: FunctionComponent = observer(() => {
+export const ShoppingListWithProducts: FunctionComponent = reatomComponent(() => {
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
     const [paymentError, setPaymentError] = useState<string>();
 
-    const { userName } = useUserInfo();
-    const { eraseUserInfo } = useUserStoreActions();
+    const userName = userStoreAtom.userName();
 
-    const { productAmountById, promoCode, deletePromoCode } = cartStore;
+    const productAmountById = cartStore.productAmountById();
+    const promoCode = cartStore.promoCode();
 
     const handlePayment = async () => {
         if (!userName || Object.keys(productAmountById).length === 0) {
@@ -47,8 +47,8 @@ export const ShoppingListWithProducts: FunctionComponent = observer(() => {
     };
 
     const logout = () => {
-        eraseUserInfo();
-        deletePromoCode();
+        userStoreAtom.eraseUserInfo();
+        cartStore.deletePromoCode();
     };
 
     return (

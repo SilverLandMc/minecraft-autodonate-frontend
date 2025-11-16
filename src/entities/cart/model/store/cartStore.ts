@@ -1,46 +1,54 @@
-import { makeAutoObservable } from 'mobx';
+import { action, atom } from '@reatom/core';
 import { PromocodeOutDto } from '@/shared/api/apiTypes';
 
 /**
  * Стор информации о продуктах (товарах) в корзине пользователя и активированном промокоде.
  */
-class CartStore {
+
+/**
+ * Стор информации об админе.
+ */
+
+export const cartStore = atom().extend(() => {
     // Число каждого из продуктов в корзине по его id
-    productAmountById: Record<string, number> = {};
+    const productAmountById = atom<Record<string, number>>({}, 'productAmountById');
+
     // Активированный промокод
-    promoCode?: PromocodeOutDto;
+    const promoCode = atom<PromocodeOutDto | undefined>(undefined, 'isAuthPageVisited');
 
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    incrementProduct = (productId: string) => {
-        if (!this.productAmountById[productId]) {
-            this.productAmountById[productId] = 1;
+    const incrementProduct = action((productId: string) => {
+        if (!productAmountById()[productId]) {
+            productAmountById.set((prevState) => {
+                prevState[productId] = 1;
+                return prevState;
+            });
             return;
         }
 
-        this.productAmountById[productId] += 1;
-    };
+        productAmountById.set((prevState) => {
+            prevState[productId] += 1;
+            return prevState;
+        });
+    }, 'incrementProduct');
 
-    decrementProduct = (productId: string) => {
-        if (this.productAmountById[productId] === 1) {
-            delete this.productAmountById[productId];
+    const decrementProduct = action((productId: string) => {
+        if (productAmountById()[productId] === 1) {
+            productAmountById.set((prevState) => {
+                delete prevState[productId];
+                return prevState;
+            });
             return;
         }
 
-        this.productAmountById[productId] -= 1;
-    };
+        productAmountById.set((prevState) => {
+            prevState[productId] -= 1;
+            return prevState;
+        });
+    }, 'decrementProduct');
 
-    deleteProduct = (productId: string) => {
-        delete this.productAmountById[productId];
-    };
+    const setPromoCode = action((nextPromoCode?: PromocodeOutDto) => promoCode.set(nextPromoCode), 'setPromoCode');
 
-    setPromoCode = (promoCode?: PromocodeOutDto) => {
-        this.promoCode = promoCode;
-    };
+    const deletePromoCode = action(() => setPromoCode(undefined), 'deletePromoCode');
 
-    deletePromoCode = () => this.setPromoCode(undefined);
-}
-
-export const cartStore = new CartStore();
+    return { productAmountById, promoCode, incrementProduct, decrementProduct, setPromoCode, deletePromoCode };
+});

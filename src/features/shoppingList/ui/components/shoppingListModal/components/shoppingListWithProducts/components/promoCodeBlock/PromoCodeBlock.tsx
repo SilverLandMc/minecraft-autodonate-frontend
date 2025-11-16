@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react-lite';
+import { reatomComponent } from '@reatom/react';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import { cartStore } from '@/entities/cart';
 import { fetchPromoCodeByName } from '@/entities/promocode';
@@ -12,13 +12,11 @@ interface Props {
     disabled?: boolean;
 }
 
-export const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled: isDisabled }) => {
+export const PromoCodeBlock: FunctionComponent<Props> = reatomComponent(({ disabled: isDisabled }) => {
     const [isFormOpened, setIsFormOpened] = useState(false);
     const [formValue, setFormValue] = useState('');
     const [errorText, setErrorText] = useState<string | undefined>();
     const { isMobile } = useMediaContext();
-
-    const { promoCode, setPromoCode } = cartStore;
 
     const openForm = () => setIsFormOpened(true);
     const closeForm = () => {
@@ -27,12 +25,14 @@ export const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled: is
         setErrorText(undefined);
     };
 
+    const promoCode = cartStore.promoCode();
+
     const erasePromoCode = () => {
         if (isDisabled) {
             return;
         }
 
-        setPromoCode(undefined);
+        cartStore.deletePromoCode();
         setFormValue('');
         setIsFormOpened(true);
     };
@@ -49,7 +49,7 @@ export const PromoCodeBlock: FunctionComponent<Props> = observer(({ disabled: is
 
         try {
             const promoCode = await fetchPromoCodeByName(formValue);
-            setPromoCode(promoCode);
+            cartStore.setPromoCode(promoCode);
             setIsFormOpened(false);
             setErrorText(undefined);
         } catch (error) {
