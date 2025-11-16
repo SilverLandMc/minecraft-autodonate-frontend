@@ -24,8 +24,7 @@
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
         "storybook": "storybook dev -p 3010",
         "storybook:build": "storybook build",
-        "generateDependenciesGraph": "depcruise src --include-only \"^src\" --output-type dot | dot -T svg > dependency-graph.svg",
-        "depcruise:archi": "depcruise --version && depcruise --config depcruise-config.cjs --output-type archi src | dot -T svg | depcruise-wrap-stream-in-html > high-level-dependencies.html"
+        "generateDependenciesGraph": "depcruise src --include-only \"^src\" --output-type dot | dot -T svg > dependency-graph.svg"
     },
     "keywords": [],
     "author": "",

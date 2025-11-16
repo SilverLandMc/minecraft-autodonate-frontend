@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent } from 'react';
+import { ProductCard } from '@/features/productCard';
 import { cartStore } from '@/entities/cart';
-import { productStore, ProductCard } from '@/entities/product';
+import { productStore } from '@/entities/product';
 import { Category, ProductOutDto } from '@/shared/api/apiTypes';
 import chestImage from '@/shared/assets/chest.png';
 import { Section, Spacing } from '@/shared/ui';
