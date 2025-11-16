@@ -1,25 +1,26 @@
-import { action, atom, computed } from '@reatom/core';
+import { action, atom } from '@reatom/framework';
 import { ProductsById } from '@/shared/api/apiTypesHelper';
 import { AllProductsOutDto } from '../../types';
 
 /**
  * Стор информации о продуктах (товарах).
  */
-export const productStore = atom().extend(() => {
-    const productsByCategory = atom<AllProductsOutDto | undefined>(undefined, 'productsByCategory');
+export const productsByCategoryAtom = atom<AllProductsOutDto | undefined>(undefined, 'productsByCategory');
 
-    const setProducts = action(
-        (nextProducts?: AllProductsOutDto) => productsByCategory.set(nextProducts),
-        'setProducts'
-    );
+export const setProducts = action((ctx, nextProducts?: AllProductsOutDto) => {
+    productsByCategoryAtom(ctx, nextProducts);
+}, 'setProducts');
 
-    const productsById = computed<ProductsById>(
-        () =>
-            Object.values(productsByCategory() ?? {})
-                .flat()
-                .reduce((result, product) => ({ ...result, [product.id]: product }), {}),
-        'getProductsById'
-    );
+export const productsByIdAtom = atom((ctx) => {
+    const byCategory = ctx.spy(productsByCategoryAtom);
+    return Object.values(byCategory ?? {})
+        .flat()
+        .reduce((result, product) => ({ ...result, [product.id]: product }), {} as ProductsById);
+}, 'productsById');
 
-    return { productsByCategory, productsById, setProducts };
-});
+// Для обратной совместимости с существующим API
+export const productStore = {
+    productsByCategory: productsByCategoryAtom,
+    productsById: productsByIdAtom,
+    setProducts
+};

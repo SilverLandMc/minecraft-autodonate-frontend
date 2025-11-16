@@ -1,3 +1,4 @@
+import { useAction, useAtom } from '@reatom/npm-react';
 import { useEffect } from 'react';
 import { adminStore } from '@/entities/admin';
 import { createLogger } from '@/shared/lib/logger';
@@ -6,9 +7,13 @@ import { fetchAdminInfo } from '../../api/fetchAdminInfo';
 const logger = createLogger('useAdminInfo');
 
 export const useAdminInfo = () => {
+    const [isUserRequestFinished] = useAtom(adminStore.isUserRequestFinished);
+    const handleSetAdmin = useAction(adminStore.setAdmin);
+    const handleSetUserRequestFinished = useAction(adminStore.setUserRequestFinished);
+
     useEffect(() => {
         const checkAdmin = async () => {
-            if (adminStore.isUserRequestFinished()) {
+            if (isUserRequestFinished) {
                 return;
             }
 
@@ -17,17 +22,17 @@ export const useAdminInfo = () => {
 
                 // todo Исправить после переезда авторизации на log / pass
                 if (role === 'ADMIN') {
-                    adminStore.setAdmin();
+                    handleSetAdmin();
                 }
 
                 logger.info(`Авторизован как ${fullName} (${tgName}) с ролью ${role}`);
             } catch (error) {
                 logger.error('An error during an attempt to authorize admin');
             } finally {
-                adminStore.setUserRequestFinished();
+                handleSetUserRequestFinished();
             }
         };
 
         checkAdmin();
-    }, []);
+    }, [isUserRequestFinished, handleSetAdmin, handleSetUserRequestFinished]);
 };

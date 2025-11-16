@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAtom } from '@reatom/npm-react';
 import { FunctionComponent } from 'react';
 import { userStoreAtom } from '@/entities/user';
 import { classNames } from '@/shared/lib/aliases';
@@ -26,7 +26,7 @@ interface Props {
  */
 export const UserAuthBlock: FunctionComponent<Props> = reatomComponent(
     ({ standalone: isStandalone, usedInCart: isUsedInCart }) => {
-        const userName = userStoreAtom.userName();
+        const [userName] = useAtom(userStoreAtom.userName);
         const { userNickName, errorText, handleInput, confirmForm, logout } = useAuthForm();
 
         const anonymousContent = (

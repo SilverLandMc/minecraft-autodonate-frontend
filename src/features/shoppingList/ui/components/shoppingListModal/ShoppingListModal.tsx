@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAtom } from '@reatom/npm-react';
 import { FunctionComponent, MouseEvent, useEffect, useRef } from 'react';
 import { useClickAway } from 'react-use';
 import { cartStore } from '@/entities/cart';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const ShoppingListModal: FunctionComponent<Props> = reatomComponent(({ isModalOpened, isClosing, onClose }) => {
-    const productAmountById = cartStore.productAmountById();
+    const [productAmountById] = useAtom(cartStore.productAmountById);
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     useClickAway(wrapperRef, (event) => onClose(event as unknown as MouseEvent));

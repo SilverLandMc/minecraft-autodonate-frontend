@@ -1,54 +1,62 @@
-import { action, atom } from '@reatom/core';
+import { action, atom } from '@reatom/framework';
 import { PromocodeOutDto } from '@/shared/api/apiTypes';
 
 /**
  * Стор информации о продуктах (товарах) в корзине пользователя и активированном промокоде.
  */
 
-/**
- * Стор информации об админе.
- */
+// Число каждого из продуктов в корзине по его id
+export const productAmountByIdAtom = atom<Record<string, number>>({}, 'productAmountById');
 
-export const cartStore = atom().extend(() => {
-    // Число каждого из продуктов в корзине по его id
-    const productAmountById = atom<Record<string, number>>({}, 'productAmountById');
+// Активированный промокод
+export const promoCodeAtom = atom<PromocodeOutDto | undefined>(undefined, 'promoCode');
 
-    // Активированный промокод
-    const promoCode = atom<PromocodeOutDto | undefined>(undefined, 'isAuthPageVisited');
+export const incrementProduct = action((ctx, productId: string) => {
+    const current = ctx.get(productAmountByIdAtom);
 
-    const incrementProduct = action((productId: string) => {
-        if (!productAmountById()[productId]) {
-            productAmountById.set((prevState) => {
-                prevState[productId] = 1;
-                return prevState;
-            });
-            return;
-        }
-
-        productAmountById.set((prevState) => {
-            prevState[productId] += 1;
-            return prevState;
+    if (!current[productId]) {
+        productAmountByIdAtom(ctx, {
+            ...current,
+            [productId]: 1
         });
-    }, 'incrementProduct');
+        return;
+    }
 
-    const decrementProduct = action((productId: string) => {
-        if (productAmountById()[productId] === 1) {
-            productAmountById.set((prevState) => {
-                delete prevState[productId];
-                return prevState;
-            });
-            return;
-        }
+    productAmountByIdAtom(ctx, {
+        ...current,
+        [productId]: current[productId] + 1
+    });
+}, 'incrementProduct');
 
-        productAmountById.set((prevState) => {
-            prevState[productId] -= 1;
-            return prevState;
-        });
-    }, 'decrementProduct');
+export const decrementProduct = action((ctx, productId: string) => {
+    const current = ctx.get(productAmountByIdAtom);
 
-    const setPromoCode = action((nextPromoCode?: PromocodeOutDto) => promoCode.set(nextPromoCode), 'setPromoCode');
+    if (current[productId] === 1) {
+        const { [productId]: _, ...rest } = current;
+        productAmountByIdAtom(ctx, rest);
+        return;
+    }
 
-    const deletePromoCode = action(() => setPromoCode(undefined), 'deletePromoCode');
+    productAmountByIdAtom(ctx, {
+        ...current,
+        [productId]: current[productId] - 1
+    });
+}, 'decrementProduct');
 
-    return { productAmountById, promoCode, incrementProduct, decrementProduct, setPromoCode, deletePromoCode };
-});
+export const setPromoCode = action((ctx, nextPromoCode?: PromocodeOutDto) => {
+    promoCodeAtom(ctx, nextPromoCode);
+}, 'setPromoCode');
+
+export const deletePromoCode = action((ctx) => {
+    promoCodeAtom(ctx, undefined);
+}, 'deletePromoCode');
+
+// Для обратной совместимости с существующим API
+export const cartStore = {
+    productAmountById: productAmountByIdAtom,
+    promoCode: promoCodeAtom,
+    incrementProduct,
+    decrementProduct,
+    setPromoCode,
+    deletePromoCode
+};

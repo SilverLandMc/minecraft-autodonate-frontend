@@ -1,3 +1,4 @@
+import { useAction, useAtom } from '@reatom/npm-react';
 import { RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
@@ -10,9 +11,12 @@ interface Params {
 
 export const useAdminAuth = ({ telegramButtonRef }: Params) => {
     const navigate = useNavigate();
+    const [isAdmin] = useAtom(adminStore.isAdmin);
+    const [isAuthPageVisited] = useAtom(adminStore.isAuthPageVisited);
+    const handleSetAuthPageVisited = useAction(adminStore.setAuthPageVisited);
 
     useEffectOnce(() => {
-        if (adminStore.isAdmin() || adminStore.isAuthPageVisited()) {
+        if (isAdmin || isAuthPageVisited) {
             navigate(RoutePath['admin']);
         }
 
@@ -32,7 +36,7 @@ export const useAdminAuth = ({ telegramButtonRef }: Params) => {
         telegramButtonRef.current.appendChild(script);
 
         return () => {
-            adminStore.setAuthPageVisited();
+            handleSetAuthPageVisited();
 
             if (buttonRef) {
                 buttonRef.removeChild(script);

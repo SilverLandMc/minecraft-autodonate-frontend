@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAction, useAtom } from '@reatom/npm-react';
 import { FunctionComponent } from 'react';
 import { cartStore } from '@/entities/cart';
 import { productStore } from '@/entities/product';
@@ -8,11 +8,14 @@ import { BackgroundColor, ModernButton, Spacing } from '@/shared/ui';
 import styles from './ShoppingListTable.module.scss';
 
 export const ShoppingListTable: FunctionComponent = reatomComponent(() => {
-    const productAmountById = cartStore.productAmountById();
-    const productsById = productStore.productsById();
+    const [productAmountById] = useAtom(cartStore.productAmountById);
+    const [productsById] = useAtom(productStore.productsById);
 
-    const increment = (productId: string) => () => cartStore.incrementProduct(productId);
-    const decrement = (productId: string) => () => cartStore.decrementProduct(productId);
+    const handleIncrement = useAction(cartStore.incrementProduct);
+    const handleDecrement = useAction(cartStore.decrementProduct);
+
+    const increment = (productId: string) => () => handleIncrement(productId);
+    const decrement = (productId: string) => () => handleDecrement(productId);
 
     const totalListPrice = Object.entries(productAmountById).reduce((priceAccumulator, [id, amount]) => {
         const product = productsById?.[id];

@@ -1,3 +1,5 @@
+import { createCtx } from '@reatom/framework';
+import { reatomContext } from '@reatom/npm-react';
 import { createRoot } from 'react-dom/client';
 import { App } from '@/app/App';
 import { AppContainer } from '@/app/providers/appContainer';
@@ -8,10 +10,14 @@ if (!__IS_DEV__) {
     initializeSentry();
 }
 
+const ctx = createCtx();
+
 const root = createRoot(document.getElementById('root')!);
 
 root.render(
-    <AppContainer>
-        <App />
-    </AppContainer>
+    <reatomContext.Provider value={ctx}>
+        <AppContainer>
+            <App />
+        </AppContainer>
+    </reatomContext.Provider>
 );

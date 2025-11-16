@@ -1,30 +1,34 @@
 import { safeLocalStorage } from '@37bytes/storage-fallback';
-import { action, atom } from '@reatom/core';
+import { action, atom } from '@reatom/framework';
 import { PlayerInfoOutDto } from '@/shared/api/apiTypes';
 import { LocalStorageKey } from '@/shared/enums/localStorageKey';
 
-export const userStoreAtom = atom().extend(() => {
-    const userName = atom<string | undefined>(
-        safeLocalStorage.getItem(LocalStorageKey.USER_NAME) || undefined,
-        'productsByCategory'
-    );
+export const userNameAtom = atom<string | undefined>(
+    safeLocalStorage.getItem(LocalStorageKey.USER_NAME) || undefined,
+    'userName'
+);
 
-    const userUniqueProducts = atom<string[] | undefined>(undefined, 'userUniqueProducts');
+export const userUniqueProductsAtom = atom<string[] | undefined>(undefined, 'userUniqueProducts');
 
-    const setUserInfo = action(({ playerName, uniqueProducts }: PlayerInfoOutDto) => {
-        userName.set(playerName);
-        userUniqueProducts.set(uniqueProducts === null ? undefined : uniqueProducts);
+export const setUserInfo = action((ctx, { playerName, uniqueProducts }: PlayerInfoOutDto) => {
+    userNameAtom(ctx, playerName);
+    userUniqueProductsAtom(ctx, uniqueProducts === null ? undefined : uniqueProducts);
 
-        if (playerName) {
-            safeLocalStorage.setItem(LocalStorageKey.USER_NAME, playerName);
-        }
-    }, 'setUserInfo');
+    if (playerName) {
+        safeLocalStorage.setItem(LocalStorageKey.USER_NAME, playerName);
+    }
+}, 'setUserInfo');
 
-    const eraseUserInfo = action(() => {
-        userName.set(undefined);
-        userUniqueProducts.set(undefined);
-        safeLocalStorage.removeItem(LocalStorageKey.USER_NAME);
-    }, 'eraseUserInfo');
+export const eraseUserInfo = action((ctx) => {
+    userNameAtom(ctx, undefined);
+    userUniqueProductsAtom(ctx, undefined);
+    safeLocalStorage.removeItem(LocalStorageKey.USER_NAME);
+}, 'eraseUserInfo');
 
-    return { userName, userUniqueProducts, setUserInfo, eraseUserInfo };
-});
+// Для обратной совместимости с существующим API
+export const userStoreAtom = {
+    userName: userNameAtom,
+    userUniqueProducts: userUniqueProductsAtom,
+    setUserInfo,
+    eraseUserInfo
+};

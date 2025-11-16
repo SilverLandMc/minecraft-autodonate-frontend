@@ -1,9 +1,13 @@
+import { useAction } from '@reatom/npm-react';
 import { ChangeEvent, useState } from 'react';
 import { fetchUserInfo, userStoreAtom } from '@/entities/user';
 
 export const useAuthForm = () => {
     const [userNickName, setUserNickName] = useState<string>('');
     const [errorText, setErrorText] = useState<string | null>(null);
+
+    const handleSetUserInfo = useAction(userStoreAtom.setUserInfo);
+    const handleEraseUserInfo = useAction(userStoreAtom.eraseUserInfo);
 
     const confirmForm = async () => {
         if (!userNickName.trim()) {
@@ -14,7 +18,7 @@ export const useAuthForm = () => {
         try {
             const userInfo = await fetchUserInfo(userNickName.trim());
             setErrorText(null);
-            userStoreAtom.setUserInfo(userInfo);
+            handleSetUserInfo(userInfo);
         } catch {
             setErrorText('Пользователь не найден!');
         }
@@ -24,7 +28,7 @@ export const useAuthForm = () => {
 
     const logout = () => {
         setUserNickName('');
-        userStoreAtom.eraseUserInfo();
+        handleEraseUserInfo();
     };
 
     return { userNickName, errorText, confirmForm, handleInput, logout };

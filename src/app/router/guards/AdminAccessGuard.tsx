@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAtom } from '@reatom/npm-react';
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
 import { adminStore, useAdminInfo } from '@/entities/admin';
@@ -8,11 +8,14 @@ import { RunnerLoader } from '@/shared/ui/runnerLoader';
 export const AdminAccessGuard: FunctionComponent<PropsWithChildren> = reatomComponent(({ children }) => {
     useAdminInfo();
 
-    if (!adminStore.isUserRequestFinished()) {
+    const [isUserRequestFinished] = useAtom(adminStore.isUserRequestFinished);
+    const [isAdmin] = useAtom(adminStore.isAdmin);
+
+    if (!isUserRequestFinished) {
         return <RunnerLoader />;
     }
 
-    if (!adminStore.isAdmin()) {
+    if (!isAdmin) {
         return <Navigate to={AppRoutes.NOT_FOUND} />;
     }
 

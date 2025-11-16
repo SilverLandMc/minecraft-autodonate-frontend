@@ -1,17 +1,31 @@
-import { action, atom } from '@reatom/core';
+import { action, atom } from '@reatom/framework';
 
 /**
  * Стор информации об админе.
  */
 
-export const adminStore = atom().extend(() => {
-    const isUserRequestFinished = atom<boolean>(false, 'isUserRequestFinished');
-    const isAuthPageVisited = atom<boolean>(false, 'isAuthPageVisited');
-    const isAdmin = atom<boolean>(false, 'isAdmin');
+const isUserRequestFinishedAtom = atom<boolean>(false, 'isUserRequestFinished');
+const isAuthPageVisitedAtom = atom<boolean>(false, 'isAuthPageVisited');
+const isAdminAtom = atom<boolean>(false, 'isAdmin');
 
-    const setUserRequestFinished = action(() => isUserRequestFinished.set(true), 'setUserRequestFinished');
-    const setAuthPageVisited = action(() => isAuthPageVisited.set(true), 'setAuthPageVisited');
-    const setAdmin = action(() => isAdmin.set(true), 'setAdmin');
+const setUserRequestFinished = action((ctx) => {
+    isUserRequestFinishedAtom(ctx, true);
+}, 'setUserRequestFinished');
 
-    return { isUserRequestFinished, isAdmin, isAuthPageVisited, setUserRequestFinished, setAuthPageVisited, setAdmin };
-});
+const setAuthPageVisited = action((ctx) => {
+    isAuthPageVisitedAtom(ctx, true);
+}, 'setAuthPageVisited');
+
+const setAdmin = action((ctx) => {
+    isAdminAtom(ctx, true);
+}, 'setAdmin');
+
+// Для обратной совместимости с существующим API
+export const adminStore = {
+    isUserRequestFinished: isUserRequestFinishedAtom,
+    isAdmin: isAdminAtom,
+    isAuthPageVisited: isAuthPageVisitedAtom,
+    setUserRequestFinished,
+    setAuthPageVisited,
+    setAdmin
+};

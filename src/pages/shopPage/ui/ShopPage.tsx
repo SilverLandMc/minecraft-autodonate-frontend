@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAction, useAtom } from '@reatom/npm-react';
 import { FunctionComponent } from 'react';
 import { ProductCard } from '@/features/productCard';
 import { cartStore } from '@/entities/cart';
@@ -14,9 +14,12 @@ const pageSpacing = <Spacing size={50} sizeM={70} />;
 const headerSpacing = <Spacing size={24} sizeM={32} />;
 
 const ShopPage: FunctionComponent = reatomComponent(() => {
-    const productsByCategory = productStore.productsByCategory();
-    const productsById = productStore.productsById();
-    const productAmountById = cartStore.productAmountById();
+    const [productsByCategory] = useAtom(productStore.productsByCategory);
+    const [productsById] = useAtom(productStore.productsById);
+    const [productAmountById] = useAtom(cartStore.productAmountById);
+
+    const incrementProduct = useAction(cartStore.incrementProduct);
+    const decrementProduct = useAction(cartStore.decrementProduct);
 
     const { error, isLoading } = useFetchProducts(productsByCategory);
 
@@ -45,8 +48,8 @@ const ShopPage: FunctionComponent = reatomComponent(() => {
 
     const renderProducts = (products: ProductOutDto[]) =>
         products.map((product) => {
-            const handleIncrement = () => cartStore.incrementProduct(product.id);
-            const handleDecrement = () => cartStore.decrementProduct(product.id);
+            const handleIncrement = () => incrementProduct(product.id);
+            const handleDecrement = () => decrementProduct(product.id);
             const amount = productAmountById[product.id] ?? 0;
 
             return (

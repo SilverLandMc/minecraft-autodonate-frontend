@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAction, useAtom } from '@reatom/npm-react';
 import { FunctionComponent, useState } from 'react';
 import { UserAuthBlock } from '@/features/userAuthBlock';
 import { cartStore, createPaymentLink } from '@/entities/cart';
@@ -14,10 +14,13 @@ export const ShoppingListWithProducts: FunctionComponent = reatomComponent(() =>
     const [isPaymentCreating, setIsPaymentCreating] = useState(false);
     const [paymentError, setPaymentError] = useState<string>();
 
-    const userName = userStoreAtom.userName();
+    const [userName] = useAtom(userStoreAtom.userName);
 
-    const productAmountById = cartStore.productAmountById();
-    const promoCode = cartStore.promoCode();
+    const [productAmountById] = useAtom(cartStore.productAmountById);
+    const [promoCode] = useAtom(cartStore.promoCode);
+
+    const handleDeletePromoCode = useAction(cartStore.deletePromoCode);
+    const handleEraseUserInfo = useAction(userStoreAtom.eraseUserInfo);
 
     const handlePayment = async () => {
         if (!userName || Object.keys(productAmountById).length === 0) {
@@ -47,8 +50,8 @@ export const ShoppingListWithProducts: FunctionComponent = reatomComponent(() =>
     };
 
     const logout = () => {
-        userStoreAtom.eraseUserInfo();
-        cartStore.deletePromoCode();
+        handleEraseUserInfo();
+        handleDeletePromoCode();
     };
 
     return (

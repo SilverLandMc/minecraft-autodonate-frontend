@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAction, useAtom } from '@reatom/npm-react';
 import { ChangeEvent, FunctionComponent, useState } from 'react';
 import { cartStore } from '@/entities/cart';
 import { fetchPromoCodeByName } from '@/entities/promocode';
@@ -25,14 +25,16 @@ export const PromoCodeBlock: FunctionComponent<Props> = reatomComponent(({ disab
         setErrorText(undefined);
     };
 
-    const promoCode = cartStore.promoCode();
+    const [promoCode] = useAtom(cartStore.promoCode);
+    const handleDeletePromoCode = useAction(cartStore.deletePromoCode);
+    const handleSetPromoCode = useAction(cartStore.setPromoCode);
 
     const erasePromoCode = () => {
         if (isDisabled) {
             return;
         }
 
-        cartStore.deletePromoCode();
+        handleDeletePromoCode();
         setFormValue('');
         setIsFormOpened(true);
     };
@@ -49,7 +51,7 @@ export const PromoCodeBlock: FunctionComponent<Props> = reatomComponent(({ disab
 
         try {
             const promoCode = await fetchPromoCodeByName(formValue);
-            cartStore.setPromoCode(promoCode);
+            handleSetPromoCode(promoCode);
             setIsFormOpened(false);
             setErrorText(undefined);
         } catch (error) {

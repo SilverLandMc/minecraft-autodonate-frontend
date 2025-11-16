@@ -1,4 +1,4 @@
-import { reatomComponent } from '@reatom/react';
+import { reatomComponent, useAtom } from '@reatom/npm-react';
 import { FunctionComponent, useState } from 'react';
 import { cartStore } from '@/entities/cart';
 import { Time } from '@/shared/enums/Time';
@@ -37,7 +37,7 @@ export const ShoppingList: FunctionComponent<Props> = reatomComponent(({ simpleB
         }, Time.MODAL_CLOSE_ANIMATION_DURATION);
     };
 
-    const productAmountById = cartStore.productAmountById();
+    const [productAmountById] = useAtom(cartStore.productAmountById);
 
     return (
         <>
