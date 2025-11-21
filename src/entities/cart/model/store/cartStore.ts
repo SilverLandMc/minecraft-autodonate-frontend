@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, makeObservable, observable } from 'mobx';
 import { PromocodeOutDto } from '@/shared/api/apiTypes';
 
 /**
@@ -10,8 +10,20 @@ class CartStore {
     // Активированный промокод
     promoCode?: PromocodeOutDto;
 
+    // constructor() {
+    //     makeAutoObservable(this);
+    // }
+
     constructor() {
-        makeAutoObservable(this);
+        makeObservable(this, {
+            productAmountById: observable,
+            promoCode: observable,
+            incrementProduct: action,
+            decrementProduct: action,
+            deleteProduct: action,
+            setPromoCode: action,
+            deletePromoCode: action
+        });
     }
 
     incrementProduct = (productId: string) => {

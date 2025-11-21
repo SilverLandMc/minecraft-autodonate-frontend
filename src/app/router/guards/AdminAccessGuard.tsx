@@ -6,9 +6,9 @@ import { AppRoutes } from '@/shared/config/routeConfig';
 import { RunnerLoader } from '@/shared/ui/runnerLoader';
 
 export const AdminAccessGuard: FunctionComponent<PropsWithChildren> = observer(({ children }) => {
-    const { isAdmin, isUserRequestFinished, setUserRequestFinished, setAdmin } = adminStore;
+    const { isAdmin, isUserRequestFinished } = adminStore;
 
-    useAdminInfo({ isUserRequestFinished, setUserRequestFinished, setAdmin });
+    useAdminInfo();
 
     if (!isUserRequestFinished) {
         return <RunnerLoader />;

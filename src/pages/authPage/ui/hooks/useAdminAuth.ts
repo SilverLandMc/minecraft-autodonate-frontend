@@ -1,17 +1,16 @@
 import { RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce } from 'react-use';
+import { adminStore } from '@/entities/admin';
 import { RoutePath } from '@/shared/config/routeConfig';
 
 interface Params {
     telegramButtonRef: RefObject<HTMLDivElement>;
-    isAdmin: boolean;
-    isAuthPageVisited: boolean;
-    setAuthPageVisited(): void;
 }
 
-export const useAdminAuth = ({ telegramButtonRef, isAdmin, isAuthPageVisited, setAuthPageVisited }: Params) => {
+export const useAdminAuth = ({ telegramButtonRef }: Params) => {
     const navigate = useNavigate();
+    const { isAdmin, isAuthPageVisited, setAuthPageVisited } = adminStore;
 
     useEffectOnce(() => {
         if (isAdmin || isAuthPageVisited) {

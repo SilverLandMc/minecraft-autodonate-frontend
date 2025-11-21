@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
+import { adminStore } from '@/entities/admin';
 import { createLogger } from '@/shared/lib/logger';
 import { fetchAdminInfo } from '../../api/fetchAdminInfo';
 
 const logger = createLogger('useAdminInfo');
 
-interface Params {
-    isUserRequestFinished: boolean;
-    setAdmin(): void;
-    setUserRequestFinished(): void;
-}
+export const useAdminInfo = () => {
+    const { isUserRequestFinished, setUserRequestFinished, setAdmin } = adminStore;
 
-export const useAdminInfo = ({ isUserRequestFinished, setAdmin, setUserRequestFinished }: Params) => {
     useEffect(() => {
         const checkAdmin = async () => {
             if (isUserRequestFinished) {
