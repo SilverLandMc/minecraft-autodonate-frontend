@@ -1,7 +1,5 @@
 # SilverLand Frontend
 
-![push status](https://github.com/SilverLandMc/minecraft-silver-frontend/actions/workflows/main.yml/badge.svg?event=push)
-
 Фронтенд донат-магазина Minecraft-сервера SilverLand: каталог товаров, корзина, промокоды и скидки, личный кабинет и полноценная админка.
 
 ![Главная страница SilverLand](docs/main-page.png)
